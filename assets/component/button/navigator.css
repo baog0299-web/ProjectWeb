@@ -1,0 +1,17 @@
+.nav-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 168px;
+    height:48px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgba(107, 68, 35, 1);
+    color:#ddd;
+    gap:12px;
+    cursor: pointer;
+}
+.nav-btn:hover{
+    background-color: rgba(139, 69, 19, 1);
+
+}

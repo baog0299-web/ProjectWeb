@@ -1,0 +1,23 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+.btn-page{
+    width: 40px;
+    height: 40px;
+    border: solid 1px;
+    border-color: rgba(253, 230, 138, 1);
+    border-radius:50%;
+    background-color: #FFFFFF;
+    color: #D97706;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.btn-page:hover{
+    background-color: rgba(255, 232, 140, 1);
+    color: #D97706;
+}

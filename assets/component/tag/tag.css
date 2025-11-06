@@ -1,0 +1,32 @@
+.btn-tag{
+    width: 98px;
+    height: 24px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    background-color: rgba(254, 243, 199, 1);
+    font-weight: 600;
+    font-size: 12px;
+    color: rgba(217, 119, 6, 1);
+}
+.btn-tag:hover{
+    background-color: rgba(255, 226, 187, 1);
+    color:rgba(255, 95, 87, 1);
+}
+.smallbtn-tag{
+    width: 42px;
+    height: 24px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    background-color: rgba(254, 243, 199, 1);
+     font-weight: 600;
+    font-size: 12px;
+    color: rgba(217, 119, 6, 1);
+}
+.smallbtn-tag:hover{
+    background-color: rgba(221, 219, 160, 1);
+    
+}
