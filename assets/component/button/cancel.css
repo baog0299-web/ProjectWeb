@@ -1,0 +1,13 @@
+.cancel-btn{
+    width: 80px;
+    height: 46px;
+    border: 1px solid rgba(74, 44, 26, 1) ;
+    border-radius: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    color: rgba(74, 44, 26, 1);
+}
+.cancel-btn:hover{
+    background-color: rgba(74, 44, 26, 1);
+    color: rgba(255, 255, 255, 1);
+}

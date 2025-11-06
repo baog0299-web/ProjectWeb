@@ -1,0 +1,18 @@
+.btn-search{
+    width: 210px;
+    height: 48px;
+    background-color:#FF7043;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 150px;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 400;
+    box-shadow:0 6px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.btn-search:hover{
+    background-color:#FF7043;
+    box-shadow: 0 20px 38px rgba(255, 112, 67, 0.4);
+}
