@@ -1,0 +1,33 @@
+.catalogue-btn{
+    width: 180px;
+    height: 46px;
+    display: inline-flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(253, 230, 138, 1);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(217, 119, 6, 1);
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+.catalogue-btn:hover{
+    background-color: rgba(255, 243, 197, 1);
+
+}
+.catalogue-active{
+     width: 180px;
+    height: 46px;
+    display: inline-flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(253, 230, 138, 1);
+    border-radius: 20px;
+    background-color: rgba(217, 119, 6, 1);
+    color: #ddd;
+    font-weight: 600;
+    font-size: 16px;
+}

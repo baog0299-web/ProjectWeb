@@ -1,0 +1,13 @@
+.des-btn{
+    width: 352px;
+    height: 80px;
+    justify-content: center;
+    border: none;
+    background:none;
+    color: rgba(139, 115, 85, 1);
+    cursor: pointer;
+}
+.des-btn:hover{
+    background-color: rgba(73, 53, 37, 1);
+    color: #ddd;
+}
