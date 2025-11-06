@@ -1,0 +1,12 @@
+.btn-back{
+    width: 48px;
+    height:48px;
+    border-radius: 50%;
+    border: 0;
+    background-color: #5D4037;
+    color:#ddd;
+    cursor: pointer;
+}
+.btn-back:hover{
+    background-color:#FF7043;
+}

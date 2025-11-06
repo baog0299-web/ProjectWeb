@@ -1,0 +1,21 @@
+.btn-explore{
+    width: 340px;
+    height : 90px;
+    background-color:#FF7043;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 150px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px; 
+    font-weight: 400;
+    font-size:24px;
+    box-shadow:0 6px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.btn-explore:hover{
+    background-color:#FF7043;
+    box-shadow: 0 20px 38px rgba(255, 112, 67, 0.4);
+
+}
