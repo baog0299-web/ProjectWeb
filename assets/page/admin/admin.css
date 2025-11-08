@@ -1,0 +1,148 @@
+
+.allcode{
+    font-family: roboto, sans-serif;
+    background-color: #fffbeb;
+}
+.cfadmin{
+     color: #78350F;
+   font-size: 30px;
+   width: 284px;
+    height: 42px;
+    margin-left: 50px;
+}
+.welcome-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px;
+    padding: 10px;
+}
+.avatar {
+    width: 40px;
+    height: 40px;
+    background: #FF6B38;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+.welcome-text {
+    display: flex;
+    flex-direction: column;
+}
+.welcome-title {
+    color: #4A2C1A;
+    font-size: 16px;
+    margin: 0;
+}
+.welcome-subtitle {
+    color: #666666;
+    font-size: 14px;
+    margin: 0;
+}
+.new-prj{
+    color: #78350F;
+    font-size: 18px;
+    padding-left: 20px;
+}
+.main-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.left-column {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.add-section {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+.add-button {
+    width: 48px;
+    height: 48px;
+    background: #FF6B38;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 0 auto 10px;
+}
+
+.add-title {
+    color: #4A2C1A;
+    margin: 10px 0 5px;
+}
+
+.add-subtitle {
+    color: #666;
+    margin: 0;
+}
+
+.note-section {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);  /* Thêm bóng đổ nhẹ */
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 24px;
+    padding-bottom: 29.6px;
+}
+
+.note-section h3 {
+    color: #78350F;
+    font-size: 14px;
+    margin: 0 0 10px 0;
+}
+
+.note-section textarea {
+    width: 443px;
+    height: 128px;
+    border: 1px solid  #FDE68A;
+    border-radius: 12px;
+    padding: 13.6px;
+    resize: none;
+    background: rgba(255, 251, 235, 0.3);
+    font-family: roboto, sans-serif;
+    padding-left: 60px;
+}
+
+.stats-card {
+    background: linear-gradient(90deg, #D97706, #EA580C);
+    border-radius: 8px;
+    padding: 20px;
+    color: white;
+}
+
+.stats-number {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.stats-label {
+    font-size: 14px;
+}
+
+.stats-update {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-top: 5px;
+}
