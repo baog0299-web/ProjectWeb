@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CoffeeFinder Admin</title>
+  <link rel="stylesheet" href="Add-details-page.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <div class="header">
+        <div class="block-h1">
+          <img src="../../image/add-details-page/Component1.svg" alt="Logo">
+          <div class="h1">CoffeeFinder Admin</div>
+        </div>
+        <div class="block-h2">← Quay lại Dashboard</div>
+      </div>
+
+      <div class="wrapper-content">
+        <div class="head-content">Thêm Quán Cafe Mới</div>
+        <div class="head-img">Điền thông tin chi tiết về quán cafe</div>
+
+        <div class="img-content">
+          <div class="img-icon">
+            <div class="add-btn">
+              <div class="add-btn"> <img src="../../image/add-details-page/plus-sign.png"> </div>
+            </div>
+            <div class="icon-content">Thêm icon cho quán</div>
+          </div>
+          <div class = "upload-img" style = "margin-left: 45px">
+            <div class = "up-img-head">Thêm ảnh bìa</div>
+            <div class = "upload-area">
+              <div class = "up-img"><img src="../../image/add-details-page/arrow.svg" style = "width: 48px; height: 48px;"></div>
+              <div class = "up-content1">Tải ảnh bìa lên</div>
+              <div class = "up-content2">PNG, JPG (Max 5MB)</div>
+            </div>
+          </div>
+          <div class = "upload-img" style = "margin-left: 24px">
+            <div class = "up-img-head">Thêm ít nhất 5 ảnh mô tả quán</div>
+            <div class = "upload-area">
+              <div class = "up-img" style = "justify-content: space-between; gap: 4px; height: 48px;">
+                <img src="../../image/add-details-page/arrow.svg" style = "width: 40px; height: 40px;">
+                <img src="../../image/add-details-page/arrow.svg" style = "width: 40px; height: 40px;">
+              </div>
+              <div class = "up-content1">Tải nhiều ảnh lên</div>
+              <div class = "up-content2">Tối thiểu 5 ảnh</div>
+            </div>
+          </div>
+        </div>
+
+        <div class = "input-content">
+          <div class = "input-block1">
+            <div class = "head-input">Tên quán:</div>
+            <input type = "text" id = "name" name = "name" placeholder = "Nhập tên quán cafe..." maxlength="200">
+          </div>
+          <div class = "input-block1">
+            <div class = "head-input">Mô tả ngắn:</div>
+            <input type = "text" id = "describe" name = "describe" placeholder = "Mô tả ngắn gọn về quán...">
+          </div>
+          <div class = "input-block2">
+            <div class = "head-input">Thêm tag</div>
+            <div class = "bar-wrapper">
+              <input type = "text" id = "example" name = "example" placeholder = "Ví dụ: Wifi miễn phí, View đẹp..." style = "width: 1192.800048828125px;">
+              <div class = "add-btn" style = "width: 48px; height: 48px;"><img style = "width: 24px; height: 24px;" src="../../image/add-details-page/plus-sign.png"></div>
+            </div>
+          </div>
+          <div class = "add-area">
+              <div class = "element-card">
+                <div class = "add-content"> Wifi miễn phí </div>
+                <button class="x-btn"><i class="fa-solid fa-xmark"><img src = "../../image/add-details-page/times-sign.svg"></i>
+              </div>
+              <div class = "element-card" >
+                <div class = "add-content"> View đẹp </div>
+                <button class="x-btn"><i class="fa-solid fa-xmark"><img src = "../../image/add-details-page/times-sign.svg"></i>
+              </div>
+          </div>
+        </div>
+        <div class = "inform-content">
+          <div class = "head-inform">
+            <img style = "width: 20px; height: 20px; " src="../../image/add-details-page/Component1.svg" alt="Logo">
+            <div class = "h1" style = "width: 180px; font-size: 18px; font-weight: 700;">Thêm thông tin quán</div>
+          </div>
+          <div class = "inform-block1">
+            <div class = "head">Thêm địa chỉ:</div>
+            <input type = "text" id = "name" name = "name" placeholder = "Nhập tên quán cafe..." maxlength="200" style = "width: 100%">
+          </div>
+          <div class = "inform-block2">
+            <div class = "head">Nhập mô tả chi tiết:</div>
+            <textarea type = "text" placeholder = "Mô tả chi tiết về không gian, phong cách, đặc điểm nổi bật..."></textarea>
+          </div>
+          <div class = "inform-block2">
+            <div class = "head">Menu quán (nếu có):</div>
+            <textarea type = "text" placeholder = "Liệt kê các món trong menu và giá thành hoặc các món nổi bật..."></textarea>
+          </div>
+          <div class = "inform-block2">
+            <div class = "head">Tiện ích:</div>
+            <textarea type = "text" placeholder = "Các tiện ích như: Wifi, điều hòa, bãi đỗ xe..."></textarea>
+          </div>
+          <div class = "inform-block1">
+            <div class = "head">Giờ hoạt động:</div>
+            <input type = "text" id = "name" name = "name" placeholder = "Ví dụ: 7:00 - 22:00 hằng ngày" maxlength="200" style = "width: 100%">
+          </div>
+          <div class = "inform-block1">
+            <div class = "head">Chỉ đường (link map):</div>
+            <input type = "text" id = "name" name = "name" placeholder = "https://maps.google.com/..." maxlength="200" style = "width: 100%">
+          </div>
+        </div>
+
+        <div class = "content-footer">
+          <button class = "button">
+            <div class = "btn-content">Gửi</div>
+            <div class = "arrow">></div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
