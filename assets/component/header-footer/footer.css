@@ -15,7 +15,7 @@ body {
     background-color: rgba(234, 251, 255, 0.92);
     border: 1px solid rgba(254, 243, 199, 1);
 }
-.container{
+.footer-container{
     /* width: 1440px; */
     display: flex;
     justify-content: space-around;

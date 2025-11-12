@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width,initial-scale=1" />
+         <link rel="stylesheet" type="text/css" href="feedback.css">
+         <link rel="stylesheet" href="../../component/header-footer/header.css">
+         <link rel="stylesheet" href="../../component/header-footer/footer.css">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+         <title>Feedback</title>
+    </head>
+    <body>
+        <script src="feedback.js"></script>
+        <div id="header" class="header"></div> 
+        <div class="feedback_main-container">
+         <!-- <div id="header" class="header"></div>  -->
+            <div class="feedback_column-left">
+                <div class="feedback_container-title">
+                   <div class="feedback_title">
+                     <h1>Gửi cho chúng tôi phản hồi của bạn</h1>
+                   </div>
+                   <div class="feedback_subtitle">
+                      <p>Những đóng góp của bạn là nguồn động lực quý giá giúp cải thiện trang web mỗi ngày</p>
+                    </div>
+                </div>
+                <div class="feedback_form">
+                    <form  action="https://formsubmit.co/tanhung2007cg@gmail.com" method="post">
+                        <label class="feedback_label" for="name">Nhập tên của bạn</label>
+                        <input class="feedback_input" type="text" id="name" name="Ten" placeholder="Ngxx" required><br><br>
+                        <label class="feedback_label" for="email">Your Email Address</label>
+                        <input class="feedback_input" type="email" id="email" name="email" placeholder="xxx@example.com" required><br><br>
+                        <label class="feedback_label" for="feedback">What is this about?</label>
+                        <input class="feedback_input" type="text" id="feedback" name="VanDe" placeholder="Vấn đề bạn gặp phải là:" required><br><br>
+                        <div class="feedback_area-container">
+                           <label class="feedback_label" for="comments">Nhập mô tả cụ thể</label>
+                           <textarea class="feedback_area" id="comments" name="MoTa" placeholder="Hãy nhập mô tả về tình trạng bạn gặp phải" required></textarea><br><br>
+                        </div>
+                        <div>
+                         <label for="bonus">Thêm ảnh về vấn đề (Nếu có)</label>
+                            <input type="file" id="bonus" name="bonus" accept="image/*" class="real-upload"><br>
+                         <label for="bonus" class="feedback_button">
+                             <i class="fa-solid fa-arrow-up-from-bracket"></i> Upload File
+                         </label>
+                        </div>
+                        <button class="feedback_send">
+                            <i class="fa-regular fa-paper-plane"></i>
+                            Gửi phản hồi
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="feedback_column-right"> 
+                <div class="feedback_container-right">
+                    <div class="feedback_border-cafe">
+                        <div class="feedback_cafe-pic">
+                           <div class="feedback_logo-cafe">
+                              <div class="feedback_cafe">
+                                 <img src="/assets/image/feedback/coffeelogo.png" alt="cafe logo">
+                                 <p>We're here to help</p>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+               </div>
+               <div class="feedback_container-right">
+                  <div class="feedback_title"> 
+                      <h3>Liên hệ với chúng tôi</h3>
+                  </div>
+                    <div class="feedback-row">
+                        <div class="feedback_border-info">
+                            <i class="fa-regular fa-envelope" style="color: #ff7300;"></i>
+                        </div>
+                        <div class="feedback_info">
+                               Email
+                            <p class="email-send">support@coffeefinder.com</p>
+                        </div>
+                    </div>
+                    <div class="feedback-row">
+                       <div class="feedback_border-info">
+                           <i class="fa-solid fa-phone" style="color: #ff7300;"></i>
+                       </div>
+                       <div class="feedback_info">
+                              Hotline
+                           <p class="color-text">1234567890</p>
+                       </div>
+                    </div>
+                </div>
+                 <div class="feedback_container-right">
+                        <div class="feedback_title">
+                            <h3>Câu hỏi thường gặp</h3>
+                        </div>
+                      <details class="faq-item">
+                        <summary class="faq-question">
+                            <span class="faq-text"> Khi nào thì tôi nhận lại được phản hồi</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </summary>
+                      </details>
+                      <details class="faq-item">
+                        <summary class="faq-question">
+                            <span class="faq-text"> Tôi có thể chỉnh sửa/ thêm thông tin không</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </summary>
+                      </details>
+                       <details class="faq-item">
+                        <summary class="faq-question">
+                            <span class="faq-text">Góp ý của tôi sẽ được bảo mật chứ</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </summary>
+                      </details>
+                    </div>
+               </div>
+            </div>
+          </div>
+       </div>
+   </body>
+    <div id="footer" class="footer"></div>
+</html>
