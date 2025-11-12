@@ -1,33 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>CoffeeFinder Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="admin.css">
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="card.css">
 </head>
 <body class="allcode">
-    <h2 class="cfadmin">CoffeFinder Admin</h2>
-    <img class="picture" src="../../image/thinh/Background+Shadow.png" alt="NO">
-     <div class="welcome-container">
+    <h2 class="cfadmin">CoffeeFinder Admin</h2>
+    <img class="picture" src="../../image/thinh/Background+Shadow.png" alt="Background">
+    <div class="welcome-container">
         <div class="avatar">A</div>
         <div class="welcome-text">
             <p class="welcome-title">Chào mừng trở lại, ADMIN</p>
             <p class="welcome-subtitle">Quản lý hệ thống quán cafe</p>
-    
         </div>
-    
-
     </div>
-     <p class="new-prj">Dự án mới</p>
+    <p class="new-prj">Dự án mới</p>
     <div class="main-container">
         <div class="left-column">
-            
-              
-           
             <div class="add-section">
                 <button class="add-button">+</button>
                 <h3 class="add-title">THÊM</h3>
@@ -36,7 +32,20 @@
             <div class="recent-section">
                 <h3>Recent</h3>
                 <div class="recent-items">
+                    <div class="recent-card">
+                        <img src="" alt="">
+                        <p>Recent<br>1</p>
+                    </div>
+                     <div class="recent-card">
+                        <img src="" alt="">
+                        <p>Recent<br>1</p>
+                    </div>
+                     <div class="recent-card">
+                        <img src="" alt="">
+                        <p>Recent<br>1</p>
+                    </div>
                 </div>
+
             </div>
         </div>
         <div class="right-column">
@@ -45,9 +54,83 @@
                 <textarea placeholder="Ghi chú quản trị..."></textarea>
             </div>
             <div class="stats-card">
-                 <div class="stats-label">Tổng số quán cafe</div>
+                <div class="stats-label">Tổng số quán cafe</div>
                 <div class="stats-number">0000</div>
-        
                 <div class="stats-update">Cập nhật lần cuối: Hôm nay</div>
+            </div>
+        </div>
+    </div>
+    <section class="cafe-list-section">
+        <div class="header-row">
+            <h3>Quản lý quán cafe</h3>
+            <a href="#" class="view-all">Xem tất cả →</a>
+        </div>
+
+        <div class="card-container">
+            <div class="card">
+                <div class="card-image">
+                    <img src="card.jpg" alt="Urban Roast">
+                    <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+                    <div class="icon-top-right"><i class="far fa-heart"></i></div>
+                </div>
+
+                <div class="card-content">
+                    <div class="rating"><i class="fas fa-star"></i> 4.8</div>
+                    <h3 class="title">Urban Roast</h3>
+                    <div class="location"><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</div>
+
+                    <div class="tag">
+                        <button class="btn-tag">Wifi miễn phí</button>
+                        <button class="btn-tag">View đẹp</button>
+                        <button class="btn-tag" id="small">+1</button>
+                    </div>
+
+                    <button class="btn-edit"><i class="fas fa-edit"></i> Chỉnh sửa</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="card.jpg" alt="Urban Roast">
+                    <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+                    <div class="icon-top-right"><i class="far fa-heart"></i></div>
+                </div>
+
+                <div class="card-content">
+                    <div class="rating"><i class="fas fa-star"></i> 4.8</div>
+                    <h3 class="title">Urban Roast</h3>
+                    <div class="location"><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</div>
+
+                    <div class="tag">
+                        <button class="btn-tag">Wifi miễn phí</button>
+                        <button class="btn-tag">Yên tĩnh</button>
+                        <button class="btn-tag" id="small">+1</button>
+                    </div>
+
+                    <button class="btn-edit"><i class="fas fa-edit"></i> Chỉnh sửa</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="card.jpg" alt="The Dreamy Bean">
+                    <div class="icon-top-left"><i class="fas fa-mug-hot"></i></div>
+                    <div class="icon-top-right"><i class="far fa-heart"></i></div>
+                </div>
+
+                <div class="card-content">
+                    <div class="rating"><i class="fas fa-star"></i> 4.9</div>
+                    <h3 class="title">The Dreamy Bean</h3>
+                    <div class="location"><i class="fas fa-map-marker-alt"></i> Quận 1, TP.HCM</div>
+
+                    <div class="tag">
+                        <button class="btn-tag">Pet friendly</button>
+                        <button class="btn-tag">Mở 24/7</button>
+                    </div>
+
+                    <button class="btn-edit"><i class="fas fa-edit"></i> Chỉnh sửa</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>
