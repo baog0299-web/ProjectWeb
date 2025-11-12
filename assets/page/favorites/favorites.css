@@ -2,64 +2,327 @@
 
 .all {
     font-family: roboto, sans-serif;
-    overflow: hidden;
     background-color: #fffbeb;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+font-family: "Roboto", sans-serif;
+
+}
+
+body {
+  margin: 0;
+}
+header {
+  width: 100%;
+  height: 72px;
+  background-color: #b87444;
+  color: white;
+  
+}
+
+.header-container {
+  max-width: 100%;
+  height: 72px;
+  /* margin: 0 auto; */
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px ;
+}
+.header-logo{
+    display: flex;
+    align-items: center;
+}
+
+.header-search-bar input{
+    width: 574px;
+    height: 42px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+    color: #ddd;
+    padding: 11px 17px 11px 41px;
+    align-items: center;
+    cursor: pointer;
+}
+input::placeholder{
+    color:#ddd;
+    opacity: 1;
+}
+.header-nav-links{
+    display:flex;
+    gap:20px;
+}
+.header-nav-links a{ 
+    color: rgba(255, 255, 255, 1);
+    font-size:20px;
+    font-weight:600px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .security-favorite{
-    width: 100%;;
+    display: flex;
+    width: 100%;
     position: relative;
     font-family: roboto, sans-serif;
+    justify-content: center;
 
+}
+.picture1{
+    width: 100%;
+    height: 300px;
 }
 
 .security-favorite .picture2{
     position: absolute;
-    top: 35%;
+    top: 30%;
     left: 50%;
+    right: 50%;
     transform: translate(-50%, -50%);
-    width: 113px;
-    height: 112px;
+    width: 100px;
+    height: 100px;
 }
 .security-favorite .saved {
     position: absolute;
-    top: 40%;
-    left:28%;
-   color: white;
+    top: 50%;
+    color: white;
     font-size: 60px;
     font-family: pacifico, cursive;
-
-    
+    justify-content: center;
+}
+.saved{
+    text-align: center;
 }
 .desinations {
     position: absolute;
     top: 80%;
     left: 36%;
-   color: white;
+    color: white;
     font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #ddd;
+    text-align: center;
 
-    
 }
 .collection {
     display: flex;
     align-items: center; 
     gap: 16px; 
     padding: 16px 0;
+    justify-content: center;
 }
 .collect-mini{
     color:  #4A2C1A;
-    font-size: 30px
-;
+    font-size: 30px;
+    text-align: center;
 }
 .review{
 
     font-size: 16px;
     color: #575757;
-;
 
 }
 
-.collect-mini, .review {
+ .review {
     margin: 0;
-    margin-left: 100px;
+    margin-left: 158px;
+}
+*{
+    box-sizing: border-box;
+}
+.card{
+    width: 388px;
+    height: 392px;
+    overflow: hidden;
+    border: 1px solid rgba(253, 230, 138, 1);
+    border-radius: 10px;
+      flex: 0 1 calc(33.333% - 20px);
+        box-sizing: border-box;
+}
+.card-image{
+    position: relative;
+    height: 224px;
+    overflow: hidden;
+}
+.card-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.icon-top-left, .icon-top-right{
+    position: absolute;
+    top: 15px;
+    background: white;
+    padding: 10px;
+    border: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+.icon-top-left{
+    left: 10px;
+}
+.icon-top-right{
+    right: 15px;
+}
+.card-content{
+     padding: 16px 20px 20px 20px;
+}
+.rating{
+    color: rgba(120, 53, 15, 1);
+}
+.rating i{
+    color: rgba(245, 158, 11, 1);
+    align-items: center;
+}
+.title{
+    font-size:20px;
+    font-weight: 600;
+    color: rgba(120, 53, 15, 1);
+}
+.location{
+    color: rgba(180, 83, 9, 1);
+    font: 14px 400;
+    margin-bottom: 10px;
+}
+.btn-tag{
+    width: 98px;
+    height: 24px;
+    background-color: rgba(254, 243, 199, 1);
+    color: rgba(217, 119, 6, 1);
+    border: none;
+    border-radius: 20px;
+}
+#small{
+    width: 42px;
+    height: 24px;
+
+}
+.btn-tag:hover{
+    background-color: rgba(255, 226, 187, 1);
+    color: rgba(255, 95, 87, 1);
+}
+#small:hover{
+    background-color: rgba(221, 219, 160, 1);
+    color: rgba(217, 119, 6, 1) ;
+}
+.card-container{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0px 80px 0px 80px;
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin: 40px 0;
+}
+.btn-page{
+    width: 40px;
+    height: 40px;
+    border: solid 1px;
+    border-color: rgba(253, 230, 138, 1);
+    border-radius:50%;
+    background-color: #FFFFFF;
+    color: #D97706;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.btn-page:hover{
+    background-color: rgba(255, 232, 140, 1);
+    color: #D97706;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+   font-family: "Roboto", sans-serif;
+}
+
+body {
+  margin: 0;
+}
+.footer{
+    width: 100%;
+    height: 218px;
+    background-color: rgba(234, 251, 255, 0.92);
+    border: 1px solid rgba(254, 243, 199, 1);
+}
+.footer-container{
+    /* width: 1440px; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+.logo{
+    display: flex;
+    flex-direction: column
+}
+.logo p{
+    margin-left:10px
+}
+.footer-col{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.footer-col h3{
+    font-weight: 600;
+    font-size: 22px;
+    color: rgba(120, 53, 15, 1);
+}
+.logo p{
+    font-weight: 600;
+    color: rgba(120, 53, 15, 1);
+    font-size: 16px;
+}
+
+.footer-col p{
+    font-weight: 600;
+    color: rgba(120, 53, 15, 1);
+    font-size: 16px;
+}
+.btn{
+    width: 128px;
+    height: 60px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(to right,rgba(245, 156, 52, 1),rgba(255, 77, 23, 1));
+    color: #ddd;
+    margin-top: 6px;
+}
+.footer-bottom{
+    text-align: center;
+    font-size: 14px;
+
+}
+hr{
+  margin: 25px 0 15px 0;    /* khoảng cách trên dưới */
+  border: none;              /* bỏ đường viền mặc định */
+  height: 2px;               /* độ dày */
+  background-color: rgba(90, 44, 12, 0.2); /* màu nâu nhạt, hơi trong suốt */
+  width: 90%;                /* không kéo hết chiều ngang */
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 2px;
+}
