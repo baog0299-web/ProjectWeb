@@ -110,22 +110,27 @@
     <h2 class="find-iden" id="search-section">Tìm kiếm theo cách của riêng bạn </h2>
 <div class="search-wrapper">
     <div class="search-bar">
-        <select class="search-select">
+        <select class="search-select" id="filter-location">
             <option value="">Chọn khu vực của bạn</option>
+            <option value="TP.Hồ Chí Minh">TP.Hồ Chí Minh</option>
+            <option value="Hà Nội">Hà Nội</option>
         </select>
         
-        <select class="search-select">
+        <select class="search-select" id="filter-need">
             <option value="">Nhập nhu cầu của bạn</option>
+            <option value="Wifi miễn phí">Wifi miễn phí</option>
+            <option value="Yên tĩnh">Yên tĩnh</option>
         </select>
         
-        <select class="search-select">
+        <select class="search-select" id="filter-criteria">
             <option value="">Nhập tiêu chí của bạn</option>
+             <option value="romantic">Lãng mạn</option>
+             <option value="có sân vườn">Có sân vườn</option>
         </select>
 
         <button class="search-button">Tìm kiếm</button>
-    
     </div>
-    
+     <div id="search-results" class="search-results"></div>
 </div>
 
     <section class="faq-section">
@@ -194,3 +199,82 @@
 </body>
 </html>
 <script src="main.js"></script>
+<script src="data.js"></script>
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+  const searchBtn = document.querySelector(".search-button");
+  const resultsContainer = document.getElementById("search-results");
+  let coffeeShops = [];
+
+  // 1. Tải dữ liệu từ file JSON
+  fetch("assets/component/data/data.json")
+    .then(res => res.json())
+    .then(data => {
+      coffeeShops = data;
+    })
+    .catch(err => {
+      console.error("Lỗi khi tải data:", err);
+      resultsContainer.innerHTML = "<p>Lỗi khi tải dữ liệu quán cafe.</p>";
+    });
+
+  // 2. Khi bấm nút "Tìm kiếm"
+  searchBtn.addEventListener("click", () => {
+    const location = document.getElementById("filter-location").value;
+    const need = document.getElementById("filter-need").value;
+    const criteria = document.getElementById("filter-criteria").value;
+
+    const filtered = coffeeShops.filter(shop =>
+      (location === "" || shop.location === location) &&
+      (need === "" || shop.need === need) &&
+      (criteria === "" || shop.criteria === criteria)
+    );
+
+    renderResults(filtered);
+  });
+
+  // 3. Hàm render kết quả ra dưới bộ lọc
+  async function renderResults(list) {
+    resultsContainer.innerHTML = ""; // xóa cũ
+
+    if (list.length === 0) {
+      resultsContainer.innerHTML = "<p class='no-result'>Không tìm thấy quán phù hợp.</p>";
+      return;
+    }
+
+    const cardTemplateRes = await fetch("assets/component/card-test/card.html");
+    const cardTemplateText = await cardTemplateRes.text();
+
+    const container = document.createElement("div");
+    container.classList.add("card-container");
+
+    list.forEach(shop => {
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = cardTemplateText;
+
+      // Điền dữ liệu từ JSON
+      const imgEl = tempDiv.querySelector(".card-image img");
+      if (imgEl) imgEl.src = shop.image;
+      if (imgEl) imgEl.alt = shop.name;
+
+      const titleEl = tempDiv.querySelector(".title");
+      if (titleEl) titleEl.textContent = shop.name;
+
+      const ratingEl = tempDiv.querySelector(".rating");
+      if (ratingEl) ratingEl.innerHTML = `<i class="fas fa-star"></i> ${shop.rating}`;
+
+      const locationEl = tempDiv.querySelector(".location");
+      if (locationEl) locationEl.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${shop.location}`;
+
+      const tagEls = tempDiv.querySelectorAll(".tag .btn-tag");
+      if (tagEls[0]) tagEls[0].textContent = shop.need;
+      if (tagEls[1]) tagEls[1].textContent = shop.criteria;
+
+      container.appendChild(tempDiv.firstElementChild); // append card
+    });
+
+    resultsContainer.appendChild(container);
+  }
+});
+
+</script>
