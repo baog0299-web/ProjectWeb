@@ -8,11 +8,111 @@ body {
 .main-content {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 30px 20px 60px;
 }
 
-.main-content h1 {
+/* Filter Tabs */
+.filter-tabs {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.filter-tab {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 20px;
+    background-color: white;
     color: #5D4037;
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.filter-tab:hover {
+    background-color: #FEF3C7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.filter-tab.active {
+    background-color: #FF7043;
+    color: white;
+}
+
+.filter-tab i {
+    font-size: 16px;
+}
+
+/* Cafe Grid */
+.cafe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 40px;
+}
+
+.page-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+    color: #5D4037;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.page-btn:hover {
+    background-color: #FEF3C7;
+    transform: translateY(-2px);
+}
+
+.page-btn.active {
+    background-color: #FF7043;
+    color: white;
+}
+
+.page-btn.next {
+    background-color: #5D4037;
+    color: white;
+}
+
+.page-btn.next:hover {
+    background-color: #FF7043;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .cafe-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .cafe-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-tabs {
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
 }

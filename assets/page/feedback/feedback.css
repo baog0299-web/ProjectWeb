@@ -29,6 +29,7 @@ body {
         width: 100%;
         gap: 18.15px;
         opacity: 1;
+        margin-bottom: 20px;
     }
     .feedback_title {
         font-size: 22.18px;
@@ -36,58 +37,63 @@ body {
         opacity: 1;
         color: #4A2C1A;
         line-height: 35.1px;
+        margin-bottom: 10px;
     }
     .feedback_label {
-        width: 994.6199951171875px;
-        height: 51px;
+        width: 100%;
+        height: auto;
         opacity: 1;
-        font-style: Bold;
-        margin-bottom: auto;
+        font-weight: bold;
+        margin-bottom: 8px;
+        display: block;
+        color: #4A2C1A;
+        font-size: 16px;
     }
     .feedback_subtitle {
         font-size: 21.6px;
         width: 100%;
         opacity: 1;
         margin-bottom: 30px;
+        color: #6D4C41;
+        line-height: 1.5;
     }
     .feedback_form  {
         width: 100%;
-        height: 722px;
+        height: auto;
         gap: 24px;
         opacity: 1;
+        display: flex;
+        flex-direction: column;
     } 
     .feedback_input {
         width: 100%;
         box-sizing: border-box;
         opacity: 1;
-        padding-top: 15.2px;
-        padding-right: 16.8px;
-        padding-bottom: 15.2px;
-        padding-left: 16.8px;
+        padding: 15px 16px;
         border-radius: 8px;
-        border-width: 1px;
+        border: 1px solid #E8E3D8;
         background: #FFFFFF;
-        border-top: 1px solid #E8E3D8;
+        font-size: 15px;
+        margin-bottom: 20px;
     }
     .feedback_area-container {
         padding-bottom: 6.4px;
         gap: 8px;
         opacity: 1;
+        margin-bottom: 20px;
     }
     .feedback_area {
         width: 100%;
         box-sizing: border-box;
-        min-height: 169.60000610351562px;
-        height: 169.60000610351562px;
+        min-height: 170px;
+        height: auto;
         opacity: 1;
-        padding-top: 12.8px;
-        padding-right: 16.8px;
-        padding-bottom: 132.8px;
-        padding-left: 16.8px;
+        padding: 12px 16px;
         border-radius: 8px;
-        border-width: 1px;
+        border: 1px solid #E8E3D8;
         background: #FFFFFF;
-        border-top: 1px solid #E8E3D8;
+        font-size: 15px;
+        resize: vertical;
     }
     .real-upload {
         display: none;
@@ -96,26 +102,36 @@ body {
         display: inline-block;
         padding: 12px 24px;
         border-radius: 8px;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
         background: #FFFFFF;
-        border-top: 1px solid #E8E3D8;
+        border: 1px solid #E8E3D8;
         cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .feedback_button:hover {
+        background-color: #FFF8E1;
+        border-color: #D97706;
     }
     .feedback_button i {
         margin-right: 8px;    
     }
     .feedback_send {
         display: inline-block;
-        padding: 20.8px 41.6px 20.8px 41.6px;
-        border-radius: 10.4px;
+        padding: 20px 40px;
+        border-radius: 10px;
         margin-bottom: 50px;
-        font-size: 20.8px;
+        margin-top: 20px;
+        font-size: 18px;
         background: #D97706;
         color: #FFFFFF;
         cursor: pointer;
+        border: none;
+        transition: all 0.3s ease;
     }
     .feedback_send:hover {
         background-color: #C26605;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
     }
 .feedback_column-right {
     flex: 1;
@@ -126,15 +142,16 @@ body {
     .feedback_pic {
         border-radius: 16px;
         opacity: 1;
-        padding: 32.8px;
-        border-top: 1px solid #E8E3D8;
+        padding: 32px;
+        border: 1px solid #E8E3D8;
         background: #FFFFFF;
+        margin-bottom: 30px;
     }
     .feedback_container-right {
         border-radius: 12px;
         background: #FFFFFF;
-        padding: 15px;
-        margin: 30px;
+        padding: 24px;
+        margin-bottom: 30px;
         border: 1px solid #E8E3D8;
     }
     .feedback-row {
@@ -142,18 +159,19 @@ body {
         flex-direction: row;
         gap: 16px;
         align-items: center;
+        margin-bottom: 15px;
     }
     .feedback_border-cafe {
         width: 100%;
         background: linear-gradient(135deg, #FFFBF5 0%, #F5EDE3 100%);
         border-radius: 12px;
+        margin-bottom: 30px;
     } 
     .feedback_logo-cafe {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 40px;
-        padding-bottom: 30px;
+        padding: 40px 0 30px 0;
     }
     .feedback_cafe {
         display: flex;
@@ -164,18 +182,22 @@ body {
     }
     .feedback_border-info {
         display: flex;
-        padding: 12px 24px ;
+        padding: 16px 24px;
         background: linear-gradient(135deg, #FFFBF5 0%, #F5EDE3 100%);
         border-radius: 12px;
         flex-direction: row;
         gap: 16px;
+        align-items: center;
+        margin-bottom: 15px;
     }
     .feedback_info {
        display: flex;
        flex-direction: column;
+       gap: 8px;
     }
     .email-send{
         color: #4A2C1A;
+        transition: color 0.3s ease;
     }
     .email-send:hover{
         color: #D97706;
@@ -183,10 +205,12 @@ body {
     .color-text {
        font-size: 20px;
        color: #4A2C1A;
+       margin-bottom: 5px;
     }
     .faq-item {
         border-bottom: 1px solid #E8E3D8;
         color: #4A2C1A;
+        padding: 8px 0;
     }
     .faq-item:last-child{
         border-bottom: none;
@@ -199,15 +223,19 @@ body {
         justify-content: space-between;
         align-items: center;
         padding: 16px 0;
-        font-size: 18px;
+        font-size: 16px;
         cursor: pointer;
     }
+    .faq-text {
+        flex: 1;
+        transition: color 0.3s ease;
+    }
 
-      .feedback_title h3 {
-        font-size: 22.18px;
+    .feedback_title h3 {
+        font-size: 22px;
         width: 100%;
         opacity: 1;
         color: #4A2C1A;
-        line-height: 35.1px;
-        margin: 0;
+        line-height: 1.5;
+        margin: 0 0 15px 0;
     }
