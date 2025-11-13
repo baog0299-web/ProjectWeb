@@ -32,6 +32,32 @@ fetch(getRelativePath() + "component/header-footer/header.html")
             if (navLinks[0]) navLinks[0].href = basePath + "index.html";
             if (navLinks[1]) navLinks[1].href = basePath + "assets/page/cafe-list/cafe-list.html";
             if (navLinks[2]) navLinks[2].href = basePath + "assets/page/favorites/favorites.html";
+            if (navLinks[3]) navLinks[3].href = basePath + "assets/page/feedback/feedback.html";
+            
+            // Set active state dựa trên URL hiện tại
+            const currentPath = window.location.pathname;
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const linkPath = link.getAttribute('href');
+                
+                if (currentPath.includes('index.html') || currentPath.endsWith('/')) {
+                    if (linkPath.includes('index.html')) {
+                        link.classList.add('active');
+                    }
+                } else if (currentPath.includes('cafe-list')) {
+                    if (linkPath.includes('cafe-list')) {
+                        link.classList.add('active');
+                    }
+                } else if (currentPath.includes('favorites')) {
+                    if (linkPath.includes('favorites')) {
+                        link.classList.add('active');
+                    }
+                } else if (currentPath.includes('feedback')) {
+                    if (linkPath.includes('feedback')) {
+                        link.classList.add('active');
+                    }
+                }
+            });
         }
     });
 
@@ -50,3 +76,26 @@ fetch(getRelativePath() + "component/header-footer/footer.html")
             }
         }
     });
+
+// FAQ accordion functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Đóng tất cả các FAQ items khác
+            faqItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+            });
+            
+            // Toggle item hiện tại
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+});

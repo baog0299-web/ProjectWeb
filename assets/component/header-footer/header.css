@@ -75,4 +75,16 @@ input::placeholder{
     font-weight:600px;
     text-decoration: none;
     cursor: pointer;
+    padding-bottom: 5px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+.header-nav-links a:hover {
+    color: #FFF8E1;
+    border-bottom-color: #FF7043;
+}
+.header-nav-links a.active {
+    color: #FFF8E1;
+    border-bottom-color: #FF7043;
+    font-weight: 700;
 }

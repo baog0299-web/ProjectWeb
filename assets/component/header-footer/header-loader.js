@@ -32,6 +32,32 @@ fetch(getRelativePath() + "component/header-footer/header.html")
             if (navLinks[0]) navLinks[0].href = basePath + "index.html";
             if (navLinks[1]) navLinks[1].href = basePath + "assets/page/cafe-list/cafe-list.html";
             if (navLinks[2]) navLinks[2].href = basePath + "assets/page/favorites/favorites.html";
+            if (navLinks[3]) navLinks[3].href = basePath + "assets/page/feedback/feedback.html";
+            
+            // Set active state dựa trên URL hiện tại
+            const currentPath = window.location.pathname;
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const linkPath = link.getAttribute('href');
+                
+                if (currentPath.includes('index.html') || currentPath.endsWith('/')) {
+                    if (linkPath.includes('index.html')) {
+                        link.classList.add('active');
+                    }
+                } else if (currentPath.includes('cafe-list')) {
+                    if (linkPath.includes('cafe-list')) {
+                        link.classList.add('active');
+                    }
+                } else if (currentPath.includes('favorites')) {
+                    if (linkPath.includes('favorites')) {
+                        link.classList.add('active');
+                    }
+                } else if (currentPath.includes('feedback')) {
+                    if (linkPath.includes('feedback')) {
+                        link.classList.add('active');
+                    }
+                }
+            });
         }
     });
 

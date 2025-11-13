@@ -7,6 +7,13 @@
     overflow: hidden;
     border: 1px solid rgba(253, 230, 138, 1);
     border-radius: 10px;
+    background-color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 .card-image{
     position: relative;
@@ -36,7 +43,8 @@
     right: 15px;
 }
 .card-content{
-     padding: 16px 20px 20px 20px;
+    padding: 16px 20px 20px 20px;
+    background-color: white;
 }
 .rating{
     color: rgba(120, 53, 15, 1);
