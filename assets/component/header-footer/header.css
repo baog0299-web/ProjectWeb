@@ -9,31 +9,48 @@
 body {
   margin: 0;
 }
-header {
+.head {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 72px;
   background-color: #b87444;
   color: white;
-  
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .header-container {
   max-width: 100%;
   height: 72px;
-  /* margin: 0 auto; */
   padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  gap: 8px ;
+  gap: 8px;
 }
 .header-logo{
     display: flex;
     align-items: center;
 }
+.header-logo img {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
 
+.header-search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.header-search-bar i {
+    position: absolute;
+    left: 15px;
+    z-index: 1;
+    color: #ddd;
+}
 .header-search-bar input{
-    width: 574px;
+    width: 450px;
     height: 42px;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -41,8 +58,7 @@ header {
     background-color: rgba(255, 255, 255, 0.1);
     font-size: 16px;
     color: #ddd;
-    padding: 11px 17px 11px 41px;
-    align-items: center;
+    padding: 11px 17px 11px 45px;
     cursor: pointer;
 }
 input::placeholder{
