@@ -3,17 +3,10 @@
 }
 .card{
     width: 388px;
-    height: 392px;
+    height: 420px;
     overflow: hidden;
     border: 1px solid rgba(253, 230, 138, 1);
     border-radius: 10px;
-    background-color: white;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 .card-image{
     position: relative;
@@ -43,8 +36,7 @@
     right: 15px;
 }
 .card-content{
-    padding: 16px 20px 20px 20px;
-    background-color: white;
+     padding: 16px 20px 20px 20px;
 }
 .rating{
     color: rgba(120, 53, 15, 1);
@@ -83,4 +75,71 @@
 #small:hover{
     background-color: rgba(221, 219, 160, 1);
     color: rgba(217, 119, 6, 1) ;
+}
+.cafe-list-section{
+     padding: 40px 20px;
+        background-color: #fffaf2;
+        border-radius: 16px;
+
+}
+
+.header-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+
+}
+.header-row a{
+   text-decoration: none;
+   font-size: 20px;
+   font-weight: 600;
+   color:rgba(180, 83, 9, 1) ;
+}
+.header-row h3{
+    color: rgba(120, 53, 15, 1);
+    font-weight: 700;
+
+}
+.card-container{
+    display: flex;
+    gap: 30px;
+
+}
+.btn-edit{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 288px;
+    height:36px;
+    border: 1px solid rgba(253, 230, 138, 1);
+    border-radius:20px;
+    background-color: rgba(255, 251, 235, 1);
+    color:rgba(146, 64, 14, 1);
+    gap:12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size:14px;
+}
+.recent-items{
+    width: 808px;
+    height: 136px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+    gap: 20px;
+    border-radius: 20px;
+}
+.recent-card{
+    width: 96px;
+    height: 96px;
+    border: none;
+    border-radius: 20px;
+    background-color:rgba(254, 243, 199, 1) ;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 20px;
+
 }

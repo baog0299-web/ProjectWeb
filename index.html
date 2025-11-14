@@ -1,0 +1,283 @@
+<<<<<<< HEAD
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Learning Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/component/header-footer/header.css">
+    <link rel="stylesheet" href="assets/component/header-footer/footer.css">
+    <link rel="stylesheet" href="assets/component/card/card.css">
+    <link rel="stylesheet" href="assets/component/floating-search-btn/floating-search.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head> 
+</head>
+
+<body>
+   <div class="all-file">
+        <div id="header" class="header"></div> 
+        <!-- <script src="main.js"></script> -->
+
+
+
+     <div class="image-container">
+    
+    <img class="picture-container"  src="assets/image/thinh/Container12.png" alt="Learning Image">
+    <img src="assets/image/thinh/Coffee cup with latte art.png" alt="ảnh chồng lên" class="picture-cfcup">
+    <p class="welcom-intro">WELCOME    TO    COFFEFINDER </p>
+    <h1 class="find-intro">Find Your Perfect Space</h1>
+    <p class="hero-description">Khám phá những quán cafe đẹp nhất, phù hợp với phong cách của bạn. Từ không gian yên tĩnh để làm việc đến nơi gặp gỡ bạn bè, chúng tôi giúp bạn tìm thấy điểm đến hoàn hảo.</p>
+        <button class="btn-explore" onclick="document.getElementById('search-section').scrollIntoView({behavior: 'smooth'})">
+        Khám phá ngay<i class="fa-solid fa-arrow-right"></i>
+    </button>
+    </div>
+    
+<h1 class="salient-features">Nổi bật</h1>
+
+
+<div class="card-container">
+
+    <div class="card">
+      <div class="card-image">
+        <img src="assets/component/card/card.jpg" alt="Urban Roast">
+        <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+        <div class="icon-top-right"><i class="far fa-heart"></i></div>
+      </div>
+      <div class="card-content">
+        <div class="rating">
+          <i class="fas fa-star"></i> 4.8
+        </div>
+        <h3 class="title">Urban Roast</h3>
+        <div class="location">
+          <i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh
+        </div>
+        <div class="tag">
+          <button class="btn-tag">Wifi miễn phí</button>
+          <button class="btn-tag">Wifi miễn phí</button>
+          <button class="btn-tag" id="small">+1</button>
+        </div>
+      </div>
+    </div> <div class="card">
+      <div class="card-image">
+        <img src="assets/component/card/card.jpg" alt="Urban Roast">
+        <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+        <div class="icon-top-right"><i class="far fa-heart"></i></div>
+      </div>
+      <div class="card-content">
+        <div class="rating">
+          <i class="fas fa-star"></i> 4.8
+        </div>
+        <h3 class="title">Urban Roast</h3>
+        <div class="location">
+          <i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh
+        </div>
+        <div class="tag">
+          <button class="btn-tag">Wifi miễn phí</button>
+          <button class="btn-tag">Wifi miễn phí</button>
+          <button class="btn-tag" id="small">+1</button>
+        </div>
+      </div>
+    </div> <div class="card">
+      <div class="card-image">
+        <img src="assets/component/card/card.jpg" alt="Urban Roast">
+        <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+        <div class="icon-top-right"><i class="far fa-heart"></i></div>
+      </div>
+      <div class="card-content">
+        <div class="rating">
+          <i class="fas fa-star"></i> 4.8
+        </div>
+        <h3 class="title">Urban Roast</h3>
+        <div class="location">
+          <i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh
+        </div>
+        <div class="tag">
+          <button class="btn-tag">Wifi miễn phí</button>
+          <button class="btn-tag">Wifi miễn phí</button>
+          <button class="btn-tag" id="small">+1</button>
+        </div>
+      </div>
+
+    </div> </div> 
+    <div class="backandnext">
+        <button class="btn-back"> <i class="fa-solid fa-chevron-left"></i></button>
+        <button class="btn-next"> <i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <h2 class="find-iden" id="search-section">Tìm kiếm theo cách của riêng bạn </h2>
+<div class="search-wrapper">
+    <div class="search-bar">
+        <select class="search-select" id="filter-location">
+            <option value="">Chọn khu vực của bạn</option>
+            <option value="TP.Hồ Chí Minh">TP.Hồ Chí Minh</option>
+            <option value="Hà Nội">Hà Nội</option>
+        </select>
+        
+        <select class="search-select" id="filter-need">
+            <option value="">Nhập nhu cầu của bạn</option>
+            <option value="Wifi miễn phí">Wifi miễn phí</option>
+            <option value="Yên tĩnh">Yên tĩnh</option>
+        </select>
+        
+        <select class="search-select" id="filter-criteria">
+            <option value="">Nhập tiêu chí của bạn</option>
+             <option value="romantic">Lãng mạn</option>
+             <option value="có sân vườn">Có sân vườn</option>
+        </select>
+
+        <button class="search-button">Tìm kiếm</button>
+    </div>
+     <div id="search-results" class="search-results"></div>
+</div>
+
+    <section class="faq-section">
+        <h2 class="faq-title">Câu hỏi thường gặp</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Làm thế nào để tìm quán cafe phù hợp?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Bạn có thể sử dụng bộ lọc tìm kiếm ở trên để chọn khu vực, nhu cầu và tiêu chí mong muốn. Hệ thống sẽ tự động đề xuất những quán cafe phù hợp nhất với bạn.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Tôi có thể lưu các quán cafe yêu thích không?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Có, bạn chỉ cần nhấn vào biểu tượng trái tim trên mỗi quán cafe để lưu vào danh sách yêu thích. Bạn có thể xem lại danh sách này ở mục "Yêu thích".</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Thông tin về quán cafe có chính xác không?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Chúng tôi cập nhật thông tin thường xuyên từ các nguồn đáng tin cậy và phản hồi từ người dùng. Nếu bạn phát hiện thông tin sai lệch, vui lòng gửi phản hồi để chúng tôi điều chỉnh.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Có mất phí khi sử dụng dịch vụ không?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Không, tất cả các tính năng tìm kiếm và lưu quán cafe yêu thích đều hoàn toàn miễn phí cho người dùng.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>Tôi có thể đề xuất thêm quán cafe mới không?</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Có, bạn có thể gửi thông tin quán cafe mới qua trang Feedback. Chúng tôi sẽ xem xét và thêm vào hệ thống nếu phù hợp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Search Button -->
+    <div class="floating-search-btn" onclick="document.getElementById('search-section').scrollIntoView({behavior: 'smooth'})">
+        <i class="fas fa-search"></i>
+        <span>Tìm kiếm theo nhu cầu</span>
+    </div>
+
+    <div id="footer" class="footer"></div>
+</div>
+</body>
+</html>
+<script src="main.js"></script>
+<script src="data.js"></script>
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+  const searchBtn = document.querySelector(".search-button");
+  const resultsContainer = document.getElementById("search-results");
+  let coffeeShops = [];
+
+  // 1. Tải dữ liệu từ file JSON
+  fetch("assets/component/data/data.json")
+    .then(res => res.json())
+    .then(data => {
+      coffeeShops = data;
+    })
+    .catch(err => {
+      console.error("Lỗi khi tải data:", err);
+      resultsContainer.innerHTML = "<p>Lỗi khi tải dữ liệu quán cafe.</p>";
+    });
+
+  // 2. Khi bấm nút "Tìm kiếm"
+  searchBtn.addEventListener("click", () => {
+    const location = document.getElementById("filter-location").value;
+    const need = document.getElementById("filter-need").value;
+    const criteria = document.getElementById("filter-criteria").value;
+
+    const filtered = coffeeShops.filter(shop =>
+      (location === "" || shop.location === location) &&
+      (need === "" || shop.need === need) &&
+      (criteria === "" || shop.criteria === criteria)
+    );
+
+    renderResults(filtered);
+  });
+
+  // 3. Hàm render kết quả ra dưới bộ lọc
+  async function renderResults(list) {
+    resultsContainer.innerHTML = ""; // xóa cũ
+
+    if (list.length === 0) {
+      resultsContainer.innerHTML = "<p class='no-result'>Không tìm thấy quán phù hợp.</p>";
+      return;
+    }
+
+    const cardTemplateRes = await fetch("assets/component/card-test/card.html");
+    const cardTemplateText = await cardTemplateRes.text();
+
+    const container = document.createElement("div");
+    container.classList.add("card-container");
+
+    list.forEach(shop => {
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = cardTemplateText;
+
+      // Điền dữ liệu từ JSON
+      const imgEl = tempDiv.querySelector(".card-image img");
+      if (imgEl) imgEl.src = shop.image;
+      if (imgEl) imgEl.alt = shop.name;
+
+      const titleEl = tempDiv.querySelector(".title");
+      if (titleEl) titleEl.textContent = shop.name;
+
+      const ratingEl = tempDiv.querySelector(".rating");
+      if (ratingEl) ratingEl.innerHTML = `<i class="fas fa-star"></i> ${shop.rating}`;
+
+      const locationEl = tempDiv.querySelector(".location");
+      if (locationEl) locationEl.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${shop.location}`;
+
+      const tagEls = tempDiv.querySelectorAll(".tag .btn-tag");
+      if (tagEls[0]) tagEls[0].textContent = shop.need;
+      if (tagEls[1]) tagEls[1].textContent = shop.criteria;
+
+      container.appendChild(tempDiv.firstElementChild); // append card
+    });
+
+    resultsContainer.appendChild(container);
+  }
+});
+
+</script>
+>>>>>>> d1cfd77953a282b978dbd48ab03a3b6258b59e36

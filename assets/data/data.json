@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Urban Roast",
+    "image": "assets/image/thinh/Container12.png",
+    "location": "TP.Hồ Chí Minh",
+    "rating": "4.8",
+    "need": "Wifi miễn phí",
+    "criteria": "Yên tĩnh"
+  },
+  {
+    "name": "Coffee Heaven",
+    "image": "assets/image/thinh/Coffee cup with latte art.png",
+    "location": "Hà Nội",
+    "rating": "4.7",
+    "need": "Yên tĩnh",
+    "criteria": "Có sân vườn"
+  },
+  {
+    "name": "Brew & Co",
+    "image": "assets/image/thinh/card.jpg",
+    "location": "TP.Hồ Chí Minh",
+    "rating": "4.5",
+    "need": "Wifi miễn phí",
+    "criteria": "Lãng mạn"
+  },
+  {
+    "name": "Cafe Aroma",
+    "image": "assets/image/thinh/card.jpg",
+    "location": "Hà Nội",
+    "rating": "4.6",
+    "need": "Yên tĩnh",
+    "criteria": "Lãng mạn"
+  },
+  {
+    "name": "The Coffee House",
+    "image": "assets/image/thinh/card.jpg",
+    "location": "TP.Hồ Chí Minh",
+    "rating": "4.9",
+    "need": "Wifi miễn phí",
+    "criteria": "Có sân vườn"
+  }
+]

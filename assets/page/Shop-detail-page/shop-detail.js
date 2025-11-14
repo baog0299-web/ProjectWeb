@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 fetch("../../component/header-footer/header.html")
   .then(res => res.text())
   .then(data => {
@@ -26,3 +27,7 @@ fetch("../../component/header-footer/footer.html")
       document.head.appendChild(newLink);
     });
   });
+=======
+// Header and footer are loaded by header-loader.js
+// Add any page-specific JavaScript here
+>>>>>>> d1cfd77953a282b978dbd48ab03a3b6258b59e36

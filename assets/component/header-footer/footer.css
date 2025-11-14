@@ -11,55 +11,84 @@ body {
 }
 .footer{
     width: 100%;
-    height: 218px;
+    min-height: 218px;
     background-color: rgba(234, 251, 255, 0.92);
-    border: 1px solid rgba(254, 243, 199, 1);
+    border-top: 1px solid rgba(254, 243, 199, 1);
+    padding: 30px 0;
 }
 .footer-container{
+<<<<<<< HEAD
     /* width: 1440px; */
+=======
+>>>>>>> d1cfd77953a282b978dbd48ab03a3b6258b59e36
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    gap: 20px;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 .logo{
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    gap: 10px;
+}
+.logo img {
+    max-width: 180px;
 }
 .logo p{
-    margin-left:10px
+    margin-left: 0;
+    max-width: 250px;
+    line-height: 1.5;
 }
 .footer-col{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    
+    gap: 12px;
 }
 .footer-col h3{
     font-weight: 600;
-    font-size: 22px;
+    font-size: 18px;
     color: rgba(120, 53, 15, 1);
+    margin-bottom: 8px;
 }
 .logo p{
-    font-weight: 600;
+    font-weight: 500;
     color: rgba(120, 53, 15, 1);
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .footer-col p{
-    font-weight: 600;
+    font-weight: 500;
     color: rgba(120, 53, 15, 1);
-    font-size: 16px;
+    font-size: 14px;
+    margin: 4px 0;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.footer-col p:hover {
+    color: rgba(255, 112, 67, 1);
 }
 .btn{
-    width: 128px;
-    height: 60px;
+    width: 100px;
+    height: 40px;
     border: none;
     border-radius: 20px;
-    background: linear-gradient(to right,rgba(245, 156, 52, 1),rgba(255, 77, 23, 1));
-    color: #ddd;
-    margin-top: 6px;
+    background: linear-gradient(to right, rgba(245, 156, 52, 1), rgba(255, 77, 23, 1));
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 112, 67, 0.4);
 }
 .footer-bottom{
     text-align: center;
