@@ -112,27 +112,22 @@
     <h2 class="find-iden" id="search-section">Tìm kiếm theo cách của riêng bạn </h2>
 <div class="search-wrapper">
     <div class="search-bar">
-        <select class="search-select" id="filter-location">
-            <option value="">Chọn khu vực của bạn</option>
-            <option value="TP.Hồ Chí Minh">TP.Hồ Chí Minh</option>
-            <option value="Hà Nội">Hà Nội</option>
+    <select class="search-select" id="filter-location">
+        <option value="all">Chọn khu vực của bạn</option>
         </select>
-        
-        <select class="search-select" id="filter-need">
-            <option value="">Nhập nhu cầu của bạn</option>
-            <option value="Wifi miễn phí">Wifi miễn phí</option>
-            <option value="Yên tĩnh">Yên tĩnh</option>
+    
+    <select class="search-select" id="filter-need">
+        <option value="all">Nhập nhu cầu của bạn</option>
         </select>
-        
-        <select class="search-select" id="filter-criteria">
-            <option value="">Nhập tiêu chí của bạn</option>
-             <option value="romantic">Lãng mạn</option>
-             <option value="có sân vườn">Có sân vườn</option>
+    
+    <select class="search-select" id="filter-criteria">
+        <option value="all">Nhập tiêu chí của bạn</option>
         </select>
 
-        <button class="search-button">Tìm kiếm</button>
+    <button class="search-button">Tìm kiếm</button>
+</div>
+<div id="search-results" class="search-results">
     </div>
-     <div id="search-results" class="search-results"></div>
 </div>
 
     <section class="faq-section">
@@ -202,8 +197,9 @@
 </html>
 <script src="main.js"></script>
 <script src="data.js"></script>
-<script>
+<script src="filter.js"></script>
 
+<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", () => {
   const searchBtn = document.querySelector(".search-button");
   const resultsContainer = document.getElementById("search-results");
@@ -281,3 +277,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </script>
 >>>>>>> d1cfd77953a282b978dbd48ab03a3b6258b59e36
+=======
+>>>>>>> b1b95151684c57e6a38210c8bab6ed7be6ce5874
