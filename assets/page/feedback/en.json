@@ -37,13 +37,17 @@
     "Can I edit or add information ?",
     "Will my feedback be kept confidential ?"
   ],
+  "faqAnswers": [
+    "We will respond within 2-3 business days. If urgent, please call our hotline.",
+    "Yes — you can submit additional information by replying to our feedback email or submitting a new request.",
+    "All feedback is handled according to our privacy policy and is not shared publicly."
+  ],
   "floatingSearch": {
     "label": "Search by need"
   },
   "imageAlt": {
     "cafeLogo": "cafe logo"
   },
-
   "footer": {
     "discoverText": "Discover the perfect coffee experience",
     "aboutTitle": "About us",
