@@ -238,3 +238,30 @@ body {
         line-height: 1.5;
         margin: 0 0 15px 0;
     }
+/* language switcher */
+.lang-switcher{
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+  align-items:center;
+  margin: 8px 0 16px;
+  width: calc(100% - 160px); /* adjust if page padding changes */
+  margin-left: auto;
+}
+.lang-btn{
+  background: transparent;
+  border: 1px solid #E8E3D8;
+  color: #4A2C1A;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all .18s ease;
+}
+.lang-btn:hover{ transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.06); }
+.lang-btn.active,
+.lang-btn[aria-pressed="true"]{
+  background: #D97706;
+  color: #fff;
+  border-color: #D97706;
+}
