@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="vi">
     <head>
-         <meta charset="UTF-8">
-         <meta name="viewport" content="width=device-width,initial-scale=1" />
-           <link rel="stylesheet" href="card.css">
-         <link rel="stylesheet" type="text/css" href="shop-detail.css">
-         <link rel="stylesheet" href="../../component/header-footer/header.css">
-         <link rel="stylesheet" href="../../component/header-footer/footer.css">
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-        <title>Chi tiết quán</title>
-    </head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="card.css">
+  <link rel="stylesheet" type="text/css" href="shop-detail.css">
+  <link rel="stylesheet" href="../../component/header-footer/header.css">
+  <link rel="stylesheet" href="../../component/header-footer/footer.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <title data-i18n="pageTitle">Chi tiết quán</title>
+</head>
     <body>
         <script src="shop-detail.js"></script>
         <div id="header" class="header"></div> 
@@ -18,112 +20,112 @@
           <!-- <div id="header" class="header"></div>  -->
             <div class="shopdetail_title-container">
                 <div  class="shopdetail_title">
-                   <h1>Café Artisan Saigon</h1>
+                   <h1 class="pacifico-regular" data-i18n="shopName">Café Artisan Saigon</h1>
                 </div>
-                <div class="shopdetail_favourite">
+                <div class="shopdetail_favourite" data-i18n="addToFavorites">
                       Thêm trang yêu thích
                 </div>
-                <div class="heart">
+                <div class="heart" title="favorite" aria-hidden="true">
                       <i class="fa-regular fa-heart"></i>
                 </div>
                 
             </div>
                 <div class="shopdetail_gallery-container">
                       <div class="slider-column">
-                            <img src="/assets/image/Shop-detail-page/Hình ảnh quán cafe.png">
-                           <button class="arrow-left">
+                            <img src="/assets/image/Shop-detail-page/Hình ảnh quán cafe.png" data-i18n-alt="gallery.mainAlt" alt="shop main">
+                           <button class="arrow-left" aria-label="previous" data-i18n-value="ui.prevButton">
                             <i class="fa-solid fa-circle-chevron-left"></i>
                            </button>
-                           <button class="arrow-right">
+                           <button class="arrow-right" aria-label="next" data-i18n-value="ui.nextButton">
                             <i class="fa-solid fa-circle-chevron-right"></i>
                            </button>
                            <div class="dot-container">
                               <button>
-                                <img src="/assets/image/Shop-detail-page/Background.png">
+                                <img src="/assets/image/Shop-detail-page/Background.png" data-i18n-alt="gallery.thumbAlts.0" alt="">
                               </button>
                               <button>
-                                <img src="/assets/image/Shop-detail-page/Overlay.png">
+                                <img src="/assets/image/Shop-detail-page/Overlay.png" data-i18n-alt="gallery.thumbAlts.1" alt="">
                               </button>
                               <button>
-                                <img src="/assets/image/Shop-detail-page/Overlay (1).png">
+                                <img src="/assets/image/Shop-detail-page/Overlay (1).png" data-i18n-alt="gallery.thumbAlts.2" alt="">
                               </button>
                            </div> 
                       </div> 
                       <div class="grid-column">
-                            <img src="/assets/image/Shop-detail-page/Hình ảnh quán cafe (4).png">
-                            <img src="/assets/image/Shop-detail-page/Hình ảnh quán cafe (3).png">
-                            <img src="/assets/image/Shop-detail-page/Hình ảnh quán cafe (2).png">
-                            <img src="/assets/image/Shop-detail-page/Hình ảnh quán cafe (1).png">
+                            <img src="/assets/image/Shop-detail-page/Hình ảnh quán cafe (4).png" data-i18n-alt="gallery.thumbAlts.3" alt="">
+                            <img src="/assets/image/Shop-detail-page/Hình ảnh quán cafe (3).png" alt="">
+                            <img src="/assets/image/Shop-detail-page/Hình ảnh quán cafe (2).png" alt="">
+                            <img src="/assets/image/Shop-detail-page/Hình ảnh quán cafe (1).png" alt="">
                       </div>
                 </div>
              <div class="shopdetail_sub-container">
                    <div class="shopdetail_text">
                          <div class="nameshop">
-                            Tên quán:
-                            <p class="shopdetail_name">Café Artisan Saigon</p>
+                            <span data-i18n="labels.nameLabel">Tên quán:</span>
+                            <p class="shopdetail_name" data-i18n="shopName">Café Artisan Saigon</p>
                          </div>
                     </div>
                     <div class="shopdetail_text">
                           <div class="nameshop">
-                            Loại:
+                            <span data-i18n="labels.typeLabel">Loại:</span>
                           </div>
                           <div  class="shopdetail_tag">
-                            <p class="tag">Wifi</p>
-                            <p class="tag">Ổ cắm</p>
-                            <p class="tag">24/7</p>
-                            <p class="tag">View đẹp</p>
-                            <p class="tag">Yên tĩnh</p>
+                            <p class="tag" data-i18n="tags.0">Wifi</p>
+                            <p class="tag" data-i18n="tags.1">Ổ cắm</p>
+                            <p class="tag" data-i18n="tags.2">24/7</p>
+                            <p class="tag" data-i18n="tags.3">View đẹp</p>
+                            <p class="tag" data-i18n="tags.4">Yên tĩnh</p>
                           </div>
                     </div>
                     <div class="shopdetail_address-container">
                           <div class="shopdetail_address">
-                            Địa chỉ:<br>
-                            123 Đường Pasteur, Quận 1, TP. Hồ Chí Minh
+                            <span data-i18n="labels.addressLabel">Địa chỉ:</span><br>
+                            <span data-i18n="labels.addressText">123 Đường Pasteur, Quận 1, TP. Hồ Chí Minh</span>
                           </div>
                             <div class="button-container"><br><br>
-                            <button class="address-button">
-                                <i class="fa-solid fa-location-dot"></i>
+                            <button class="address-button" data-i18n="labels.directionButton">
+                                <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
                                 Chỉ đường
                             </button>
                           </div>
                     </div>
                     <div class="shopdetail_rate-container">
-                          <div class="shopdetail_rate">
+                          <div class="shopdetail_rate" data-i18n="labels.rateLabel">
                             Rate:
                           </div>
                           <div class="rate">
-                            5
+                            <span>5</span>
                             <i class="fa-solid fa-star"></i>
                           </div>
                     </div>
                 </div>
                 <div>
-                <p class="shopdetail_sub-title">Thông tin chi tiết</p>
+                <p class="shopdetail_sub-title" data-i18n="detailsTitle">Thông tin chi tiết</p>
                 </div>
             <div class="shopdetail_sub-container">
                 <div class="detail_info-container">
                     <nav class="shopdetail_info-tabs">
-                        <button class="detail_tab-link active" data-tab="mo-ta">Mô tả</button>
-                        <button class="detail_tab-link" data-tab="menu">Menu</button>
-                        <button class="detail_tab-link" data-tab="tien-ich">Tiện ích</button>
-                        <button class="detail_tab-link" data-tab="khoang-gia">Khoảng giá</button>
+                        <button class="detail_tab-link active" data-tab="mo-ta" data-i18n="tabs.description">Mô tả</button>
+                        <button class="detail_tab-link" data-tab="menu" data-i18n="tabs.menu">Menu</button>
+                        <button class="detail_tab-link" data-tab="tien-ich" data-i18n="tabs.amenities">Tiện ích</button>
+                        <button class="detail_tab-link" data-tab="khoang-gia" data-i18n="tabs.priceRange">Khoảng giá</button>
                     </nav>
                     <div class="shopdetail_tab-content-wrapper">
                         <div id="mo-ta" class="shopdetail_tab-content active">
                         <div class="shopdetail_text">
-                            <p>Café Artisan Saigon là một không gian nghệ thuật độc đáo, nơi hương vị cà phê hảo hạng hòa quyện cùng thiết kế tối giản hiện đại.</p>
-                            <p>Mỗi góc quán đều được chăm chút tỉ mỉ, tạo nên một trải nghiệm thư giãn và đầy cảm hứng.</p>
-                            <p>Chúng tôi tự hào về nguồn cà phê specialty được tuyển chọn từ các vùng trồng nổi tiếng, rang xay thủ công mỗi ngày để mang đến hương vị tươi mới nhất.</p>
-                            <p>Đội ngũ barista giàu kinh nghiệm luôn sẵn sàng pha chế những tách cà phê hoàn hảo theo sở thích của bạn.</p>
-                            <p>Không gian rộng rãi với ánh sáng tự nhiên tràn ngập, cùng hệ thống wifi tốc độ cao và nhiều ổ cắm điện thuận tiện, đây là địa điểm lý tưởng cho cả những buổi làm việc hay gặp gỡ bạn bè.</p>
+                            <p data-i18n="descriptionParagraphs.0">Café Artisan Saigon là một không gian nghệ thuật độc đáo, nơi hương vị cà phê hảo hạng hòa quyện cùng thiết kế tối giản hiện đại.</p>
+                            <p data-i18n="descriptionParagraphs.1">Mỗi góc quán đều được chăm chút tỉ mỉ, tạo nên một trải nghiệm thư giãn và đầy cảm hứng.</p>
+                            <p data-i18n="descriptionParagraphs.2">Chúng tôi tự hào về nguồn cà phê specialty được tuyển chọn từ các vùng trồng nổi tiếng, rang xay thủ công mỗi ngày để mang đến hương vị tươi mới nhất.</p>
+                            <p data-i18n="descriptionParagraphs.3">Đội ngũ barista giàu kinh nghiệm luôn sẵn sàng pha chế những tách cà phê hoàn hảo theo sở thích của bạn.</p>
+                            <p data-i18n="descriptionParagraphs.4">Không gian rộng rãi với ánh sáng tự nhiên tràn ngập, cùng hệ thống wifi tốc độ cao và nhiều ổ cắm điện thuận tiện, đây là địa điểm lý tưởng cho cả những buổi làm việc hay gặp gỡ bạn bè.</p>
                         </div>
                     </div>
                 </div>
             </div>
            <section class="cafe-list-section">
         <div class="header-row">
-            <h3>Tương tự</h3>
-            <a href="#" class="view-all">Xem tất cả →</a>
+            <h3 data-i18n="similarSection.title">Tương tự</h3>
+            <a href="#" class="view-all" data-i18n="similarSection.viewAll">Xem tất cả →</a>
         </div>
 
         <div class="card-container">
@@ -136,16 +138,14 @@
 
                 <div class="card-content">
                     <div class="rating"><i class="fas fa-star"></i> 4.8</div>
-                    <h3 class="title">Urban Roast</h3>
-                    <div class="location"><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</div>
+                    <h3 class="title" data-i18n="card.title">Urban Roast</h3>
+                    <div class="location"><i class="fas fa-map-marker-alt"></i> <span data-i18n="card.location">TP. Hồ Chí Minh</span></div>
 
                     <div class="tags">
-                        <button class="btn-tag">Wifi miễn phí</button>
-                        <button class="btn-tag">View đẹp</button>
-                        <button class="btn-tag" id="small">+1</button>
+                        <button class="btn-tag" data-i18n="tags.0">Wifi miễn phí</button>
+                        <button class="btn-tag" data-i18n="tags.3">View đẹp</button>
+                        <button class="btn-tag" id="small" data-i18n="card.tagsViewMore">+1</button>
                     </div>
-
-
                 </div>
             </div>
             <div class="card">
@@ -157,13 +157,13 @@
 
                 <div class="card-content">
                     <div class="rating"><i class="fas fa-star"></i> 4.8</div>
-                    <h3 class="title">Urban Roast</h3>
-                    <div class="location"><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</div>
+                    <h3 class="title" data-i18n="card.title">Urban Roast</h3>
+                    <div class="location"><i class="fas fa-map-marker-alt"></i> <span data-i18n="card.location">TP. Hồ Chí Minh</span></div>
 
                     <div class="tags">
-                        <button class="btn-tag">Wifi miễn phí</button>
-                        <button class="btn-tag">Yên tĩnh</button>
-                        <button class="btn-tag" id="small">+1</button>
+                        <button class="btn-tag" data-i18n="tags.0">Wifi miễn phí</button>
+                        <button class="btn-tag" data-i18n="tags.4">Yên tĩnh</button>
+                        <button class="btn-tag" id="small" data-i18n="card.tagsViewMore">+1</button>
                     </div>
 
                 </div>
@@ -173,4 +173,6 @@
     <div id="footer" class="footer"></div> 
   </body>
 </html> 
+ <script src="/assets/page/Shop-detail-page/lang-switcher.js"></script>
+<script src="/assets/page/Shop-detail-page/shop-detail.js"></script>
 <script src="../../component/header-footer/header-loader.js"></script>
