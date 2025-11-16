@@ -50,6 +50,12 @@ body {
   flex: 1;
   background-color: #FFFBF5;
 }
+.pacifico-regular {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 50.42px;
+}
 .shopdetail_title h1 {
   font-size:40px;
   font-weight: 410;
@@ -248,7 +254,7 @@ body {
 }
 .shopdetail_text {
     color: #6B4423;
-    padding: 5px 0px 0px 15px;
+    padding: 5px 15px;
 }
 .shopdetail_tab-content.active{
   display: block;
