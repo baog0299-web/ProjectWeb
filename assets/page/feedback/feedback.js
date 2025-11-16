@@ -1,7 +1,4 @@
 // Header and footer are loaded by header-loader.js
-<<<<<<< HEAD
-// Add any page-specific JavaScript here
-=======
 // Add any page-specific JavaScript here
 
 // Smooth expand/collapse for <details class="faq-item">
@@ -73,4 +70,3 @@
   });
 })();
 
->>>>>>> 9294b00256b2e8357c8056166bffc828fbc03138
