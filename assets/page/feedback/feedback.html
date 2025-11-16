@@ -12,21 +12,13 @@
          <title>Feedback</title>
     </head>
     <body>
-  <script src="feedback.js"></script>
-  <script src="lang-switcher.js"></script>
-
-  <!-- placeholder nơi component sẽ được load -->
-  <div id="lang-switcher-root"></div>
-
+  <!-- header placeholder (header-loader sẽ inject vào đây) -->
   <div id="header" class="header"></div>
 
-    <!-- language switcher -->
-    <div class="lang-switcher" role="group" aria-label="Language switcher">
-      <button class="lang-btn" data-lang="vi" aria-pressed="true" title="Tiếng Việt">VI</button>
-      <button class="lang-btn" data-lang="en" aria-pressed="false" title="English">EN</button>
-    </div>
+  <!-- place lang-switcher right AFTER header so the button appears below header -->
+  <div id="lang-switcher-root"></div>
 
-    <div class="feedback_main-container">
+  <div class="feedback_main-container">
          <!-- <div id="header" class="header"></div>  -->
             <div class="feedback_column-left">
                 <div class="feedback_container-title">
@@ -146,9 +138,11 @@
         <span data-i18n="floatingSearch.label">Tìm kiếm theo nhu cầu</span>
     </div>
 
-    <div id="footer" class="footer">
-        <script src="../../component/header-footer/header-loader.js"></script>
-    </div>
+    <div id="footer" class="footer"></div>
+
+    <script src="/assets/page/feedback/lang-switcher.js"></script>
+    <script src="/assets/page/feedback/feedback.js"></script>
+    <script src="/assets/component/header-footer/header-loader.js"></script>
    </body>
 </html>
 
