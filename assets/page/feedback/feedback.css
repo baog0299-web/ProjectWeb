@@ -165,7 +165,6 @@ body {
         width: 100%;
         background: linear-gradient(135deg, #FFFBF5 0%, #F5EDE3 100%);
         border-radius: 12px;
-        margin-bottom: 30px;
     } 
     .feedback_logo-cafe {
         display: flex;
