@@ -6,9 +6,10 @@
 (function () {
   const STORAGE_KEY = 'site_lang';
   const DEFAULT_LANG = 'vi';
-  let lastLocale = null; // cache loaded locale object
+  let lastLocale = null;
 
   function getJsonUrlForLang(lang) {
+    // locale files are next to this page (feedback.html)
     const base = window.location.pathname.replace(/\/[^/]*$/, '/');
     return base + lang + '.json';
   }
@@ -24,12 +25,13 @@
 
   function getByPath(obj, path) {
     if (!path) return undefined;
-    return path.split('.').reduce((o, k) => (o && k in o) ? o[k] : undefined, obj);
+    return path.split('.').reduce((o, k) => (o && Object.prototype.hasOwnProperty.call(o, k)) ? o[k] : undefined, obj);
   }
 
   function applyTranslations(locale) {
     if (!locale) return;
     lastLocale = locale;
+
     const title = getByPath(locale, 'pageTitle');
     if (title) document.title = title;
 
@@ -68,6 +70,7 @@
       el.value = val;
     });
 
+    // update language buttons state
     document.querySelectorAll('[data-lang]').forEach(btn => {
       const isActive = btn.getAttribute('data-lang') === currentLang();
       btn.classList.toggle('active', isActive);
@@ -83,35 +86,21 @@
     if (!lang) return;
     localStorage.setItem(STORAGE_KEY, lang);
     fetchLocale(lang)
-      .then(locale => {
-        applyTranslations(locale);
-      })
+      .then(locale => applyTranslations(locale))
       .catch(err => {
-        console.warn('Locale load failed, falling back to default:', err);
+        console.warn('Locale load failed:', err);
         if (lang !== DEFAULT_LANG) {
           fetchLocale(DEFAULT_LANG)
             .then(locale => {
               localStorage.setItem(STORAGE_KEY, DEFAULT_LANG);
               applyTranslations(locale);
             })
-            .catch(() => console.error('Failed to load default locale.'));
+            .catch(e => console.error('Failed to load default locale:', e));
         }
       });
   }
 
-  // re-apply cached translations when new nodes are added (e.g. footer loaded)
-  function startDomObserver() {
-    if (typeof MutationObserver === 'undefined') return;
-    const obs = new MutationObserver(mutations => {
-      // if footer or other component injected, reapply translations
-      if (!lastLocale) return;
-      // small debounce
-      clearTimeout(window.__i18n_apply_timeout);
-      window.__i18n_apply_timeout = setTimeout(() => applyTranslations(lastLocale), 60);
-    });
-    obs.observe(document.body, { childList: true, subtree: true });
-  }
-
+  // click handler for language buttons
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-lang]');
     if (!btn) return;
@@ -119,10 +108,23 @@
     setLang(lang);
   });
 
+  // observe DOM changes to re-apply translations for dynamically injected parts (footer/header)
+  function startDomObserver() {
+    if (typeof MutationObserver === 'undefined') return;
+    const obs = new MutationObserver(() => {
+      if (!lastLocale) return;
+      clearTimeout(window.__i18n_apply_timeout);
+      window.__i18n_apply_timeout = setTimeout(() => applyTranslations(lastLocale), 60);
+    });
+    obs.observe(document.body, { childList: true, subtree: true });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    // apply saved/default language
     setLang(currentLang());
     startDomObserver();
   });
 
+  // expose
   window.langSwitcher = { setLang, currentLang };
 })();
