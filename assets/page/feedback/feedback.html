@@ -11,116 +11,142 @@
          <title>Feedback</title>
     </head>
     <body>
-        <script src="feedback.js"></script>
-        <div id="header" class="header"></div> 
-        <div class="feedback_main-container">
+  <!-- header placeholder (header-loader sẽ inject vào đây) -->
+  <div id="header" class="header"></div>
+  <div class="feedback_main-container">
          <!-- <div id="header" class="header"></div>  -->
             <div class="feedback_column-left">
                 <div class="feedback_container-title">
                    <div class="feedback_title">
-                     <h1>Gửi cho chúng tôi phản hồi của bạn</h1>
+                     <h1 data-i18n="heading">Gửi cho chúng tôi phản hồi của bạn</h1>
                    </div>
                    <div class="feedback_subtitle">
-                      <p>Những đóng góp của bạn là nguồn động lực quý giá giúp cải thiện trang web mỗi ngày</p>
+                      <p data-i18n="subtitle">Những đóng góp của bạn là nguồn động lực quý giá giúp cải thiện trang web mỗi ngày</p>
                     </div>
                 </div>
                 <div class="feedback_form">
                     <form  action="https://formsubmit.co/tanhung2007cg@gmail.com" method="post">
-                        <label class="feedback_label" for="name">Nhập tên của bạn</label>
-                        <input class="feedback_input" type="text" id="name" name="Ten" placeholder="Ngxx" required><br><br>
-                        <label class="feedback_label" for="email">Your Email Address</label>
-                        <input class="feedback_input" type="email" id="email" name="email" placeholder="xxx@example.com" required><br><br>
-                        <label class="feedback_label" for="feedback">What is this about?</label>
-                        <input class="feedback_input" type="text" id="feedback" name="VanDe" placeholder="Vấn đề bạn gặp phải là:" required><br><br>
+                        <label class="feedback_label" for="name" data-i18n="name.label">Nhập tên của bạn</label>
+                        <input class="feedback_input" type="text" id="name" name="Ten" data-i18n-placeholder="name.placeholder" placeholder="Ngxx" required><br><br>
+
+                        <label class="feedback_label" for="email" data-i18n="email.label">Your Email Address</label>
+                        <input class="feedback_input" type="email" id="email" name="email" data-i18n-placeholder="email.placeholder" placeholder="xxx@example.com" required><br><br>
+
+                        <label class="feedback_label" for="feedback" data-i18n="subject.label">What is this about?</label>
+                        <input class="feedback_input" type="text" id="feedback" name="VanDe" data-i18n-placeholder="subject.placeholder" placeholder="Vấn đề bạn gặp phải là:" required><br><br>
+
                         <div class="feedback_area-container">
-                           <label class="feedback_label" for="comments">Nhập mô tả cụ thể</label>
-                           <textarea class="feedback_area" id="comments" name="MoTa" placeholder="Hãy nhập mô tả về tình trạng bạn gặp phải" required></textarea><br><br>
+                           <label class="feedback_label" for="comments" data-i18n="description.label">Nhập mô tả cụ thể</label>
+                           <textarea class="feedback_area" id="comments" name="MoTa" data-i18n-placeholder="description.placeholder" placeholder="Hãy nhập mô tả về tình trạng bạn gặp phải" required></textarea><br><br>
                         </div>
+
                         <div>
-                         <label for="bonus">Thêm ảnh về vấn đề (Nếu có)</label>
+                         <label for="bonus" data-i18n="upload.label">Thêm ảnh về vấn đề (Nếu có)</label>
                             <input type="file" id="bonus" name="bonus" accept="image/*" class="real-upload"><br>
                          <label for="bonus" class="feedback_button">
-                             <i class="fa-solid fa-arrow-up-from-bracket"></i> Upload File
+                             <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                             <span data-i18n="upload.button">Upload File</span>
                          </label>
                         </div>
-                        <button class="feedback_send">
+
+                        <button class="feedback_send" type="submit">
                             <i class="fa-regular fa-paper-plane"></i>
-                            Gửi phản hồi
+                            <span data-i18n="submit">Gửi phản hồi</span>
                         </button>
                     </form>
                 </div>
             </div>
+
             <div class="feedback_column-right"> 
                 <div class="feedback_container-right">
                     <div class="feedback_border-cafe">
                         <div class="feedback_cafe-pic">
                            <div class="feedback_logo-cafe">
                               <div class="feedback_cafe">
-                                 <img src="/assets/image/feedback/coffeelogo.png" alt="cafe logo">
-                                 <p>We're here to help</p>
+                                 <img src="/assets/image/feedback/coffeelogo.png" data-i18n-alt="imageAlt.cafeLogo" alt="cafe logo">
+                                 <p data-i18n="rightColumn.helpText">We're here to help</p>
                               </div>
                           </div>
                         </div>
                     </div>
                </div>
+
                <div class="feedback_container-right">
                   <div class="feedback_title"> 
-                      <h3>Liên hệ với chúng tôi</h3>
+                      <h3 data-i18n="rightColumn.contactTitle">Liên hệ với chúng tôi</h3>
                   </div>
                     <div class="feedback-row">
                         <div class="feedback_border-info">
                             <i class="fa-regular fa-envelope" style="color: #ff7300;"></i>
                         </div>
                         <div class="feedback_info">
-                               Email
-                            <p class="email-send">support@coffeefinder.com</p>
+                           <div data-i18n="rightColumn.contactEmailLabel">Email</div>
+                           <p class="email-send" data-i18n="rightColumn.contactEmail">support@coffeefinder.com</p>
                         </div>
                     </div>
+
                     <div class="feedback-row">
                        <div class="feedback_border-info">
                            <i class="fa-solid fa-phone" style="color: #ff7300;"></i>
                        </div>
                        <div class="feedback_info">
-                              Hotline
-                           <p class="color-text">1234567890</p>
+                          <div data-i18n="rightColumn.contactPhoneLabel">Hotline</div>
+                          <p class="color-text" data-i18n="rightColumn.contactPhone">1234567890</p>
                        </div>
                     </div>
                 </div>
+
                  <div class="feedback_container-right">
                         <div class="feedback_title">
-                            <h3>Câu hỏi thường gặp</h3>
+                            <h3 data-i18n-html="rightColumn.faqTitle">Câu hỏi thường gặp</h3>
                         </div>
+
                       <details class="faq-item">
                         <summary class="faq-question">
-                            <span class="faq-text"> Khi nào thì tôi nhận lại được phản hồi ?</span>
-                            <i class="fa-solid fa-chevron-down"></i>
+                            <span class="faq-text" data-i18n="faq.0"> Khi nào thì tôi nhận lại được phản hồi ?</span>
+                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                         </summary>
+                        <div class="faq-body" data-i18n="faqAnswers.0">
+                          Chúng tôi sẽ phản hồi trong vòng 2-3 ngày làm việc. Nếu khẩn cấp, vui lòng gọi hotline.
+                        </div>
                       </details>
+
                       <details class="faq-item">
                         <summary class="faq-question">
-                            <span class="faq-text"> Tôi có thể chỉnh sửa/ thêm thông tin không ?</span>
-                            <i class="fa-solid fa-chevron-down"></i>
+                            <span class="faq-text" data-i18n="faq.1"> Tôi có thể chỉnh sửa/ thêm thông tin không ?</span>
+                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                         </summary>
+                        <div class="faq-body" data-i18n="faqAnswers.1">
+                          Có — bạn có thể gửi thông tin bổ sung bằng cách trả lời email phản hồi hoặc gửi yêu cầu mới.
+                        </div>
                       </details>
+
                        <details class="faq-item">
                         <summary class="faq-question">
-                            <span class="faq-text">Góp ý của tôi sẽ được bảo mật chứ ?</span>
-                            <i class="fa-solid fa-chevron-down"></i>
+                            <span class="faq-text" data-i18n="faq.2">Góp ý của tôi sẽ được bảo mật chứ ?</span>
+                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                         </summary>
+                        <div class="faq-body" data-i18n="faqAnswers.2">
+                          Mọi phản hồi được xử lý theo chính sách quyền riêng tư của chúng tôi và không chia sẻ công khai.
+                        </div>
                       </details>
                     </div>
                </div>
             </div>
           </div>
        </div>
-    
+
     <!-- Floating Search Button -->
     <div class="floating-search-btn" onclick="window.location.href='../../../index.html#search-section'">
         <i class="fas fa-search"></i>
-        <span>Tìm kiếm theo nhu cầu</span>
+        <span data-i18n="floatingSearch.label">Tìm kiếm theo nhu cầu</span>
     </div>
 
     <div id="footer" class="footer"></div>
+
+    <script src="/assets/page/feedback/lang-switcher.js"></script>
+    <script src="/assets/page/feedback/switch-btn.js"></script>
+    <script src="/assets/component/header-footer/header-loader.js"></script>
    </body>
 </html>
-<script src="../../component/header-footer/header-loader.js"></script>
+
