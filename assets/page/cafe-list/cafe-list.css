@@ -10,7 +10,9 @@ body {
     margin: 0 auto;
     padding: 30px 20px 60px;
 }
-
+.shop-card-link{
+    text-decoration: none;
+}
 /* Filter Tabs */
 .filter-tabs {
     display: flex;
