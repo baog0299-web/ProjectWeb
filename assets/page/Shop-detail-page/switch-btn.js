@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 9294b00256b2e8357c8056166bffc828fbc03138
 // Load lang-switcher component (lang-switcher.html) into #lang-switcher-root
 (function loadLangSwitcherComponent(){
   function run() {
