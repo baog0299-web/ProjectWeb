@@ -1,23 +1,50 @@
 // Đợi cho toàn bộ nội dung HTML tải xong
 document.addEventListener('DOMContentLoaded', () => {
-
-  // 1. Lấy các phần tử (elements) từ HTML của bạn
+  // Lấy các phần tử (elements) TĨNH từ HTML
   const filterLocation = document.getElementById('filter-location');
   const filterNeed = document.getElementById('filter-need');
   const filterCriteria = document.getElementById('filter-criteria');
   const resultsContainer = document.getElementById('search-results');
   const searchButton = document.querySelector('.search-button');
 
+  // Tạo một biến toàn cục để giữ data sau khi fetch
+  let allCoffeeShops = [];
+
+  // ----------------------------------------------------------------
+  // HÀM CHÍNH: Tải dữ liệu và khởi chạy
+  // ----------------------------------------------------------------
+  async function initializeApp() {
+    try {
+      // 1. Tải dữ liệu từ file JSON (ĐÃ CẬP NHẬT ĐƯỜNG DẪN)
+      const response = await fetch('assets/data/data.json'); 
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      allCoffeeShops = await response.json(); // Gán data vào biến
+
+      // 2. Dữ liệu đã sẵn sàng, giờ mới chạy các hàm logic
+      populateFilters();
+      
+      // Hiển thị lời nhắc ban đầu (theo yêu cầu của bạn)
+      resultsContainer.innerHTML = '<p class="initial-prompt">Vui lòng sử dụng bộ lọc để tìm quán cà phê.</p>';
+      
+      // 3. Gắn sự kiện
+      addFilterListeners();
+
+    } catch (error) {
+      console.error("Không thể tải dữ liệu quán cà phê:", error);
+      // Hiển thị lỗi cho người dùng
+      resultsContainer.innerHTML = '<p class="error">Lỗi khi tải dữ liệu quán cafe.</p>';
+    }
+  }
+
   // ----------------------------------------------------------------
   // HÀM 1: Tải các lựa chọn (options) cho bộ lọc
-  // (Hàm này sẽ đọc file data.js và tự điền vào 3 ô select)
   // ----------------------------------------------------------------
   function populateFilters() {
     // Lấy các giá trị duy nhất từ data
     const locations = [...new Set(allCoffeeShops.map(shop => shop.location_area))];
     const needs = [...new Set(allCoffeeShops.map(shop => shop.need))];
-    
-    // Lấy tất cả các tiêu chí (criteria là một mảng, nên cần xử lý khác)
     const allCriteria = allCoffeeShops.flatMap(shop => shop.criteria);
     const criteria = [...new Set(allCriteria)]; // Lọc duy nhất
 
@@ -25,130 +52,101 @@ document.addEventListener('DOMContentLoaded', () => {
     locations.forEach(location => {
       filterLocation.innerHTML += `<option value="${location}">${location}</option>`;
     });
-
     needs.forEach(need => {
       filterNeed.innerHTML += `<option value="${need}">${need}</option>`;
     });
-
     criteria.forEach(criterion => {
       filterCriteria.innerHTML += `<option value="${criterion}">${criterion}</option>`;
     });
   }
 
   // ----------------------------------------------------------------
-  // HÀM 2: Hiển thị (Render) các quán cà phê ra màn hình
-  // (Hàm này sẽ tạo HTML card giống hệt card "Nổi bật" của bạn)
+  // HÀM 2: Hiển thị (Render) các quán cà phê
+  // (Đã bao gồm link đến trang chi tiết)
   // ----------------------------------------------------------------
   function renderShops(shopsToRender) {
-    // Xóa sạch kết quả tìm kiếm cũ
-    resultsContainer.innerHTML = '';
+    resultsContainer.innerHTML = ''; // Xóa sạch
 
-    // Nếu không có quán nào, hiển thị thông báo
     if (shopsToRender.length === 0) {
       resultsContainer.innerHTML = '<p>Không tìm thấy quán cà phê phù hợp.</p>';
       return;
     }
 
-    // Tạo card HTML cho mỗi quán và thêm vào danh sách
     shopsToRender.forEach(shop => {
-      const shopCard = document.createElement('div');
-      shopCard.className = 'card'; // Dùng class "card" y như của bạn
+      const shopLinkWrapper = document.createElement('a');
+      shopLinkWrapper.className = 'shop-card-link';
+      // Link đến trang chi tiết
+      shopLinkWrapper.href = `assets/page/Shop-detail-page/shop-detail.html?id=${shop.id}`;
 
-      // Xử lý phần tags (tiêu chí)
-      // Hiển thị 2 tag đầu tiên, nếu nhiều hơn thì hiện "+..."
+      // Xử lý tag
       let tagsHTML = '';
-      const tagsToShow = shop.criteria.slice(0, 2); // Lấy 2 tag đầu
+      const tagsToShow = shop.criteria.slice(0, 2);
       tagsHTML = tagsToShow.map(tag => `<button class="btn-tag">${tag}</button>`).join('');
-      
       if (shop.criteria.length > 2) {
         tagsHTML += `<button class="btn-tag" id="small">+${shop.criteria.length - 2}</button>`;
       }
 
-      // Dùng template literal (dấu `) để tạo HTML
-      // Đây là cấu trúc card LẤY TỪ FILE HTML của bạn
-      shopCard.innerHTML = `
-        <div class="card-image">
-          <img src="${shop.image}" alt="${shop.name}">
-          <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
-          <div class="icon-top-right"><i class="far fa-heart"></i></div>
-        </div>
-        <div class="card-content">
-          <div class="rating">
-            <i class="fas fa-star"></i> ${shop.rating}
+      // Tạo HTML cho card
+      shopLinkWrapper.innerHTML = `
+        <div class="card">
+          <div class="card-image">
+            <img src="${shop.image}" alt="${shop.name}">
+            <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+            <div class="icon-top-right"><i class="far fa-heart"></i></div>
           </div>
-          <h3 class="title">${shop.name}</h3>
-          <div class="location">
-            <i class="fas fa-map-marker-alt"></i> ${shop.location_area}
-          </div>
-          <div class="tag">
-            ${tagsHTML}
+          <div class="card-content">
+            <div class="rating"><i class="fas fa-star"></i> ${shop.rating}</div>
+            <h3 class="title">${shop.name}</h3>
+            <div class="location"><i class="fas fa-map-marker-alt"></i> ${shop.location_area}</div>
+            <div class="tag">${tagsHTML}</div>
           </div>
         </div>
       `;
-      
-      resultsContainer.appendChild(shopCard);
+      resultsContainer.appendChild(shopLinkWrapper);
     });
   }
 
   // ----------------------------------------------------------------
-  // HÀM 3: Lọc danh sách quán (Hàm này không đổi)
+  // HÀM 3: Lọc danh sách quán
   // ----------------------------------------------------------------
   function filterShops() {
-    // Lấy giá trị đang được chọn từ cả 3 bộ lọc
     const selectedLocation = filterLocation.value;
     const selectedNeed = filterNeed.value;
     const selectedCriteria = filterCriteria.value;
 
-    // Bắt đầu bằng cách lấy toàn bộ danh sách
-    let filteredShops = allCoffeeShops;
+    let filteredShops = allCoffeeShops; // Lọc từ data đã tải
 
-    // Lọc theo Khu vực (Location)
+    // Lọc theo Khu vực
     if (selectedLocation !== 'all') {
-      filteredShops = filteredShops.filter(shop => {
-        return shop.location_area === selectedLocation;
-      });
+      filteredShops = filteredShops.filter(shop => shop.location_area === selectedLocation);
     }
-
-    // Lọc theo Nhu cầu (Need)
+    // Lọc theo Nhu cầu
     if (selectedNeed !== 'all') {
-      filteredShops = filteredShops.filter(shop => {
-        return shop.need === selectedNeed;
-      });
+      filteredShops = filteredShops.filter(shop => shop.need === selectedNeed);
     }
-
-    // Lọc theo Tiêu chí (Criteria)
+    // Lọc theo Tiêu chí
     if (selectedCriteria !== 'all') {
-      filteredShops = filteredShops.filter(shop => {
-        return shop.criteria.includes(selectedCriteria);
-      });
+      filteredShops = filteredShops.filter(shop => shop.criteria.includes(selectedCriteria));
     }
 
-    // Sau khi lọc xong, gọi hàm render để hiển thị kết quả
     renderShops(filteredShops);
   }
 
   // ----------------------------------------------------------------
-  // KHỞI CHẠY VÀ GẮN SỰ KIỆN
+  // HÀM 4: Gắn sự kiện (chỉ được gọi sau khi data đã tải)
   // ----------------------------------------------------------------
+  function addFilterListeners() {
+    filterLocation.addEventListener('change', filterShops);
+    filterNeed.addEventListener('change', filterShops);
+    filterCriteria.addEventListener('change', filterShops);
+    
+    // Nếu bạn muốn dùng nút "Tìm kiếm" thay vì real-time:
+    // 1. Xóa 3 dòng ở trên
+    // 2. Bỏ comment dòng dưới:
+    // searchButton.addEventListener('click', filterShops);
+  }
 
-  // 1. Tự động điền các lựa chọn vào bộ lọc
-  populateFilters();
-  
-  // 2. Hiển thị tất cả các quán khi tải trang lần đầu
-  // (Bạn có thể bỏ dòng này nếu muốn kết quả chỉ hiện khi tìm kiếm)
-  resultsContainer.innerHTML = '<p class="initial-prompt">Vui lòng sử dụng bộ lọc để tìm quán cà phê.</p>';
-
-  // 3. Gắn sự kiện "change" (thay đổi) cho cả 3 bộ lọc
-  // Đây là tính năng "real-time" bạn muốn
-  filterLocation.addEventListener('change', filterShops);
-  filterNeed.addEventListener('change', filterShops);
-  filterCriteria.addEventListener('change', filterShops);
-  
-  // 4. (Tùy chọn) Gắn sự kiện cho nút "Tìm kiếm"
-  // Nếu bạn muốn lọc real-time, bạn không cần nút này.
-  // Nhưng nếu bạn muốn người dùng phải bấm nút, hãy:
-  // - Xóa 3 dòng addEventListener ở trên.
-  // - Bỏ comment (dấu //) ở dòng dưới đây:
-  // searchButton.addEventListener('click', filterShops);
+  // --- BẮT ĐẦU CHẠY APP ---
+  initializeApp();
 
 });
