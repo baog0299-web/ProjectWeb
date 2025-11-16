@@ -1,131 +1,141 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ----------------------------------------------------------------
-  // HÀM CHÍNH: Tải data và hiển thị chi tiết
-  // ----------------------------------------------------------------
-  async function loadShopDetail() {
-    let allCoffeeShops = [];
+  // ----------------------------------------------------------------
+  // HÀM CHÍNH: Tải data và hiển thị chi tiết
+  // ----------------------------------------------------------------
+  async function loadShopDetail() {
+    let allCoffeeShops = [];
 
-    try {
-      // 1. Tải data
-      // Đường dẫn lùi 2 cấp về 'assets/' rồi vào 'data/data.json'
-      const response = await fetch('../../data/data.json'); 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      allCoffeeShops = await response.json();
+    try {
+      const response = await fetch('/assets/data/data.json'); // Dùng đường dẫn tuyệt đối
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      allCoffeeShops = await response.json();
+      processShopData(allCoffeeShops);
 
-      // 2. Dữ liệu đã sẵn sàng, giờ mới tìm quán
-      processShopData(allCoffeeShops);
+    } catch (error) {
+      console.error("Không thể tải dữ liệu chi tiết:", error);
+      document.body.innerHTML = '<h1>Lỗi tải dữ liệu.</h1>';
+    }
+  }
 
-    } catch (error) {
-      console.error("Không thể tải dữ liệu chi tiết:", error);
-      document.body.innerHTML = '<h1>Lỗi tải dữ liệu.</h1>';
-    }
-  }
+  // ----------------------------------------------------------------
+  // HÀM XỬ LÝ: Điền dữ liệu vào trang
+  // ----------------------------------------------------------------
+  function processShopData(allCoffeeShops) {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const cafeId = urlParams.get('id');
+    const cafe = allCoffeeShops.find(shop => shop.id == cafeId);
 
-  // ----------------------------------------------------------------
-  // HÀM XỬ LÝ: Điền dữ liệu vào trang
-  // ----------------------------------------------------------------
-  function processShopData(allCoffeeShops) {
-    // 1. Lấy ID của quán từ URL
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const cafeId = urlParams.get('id');
+    if (!cafe) {
+      document.body.innerHTML = '<h1>Không tìm thấy quán cà phê này.</h1>';
+      return;
+    }
 
-    // 2. Tìm quán cà phê
-    const cafe = allCoffeeShops.find(shop => shop.id == cafeId);
-
-    // 3. Kiểm tra xem có tìm thấy quán không
-    if (!cafe) {
-      document.body.innerHTML = '<h1>Không tìm thấy quán cà phê này.</h1>';
-      return;
-    }
-
-    // 4. Điền dữ liệu vào các CLASS của bạn
-    document.querySelector('.shopdetail_title h1').textContent = cafe.name;
-    document.querySelector('.shopdetail_name').textContent = cafe.name;
-    document.querySelector('.shopdetail_address').innerHTML = `Địa chỉ:<br>${cafe.address}`;
-    document.querySelector('.rate').innerHTML = `${cafe.rating} <i class="fa-solid fa-star"></i>`;
-
-    // 5. Điền các tag (Tiện ích) ở trên cùng
-    const topTagsContainer = document.querySelector('.shopdetail_tag');
-    topTagsContainer.innerHTML = '';
-    cafe.criteria.slice(0, 5).forEach(tag => { // Lấy 5 tag đầu
-      topTagsContainer.innerHTML += `<p class="tag">${tag}</p>`;
-    });
-
-    // 6. Điền Gallery ảnh (cần 5 ảnh trong data)
-    if (cafe.images_slider && cafe.images_slider.length >= 5) {
-      document.querySelector('.slider-column img').src = cafe.images_slider[0]; // Ảnh slider
-      const gridContainer = document.querySelector('.grid-column');
-      // 4 ảnh lưới
-      gridContainer.innerHTML = `
-        <img src="${cafe.images_slider[1]}">
-        <img src="${cafe.images_slider[2]}">
-        <img src="${cafe.images_slider[3]}">
-        <img src="${cafe.images_slider[4]}">
-      `;
-    }
-
-    // 7. Điền nội dung cho các TAB
-    // Tab "Mô tả"
-    const descriptionContainer = document.querySelector('#mo-ta .shopdetail_text');
-    if(descriptionContainer) {
-        descriptionContainer.textContent = cafe.description_detail;
-    }
-
-    // Tab "Tiện ích"
-    const tienIchTab = document.getElementById('tien-ich');
-    if (tienIchTab) {
-      tienIchTab.innerHTML = ''; // Xóa rỗng
-      cafe.criteria.forEach(tag => {
-        tienIchTab.innerHTML += `<p class="utility-item">✓ ${tag}</p>`;
-      });
-    }
-
-    // Tab "Khoảng giá"
-    const khoangGiaTab = document.getElementById('khoang-gia');
-    if (khoangGiaTab) {
-      khoangGiaTab.textContent = cafe.price_range;
-    }
+    // 4. Điền dữ liệu
     
-    // Tab "Menu"
-    const menuTab = document.getElementById('menu');
-    if (menuTab) {
-        menuTab.innerHTML = '<p>Menu đang được cập nhật...</p>';
+    // ----- SỬA LỖI TÊN QUÁN -----
+    // 1. Tìm phần tử
+    const titleH1 = document.querySelector('.shopdetail_title h1');
+    const titleP = document.querySelector('.shopdetail_name');
+
+    // 2. Điền tên
+    if (titleH1) {
+        titleH1.textContent = cafe.name;
+        // 3. Xóa thuộc tính i18n để script khác không ghi đè
+        titleH1.removeAttribute('data-i18n'); 
     }
+    if (titleP) {
+        titleP.textContent = cafe.name;
+        // 3. Xóa thuộc tính i18n để script khác không ghi đè
+        titleP.removeAttribute('data-i18n');
+    }
+    // ----------------------------
 
-    // 8. Gắn sự kiện cho TAB
-    addTabListeners();
-  }
+    // (Lý do địa chỉ hoạt động: .innerHTML đã vô tình xóa thẻ span[data-i18n] đi)
+    document.querySelector('.shopdetail_address').innerHTML = `
+        <span data-i18n="labels.addressLabel">Địa chỉ:</span><br>
+        <span>${cafe.address}</span> 
+    `;
+    
+    // (Lý do rating hoạt động: thẻ span không có data-i18n)
+    document.querySelector('.rate span').textContent = cafe.rating;
 
-  // ----------------------------------------------------------------
-  // HÀM GẮN SỰ KIỆN TAB
-  // ----------------------------------------------------------------
-  function addTabListeners() {
-    const tabLinks = document.querySelectorAll('.detail_tab-link');
-    const tabContents = document.querySelectorAll('.shopdetail_tab-content');
+    // 5. Điền các tag (Tiện ích) ở trên cùng
+    const topTagsContainer = document.querySelector('.shopdetail_tag');
+    topTagsContainer.innerHTML = '';
+    cafe.criteria.slice(0, 5).forEach(tag => { 
+      topTagsContainer.innerHTML += `<p class="tag">${tag}</p>`;
+    });
 
-    tabLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        const tabId = link.getAttribute('data-tab'); // vd: "mo-ta"
+    // 6. Điền Gallery ảnh (cần 5 ảnh trong data)
+    if (cafe.images_slider && cafe.images_slider.length >= 5) {
+      document.querySelector('.slider-column img').src = cafe.images_slider[0]; 
+      const gridContainer = document.querySelector('.grid-column');
+      gridContainer.innerHTML = `
+        <img src="${cafe.images_slider[1]}" alt="${cafe.name} image 2">
+        <img src="${cafe.images_slider[2]}" alt="${cafe.name} image 3">
+        <img src="${cafe.images_slider[3]}" alt="${cafe.name} image 4">
+        <img src="${cafe.images_slider[4]}" alt="${cafe.name} image 5">
+      `;
+    }
 
-        // Xóa "active" khỏi tất cả link và content
-        tabLinks.forEach(item => item.classList.remove('active'));
-        tabContents.forEach(item => item.classList.remove('active'));
+    // 7. Điền nội dung cho các TAB
+    const descriptionContainer = document.querySelector('#mo-ta .shopdetail_text');
+    if(descriptionContainer) {
+        descriptionContainer.textContent = cafe.description_detail;
+        descriptionContainer.removeAttribute('data-i18n'); // Tương tự, xóa i18n
+    }
 
-        // Thêm "active" cho link và content được click
-        link.classList.add('active');
-        const activeContent = document.getElementById(tabId);
-        if (activeContent) {
-            activeContent.classList.add('active');
-        }
-      });
-    });
-  }
+    const tienIchTab = document.getElementById('tien-ich');
+    if (tienIchTab) {
+      tienIchTab.innerHTML = '';
+      cafe.criteria.forEach(tag => {
+        tienIchTab.innerHTML += `<p class="utility-item">✓ ${tag}</p>`;
+      });
+    }
 
-  // --- BẮT ĐẦU CHẠY ---
-  loadShopDetail();
+    const khoangGiaTab = document.getElementById('khoang-gia');
+    if (khoangGiaTab) {
+      khoangGiaTab.textContent = cafe.price_range;
+    }
+    
+    const menuTab = document.getElementById('menu');
+    if (menuTab) {
+        menuTab.innerHTML = '<p>Menu đang được cập nhật...</p>';
+    }
+
+    // 8. Gắn sự kiện cho TAB
+    addTabListeners();
+  }
+
+  // ----------------------------------------------------------------
+  // HÀM GẮN SỰ KIỆN TAB
+  // ----------------------------------------------------------------
+  function addTabListeners() {
+    // ... (Giữ nguyên hàm này) ...
+    const tabLinks = document.querySelectorAll('.detail_tab-link');
+    const tabContents = document.querySelectorAll('.shopdetail_tab-content');
+
+    tabLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const tabId = link.getAttribute('data-tab'); 
+
+        tabLinks.forEach(item => item.classList.remove('active'));
+        tabContents.forEach(item => item.classList.remove('active'));
+
+        link.classList.add('active');
+        const activeContent = document.getElementById(tabId);
+        if (activeContent) {
+            activeContent.classList.add('active');
+        }
+      });
+    });
+  }
+
+  // --- BẮT ĐẦU CHẠY ---
+  loadShopDetail();
 
 });
