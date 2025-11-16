@@ -1,0 +1,44 @@
+{
+  "return": "← Quay lại Dashboard",
+  "add_new_cafe": "Thêm Quán Cafe Mới",
+  "add_cafe_details": "Điền thông tin chi tiết về quán cafe",
+  "add_shop_icon": "Thêm icon cho quán",
+  "add_cover_photo": "Thêm ảnh bìa",
+  "upload_cover_photo": "Tải ảnh bìa lên",
+  "add_min_5_photos": "Thêm ít nhất 5 ảnh mô tả quán",
+  "upload_multiple_photos": "Tải nhiều ảnh lên",
+  "minimum_5_photos": "Tối thiểu 5 ảnh",
+
+  "shop_name_label": "Tên quán:",
+  "shop_name_placeholder": "Nhập tên quán cafe...",
+
+  "short_description_label": "Mô tả ngắn:",
+  "short_description_placeholder": "Mô tả ngắn gọn về quán...",
+
+  "add_tag": "Thêm tag",
+  "example_tag": "Ví dụ: Wifi miễn phí, View đẹp...",
+  "free_wifi": "Wifi miễn phí",
+
+  "add_shop_info": "Thêm thông tin quán",
+  "add_address": "Thêm địa chỉ:",
+  
+  "detailed_description_label": "Nhập mô tả chi tiết:",
+  "detailed_description_placeholder": 
+    "Mô tả chi tiết về không gian, phong cách, đặc điểm nổi bật...",
+
+  "menu_label": "Menu quán (nếu có):",
+  "menu_placeholder": 
+    "Liệt kê các món trong menu và giá thành hoặc các món nổi bật...",
+
+  "amenities_label": "Tiện ích:",
+  "amenities_placeholder": 
+    "Các tiện ích như: Wifi, điều hòa, bãi đỗ xe...",
+
+  "opening_hours_label": "Giờ hoạt động:",
+  "opening_hours_example": "Ví dụ: 7:00 - 22:00 hằng ngày",
+
+  "direction_map": "Chỉ đường (link map)",
+
+  "submit": "Gửi"
+}
+

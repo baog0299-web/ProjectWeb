@@ -14,60 +14,66 @@
           <img src="../../image/add-details-page/Component1.svg" alt="Logo">
           <div class="h1">CoffeeFinder Admin</div>
         </div>
-        <div class="block-h2">← Quay lại Dashboard</div>
+        <div class="block-h2" lang-key="return">← Quay lại Dashboard</div>
       </div>
 
       <div class="wrapper-content">
-        <div class="head-content">Thêm Quán Cafe Mới</div>
-        <div class="head-img">Điền thông tin chi tiết về quán cafe</div>
+        <div class="head-content">
+          <p lang-key="add_new_cafe">Thêm Quán Cafe Mới</p>
+          <div class = "lang-switcher">
+            <button onclick="changeLang('vi')">Vie</button>
+            <button onclick="changeLang('en')">En</button>
+          </div>
+        </div>
+        <div class="head-img" lang-key="add_cafe_details">Điền thông tin chi tiết về quán cafe</div>
 
         <div class="img-content">
           <div class="img-icon">
             <div class="add-btn">
               <div class="add-btn"> <img src="../../image/add-details-page/plus-sign.png"> </div>
             </div>
-            <div class="icon-content">Thêm icon cho quán</div>
+            <div class="icon-content" lang-key="add_shop_icon">Thêm icon cho quán</div>
           </div>
           <div class = "upload-img" style = "margin-left: 45px">
-            <div class = "up-img-head">Thêm ảnh bìa</div>
+            <div class = "up-img-head" lang-key="add_cover_photo">Thêm ảnh bìa</div>
             <div class = "upload-area">
               <div class = "up-img"><img src="../../image/add-details-page/arrow.svg" style = "width: 48px; height: 48px;"></div>
-              <div class = "up-content1">Tải ảnh bìa lên</div>
+              <div class = "up-content1" lang-key="upload_cover_photo">Tải ảnh bìa lên</div>
               <div class = "up-content2">PNG, JPG (Max 5MB)</div>
             </div>
           </div>
           <div class = "upload-img" style = "margin-left: 24px">
-            <div class = "up-img-head">Thêm ít nhất 5 ảnh mô tả quán</div>
+            <div class = "up-img-head" lang-key="add_min_5_photos">Thêm ít nhất 5 ảnh mô tả quán</div>
             <div class = "upload-area">
               <div class = "up-img" style = "justify-content: space-between; gap: 4px; height: 48px;">
                 <img src="../../image/add-details-page/arrow.svg" style = "width: 40px; height: 40px;">
                 <img src="../../image/add-details-page/arrow.svg" style = "width: 40px; height: 40px;">
               </div>
-              <div class = "up-content1">Tải nhiều ảnh lên</div>
-              <div class = "up-content2">Tối thiểu 5 ảnh</div>
+              <div class = "up-content1" lang-key="upload_multiple_photos">Tải nhiều ảnh lên</div>
+              <div class = "up-content2" lang-key="minimum_5_photos">Tối thiểu 5 ảnh</div>
             </div>
           </div>
         </div>
 
         <div class = "input-content">
           <div class = "input-block1">
-            <div class = "head-input">Tên quán:</div>
-            <input type = "text" id = "name" name = "name" placeholder = "Nhập tên quán cafe..." maxlength="200">
+            <div class = "head-input" lang-key="shop_name_label">Tên quán:</div>
+            <input type = "text" id = "name" name = "name" placeholder = "Nhập tên quán cafe..." lang-key="shop_name_placeholder" maxlength="200">
           </div>
           <div class = "input-block1">
-            <div class = "head-input">Mô tả ngắn:</div>
-            <input type = "text" id = "describe" name = "describe" placeholder = "Mô tả ngắn gọn về quán...">
+            <div class = "head-input" lang-key="short_description_label">Mô tả ngắn:</div>
+            <input type = "text" id = "describe" name = "describe" placeholder = "Mô tả ngắn gọn về quán..." lang-key="short_description_placeholder">
           </div>
           <div class = "input-block2">
-            <div class = "head-input">Thêm tag</div>
+            <div class = "head-input" lang-key="add_tag">Thêm tag</div>
             <div class = "bar-wrapper">
-              <input type = "text" id = "example" name = "example" placeholder = "Ví dụ: Wifi miễn phí, View đẹp..." style = "width: 1192.800048828125px;">
+              <input type = "text" id = "example" name = "example" lang-key="example_tag" placeholder = "Ví dụ: Wifi miễn phí, View đẹp..." style = "width: 1192.800048828125px;">
               <div class = "add-btn" style = "width: 48px; height: 48px;"><img style = "width: 24px; height: 24px;" src="../../image/add-details-page/plus-sign.png"></div>
             </div>
           </div>
           <div class = "add-area">
               <div class = "element-card">
-                <div class = "add-content"> Wifi miễn phí </div>
+                <div class = "add-content" lang-key="free_wifi"> Wifi miễn phí </div>
                 <button class="x-btn"><i class="fa-solid fa-xmark"><img src = "../../image/add-details-page/times-sign.svg"></i>
               </div>
               <div class = "element-card" >
@@ -79,42 +85,47 @@
         <div class = "inform-content">
           <div class = "head-inform">
             <img style = "width: 20px; height: 20px; " src="../../image/add-details-page/Component1.svg" alt="Logo">
-            <div class = "h1" style = "width: 180px; font-size: 18px; font-weight: 700;">Thêm thông tin quán</div>
+            <div class = "h1" style = "width: 180px; font-size: 18px; font-weight: 700;" lang-key="add_shop_info">Thêm thông tin quán</div>
           </div>
           <div class = "inform-block1">
-            <div class = "head">Thêm địa chỉ:</div>
-            <input type = "text" id = "name" name = "name" placeholder = "Nhập tên quán cafe..." maxlength="200" style = "width: 100%">
+            <div class = "head" lang-key="add_address">Thêm địa chỉ:</div>
+            <input type = "text" id = "name" name = "name" lang-key="shop_name_placeholder" placeholder = "Nhập tên quán cafe..." maxlength="200" style = "width: 100%">
           </div>
           <div class = "inform-block2">
-            <div class = "head">Nhập mô tả chi tiết:</div>
-            <textarea type = "text" placeholder = "Mô tả chi tiết về không gian, phong cách, đặc điểm nổi bật..."></textarea>
+            <div class = "head" lang-key="detailed_description_label">Nhập mô tả chi tiết:</div>
+            <textarea type = "text" lang-key="detailed_description_placeholder" placeholder = "Mô tả chi tiết về không gian, phong cách, đặc điểm nổi bật..."></textarea>
           </div>
           <div class = "inform-block2">
-            <div class = "head">Menu quán (nếu có):</div>
-            <textarea type = "text" placeholder = "Liệt kê các món trong menu và giá thành hoặc các món nổi bật..."></textarea>
+            <div class = "head" lang-key="menu_label">Menu quán (nếu có):</div>
+            <textarea type = "text" lang-key="menu_placeholder" placeholder = "Liệt kê các món trong menu và giá thành hoặc các món nổi bật..."></textarea>
           </div>
           <div class = "inform-block2">
-            <div class = "head">Tiện ích:</div>
-            <textarea type = "text" placeholder = "Các tiện ích như: Wifi, điều hòa, bãi đỗ xe..."></textarea>
+            <div class = "head" lang-key="amenities_label">Tiện ích:</div>
+            <textarea type = "text" lang-key="amenities_placeholder" placeholder = "Các tiện ích như: Wifi, điều hòa, bãi đỗ xe..."></textarea>
           </div>
           <div class = "inform-block1">
-            <div class = "head">Giờ hoạt động:</div>
-            <input type = "text" id = "name" name = "name" placeholder = "Ví dụ: 7:00 - 22:00 hằng ngày" maxlength="200" style = "width: 100%">
+            <div class = "head" lang-key="opening_hours_label">Giờ hoạt động:</div>
+            <input type = "text" id = "name" name = "name" lang-key="opening_hours_example" placeholder = "Ví dụ: 7:00 - 22:00 hằng ngày" maxlength="200" style = "width: 100%">
           </div>
           <div class = "inform-block1">
-            <div class = "head">Chỉ đường (link map):</div>
+            <div class = "head" lang-key="direction_map">Chỉ đường (link map):</div>
             <input type = "text" id = "name" name = "name" placeholder = "https://maps.google.com/..." maxlength="200" style = "width: 100%">
           </div>
         </div>
 
         <div class = "content-footer">
           <button class = "button">
-            <div class = "btn-content">Gửi</div>
+            <div class = "btn-content" lang-key="submit">Gửi</div>
             <div class = "arrow">></div>
           </button>
         </div>
       </div>
     </div>
   </div>
+  <!-- i18next -->
+  <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+
+  <!-- script của bạn -->
+  <script src="lang.js"></script>
 </body>
 </html>

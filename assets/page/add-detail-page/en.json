@@ -1,0 +1,45 @@
+{
+  "return": "← Back to Dashboard",
+  "add_new_cafe": "Add New Cafe",
+  "add_cafe_details": "Add Cafe Inform Details",
+  "add_shop_icon": "Add shop icon",
+  "add_cover_photo": "Add cover photo",
+  "upload_cover_photo": "Upload cover photo",
+  "add_min_5_photos": "Add at least 5 photos describing the shop",
+  "upload_multiple_photos": "Upload multiple photos",
+  "minimum_5_photos": "Minimum 5 photos",
+
+  "shop_name_label": "Shop name:",
+  "shop_name_placeholder": "Enter coffee shop name...",
+
+  "short_description_label": "Short description:",
+  "short_description_placeholder": "Write a short description of the shop...",
+
+  "add_tag": "Add tag",
+  "example_tag": "Example: Free Wifi, Beautiful view...",
+  "free_wifi": "Free Wifi",
+
+  "add_shop_info": "Add shop information",
+  "add_address": "Add address:",
+  
+  "detailed_description_label": "Enter detailed description:",
+  "detailed_description_placeholder": 
+    "Describe the space, style, and unique features in detail...",
+
+  "menu_label": "Shop menu (if any):",
+  "menu_placeholder": 
+    "List menu items with prices or highlight featured items...",
+
+  "amenities_label": "Amenities:",
+  "amenities_placeholder": 
+    "Amenities such as: Wifi, air conditioning, parking...",
+
+  "opening_hours_label": "Opening hours:",
+  "opening_hours_example": "Example: 7:00 AM - 10:00 PM daily",
+
+  "direction_map": "Directions (map link)",
+
+  "submit": "Submit"
+}
+
+
