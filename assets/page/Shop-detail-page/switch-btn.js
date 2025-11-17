@@ -1,17 +1,28 @@
 // Load lang-switcher component (lang-switcher.html) into #lang-switcher-root
 (function loadLangSwitcherComponent(){
   function run() {
-    const root = document.getElementById('lang-switcher-root');
+    let root = document.getElementById('lang-switcher-root');
+    
+    // Nếu không tồn tại, tự tạo và chèn vào trước header
     if (!root) {
-      console.warn('lang-switcher root not found (#lang-switcher-root)');
-      return;
+      console.warn('lang-switcher root not found, creating it...');
+      root = document.createElement('div');
+      root.id = 'lang-switcher-root';
+      
+      const header = document.getElementById('header');
+      if (header && header.parentNode) {
+        header.parentNode.insertBefore(root, header);
+        console.log('Created #lang-switcher-root before #header');
+      } else {
+        document.body.insertBefore(root, document.body.firstChild);
+        console.log('Created #lang-switcher-root at start of body');
+      }
     }
 
-    // candidate URLs (absolute from server root first, then relative)
     const candidates = [
       '/assets/component/button/lang-switcher.html',
-      '/assets/page/feedback/../../component/button/lang-switcher.html',
-      '../../component/button/lang-switcher.html'
+      '../../component/button/lang-switcher.html',
+      '../component/button/lang-switcher.html'
     ];
 
     function tryFetchList(list) {
@@ -40,18 +51,11 @@
           root.innerHTML = text;
           console.log('lang-switcher raw HTML inserted from', url);
         } else {
-          // try insert right AFTER header if header exists, otherwise append to root
-          const headerEl = document.getElementById('header');
-          if (headerEl && headerEl.parentNode) {
-            headerEl.parentNode.insertBefore(node, headerEl.nextSibling);
-            console.log('lang-switcher inserted after #header from', url);
-          } else {
-            root.appendChild(node);
-            console.log('lang-switcher inserted into root from', url);
-          }
+          root.appendChild(node);
+          console.log('lang-switcher inserted into root from', url);
         }
 
-        // ensure lang-switcher logic is applied after insertion; retry if not ready
+        // Apply translations
         let attempts = 0;
         const maxAttempts = 10;
         const interval = 150;
