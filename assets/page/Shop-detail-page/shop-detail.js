@@ -1,18 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ----------------------------------------------------------------
-  // HÀM CHÍNH: Tải data và hiển thị chi tiết
-  // ----------------------------------------------------------------
-  async function loadShopDetail() {
-    let allCoffeeShops = [];
-
-    try {
-      const response = await fetch('/assets/data/data.json'); // Dùng đường dẫn tuyệt đối
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      allCoffeeShops = await response.json();
-      processShopData(allCoffeeShops);
+ // ----------------------------------------------------------------
+ // HÀM CHÍNH: Tải data và hiển thị chi tiết
+ // ----------------------------------------------------------------
+ async function loadShopDetail() {
+ let allCoffeeShops = [];
+ try {
+ const response = await fetch('/assets/data/data.json'); // Dùng đường dẫn tuyệt đối
+ if (!response.ok) {
+ throw new Error(`HTTP error! status: ${response.status}`);
+ }
+ allCoffeeShops = await response.json();
+  processShopData(allCoffeeShops);
 
     } catch (error) {
       console.error("Không thể tải dữ liệu chi tiết:", error);
@@ -70,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
       topTagsContainer.innerHTML += `<p class="tag">${tag}</p>`;
     });
 
-    // 6. Điền Gallery ảnh (cần 5 ảnh trong data)
+ // 6. Điền Gallery ảnh (cần 5 ảnh trong data)
     if (cafe.images_slider && cafe.images_slider.length >= 5) {
       document.querySelector('.slider-column img').src = cafe.images_slider[0]; 
       const gridContainer = document.querySelector('.grid-column');

@@ -7,7 +7,7 @@
 body {
   margin: 0;
 }
-.head {
+.header {
   /* position: -webkit-sticky; */
   position: sticky;
   top: 0;
@@ -17,6 +17,12 @@ body {
   color: white;
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.head{
+  width: 100%;
+  height: 72px;
+  background-color: #b87444;
+  color: white;
 }
 .header-container {
   max-width: 100%;
