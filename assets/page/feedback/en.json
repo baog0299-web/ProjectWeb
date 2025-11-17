@@ -1,0 +1,64 @@
+{
+  "pageTitle": "Feedback",
+  "heading": "Send us your feedback",
+  "subtitle": "Your contributions help us improve the site every day.",
+  "name": {
+    "label": "Enter your name",
+    "placeholder": "Ngxx"
+  },
+  "email": {
+    "label": "Your Email Address",
+    "placeholder": "xxx@example.com"
+  },
+  "subject": {
+    "label": "What is this about?",
+    "placeholder": "Describe the issue you're having"
+  },
+  "description": {
+    "label": "Enter detailed description",
+    "placeholder": "Please describe the issue you're experiencing"
+  },
+  "upload": {
+    "label": "Add images of the issue (optional)",
+    "button": "Upload File"
+  },
+  "submit": "Send feedback",
+  "rightColumn": {
+    "helpText": "We're here to help",
+    "contactTitle": "Contact us",
+    "contactEmailLabel": "Email",
+    "contactEmail": "support@coffeefinder.com",
+    "contactPhoneLabel": "Hotline",
+    "contactPhone": "1234567890",
+    "faqTitle": "Frequently Asked Questions"
+  },
+  "faq": [
+    "When will I receive a response ?",
+    "Can I edit or add information ?",
+    "Will my feedback be kept confidential ?"
+  ],
+  "faqAnswers": [
+    "We will respond within 2-3 business days. If urgent, please call our hotline.",
+    "Yes — you can submit additional information by replying to our feedback email or submitting a new request.",
+    "All feedback is handled according to our privacy policy and is not shared publicly."
+  ],
+  "floatingSearch": {
+    "label": "Search by need"
+  },
+  "imageAlt": {
+    "cafeLogo": "cafe logo"
+  },
+  "footer": {
+    "discoverText": "Discover the perfect coffee experience",
+    "aboutTitle": "About us",
+    "aboutText": "Coffee Finder",
+    "featuresTitle": "Features",
+    "featuresText": "Text",
+    "contactTitle": "Contact",
+    "contactLine1": "Facebook",
+    "contactLine2": "Zalo",
+    "helpTitle": "Help / Feedback",
+    "btnText": "Send",
+    "copyright": "© 2025 CoffeeFinder. All rights reserved."
+  }
+}

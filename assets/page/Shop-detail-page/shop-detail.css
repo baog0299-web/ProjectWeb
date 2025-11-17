@@ -50,6 +50,12 @@ body {
   flex: 1;
   background-color: #FFFBF5;
 }
+.pacifico-regular {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 50.42px;
+}
 .shopdetail_title h1 {
   font-size:40px;
   font-weight: 410;
@@ -64,7 +70,7 @@ body {
   border-radius: 8px;
   background-color: FFFBF5;
   border-radius: 8px;
-  gap: 20px;
+  /* gap: 20px; */
   margin-bottom: 15px;
 }
 .slider-column{
@@ -130,7 +136,7 @@ body {
   display:grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 10px;
+  gap: 0px;
   border-radius: 8px;
 }
 .grid-column img {
@@ -147,7 +153,8 @@ body {
   display: flex;
   flex-direction: row;
   color: #6B4423;
-  padding: 5px 0px 0px 15px;
+  padding: 0px;
+  gap: 20px;
 }
 .shopdetail_address{
   display: flex;
@@ -248,7 +255,7 @@ body {
 }
 .shopdetail_text {
     color: #6B4423;
-    padding: 5px 0px 0px 15px;
+    padding: 5px 15px;
 }
 .shopdetail_tab-content.active{
   display: block;

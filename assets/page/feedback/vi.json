@@ -1,0 +1,46 @@
+{
+  "pageTitle": "Phản hồi",
+  "heading": "Gửi cho chúng tôi phản hồi của bạn",
+  "subtitle": "Những đóng góp của bạn là nguồn động lực quý giá giúp cải thiện trang web mỗi ngày",
+  "name": { "label": "Nhập tên của bạn", "placeholder": "Ngxx" },
+  "email": { "label": "Địa chỉ Email của bạn", "placeholder": "xxx@example.com" },
+  "subject": { "label": "Vấn đề", "placeholder": "Vấn đề bạn gặp phải là:" },
+  "description": { "label": "Nhập mô tả cụ thể", "placeholder": "Hãy nhập mô tả về tình trạng bạn gặp phải" },
+  "upload": { "label": "Thêm ảnh về vấn đề (Nếu có)", "button": "Tải tệp" },
+  "submit": "Gửi phản hồi",
+  "rightColumn": {
+    "helpText": "Chúng tôi ở đây để hỗ trợ",
+    "contactTitle": "Liên hệ với chúng tôi",
+    "contactEmailLabel": "Email",
+    "contactEmail": "support@coffeefinder.com",
+    "contactPhoneLabel": "Hotline",
+    "contactPhone": "1234567890",
+    "faqTitle": "Câu hỏi thường gặp"
+  },
+  "faq": [
+    "Khi nào thì tôi nhận lại được phản hồi ?",
+    "Tôi có thể chỉnh sửa/ thêm thông tin không ?",
+    "Góp ý của tôi sẽ được bảo mật chứ ?"
+  ],
+  "faqAnswers": [
+    "Chúng tôi sẽ phản hồi trong vòng 2-3 ngày làm việc. Nếu khẩn cấp, vui lòng gọi hotline.",
+    "Có — bạn có thể gửi thông tin bổ sung bằng cách trả lời email phản hồi hoặc gửi yêu cầu mới.",
+    "Mọi phản hồi được xử lý theo chính sách quyền riêng tư của chúng tôi và không chia sẻ công khai."
+  ],
+  "floatingSearch": { "label": "Tìm kiếm theo nhu cầu" },
+  "imageAlt": { "cafeLogo": "logo quán cà phê" },
+
+  "footer": {
+    "discoverText": "Khám phá trải nghiệm cà phê hoàn hảo",
+    "aboutTitle": "Về chúng tôi",
+    "aboutText": "Coffee Finder",
+    "featuresTitle": "Tiện ích",
+    "featuresText": "Text",
+    "contactTitle": "Liên hệ",
+    "contactLine1": "Facebook",
+    "contactLine2": "Zalo",
+    "helpTitle": "Trợ giúp/Phản hồi",
+    "btnText": "Gửi",
+    "copyright": "© 2025 CoffeeFinder. All rights reserved."
+  }
+}
