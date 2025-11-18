@@ -1,5 +1,5 @@
 // Load header
-fetch("/assets/component/header-footer/header.html") // Đường dẫn tuyệt đối
+fetch("/assets/component/header-footer/header.html")
     .then(res => {
         if (!res.ok) throw new Error('Không tìm thấy header.html');
         return res.text();
@@ -9,13 +9,23 @@ fetch("/assets/component/header-footer/header.html") // Đường dẫn tuyệt 
         if (headerDiv) {
             headerDiv.innerHTML = data;
             
-            // Cập nhật đường dẫn logo trong header (nếu cần, nhưng header.html đã sửa)
+            // ===== SỬA LỖI LOGO =====
+            // Cập nhật đường dẫn logo - BẮT BUỘC phải sửa vì header.html dùng đường dẫn tương đối
             const logo = headerDiv.querySelector('.header-logo img');
-            if (logo && !logo.src.includes('/assets/')) {
-                 logo.src = "/assets/image/public/Container.png";
+            if (logo) {
+                // Đổi đường dẫn thành tuyệt đối
+                logo.src = "/assets/image/public/Container.png";
+                logo.alt = "CoffeeFinder Logo";
+                
+                // Xử lý lỗi nếu logo không tải được
+                logo.onerror = function() {
+                    console.error('Không thể tải logo từ:', this.src);
+                    // Thử đường dẫn dự phòng
+                    this.src = "/assets/image/public/logo.png";
+                };
             }
             
-            // Set active state
+            // Set active state cho navigation
             const navLinks = headerDiv.querySelectorAll('.header-nav-links a');
             const currentPath = window.location.pathname;
             navLinks.forEach(link => {
@@ -33,7 +43,7 @@ fetch("/assets/component/header-footer/header.html") // Đường dẫn tuyệt 
     .catch(err => console.error("Lỗi tải header:", err));
 
 // Load footer
-fetch("/assets/component/header-footer/footer.html") // Đường dẫn tuyệt đối
+fetch("/assets/component/header-footer/footer.html")
     .then(res => {
         if (!res.ok) throw new Error('Không tìm thấy footer.html');
         return res.text();
@@ -43,10 +53,16 @@ fetch("/assets/component/header-footer/footer.html") // Đường dẫn tuyệt 
         if (footerDiv) {
             footerDiv.innerHTML = data;
             
-            // Cập nhật đường dẫn logo trong footer (tương tự)
+            // Cập nhật đường dẫn logo trong footer
             const logo = footerDiv.querySelector('.logo img');
-            if (logo && !logo.src.includes('/assets/')) {
+            if (logo) {
                 logo.src = "/assets/image/public/Container.png";
+                logo.alt = "CoffeeFinder Logo";
+                
+                logo.onerror = function() {
+                    console.error('Không thể tải logo footer từ:', this.src);
+                    this.src = "/assets/image/public/logo.png";
+                };
             }
         }
     })
