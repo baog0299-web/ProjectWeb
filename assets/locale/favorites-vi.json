@@ -2,7 +2,7 @@
   "pageTitle": "Quán yêu thích - CoffeeFinder",
   "header": {
     "title": "Nơi lưu giữ của riêng bạn!",
-    "subtitle": "Tuyệt vời, bạn có *Số điểm đến trong bộ sưu tập"
+    "subtitle": "Tuyệt vời, bạn có {{n}} điểm đến trong bộ sưu tập"
   },
   "collection": {
     "title": "Bộ sưu tập của bạn",

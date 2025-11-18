@@ -2,7 +2,7 @@
   "pageTitle": "Favorite Cafes - CoffeeFinder",
   "header": {
     "title": "Your Personal Collection!",
-    "subtitle": "Great, you have *Number destinations in your collection"
+    "subtitle": "Great, you have {{n}} destinations in your collection"
   },
   "collection": {
     "title": "Your Collection",
