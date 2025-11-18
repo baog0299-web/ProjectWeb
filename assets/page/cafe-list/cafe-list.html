@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh sách quán</title>
+    <title data-i18n="pageTitle">Danh sách quán - CoffeeFinder</title>
     <link rel="stylesheet" href="cafe-list.css">
     <link rel="stylesheet" href="/assets/component/header-footer/header.css">
     <link rel="stylesheet" href="/assets/component/header-footer/footer.css">
@@ -15,19 +15,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
+    <!-- Language Switcher Root -->
+    <div id="lang-switcher-root"></div>
+    
     <div id="header" class="header"></div> 
     
     <div class="main-content">
         <!-- Filter Tabs -->
         <div class="filter-tabs">
             <button class="filter-tab active">
-                <i class="fa-solid fa-mug-hot"></i> Mới
+                <i class="fa-solid fa-mug-hot"></i> 
+                <span data-i18n="filterTabs.new">Mới</span>
             </button>
             <button class="filter-tab">
-                <i class="fa-solid fa-y"></i> Gợi ý
+                <i class="fa-solid fa-lightbulb"></i> 
+                <span data-i18n="filterTabs.recommended">Gợi ý</span>
             </button>
             <button class="filter-tab">
-                <i class="fa-solid fa-clock-rotate-left"></i> Đánh giá cao
+                <i class="fa-solid fa-star"></i> 
+                <span data-i18n="filterTabs.topRated">Đánh giá cao</span>
             </button>
         </div>
 
@@ -42,22 +48,25 @@
             <button class="page-btn">2</button>
             <button class="page-btn">3</button>
             <button class="page-btn">4</button>
-            <button class="page-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+            <button class="page-btn next" data-i18n-aria="pagination.next">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
         </div>
     </div>
     
     <!-- Floating Search Button -->
     <div class="floating-search-btn" onclick="window.location.href='../../../index.html#search-section'">
         <i class="fas fa-search"></i>
-        <span>Tìm kiếm theo nhu cầu</span>
+        <span data-i18n="floatingSearch.label">Tìm kiếm theo nhu cầu</span>
     </div>
     
     <div id="footer" class="footer"></div>
-</body>
-</html>
-<script src="cafe-list.js"></script>
-<script src="card-loader.js"></script>
-<script src="/assets/component/header-footer/header-loader.js"></script>
-<script src="/main.js"></script>
+
+ 
+    <script src="/assets/locale/lang-switcher.js"></script>
+    <script src="cafe-list.js"></script>
+    <script src="card-loader.js"></script>
+    <script src="/assets/component/header-footer/header-loader.js"></script>
+    <script src="/main.js"></script>
 </body>
 </html>

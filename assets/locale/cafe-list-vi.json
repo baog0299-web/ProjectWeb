@@ -1,0 +1,37 @@
+{
+  "pageTitle": "Danh sách quán cafe - CoffeeFinder",
+  "filterTabs": {
+    "new": "Mới",
+    "recommended": "Gợi ý",
+    "topRated": "Đánh giá cao"
+  },
+  "card": {
+    "rating": "Đánh giá",
+    "location": "TP. Hồ Chí Minh",
+    "wifiTag": "Wifi miễn phí",
+    "viewTag": "View đẹp",
+    "quietTag": "Yên tĩnh",
+    "viewMore": "+1"
+  },
+  "pagination": {
+    "previous": "Trước",
+    "next": "Tiếp",
+    "page": "Trang"
+  },
+  "floatingSearch": {
+    "label": "Tìm kiếm theo nhu cầu"
+  },
+  "footer": {
+    "discoverText": "Khám phá trải nghiệm cà phê hoàn hảo",
+    "aboutTitle": "Về chúng tôi",
+    "aboutText": "Coffee Finder",
+    "featuresTitle": "Tiện ích",
+    "featuresText": "Text",
+    "contactTitle": "Liên hệ",
+    "contactLine1": "Facebook",
+    "contactLine2": "Zalo",
+    "helpTitle": "Trợ giúp/Phản hồi",
+    "btnText": "Gửi",
+    "copyright": "© 2025 CoffeeFinder. All rights reserved."
+  }
+}

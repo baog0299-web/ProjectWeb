@@ -1,0 +1,41 @@
+{
+  "pageTitle": "Favorite Cafes - CoffeeFinder",
+  "header": {
+    "title": "Your Personal Collection!",
+    "subtitle": "Great, you have *Number destinations in your collection"
+  },
+  "collection": {
+    "title": "Your Collection",
+    "description": "Review the destinations you've saved"
+  },
+  "card": {
+    "rating": "Rating",
+    "location": "Ho Chi Minh City",
+    "wifiTag": "Free Wifi",
+    "viewMore": "+1"
+  },
+  "pagination": {
+    "page": "Page"
+  },
+  "floatingSearch": {
+    "label": "Search by needs"
+  },
+  "empty": {
+    "title": "No favorite cafes yet",
+    "description": "Explore and save your favorite cafes!"
+  },
+  "footer": {
+    "discoverText": "Discover the perfect coffee experience",
+    "aboutTitle": "About us",
+    "aboutText": "Coffee Finder",
+    "featuresTitle": "Features",
+    "featuresText": "Text",
+    "contactTitle": "Contact",
+    "contactLine1": "Facebook",
+    "contactLine2": "Zalo",
+    "helpTitle": "Help / Feedback",
+    "btnText": "Send",
+    "copyright": "© 2025 CoffeeFinder. All rights reserved."
+  }
+
+}
