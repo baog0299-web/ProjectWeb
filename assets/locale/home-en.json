@@ -1,0 +1,60 @@
+{
+  "pageTitle": "CoffeeFinder - Find Your Perfect Cafe",
+  "hero": {
+    "welcome": "WELCOME TO COFFEEFINDER",
+    "title": "Find Your Perfect Space",
+    "description": "Discover the most beautiful cafes that match your style. From quiet spaces for work to places to meet friends, we help you find the perfect destination.",
+    "exploreButton": "Explore Now"
+  },
+  "featured": {
+    "title": "Featured"
+  },
+  "search": {
+    "title": "Search Your Way",
+    "locationPlaceholder": "Select your area",
+    "needPlaceholder": "Enter your needs",
+    "criteriaPlaceholder": "Enter your criteria",
+    "searchButton": "Search"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": {
+      "0": {
+        "q": "How do I find a suitable cafe?",
+        "a": "You can use the search filters above to select area, needs and desired criteria. The system will automatically suggest the most suitable cafes for you."
+      },
+      "1": {
+        "q": "Can I save my favorite cafes?",
+        "a": "Yes, simply click the heart icon on each cafe to save to your favorites list. You can view this list in the \"Favorites\" section."
+      },
+      "2": {
+        "q": "Is the cafe information accurate?",
+        "a": "We regularly update information from reliable sources and user feedback. If you find incorrect information, please send feedback so we can adjust it."
+      },
+      "3": {
+        "q": "Is there a fee to use the service?",
+        "a": "No, all search features and saving favorite cafes are completely free for users."
+      },
+      "4": {
+        "q": "Can I suggest a new cafe?",
+        "a": "Yes, you can send new cafe information through the Feedback page. We will review and add to the system if suitable."
+      }
+    }
+  },
+  "floatingSearch": {
+    "label": "Search by needs"
+  },
+  "footer": {
+    "discoverText": "Discover the perfect coffee experience",
+    "aboutTitle": "About us",
+    "aboutText": "Coffee Finder",
+    "featuresTitle": "Features",
+    "featuresText": "Text",
+    "contactTitle": "Contact",
+    "contactLine1": "Facebook",
+    "contactLine2": "Zalo",
+    "helpTitle": "Help / Feedback",
+    "btnText": "Send",
+    "copyright": "© 2025 CoffeeFinder. All rights reserved."
+  }
+}

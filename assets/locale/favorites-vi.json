@@ -1,0 +1,40 @@
+{
+  "pageTitle": "Quán yêu thích - CoffeeFinder",
+  "header": {
+    "title": "Nơi lưu giữ của riêng bạn!",
+    "subtitle": "Tuyệt vời, bạn có *Số điểm đến trong bộ sưu tập"
+  },
+  "collection": {
+    "title": "Bộ sưu tập của bạn",
+    "description": "Xem lại những điểm đến bạn đã lưu"
+  },
+  "card": {
+    "rating": "Đánh giá",
+    "location": "TP. Hồ Chí Minh",
+    "wifiTag": "Wifi miễn phí",
+    "viewMore": "+1"
+  },
+  "pagination": {
+    "page": "Trang"
+  },
+  "floatingSearch": {
+    "label": "Tìm kiếm theo nhu cầu"
+  },
+  "empty": {
+    "title": "Chưa có quán yêu thích",
+    "description": "Hãy khám phá và lưu những quán cafe bạn thích!"
+  },
+  "footer": {
+    "discoverText": "Khám phá trải nghiệm cà phê hoàn hảo",
+    "aboutTitle": "Về chúng tôi",
+    "aboutText": "Coffee Finder",
+    "featuresTitle": "Tiện ích",
+    "featuresText": "Text",
+    "contactTitle": "Liên hệ",
+    "contactLine1": "Facebook",
+    "contactLine2": "Zalo",
+    "helpTitle": "Trợ giúp/Phản hồi",
+    "btnText": "Gửi",
+    "copyright": "© 2025 CoffeeFinder. All rights reserved."
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "pageTitle": "CoffeeFinder - Tìm quán café hoàn hảo",
+  "hero": {
+    "welcome": "CHÀO MỪNG ĐẾN VỚI COFFEEFINDER",
+    "title": "Tìm Không Gian Hoàn Hảo Của Bạn",
+    "description": "Khám phá những quán cafe đẹp nhất, phù hợp với phong cách của bạn. Từ không gian yên tĩnh để làm việc đến nơi gặp gỡ bạn bè, chúng tôi giúp bạn tìm thấy điểm đến hoàn hảo.",
+    "exploreButton": "Khám phá ngay"
+  },
+  "featured": {
+    "title": "Nổi bật"
+  },
+  "search": {
+    "title": "Tìm kiếm theo cách của riêng bạn",
+    "locationPlaceholder": "Chọn khu vực của bạn",
+    "needPlaceholder": "Nhập nhu cầu của bạn",
+    "criteriaPlaceholder": "Nhập tiêu chí của bạn",
+    "searchButton": "Tìm kiếm"
+  },
+  "faq": {
+    "title": "Câu hỏi thường gặp",
+    "questions": [
+      {
+        "q": "Làm thế nào để tìm quán cafe phù hợp?",
+        "a": "Bạn có thể sử dụng bộ lọc tìm kiếm ở trên để chọn khu vực, nhu cầu và tiêu chí mong muốn. Hệ thống sẽ tự động đề xuất những quán cafe phù hợp nhất với bạn."
+      },
+      {
+        "q": "Tôi có thể lưu các quán cafe yêu thích không?",
+        "a": "Có, bạn chỉ cần nhấn vào biểu tượng trái tim trên mỗi quán cafe để lưu vào danh sách yêu thích. Bạn có thể xem lại danh sách này ở mục \"Yêu thích\"."
+      },
+      {
+        "q": "Thông tin về quán cafe có chính xác không?",
+        "a": "Chúng tôi cập nhật thông tin thường xuyên từ các nguồn đáng tin cậy và phản hồi từ người dùng. Nếu bạn phát hiện thông tin sai lệch, vui lòng gửi phản hồi để chúng tôi điều chỉnh."
+      },
+      {
+        "q": "Có mất phí khi sử dụng dịch vụ không?",
+        "a": "Không, tất cả các tính năng tìm kiếm và lưu quán cafe yêu thích đều hoàn toàn miễn phí cho người dùng."
+      },
+      {
+        "q": "Tôi có thể đề xuất thêm quán cafe mới không?",
+        "a": "Có, bạn có thể gửi thông tin quán cafe mới qua trang Feedback. Chúng tôi sẽ xem xét và thêm vào hệ thống nếu phù hợp."
+      }
+    ]
+  },
+  "floatingSearch": {
+    "label": "Tìm kiếm theo nhu cầu"
+  },
+  "footer": {
+    "discoverText": "Khám phá trải nghiệm cà phê hoàn hảo",
+    "aboutTitle": "Về chúng tôi",
+    "aboutText": "Coffee Finder",
+    "featuresTitle": "Tiện ích",
+    "featuresText": "Text",
+    "contactTitle": "Liên hệ",
+    "contactLine1": "Facebook",
+    "contactLine2": "Zalo",
+    "helpTitle": "Trợ giúp/Phản hồi",
+    "btnText": "Gửi",
+    "copyright": "© 2025 CoffeeFinder. All rights reserved."
+  }
+}

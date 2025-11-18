@@ -1,0 +1,69 @@
+{
+  "pageTitle": "Chi tiết quán - CoffeeFinder",
+  "shopName": "Café Artisan Saigon",
+  "addToFavorites": "Thêm vào yêu thích",
+  "labels": {
+    "nameLabel": "Tên quán:",
+    "typeLabel": "Loại:",
+    "addressLabel": "Địa chỉ:",
+    "addressText": "123 Đường Pasteur, Quận 1, TP. Hồ Chí Minh",
+    "directionButton": "Chỉ đường",
+    "rateLabel": "Rate:"
+  },
+  "tags": {
+    "0": "Wifi",
+    "1": "Ổ cắm",
+    "2": "24/7",
+    "3": "View đẹp",
+    "4": "Yên tĩnh"
+  },
+  "detailsTitle": "Thông tin chi tiết",
+  "tabs": {
+    "description": "Mô tả",
+    "menu": "Menu",
+    "amenities": "Tiện ích",
+    "priceRange": "Khoảng giá"
+  },
+  "descriptionParagraphs": {
+    "0": "Café Artisan Saigon là một không gian nghệ thuật độc đáo, nơi hương vị cà phê hảo hạng hòa quyện cùng thiết kế tối giản hiện đại.",
+    "1": "Mỗi góc quán đều được chăm chút tỉ mỉ, tạo nên một trải nghiệm thư giãn và đầy cảm hứng.",
+    "2": "Chúng tôi tự hào về nguồn cà phê specialty được tuyển chọn từ các vùng trồng nổi tiếng, rang xay thủ công mỗi ngày để mang đến hương vị tươi mới nhất.",
+    "3": "Đội ngũ barista giàu kinh nghiệm luôn sẵn sàng pha chế những tách cà phê hoàn hảo theo sở thích của bạn.",
+    "4": "Không gian rộng rãi với ánh sáng tự nhiên tràn ngập, cùng hệ thống wifi tốc độ cao và nhiều ổ cắm điện thuận tiện, đây là địa điểm lý tưởng cho cả những buổi làm việc hay gặp gỡ bạn bè."
+  },
+  "similarSection": {
+    "title": "Tương tự",
+    "viewAll": "Xem tất cả →"
+  },
+  "card": {
+    "title": "Urban Roast",
+    "location": "TP. Hồ Chí Minh",
+    "tagsViewMore": "+1"
+  },
+  "gallery": {
+    "mainAlt": "Hình ảnh chính quán cafe",
+    "thumbAlts": {
+      "0": "Không gian trong quán",
+      "1": "Khu vực ngồi ngoài",
+      "2": "Quầy pha chế",
+      "3": "Chi tiết trang trí"
+    }
+  },
+  "ui": {
+    "prevButton": "Ảnh trước",
+    "nextButton": "Ảnh tiếp"
+  },
+  "footer": {
+    "discoverText": "Khám phá trải nghiệm cà phê hoàn hảo",
+    "aboutTitle": "Về chúng tôi",
+    "aboutText": "Coffee Finder",
+    "featuresTitle": "Tiện ích",
+    "featuresText": "Text",
+    "contactTitle": "Liên hệ",
+    "contactLine1": "Facebook",
+    "contactLine2": "Zalo",
+    "helpTitle": "Trợ giúp/Phản hồi",
+    "btnText": "Gửi",
+    "copyright": "© 2025 CoffeeFinder. All rights reserved."
+  }
+}
