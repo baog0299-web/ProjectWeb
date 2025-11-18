@@ -1,0 +1,69 @@
+{
+  "pageTitle": "Cafe Details - CoffeeFinder",
+  "shopName": "Café Artisan Saigon",
+  "addToFavorites": "Add to Favorites",
+  "labels": {
+    "nameLabel": "Cafe Name:",
+    "typeLabel": "Type:",
+    "addressLabel": "Address:",
+    "addressText": "123 Pasteur Street, District 1, Ho Chi Minh City",
+    "directionButton": "Get Directions",
+    "rateLabel": "Rating:"
+  },
+  "tags": {
+    "0": "Wifi",
+    "1": "Power Outlet",
+    "2": "24/7",
+    "3": "Nice View",
+    "4": "Quiet"
+  },
+  "detailsTitle": "Detailed Information",
+  "tabs": {
+    "description": "Description",
+    "menu": "Menu",
+    "amenities": "Amenities",
+    "priceRange": "Price Range"
+  },
+  "descriptionParagraphs": {
+    "0": "Café Artisan Saigon is a unique artistic space where exquisite coffee flavors blend with modern minimalist design.",
+    "1": "Every corner of the cafe is meticulously crafted, creating a relaxing and inspiring experience.",
+    "2": "We take pride in our specialty coffee sourced from renowned growing regions, hand-roasted daily to deliver the freshest flavors.",
+    "3": "Our experienced barista team is always ready to craft the perfect cup of coffee according to your preferences.",
+    "4": "The spacious area filled with natural light, along with high-speed wifi and convenient power outlets, makes this an ideal location for both work sessions and meeting friends."
+  },
+  "similarSection": {
+    "title": "Similar",
+    "viewAll": "View All →"
+  },
+  "card": {
+    "title": "Urban Roast",
+    "location": "Ho Chi Minh City",
+    "tagsViewMore": "+1"
+  },
+  "gallery": {
+    "mainAlt": "Main cafe image",
+    "thumbAlts": {
+      "0": "Interior space",
+      "1": "Outdoor seating area",
+      "2": "Brewing counter",
+      "3": "Decoration details"
+    }
+  },
+  "ui": {
+    "prevButton": "Previous image",
+    "nextButton": "Next image"
+  },
+  "footer": {
+    "discoverText": "Discover the perfect coffee experience",
+    "aboutTitle": "About us",
+    "aboutText": "Coffee Finder",
+    "featuresTitle": "Features",
+    "featuresText": "Text",
+    "contactTitle": "Contact",
+    "contactLine1": "Facebook",
+    "contactLine2": "Zalo",
+    "helpTitle": "Help / Feedback",
+    "btnText": "Send",
+    "copyright": "© 2025 CoffeeFinder. All rights reserved."
+  }
+}

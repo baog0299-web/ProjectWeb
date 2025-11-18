@@ -1,0 +1,37 @@
+{
+  "pageTitle": "Cafe List - CoffeeFinder",
+  "filterTabs": {
+    "new": "New",
+    "recommended": "Recommended",
+    "topRated": "Top Rated"
+  },
+  "card": {
+    "rating": "Rating",
+    "location": "Ho Chi Minh City",
+    "wifiTag": "Free Wifi",
+    "viewTag": "Nice View",
+    "quietTag": "Quiet",
+    "viewMore": "+1"
+  },
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page"
+  },
+  "floatingSearch": {
+    "label": "Search by needs"
+  },
+  "footer": {
+    "discoverText": "Discover the perfect coffee experience",
+    "aboutTitle": "About us",
+    "aboutText": "Coffee Finder",
+    "featuresTitle": "Features",
+    "featuresText": "Text",
+    "contactTitle": "Contact",
+    "contactLine1": "Facebook",
+    "contactLine2": "Zalo",
+    "helpTitle": "Help / Feedback",
+    "btnText": "Send",
+    "copyright": "© 2025 CoffeeFinder. All rights reserved."
+  }
+}
