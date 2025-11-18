@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favorite</title>
+    <title data-i18n="pageTitle">Quán yêu thích - CoffeeFinder</title>
     <link rel="stylesheet" href="favorites.css">
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/assets/component/header-footer/footer.css">
     <link rel="stylesheet" href="/assets/component/card/card.css">
     <link rel="stylesheet" href="/assets/component/floating-search-btn/floating-search.css">
+<<<<<<< HEAD
 >>>>>>> da503a4398abc298fead29770f2ef1f40a29d60f
      <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,13 +40,29 @@
 =======
     <div id="header" class="header"></div>
 >>>>>>> da503a4398abc298fead29770f2ef1f40a29d60f
+=======
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body class="all">
+    <!-- Language Switcher Root -->
+    <div id="lang-switcher-root"></div>
+    
+    <div id="header" class="header"></div>
+    
+>>>>>>> 6f52602006ea23ac235165a41c1f0d053d4939e6
     <div class="security-favorite">
-        <img class="picture1" src="../../image/thinh/Gradient+OverlayBlur.png" alt="NO">
-        <img class="picture2" src="../../image/thinh/Ellipse 1.png" alt="no">
-        <h1 class="saved">Nơi lưu giữ của riêng bạn!</h1>
-        <p class="desinations">Tuyệt vời, bạn có *Số điểm đến trong bộ sưu tập</p>
+        <img class="picture1" src="../../image/thinh/Gradient+OverlayBlur.png" alt="Background">
+        <img class="picture2" src="../../image/thinh/Ellipse 1.png" alt="Decoration">
+        <h1 class="saved" data-i18n="header.title">Nơi lưu giữ của riêng bạn!</h1>
+        <p class="desinations" data-i18n="header.subtitle">Tuyệt vời, bạn có *Số điểm đến trong bộ sưu tập</p>
     </div>
+    
     <div class="collection">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <h2 class="collect-mini";>Bộ sưu tập của bạn</h2>
     
@@ -56,160 +73,185 @@
 </html>
 =======
     <h2 class="collect-mini">Bộ sưu tập của bạn</h2>
+=======
+        <h2 class="collect-mini" data-i18n="collection.title">Bộ sưu tập của bạn</h2>
+>>>>>>> 6f52602006ea23ac235165a41c1f0d053d4939e6
     </div>
-    <p class="review">Xem lại những điểm đến bạn đã lưu</p>
+    
+    <p class="review" data-i18n="collection.description">Xem lại những điểm đến bạn đã lưu</p>
+    
     <div class="card-container">
-          <div class="card">
-      <div class="card-image">
-        <img src="../../component/card/card.jpg" alt="Urban Roast">
-        <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
-        <div class="icon-top-right"><i class="far fa-heart"></i></div>
-      </div>
-      <div class="card-content">
-        <div class="rating">
-          <i class="fas fa-star"></i> 4.8
+        <!-- Cards will be dynamically loaded -->
+        <div class="card">
+            <div class="card-image">
+                <img src="../../component/card/card.jpg" data-i18n-alt="card.imageAlt" alt="Urban Roast">
+                <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+                <div class="icon-top-right"><i class="far fa-heart"></i></div>
+            </div>
+            <div class="card-content">
+                <div class="rating">
+                    <i class="fas fa-star"></i> 4.8
+                </div>
+                <h3 class="title">Urban Roast</h3>
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i> 
+                    <span data-i18n="card.location">TP. Hồ Chí Minh</span>
+                </div>
+                <div class="tag">
+                    <button class="btn-tag" data-i18n="card.wifiTag">Wifi miễn phí</button>
+                    <button class="btn-tag" data-i18n="card.wifiTag">Wifi miễn phí</button>
+                    <button class="btn-tag" id="small" data-i18n="card.viewMore">+1</button>
+                </div>
+            </div>
         </div>
-        <h3 class="title">Urban Roast</h3>
-        <div class="location">
-          <i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh
+        
+        <!-- Duplicate cards for demo - remove and make dynamic in production -->
+        <div class="card">
+            <div class="card-image">
+                <img src="../../component/card/card.jpg" alt="Urban Roast">
+                <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+                <div class="icon-top-right"><i class="far fa-heart"></i></div>
+            </div>
+            <div class="card-content">
+                <div class="rating">
+                    <i class="fas fa-star"></i> 4.8
+                </div>
+                <h3 class="title">Urban Roast</h3>
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i> 
+                    <span data-i18n="card.location">TP. Hồ Chí Minh</span>
+                </div>
+                <div class="tag">
+                    <button class="btn-tag" data-i18n="card.wifiTag">Wifi miễn phí</button>
+                    <button class="btn-tag" data-i18n="card.wifiTag">Wifi miễn phí</button>
+                    <button class="btn-tag" id="small" data-i18n="card.viewMore">+1</button>
+                </div>
+            </div>
         </div>
-        <div class="tag">
-          <button class="btn-tag">Wifi miễn phí</button>
-          <button class="btn-tag">Wifi miễn phí</button>
-          <button class="btn-tag" id="small">+1</button>
+        
+        <div class="card">
+            <div class="card-image">
+                <img src="../../component/card/card.jpg" alt="Urban Roast">
+                <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+                <div class="icon-top-right"><i class="far fa-heart"></i></div>
+            </div>
+            <div class="card-content">
+                <div class="rating">
+                    <i class="fas fa-star"></i> 4.8
+                </div>
+                <h3 class="title">Urban Roast</h3>
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i> 
+                    <span data-i18n="card.location">TP. Hồ Chí Minh</span>
+                </div>
+                <div class="tag">
+                    <button class="btn-tag" data-i18n="card.wifiTag">Wifi miễn phí</button>
+                    <button class="btn-tag" data-i18n="card.wifiTag">Wifi miễn phí</button>
+                    <button class="btn-tag" id="small" data-i18n="card.viewMore">+1</button>
+                </div>
+            </div>
         </div>
-      </div>
-      
+        
+        <div class="card">
+            <div class="card-image">
+                <img src="../../component/card/card.jpg" alt="Urban Roast">
+                <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+                <div class="icon-top-right"><i class="far fa-heart"></i></div>
+            </div>
+            <div class="card-content">
+                <div class="rating">
+                    <i class="fas fa-star"></i> 4.8
+                </div>
+                <h3 class="title">Urban Roast</h3>
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i> 
+                    <span data-i18n="card.location">TP. Hồ Chí Minh</span>
+                </div>
+                <div class="tag">
+                    <button class="btn-tag" data-i18n="card.wifiTag">Wifi miễn phí</button>
+                    <button class="btn-tag" data-i18n="card.wifiTag">Wifi miễn phí</button>
+                    <button class="btn-tag" id="small" data-i18n="card.viewMore">+1</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-image">
+                <img src="../../component/card/card.jpg" alt="Urban Roast">
+                <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+                <div class="icon-top-right"><i class="far fa-heart"></i></div>
+            </div>
+            <div class="card-content">
+                <div class="rating">
+                    <i class="fas fa-star"></i> 4.8
+                </div>
+                <h3 class="title">Urban Roast</h3>
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i> 
+                    <span data-i18n="card.location">TP. Hồ Chí Minh</span>
+                </div>
+                <div class="tag">
+                    <button class="btn-tag" data-i18n="card.wifiTag">Wifi miễn phí</button>
+                    <button class="btn-tag" data-i18n="card.wifiTag">Wifi miễn phí</button>
+                    <button class="btn-tag" id="small" data-i18n="card.viewMore">+1</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-image">
+                <img src="../../component/card/card.jpg" alt="Urban Roast">
+                <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+                <div class="icon-top-right"><i class="far fa-heart"></i></div>
+            </div>
+            <div class="card-content">
+                <div class="rating">
+                    <i class="fas fa-star"></i> 4.8
+                </div>
+                <h3 class="title">Urban Roast</h3>
+                <div class="location">
+                    <i class="fas fa-map-marker-alt"></i> 
+                    <span data-i18n="card.location">TP. Hồ Chí Minh</span>
+                </div>
+                <div class="tag">
+                    <button class="btn-tag" data-i18n="card.wifiTag">Wifi miễn phí</button>
+                    <button class="btn-tag" data-i18n="card.wifiTag">Wifi miễn phí</button>
+                    <button class="btn-tag" id="small" data-i18n="card.viewMore">+1</button>
+                </div>
+            </div>
+        </div>
     </div>
-      <div class="card">
-      <div class="card-image">
-        <img src="../../component/card/card.jpg" alt="Urban Roast">
-        <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
-        <div class="icon-top-right"><i class="far fa-heart"></i></div>
-      </div>
-      <div class="card-content">
-        <div class="rating">
-          <i class="fas fa-star"></i> 4.8
-        </div>
-        <h3 class="title">Urban Roast</h3>
-        <div class="location">
-          <i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh
-        </div>
-        <div class="tag">
-          <button class="btn-tag">Wifi miễn phí</button>
-          <button class="btn-tag">Wifi miễn phí</button>
-          <button class="btn-tag" id="small">+1</button>
-        </div>
-      </div>
-      
-    </div>
-      <div class="card">
-      <div class="card-image">
-        <img src="../../component/card/card.jpg" alt="Urban Roast">
-        <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
-        <div class="icon-top-right"><i class="far fa-heart"></i></div>
-      </div>
-      <div class="card-content">
-        <div class="rating">
-          <i class="fas fa-star"></i> 4.8
-        </div>
-        <h3 class="title">Urban Roast</h3>
-        <div class="location">
-          <i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh
-        </div>
-        <div class="tag">
-          <button class="btn-tag">Wifi miễn phí</button>
-          <button class="btn-tag">Wifi miễn phí</button>
-          <button class="btn-tag" id="small">+1</button>
-        </div>
-      </div>
-      
-    </div>
-    <div class="card">
-      <div class="card-image">
-        <img src="../../component/card/card.jpg" alt="Urban Roast">
-        <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
-        <div class="icon-top-right"><i class="far fa-heart"></i></div>
-      </div>
-      <div class="card-content">
-        <div class="rating">
-          <i class="fas fa-star"></i> 4.8
-        </div>
-        <h3 class="title">Urban Roast</h3>
-        <div class="location">
-          <i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh
-        </div>
-        <div class="tag">
-          <button class="btn-tag">Wifi miễn phí</button>
-          <button class="btn-tag">Wifi miễn phí</button>
-          <button class="btn-tag" id="small">+1</button>
-        </div>
-      </div>
-      
-    </div> <div class="card">
-      <div class="card-image">
-        <img src="../../component/card/card.jpg" alt="Urban Roast">
-        <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
-        <div class="icon-top-right"><i class="far fa-heart"></i></div>
-      </div>
-      <div class="card-content">
-        <div class="rating">
-          <i class="fas fa-star"></i> 4.8
-        </div>
-        <h3 class="title">Urban Roast</h3>
-        <div class="location">
-          <i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh
-        </div>
-        <div class="tag">
-          <button class="btn-tag">Wifi miễn phí</button>
-          <button class="btn-tag">Wifi miễn phí</button>
-          <button class="btn-tag" id="small">+1</button>
-        </div>
-      </div>
-    </div> <div class="card">
-      <div class="card-image">
-        <img src="../../component/card/card.jpg" alt="Urban Roast">
-        <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
-        <div class="icon-top-right"><i class="far fa-heart"></i></div>
-      </div>
-      <div class="card-content">
-        <div class="rating">
-          <i class="fas fa-star"></i> 4.8
-        </div>
-        <h3 class="title">Urban Roast</h3>
-        <div class="location">
-          <i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh
-        </div>
-        <div class="tag">
-          <button class="btn-tag">Wifi miễn phí</button>
-          <button class="btn-tag">Wifi miễn phí</button>
-          <button class="btn-tag" id="small">+1</button>
-        </div>
-      </div>
-    </div>
- </div> 
-   <div class="pagination">
+    
+    <div class="pagination">
         <button class="btn-page">1</button>
         <button class="btn-page">2</button>
         <button class="btn-page">3</button>
         <button class="btn-page">4</button>
-        <button class="btn-page"><i class="fa-solid fa-angle-right"></i></button>
+        <button class="btn-page" data-i18n-aria="pagination.next">
+            <i class="fa-solid fa-angle-right"></i>
+        </button>
     </div>
     
     <!-- Floating Search Button -->
     <div class="floating-search-btn" onclick="window.location.href='../../../index.html#search-section'">
         <i class="fas fa-search"></i>
-        <span>Tìm kiếm theo nhu cầu</span>
+        <span data-i18n="floatingSearch.label">Tìm kiếm theo nhu cầu</span>
     </div>
     
-        <div id="footer" class="footer"></div>
+    <div id="footer" class="footer"></div>
 
+
+    <script src="/assets/locale/lang-switcher.js"></script>
     <script src="/assets/component/header-footer/header-loader.js"></script>
     <script src="/main.js"></script>
 </body>
+<<<<<<< HEAD
 </html>
 <<<<<<< HEAD
 <script src="../../component/header-footer/header-loader.js"></script>
 >>>>>>> d1cfd77953a282b978dbd48ab03a3b6258b59e36
 =======
 >>>>>>> da503a4398abc298fead29770f2ef1f40a29d60f
+=======
+</html>
+>>>>>>> 6f52602006ea23ac235165a41c1f0d053d4939e6
