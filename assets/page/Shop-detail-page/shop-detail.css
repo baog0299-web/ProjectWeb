@@ -1,4 +1,4 @@
- * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -70,7 +70,7 @@ body {
   border-radius: 8px;
   background-color: FFFBF5;
   border-radius: 8px;
-  /* gap: 20px; */
+  gap: 15px; /* Thêm khoảng cách giữa slider và grid */
   margin-bottom: 15px;
 }
 .slider-column{
@@ -132,11 +132,11 @@ body {
   color: #FFF1CE;
 }
 .grid-column{
-  flex: 1;
+  flex: 0.8; /* Thu nhỏ kích thước từ 1 xuống 0.8 */
   display:grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 0px;
+  gap: 10px; /* Thêm khoảng cách giữa các hình ảnh */
   border-radius: 8px;
 }
 .grid-column img {
