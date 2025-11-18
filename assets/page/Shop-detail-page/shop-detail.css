@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-   font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 body {
     background-color:#FFFBF5 ;
@@ -70,7 +70,7 @@ body {
   border-radius: 8px;
   background-color: FFFBF5;
   border-radius: 8px;
-  gap: 15px; /* Thêm khoảng cách giữa slider và grid */
+  gap: 20px; /* SỬA LẠI: Bật gap 20px cho đẹp */
   margin-bottom: 15px;
 }
 .slider-column{
@@ -131,20 +131,33 @@ body {
 .arrow-left:hover,.arrow-right:hover{
   color: #FFF1CE;
 }
+
+/* --- BƯỚC 1: SỬA LỖI Ở ĐÂY ---
+  Tôi đã XÓA dòng 'grid-template-rows: 1fr 1fr;' 
+  Và sửa 'gap' thành 10px
+*/
 .grid-column{
   flex: 0.8; /* Thu nhỏ kích thước từ 1 xuống 0.8 */
   display:grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 10px; /* Thêm khoảng cách giữa các hình ảnh */
+  /* Dòng grid-template-rows đã bị XÓA */
+  gap: 10px; 
   border-radius: 8px;
 }
+
+/* --- BƯỚC 2: SỬA LỖI Ở ĐÂY ---
+  Tôi đã XÓA 'height: 100%;'
+  Và thêm 'aspect-ratio: 1 / 1;' để ép ảnh thành hình vuông
+*/
 .grid-column img {
   width: 100%;
-  height: 100%;
+  /* Dòng height: 100%; đã bị XÓA */
+  aspect-ratio: 1 / 1; 
   object-fit: cover;
   border-radius: 8px;
 }
+
+
 .nameshop {
   display: flex;
   flex-direction: column;
@@ -184,12 +197,12 @@ body {
   padding: 5px 0px 0px 15px;
 }
 .shopdetail_rate{
- flex-direction: row;
- padding-bottom: 15px;
+  flex-direction: row;
+  padding-bottom: 15px;
 }
 .rate{
- padding-left: 15px;
- font-size: large;
+  padding-left: 15px;
+  font-size: large;
 }
 .shopdetail_name {
   width: 100%;
