@@ -60,5 +60,17 @@
     "helpTitle": "Help / Feedback",
     "btnText": "Send",
     "copyright": "© 2025 CoffeeFinder. All rights reserved."
+  }, 
+   "head": {
+    "search": {
+      "placeholder": "Quick search..."
+    },
+    "nav": {
+      "home": "Home",
+      "cafe_list": "Cafe List",
+      "favorites": "Favorites",
+      "feedback": "Feedback"
+    }
   }
+  
 }

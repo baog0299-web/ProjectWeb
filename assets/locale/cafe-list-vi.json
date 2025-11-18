@@ -33,5 +33,16 @@
     "helpTitle": "Trợ giúp/Phản hồi",
     "btnText": "Gửi",
     "copyright": "© 2025 CoffeeFinder. All rights reserved."
+  },
+  "head": {
+    "search": {
+      "placeholder": "Tìm kiếm nhanh..."
+    },
+    "nav": {
+      "home": "Trang chủ",
+      "cafe_list": "Danh sách quán",
+      "favorites": "Yêu thích",
+      "feedback": "Phản hồi"
+    }
   }
 }
