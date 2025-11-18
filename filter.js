@@ -141,6 +141,84 @@ document.addEventListener('DOMContentLoaded', () => {
     filterNeed.addEventListener('change', filterShops);
     filterCriteria.addEventListener('change', filterShops);
   }
+  // ----------------------------------------------------------------
+  // HÀM TẠO 1 CARD (Đã thêm logic tim)
+  // ----------------------------------------------------------------
+  function createShopCardLink(shop) {
+      const shopLinkWrapper = document.createElement('a');
+      shopLinkWrapper.className = 'shop-card-link';
+      shopLinkWrapper.href = `/assets/page/Shop-detail-page/shop-detail.html?id=${shop.id}`;
+
+      let tagsHTML = '';
+      const tagsToShow = shop.criteria ? shop.criteria.slice(0, 2) : [];
+      tagsHTML = tagsToShow.map(tag => `<button class="btn-tag">${tag}</button>`).join('');
+      if (shop.criteria && shop.criteria.length > 2) {
+          tagsHTML += `<button class="btn-tag" id="small">+${shop.criteria.length - 2}</button>`;
+      }
+
+      shopLinkWrapper.innerHTML = `
+        <div class="card">
+          <div class="card-image">
+            <img src="${shop.image}" alt="${shop.name}" onerror="this.src='assets/image/public/Container.png'">
+            <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+            <div class="icon-top-right heart-icon"><i class="far fa-heart"></i></div>
+          </div>
+          <div class="card-content">
+            <div class="rating"><i class="fas fa-star"></i> ${shop.rating}</div>
+            <h3 class="title">${shop.name}</h3>
+            <div class="location"><i class="fas fa-map-marker-alt"></i> ${shop.location_area}</div>
+            <div class="tag">${tagsHTML}</div>
+          </div>
+        </div>
+      `;
+
+      // --- PHẦN MỚI THÊM: Logic trái tim ---
+      const heartBtn = shopLinkWrapper.querySelector('.heart-icon');
+      const FAVORITES_KEY = 'favoriteCafes';
+      const shopId = Number(shop.id);
+
+      // 1. Kiểm tra trạng thái ban đầu
+      let favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+      // Ép kiểu về số để so sánh chuẩn
+      let isLiked = favorites.map(id => Number(id)).includes(shopId);
+
+      const updateCardHeart = (active) => {
+          if (active) {
+              heartBtn.style.color = '#D97706'; // Màu cam
+              heartBtn.innerHTML = '<i class="fas fa-heart"></i>'; // Tim đặc
+          } else {
+              heartBtn.style.color = '#6B4423'; // Màu nâu gốc (hoặc bỏ trống để lấy từ CSS)
+              heartBtn.innerHTML = '<i class="far fa-heart"></i>'; // Tim rỗng
+          }
+      };
+      updateCardHeart(isLiked);
+
+      // 2. Gắn sự kiện click
+      heartBtn.addEventListener('click', (e) => {
+          e.preventDefault(); // Ngăn không cho thẻ a chuyển trang
+          e.stopPropagation(); // Ngăn sự kiện nổi bọt
+
+          // Đọc lại storage mới nhất
+          let currentFavs = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+          currentFavs = currentFavs.map(id => Number(id));
+
+          if (isLiked) {
+               // Bỏ tim: Xóa ID
+               currentFavs = currentFavs.filter(id => id !== shopId);
+               isLiked = false;
+          } else {
+               // Thả tim: Thêm ID
+               if (!currentFavs.includes(shopId)) currentFavs.push(shopId);
+               isLiked = true;
+          }
+
+          localStorage.setItem(FAVORITES_KEY, JSON.stringify(currentFavs));
+          updateCardHeart(isLiked);
+      });
+      // --- HẾT PHẦN MỚI THÊM ---
+
+      return shopLinkWrapper;
+  }
 
   // --- BẮT ĐẦU CHẠY APP ---
   initializeApp();
