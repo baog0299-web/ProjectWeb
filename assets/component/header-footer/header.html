@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/assets/component/header-footer/header.html">
-    <link rel="stylesheet" href="../../component/button/lang-switcher.css">
+    <link rel="stylesheet" href="/assets/component/header-footer/header.css">
+    <link rel="stylesheet" href="/assets/component/button/lang-switcher.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,23 +14,24 @@
 <body>
     <header class="head">
         <div class="header-container">
-            <div class ="header-logo">
+            <div class="header-logo">
                 <div class="lang-switcher" role="group" aria-label="Language switcher">
-                      <button class="lang-btn" data-lang="vi" aria-pressed="true" title="Tiếng Việt">VI</button>
-                      <button class="lang-btn" data-lang="en" aria-pressed="false" title="English">EN</button>
+                    <button class="lang-btn" data-lang="vi" aria-pressed="true" title="Tiếng Việt">VI</button>
+                    <button class="lang-btn" data-lang="en" aria-pressed="false" title="English">EN</button>
                 </div>
-                <img src="assets/image/public/Container.png" alt="#">
+                <!-- SỬA: Đổi thành đường dẫn tuyệt đối -->
+                <img src="/assets/image/public/Container.png" alt="CoffeeFinder Logo">
             </div>
             <div class="header-search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                 <input type="text" placeholder="Tìm kiếm nhanh...">
+                <input type="text" placeholder="Tìm kiếm nhanh...">
             </div>
-            <nav class="header-nav-links" >
+            <nav class="header-nav-links">
                 <a href="/index.html">Trang chủ</a>
                 <a href="/assets/page/cafe-list/cafe-list.html">Danh sách quán</a>
                 <a href="/assets/page/favorites/favorites.html">Yêu thích</a>
                 <a href="/assets/page/feedback/feedback.html">Feedback</a>
-            </div>
+            </nav>
         </div>
     </header>
 </body>

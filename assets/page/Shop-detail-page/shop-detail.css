@@ -137,7 +137,7 @@ body {
   Và sửa 'gap' thành 10px
 */
 .grid-column{
-  flex: 1;
+  flex: 0.8; /* Thu nhỏ kích thước từ 1 xuống 0.8 */
   display:grid;
   grid-template-columns: 1fr 1fr;
   /* Dòng grid-template-rows đã bị XÓA */
