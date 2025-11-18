@@ -134,12 +134,9 @@ body {
   color: #FFF1CE;
 }
 
-/* --- BƯỚC 1: SỬA LỖI Ở ĐÂY ---
-  Tôi đã XÓA dòng 'grid-template-rows: 1fr 1fr;' 
-  Và sửa 'gap' thành 10px
-*/
+
 .grid-column{
-  flex: 0.8; /* Thu nhỏ kích thước từ 1 xuống 0.8 */
+  flex: 0.9; 
   display:grid;
   grid-template-columns: 1fr 1fr;
   /* Dòng grid-template-rows đã bị XÓA */
@@ -147,10 +144,7 @@ body {
   border-radius: 8px;
 }
 
-/* --- BƯỚC 2: SỬA LỖI Ở ĐÂY ---
-  Tôi đã XÓA 'height: 100%;'
-  Và thêm 'aspect-ratio: 1 / 1;' để ép ảnh thành hình vuông
-*/
+
 .grid-column img {
   width: 100%;
   /* Dòng height: 100%; đã bị XÓA */
