@@ -71,6 +71,9 @@
       "favorites": "Favorites",
       "feedback": "Feedback"
     }
+  },
+  "validation": {
+    "required": "Please fill out this field.",
+    "email": "Please enter a valid email address (e.g., name@example.com)."
   }
-  
 }
