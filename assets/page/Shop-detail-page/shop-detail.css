@@ -121,13 +121,12 @@ body {
 }
 .shopdetail_title-container {
     display: flex;
-    width: 80%;
+    width: 95%;
     opacity: 1;
     color: #6B4423;
     border-radius: 10.96px;
-    gap: 8px;
+    gap: 20px;
     align-items: center;
-    margin: 0 auto;
     margin-bottom: 15px;
 }
 .shopdetail_title {
