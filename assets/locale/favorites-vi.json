@@ -21,8 +21,12 @@
     "label": "Tìm kiếm theo nhu cầu"
   },
   "empty": {
-    "title": "Chưa có quán yêu thích",
-    "description": "Hãy khám phá và lưu những quán cafe bạn thích!"
+    "title": "Chưa có quán nào trong bộ sưu tập",
+    "description": "Hãy khám phá và thả tim cho những quán cà phê bạn yêu thích nhé!",
+    "exploreButton": "Khám phá ngay"
+  },
+  "error": {
+    "loadingData": "Có lỗi xảy ra khi tải dữ liệu."
   },
   "footer": {
     "discoverText": "Khám phá trải nghiệm cà phê hoàn hảo",
@@ -37,7 +41,7 @@
     "btnText": "Gửi",
     "copyright": "© 2025 CoffeeFinder. All rights reserved."
   },  
-   "head": {
+  "head": {
     "search": {
       "placeholder": "Tìm kiếm nhanh..."
     },
@@ -48,5 +52,4 @@
       "feedback": "Phản hồi"
     }
   }
-  
 }
