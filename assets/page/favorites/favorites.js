@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     const listContainer = document.querySelector('.card-container');
     const countElement = document.querySelector('.desinations');
-    const paginationContainer = document.querySelector('.pagination'); // Lấy container phân trang
+    const paginationContainer = document.querySelector('.pagination');
     const FAVORITES_KEY = 'favoriteCafes';
     
     // Các biến toàn cục để quản lý phân trang
     let currentCount = 0;
     let isUpdating = false;
-    let likedShops = []; // Lưu trữ toàn bộ quán yêu thích để dùng chung
+    let likedShops = [];
     let currentPage = 1;
-    const itemsPerPage = 6; // Quy định 6 quán 1 trang
+    const itemsPerPage = 6;
 
-    // 1. GIÁM SÁT THAY ĐỔI NGÔN NGỮ (Giữ nguyên logic cũ)
+    // 1. GIÁM SÁT THAY ĐỔI NGÔN NGỮ
     if (countElement) {
         const observer = new MutationObserver(() => {
             if (isUpdating) return; 
@@ -40,10 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error('Không thể tải file data.json');
             
             const allShops = await response.json();
-            // Lọc ra danh sách các quán yêu thích
             likedShops = allShops.filter(shop => favoriteIds.includes(Number(shop.id)));
 
-            // Cập nhật số lượng
             currentCount = likedShops.length;
             if (countElement && countElement.innerHTML.includes('{{n}}')) {
                  countElement.innerHTML = countElement.innerHTML.replace('{{n}}', `<strong>${currentCount}</strong>`);
@@ -54,33 +52,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // --- THAY ĐỔI Ở ĐÂY: Không vẽ hết, mà cài đặt phân trang ---
             setupPagination();
-            renderPage(1); // Luôn bắt đầu vẽ từ trang 1
+            renderPage(1);
 
         } catch (error) {
             console.error("Lỗi:", error);
-            listContainer.innerHTML = '<p style="text-align:center">Có lỗi xảy ra khi tải dữ liệu.</p>';
+            // Thêm data-i18n cho error message
+            listContainer.innerHTML = '<p style="text-align:center" data-i18n="error.loadingData">Có lỗi xảy ra khi tải dữ liệu.</p>';
         }
     }
 
-    // Hàm thiết lập các nút phân trang (1, 2, 3...)
+    // 3. HÀM THIẾT LẬP PHÂN TRANG
     function setupPagination() {
         if (!paginationContainer) return;
-        paginationContainer.innerHTML = ''; // Xóa các nút cũ
+        paginationContainer.innerHTML = '';
 
         const pageCount = Math.ceil(likedShops.length / itemsPerPage);
         
-        // Nếu chỉ có 1 trang hoặc ít hơn thì không cần hiện thanh phân trang
         if (pageCount <= 1) return;
 
         // Tạo nút số trang
         for (let i = 1; i <= pageCount; i++) {
             const btn = document.createElement('button');
-            btn.className = 'btn-page'; // Class CSS của bạn
+            btn.className = 'btn-page';
             btn.innerText = i;
+            // Thêm aria-label cho accessibility
+            btn.setAttribute('aria-label', `Page ${i}`);
             
-            if (i === 1) btn.classList.add('active'); // Trang 1 luôn active đầu tiên
+            if (i === 1) btn.classList.add('active');
 
             btn.addEventListener('click', () => {
                 renderPage(i);
@@ -90,33 +89,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Hàm vẽ card theo trang
+    // 4. HÀM VẼ CARD THEO TRANG
     function renderPage(page) {
         currentPage = page;
-        listContainer.innerHTML = ''; // Xóa card cũ
+        listContainer.innerHTML = '';
 
-        // Cập nhật màu nút active
         const buttons = paginationContainer.querySelectorAll('.btn-page');
         buttons.forEach(btn => {
             btn.classList.remove('active');
-            // Kiểm tra nếu nút này là nút số trang hiện tại (bỏ qua các nút icon nếu có)
             if (btn.innerText == currentPage) {
                 btn.classList.add('active');
             }
         });
 
-        // Tính toán vị trí cắt mảng
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
         const shopsToShow = likedShops.slice(start, end);
 
-        // Vẽ các card trong trang hiện tại
         shopsToShow.forEach(shop => {
             createCardHTML(shop);
         });
     }
 
-    // Hàm tạo HTML cho 1 card (Tách ra cho gọn)
+    // 5. HÀM TẠO HTML CHO 1 CARD (ĐÃ THÊM LOGIC BỎ TIM)
     function createCardHTML(shop) {
         const cardLink = document.createElement('a');
         cardLink.href = `../Shop-detail-page/shop-detail.html?id=${shop.id}`; 
@@ -141,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="card-image">
                     <img src="${imgSrc}" alt="${shop.name}" onerror="this.onerror=null; this.src='${fallbackImg}'">
                     <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
-                    <div class="icon-top-right" style="color: #D97706;">
+                    <div class="icon-top-right heart-icon" style="color: #D97706;">
                         <i class="fas fa-heart"></i>
                     </div>
                 </div>
@@ -155,22 +150,79 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
+
+        // --- LOGIC BỎ TIM (QUAN TRỌNG) ---
+        const heartIcon = cardLink.querySelector('.heart-icon');
+        const shopId = Number(shop.id);
+
+        heartIcon.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Lấy danh sách yêu thích hiện tại
+            let currentFavs = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+            currentFavs = currentFavs.map(id => Number(id));
+
+            // Xóa ID khỏi localStorage
+            currentFavs = currentFavs.filter(id => id !== shopId);
+            localStorage.setItem(FAVORITES_KEY, JSON.stringify(currentFavs));
+
+            // Xóa quán khỏi mảng likedShops
+            likedShops = likedShops.filter(s => Number(s.id) !== shopId);
+            currentCount = likedShops.length;
+
+            // Cập nhật lại số lượng
+            if (countElement) {
+                const text = countElement.getAttribute('data-i18n');
+                if (text) {
+                    // Nếu có i18n, cần reload để trigger lại translation
+                    isUpdating = true;
+                    countElement.innerHTML = countElement.innerHTML.replace(/<strong>\d+<\/strong>/, `<strong>${currentCount}</strong>`);
+                    isUpdating = false;
+                }
+            }
+
+            // Kiểm tra nếu không còn quán nào
+            if (likedShops.length === 0) {
+                showEmptyState();
+                return;
+            }
+
+            // Tính toán lại phân trang
+            const pageCount = Math.ceil(likedShops.length / itemsPerPage);
+            
+            // Nếu trang hiện tại vượt quá số trang mới, quay về trang cuối
+            if (currentPage > pageCount) {
+                currentPage = pageCount;
+            }
+
+            // Vẽ lại phân trang và trang hiện tại
+            setupPagination();
+            renderPage(currentPage);
+        });
+        // --- HẾT LOGIC BỎ TIM ---
+
         listContainer.appendChild(cardLink);
     }
 
+    // 6. HÀM HIỂN THỊ TRẠNG THÁI TRỐNG (ĐÃ THÊM I18N KEYS)
     function showEmptyState() {
         currentCount = 0;
         if (countElement && countElement.innerHTML.includes('{{n}}')) {
              countElement.innerHTML = countElement.innerHTML.replace('{{n}}', `<strong>0</strong>`);
         }
-        // Xóa thanh phân trang nếu không có quán
+        
         if(paginationContainer) paginationContainer.innerHTML = '';
         
         listContainer.innerHTML = `
             <div style="text-align: center; width: 100%; margin-top: 40px; color: #6B4423;">
-                <h3>Chưa có quán nào trong bộ sưu tập</h3>
-                <p>Hãy khám phá và thả tim cho những quán cà phê bạn yêu thích nhé!</p>
-                <a href="../cafe-list/cafe-list.html" style="display: inline-block; margin-top: 20px; text-decoration: none; color: #D97706; font-weight: bold; border: 1px solid #D97706; padding: 10px 20px; border-radius: 20px;">Khám phá ngay</a>
+                <h3 data-i18n="empty.title">Chưa có quán nào trong bộ sưu tập</h3>
+                <p data-i18n="empty.description">Hãy khám phá và thả tim cho những quán cà phê bạn yêu thích nhé!</p>
+                <a href="../cafe-list/cafe-list.html" 
+                   style="display: inline-block; margin-top: 20px; text-decoration: none; color: #D97706; font-weight: bold; border: 1px solid #D97706; padding: 10px 20px; border-radius: 20px;"
+                   data-i18n="empty.exploreButton">
+                   Khám phá ngay
+                </a>
             </div>
         `;
     }
