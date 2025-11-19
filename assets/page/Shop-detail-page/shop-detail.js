@@ -1,206 +1,343 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  console.log('Shop detail page loaded');
 
-  // ----------------------------------------------------------------
-  // HÀM CHÍNH: Tải data và hiển thị chi tiết
-  // ----------------------------------------------------------------
-  async function loadShopDetail() {
-    let allCoffeeShops = [];
-    try {
-      // Dùng đường dẫn tuyệt đối để đảm bảo tải được file
-      const response = await fetch('/assets/data/data.json');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      allCoffeeShops = await response.json();
-      processShopData(allCoffeeShops);
-
-    } catch (error) {
-      console.error("Không thể tải dữ liệu chi tiết:", error);
-      document.body.innerHTML = '<h1>Lỗi tải dữ liệu.</h1>';
-    }
+  // Đảm bảo footer luôn ở cuối body
+  const footer = document.getElementById('footer');
+  if (footer && footer.parentElement !== document.body) {
+    console.log('Moving footer back to body');
+    document.body.appendChild(footer);
   }
 
-  // ----------------------------------------------------------------
-  // HÀM XỬ LÝ: Điền dữ liệu vào trang
-  // ----------------------------------------------------------------
-  function processShopData(allCoffeeShops) {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const cafeId = urlParams.get('id');
-    const cafe = allCoffeeShops.find(shop => shop.id == cafeId);
+  // Observer để theo dõi DOM changes
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList') {
+        const footer = document.getElementById('footer');
+        if (footer && footer.parentElement !== document.body) {
+          console.log('Footer moved, fixing position');
+          document.body.appendChild(footer);
+        }
+      }
+    });
+  });
+
+  // Theo dõi toàn bộ document
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+  // Lấy ID từ URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const cafeId = urlParams.get('id');
+  
+  const loadingContainer = document.getElementById('loading-container');
+  const mainContent = document.getElementById('main-content');
+
+  console.log('Cafe ID:', cafeId);
+
+  if (!cafeId) {
+    showError('Không có ID quán cà phê trong URL');
+    return;
+  }
+
+  try {
+    // Hiển thị loading
+    showLoading();
+
+    // Load dữ liệu
+    const data = await loadCafeData();
+    const cafe = data.find(shop => shop.id == cafeId);
 
     if (!cafe) {
-      document.body.innerHTML = '<h1>Không tìm thấy quán cà phê này.</h1>';
+      showError(`Không tìm thấy quán cà phê với ID: ${cafeId}`);
       return;
     }
 
-    console.log('Cafe data:', cafe);
+    // Hiển thị dữ liệu
+    displayCafeData(cafe);
+    setupTabs();
+    setupFavoriteButton(cafe);
+    loadSimilarCafes(data, cafe);
 
-    // 1. Điền thông tin cơ bản
+    // Hiển thị nội dung
+    hideLoading();
+    showContent();
+
+    console.log('Shop detail loaded successfully');
+
+  } catch (error) {
+    console.error('Error loading shop detail:', error);
+    showError('Lỗi tải dữ liệu: ' + error.message);
+  }
+
+  // Hàm load dữ liệu
+  async function loadCafeData() {
+    try {
+      const response = await fetch('/assets/data/data.json');
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      return await response.json();
+    } catch (error) {
+      console.log('Trying alternative path...');
+      const response = await fetch('../../data/data.json');
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      return await response.json();
+    }
+  }
+
+  // Hàm hiển thị dữ liệu
+  function displayCafeData(cafe) {
+    console.log('Displaying cafe:', cafe.name);
+
+    // Tên quán
     const titleH1 = document.querySelector('.shopdetail_title h1');
     const titleP = document.querySelector('.shopdetail_name');
-    if (titleH1) {
-      titleH1.textContent = cafe.name;
-      titleH1.removeAttribute('data-i18n'); 
-    }
-    if (titleP) {
-      titleP.textContent = cafe.name;
-      titleP.removeAttribute('data-i18n');
-    }
+    if (titleH1) titleH1.textContent = cafe.name;
+    if (titleP) titleP.textContent = cafe.name;
 
-    const addressContainer = document.querySelector('.shopdetail_address');
-    if (addressContainer) {
-      addressContainer.innerHTML = `
-        <span data-i18n="labels.addressLabel">Địa chỉ:</span><br>
-        <span>${cafe.address}</span> 
-      `;
-    }
-    
-    const rateSpan = document.querySelector('.rate span');
-    if (rateSpan) {
-      rateSpan.textContent = cafe.rating || '5';
-    }
+    // Địa chỉ
+    const addressText = document.querySelector('.address-text');
+    if (addressText) addressText.textContent = cafe.address || 'Chưa cập nhật';
 
-    const topTagsContainer = document.querySelector('.shopdetail_tag');
-    if (topTagsContainer) {
-      topTagsContainer.innerHTML = '';
-      const tags = cafe.criteria || [];
-      tags.slice(0, 5).forEach(tag => { 
-        topTagsContainer.innerHTML += `<p class="tag">${tag}</p>`;
+    // Rating
+    const ratingValue = document.querySelector('.rating-value');
+    if (ratingValue) ratingValue.textContent = cafe.rating || '5';
+
+    // Tags
+    const tagsContainer = document.querySelector('.shopdetail_tag');
+    if (tagsContainer && cafe.criteria) {
+      tagsContainer.innerHTML = '';
+      cafe.criteria.slice(0, 5).forEach(tag => {
+        const tagElement = document.createElement('p');
+        tagElement.className = 'tag';
+        tagElement.textContent = tag;
+        tagsContainer.appendChild(tagElement);
       });
     }
 
-    // 2. Xử lý hình ảnh
-    if (cafe.images_slider && cafe.images_slider.length >= 1) {
+    // Hình ảnh
+    if (cafe.images_slider && cafe.images_slider.length > 0) {
       const mainImg = document.querySelector('.slider-column img');
       if (mainImg) {
-        const imagePath = cafe.images_slider[0].startsWith('/') ? cafe.images_slider[0] : '/' + cafe.images_slider[0];
-        mainImg.src = imagePath;
-        mainImg.alt = `${cafe.name} main image`;
+        mainImg.src = cafe.images_slider[0];
+        mainImg.alt = cafe.name;
       }
-      
-      const gridContainer = document.querySelector('.grid-column');
-      if (gridContainer && cafe.images_slider.length > 1) {
-        gridContainer.innerHTML = '';
-        for (let i = 1; i <= 4 && i < cafe.images_slider.length; i++) {
-          const img = document.createElement('img');
-          const imagePath = cafe.images_slider[i].startsWith('/') ? cafe.images_slider[i] : '/' + cafe.images_slider[i];
-          img.src = imagePath;
-          img.alt = `${cafe.name} image ${i + 1}`;
-          gridContainer.appendChild(img);
+
+      const gridImages = document.querySelectorAll('.grid-column img');
+      gridImages.forEach((img, index) => {
+        if (cafe.images_slider[index + 1]) {
+          img.src = cafe.images_slider[index + 1];
+          img.alt = `${cafe.name} ${index + 2}`;
         }
-      }
+      });
     }
 
-    // 3. Điền nội dung Tabs
-    const descriptionContainer = document.querySelector('#mo-ta .shopdetail_text');
-    if(descriptionContainer) {
-      descriptionContainer.innerHTML = `<p>${cafe.description_detail || 'Chưa có mô tả'}</p>`;
+    // Mô tả
+    const descContainer = document.querySelector('#mo-ta .shopdetail_text');
+    if (descContainer) {
+      descContainer.innerHTML = `<p>${cafe.description_detail || 'Chưa có mô tả chi tiết'}</p>`;
     }
 
-    const tienIchTab = document.getElementById('tien-ich');
-    if (tienIchTab) {
-      const criteria = cafe.criteria || [];
+    // Tiện ích
+    const facilitiesTab = document.getElementById('tien-ich');
+    if (facilitiesTab && cafe.criteria) {
       let html = '<div class="shopdetail_text">';
-      criteria.forEach(tag => { html += `<p class="utility-item">✓ ${tag}</p>`; });
+      cafe.criteria.forEach(item => {
+        html += `<p>✓ ${item}</p>`;
+      });
       html += '</div>';
-      tienIchTab.innerHTML = html;
+      facilitiesTab.innerHTML = html;
     }
 
-    const khoangGiaTab = document.getElementById('khoang-gia');
-    if (khoangGiaTab) {
-      khoangGiaTab.innerHTML = `<div class="shopdetail_text"><p>${cafe.price_range || 'Chưa cập nhật'}</p></div>`;
-    }
-    
-    const menuTab = document.getElementById('menu');
-    if (menuTab) {
-      menuTab.innerHTML = '<div class="shopdetail_text"><p>Menu đang được cập nhật...</p></div>';
+    // Khoảng giá
+    const priceTab = document.getElementById('khoang-gia');
+    if (priceTab) {
+      priceTab.innerHTML = `<div class="shopdetail_text"><p>${cafe.price_range || 'Chưa cập nhật'}</p></div>`;
     }
 
-    // 4. Gắn sự kiện Tab
-    addTabListeners();
-
-    // 5. QUAN TRỌNG: Xử lý nút Tim (Đã đưa vào ĐÚNG chỗ)
-    handleFavoriteButton(cafe);
+    console.log('Data displayed successfully');
   }
 
-  // --- Hàm phụ: Xử lý Tabs ---
-  function addTabListeners() {
+  // Hàm setup tabs
+  function setupTabs() {
     const tabLinks = document.querySelectorAll('.detail_tab-link');
     const tabContents = document.querySelectorAll('.shopdetail_tab-content');
 
     tabLinks.forEach(link => {
       link.addEventListener('click', () => {
-        const tabId = link.getAttribute('data-tab'); 
-        tabLinks.forEach(item => item.classList.remove('active'));
-        tabContents.forEach(item => item.classList.remove('active'));
+        // Remove active class from all
+        tabLinks.forEach(l => l.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        // Add active class to clicked tab
         link.classList.add('active');
-        const activeContent = document.getElementById(tabId);
-        if (activeContent) activeContent.classList.add('active');
+        const targetId = link.getAttribute('data-tab');
+        const targetContent = document.getElementById(targetId);
+        if (targetContent) {
+          targetContent.classList.add('active');
+        }
       });
     });
   }
 
-  // --- Hàm phụ: Xử lý Nút Tim (Được tách ra cho gọn) ---
-  function handleFavoriteButton(cafe) {
-    const heartBtn = document.querySelector('.heart');
+  // Hàm setup favorite button
+  function setupFavoriteButton(cafe) {
+    const favoriteBtn = document.querySelector('.favorite-button');
+    if (!favoriteBtn) return;
+
     const FAVORITES_KEY = 'favoriteCafes';
+    const cafeId = Number(cafe.id);
 
-    if (!heartBtn) return;
+    // Get current favorites
+    let favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+    favorites = favorites.map(id => Number(id));
 
-    // Đảm bảo ID là số để so sánh chính xác
-    const currentCafeId = Number(cafe.id);
+    let isLiked = favorites.includes(cafeId);
+    updateFavoriteUI(favoriteBtn, isLiked);
 
-    // Lấy danh sách từ localStorage
-    let favoritesRaw = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
-    let favorites = favoritesRaw.map(id => Number(id)); // Ép kiểu về số
+    favoriteBtn.addEventListener('click', (e) => {
+      e.preventDefault();
 
-    // Kiểm tra trạng thái hiện tại
-    let isLiked = favorites.includes(currentCafeId);
-    updateHeartUI(heartBtn, isLiked);
+      // Update favorites
+      let currentFavorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+      currentFavorites = currentFavorites.map(id => Number(id));
 
-    // Xử lý click (Dùng cloneNode để xóa các event cũ nếu có)
-    const newHeartBtn = heartBtn.cloneNode(true);
-    heartBtn.parentNode.replaceChild(newHeartBtn, heartBtn);
-
-    newHeartBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-
-        // Đọc lại từ storage để đảm bảo dữ liệu mới nhất
-        let currentFavs = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
-        currentFavs = currentFavs.map(id => Number(id));
-
-        if (isLiked) {
-            // Xóa ID khỏi danh sách
-            currentFavs = currentFavs.filter(id => id !== currentCafeId);
-            isLiked = false;
-            console.log("Đã xóa khỏi yêu thích:", currentCafeId);
-        } else {
-            // Thêm ID vào danh sách
-            if (!currentFavs.includes(currentCafeId)) {
-                currentFavs.push(currentCafeId);
-            }
-            isLiked = true;
-            console.log("Đã thêm vào yêu thích:", currentCafeId);
+      if (isLiked) {
+        currentFavorites = currentFavorites.filter(id => id !== cafeId);
+        isLiked = false;
+      } else {
+        if (!currentFavorites.includes(cafeId)) {
+          currentFavorites.push(cafeId);
         }
+        isLiked = true;
+      }
 
-        // Lưu lại và cập nhật giao diện
-        localStorage.setItem(FAVORITES_KEY, JSON.stringify(currentFavs));
-        updateHeartUI(newHeartBtn, isLiked);
+      localStorage.setItem(FAVORITES_KEY, JSON.stringify(currentFavorites));
+      updateFavoriteUI(favoriteBtn, isLiked);
     });
   }
 
-  function updateHeartUI(btn, active) {
-    const icon = btn.querySelector('i');
+  function updateFavoriteUI(btn, active) {
+    const icon = btn.querySelector('.favorite-icon');
+    const text = btn.querySelector('.favorite-text');
+    
     if (active) {
-        btn.style.color = '#D97706'; // Màu cam
-        icon.className = 'fa-solid fa-heart'; // Tim đặc
+      btn.classList.add('active');
+      icon.className = 'fa-solid fa-heart favorite-icon';
+      text.textContent = 'Đã yêu thích';
     } else {
-        btn.style.color = '#6B4423'; // Màu nâu
-        icon.className = 'fa-regular fa-heart'; // Tim rỗng
+      btn.classList.remove('active');
+      icon.className = 'fa-regular fa-heart favorite-icon';
+      text.textContent = 'Thêm trang yêu thích';
     }
   }
 
-  // --- BẮT ĐẦU CHẠY ---
-  loadShopDetail();
+  // Utility functions
+  function showLoading() {
+    if (loadingContainer) loadingContainer.style.display = 'flex';
+    if (mainContent) mainContent.classList.remove('show');
+  }
+
+  function hideLoading() {
+    if (loadingContainer) loadingContainer.style.display = 'none';
+  }
+
+  function showContent() {
+    if (mainContent) mainContent.classList.add('show');
+  }
+
+  function showError(message) {
+    if (loadingContainer) {
+      loadingContainer.innerHTML = `
+        <h1 style="color: #D97706;">Lỗi</h1>
+        <p style="color: #6B4423; margin: 20px 0;">${message}</p>
+        <button onclick="window.history.back()" style="padding: 10px 20px; background: #FF7043; color: white; border: none; border-radius: 5px; cursor: pointer;">Quay lại</button>
+      `;
+    }
+  }
+
+  // Hàm load similar cafes
+  function loadSimilarCafes(allCafes, currentCafe) {
+    const container = document.querySelector('.similar-cards-container');
+    if (!container) return;
+
+    // Lấy 2 quán khác (không phải quán hiện tại)
+    const similarCafes = allCafes
+      .filter(cafe => cafe.id !== currentCafe.id)
+      .slice(0, 2);
+
+    container.innerHTML = '';
+
+    similarCafes.forEach(cafe => {
+      const cardElement = createCafeCard(cafe);
+      container.appendChild(cardElement);
+    });
+  }
+
+  // Hàm tạo card component
+  function createCafeCard(cafe) {
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'card';
+    cardDiv.style.cursor = 'pointer';
+
+    // Lấy 2 tags đầu tiên
+    const displayTags = cafe.criteria ? cafe.criteria.slice(0, 2) : [];
+    const remainingCount = cafe.criteria ? Math.max(0, cafe.criteria.length - 2) : 0;
+
+    cardDiv.innerHTML = `
+      <div class="card-image">
+        <img src="${cafe.images_slider ? cafe.images_slider[0] : '/assets/image/cfimg/lava1.png'}" alt="${cafe.name}">
+        <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+        <div class="icon-top-right" onclick="event.stopPropagation(); toggleCardFavorite(${cafe.id}, this)">
+          <i class="far fa-heart"></i>
+        </div>
+      </div>
+      <div class="card-content">
+        <div class="card-info">
+          <div class="rating">
+            <i class="fas fa-star"></i> ${cafe.rating}
+          </div>
+          <h3 class="title">${cafe.name}</h3>
+          <div class="location">
+            <i class="fas fa-map-marker-alt"></i> ${cafe.location_area}
+          </div>
+        </div>
+        <div class="tags">
+          ${displayTags.map(tag => `<button class="btn-tag" onclick="event.stopPropagation()">${tag}</button>`).join('')}
+          ${remainingCount > 0 ? `<button class="btn-tag" id="small" onclick="event.stopPropagation()">+${remainingCount}</button>` : ''}
+        </div>
+      </div>
+    `;
+
+    // Thêm click handler để navigate to detail
+    cardDiv.addEventListener('click', () => {
+      window.location.href = `shop-detail.html?id=${cafe.id}`;
+    });
+
+    return cardDiv;
+  }
+
+  // Global function cho favorite toggle trong similar cards
+  window.toggleCardFavorite = function(cafeId, element) {
+    const FAVORITES_KEY = 'favoriteCafes';
+    let favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+    favorites = favorites.map(id => Number(id));
+    
+    const icon = element.querySelector('i');
+    const isLiked = favorites.includes(Number(cafeId));
+    
+    if (isLiked) {
+      favorites = favorites.filter(id => id !== Number(cafeId));
+      icon.className = 'far fa-heart';
+    } else {
+      favorites.push(Number(cafeId));
+      icon.className = 'fas fa-heart';
+    }
+    
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+  };
 });
