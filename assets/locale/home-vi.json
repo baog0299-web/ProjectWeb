@@ -14,7 +14,10 @@
     "locationPlaceholder": "Chọn khu vực của bạn",
     "needPlaceholder": "Nhập nhu cầu của bạn",
     "criteriaPlaceholder": "Nhập tiêu chí của bạn",
-    "searchButton": "Tìm kiếm"
+    "searchButton": "Tìm kiếm",
+    "initialPrompt": "Vui lòng sử dụng bộ lọc để tìm quán cà phê.",
+    "noResults": "Không tìm thấy quán cà phê phù hợp.",
+    "errorLoading": "Lỗi khi tải dữ liệu quán cafe."
   },
   "faq": {
     "title": "Câu hỏi thường gặp",

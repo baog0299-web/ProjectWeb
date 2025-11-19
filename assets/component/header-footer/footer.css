@@ -101,3 +101,25 @@ hr{
   margin-right: auto;
   border-radius: 2px;
 }
+
+
+.footer-link {
+    display: block;     
+    color: rgba(120, 53, 15, 1);     
+    text-decoration: none;  
+    margin-bottom: 8px;     
+    transition: color 0.3s, transform 0.2s;
+    font-size: 16px;         /
+}
+
+
+.footer-link:hover {
+    color: #D97706;         
+    transform: translateX(5px);
+}
+
+
+.logo a img {
+    border: none;
+    outline: none;
+}
