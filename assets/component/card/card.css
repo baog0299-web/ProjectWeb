@@ -10,6 +10,8 @@
     background-color: white;
     transition: all 0.3s ease;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 .card:hover {
     transform: translateY(-4px);
@@ -45,9 +47,19 @@
 .card-content{
     padding: 16px 20px 20px 20px;
     background-color: white;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+.card-info {
+    flex: 1;
+}
+
 .rating{
     color: rgba(120, 53, 15, 1);
+    margin-bottom: 8px;
 }
 .rating i{
     color: rgba(245, 158, 11, 1);
@@ -57,11 +69,17 @@
     font-size:20px;
     font-weight: 600;
     color: rgba(120, 53, 15, 1);
+    margin-bottom: 8px;
 }
 .location{
     color: rgba(180, 83, 9, 1);
     font: 14px 400;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+}
+
+.tag,
+.tags {
+    margin-top: auto;
 }
 .btn-tag{
     width: 98px;

@@ -119,8 +119,8 @@
     padding: 20px;
     border-radius: 8px;
     margin: 20px auto;
-    max-width: 1200px;
-    box-shadow: 0 2px 4px #D9D9D9;
+    max-width: 1280px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 .search-bar {
     display: flex;
@@ -176,54 +176,178 @@
 .all-file {
     background-color: #FFFBEB;
 }
-.card-container{
+/* Carousel Styles */
+.carousel-container {
+    max-width: 1280px;
+    margin: 20px auto 40px;
+    padding: 0 20px;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+}
+
+.carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    width: calc(3 * 388px + 2 * 20px + 40px);
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.carousel-track {
+    display: flex;
     gap: 20px;
-    flex-wrap: nowrap;
-    justify-content: center;
-    margin-top: 20px;
+    transition: transform 500ms ease-in-out;
+    padding: 20px;
 }
-.btn-next{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 0;
-    background-color: #5D4037;
-    color: #fff;
+
+.carousel-card {
+    flex: 0 0 auto;
+    width: 388px;
+}
+
+.carousel-card .card {
+    width: 100%;
+    height: 392px;
+    transition: all 0.3s ease;
+}
+
+.carousel-card .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 112, 67, 0.5);
+}
+
+.carousel-card .card {
     cursor: pointer;
-    transition: all 0.3s;
+}
+
+/* Ngăn không cho tags và heart icon làm ảnh hưởng đến click event */
+.carousel-card .card .btn-tag,
+.carousel-card .card .icon-top-right {
+    position: relative;
+    z-index: 2;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(93, 64, 55, 0.9);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-.btn-next:hover{
+
+.carousel-btn:hover {
     background-color: #FF7043;
-    transform: scale(1.1);
+    transform: translateY(-50%);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
-.btn-back{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 0;
-    background-color: #5D4037;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+.carousel-btn-prev {
+    left: 0;
 }
-.btn-back:hover{
-    background-color: #FF7043;
-    transform: scale(1.1);
+
+.carousel-btn-next {
+    right: 0;
 }
-.backandnext{
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
-    margin-bottom: 40px;
+
+.carousel-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: translateY(-50%) scale(1);
+}
+
+.carousel-btn:disabled:hover {
+    background-color: rgba(93, 64, 55, 0.9);
+    transform: translateY(-50%) scale(1);
+}
+/* Responsive carousel */
+@media (max-width: 1320px) {
+    .carousel-btn-prev {
+        left: 10px;
+    }
+    
+    .carousel-btn-next {
+        right: 10px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .carousel-container {
+        max-width: 100%;
+    }
+    
+    .carousel-wrapper {
+        width: calc(3 * 320px + 2 * 15px + 30px);
+    }
+    
+    .carousel-track {
+        padding: 15px;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-container {
+        padding: 0 10px;
+    }
+    
+    .carousel-wrapper {
+        width: calc(100vw - 20px);
+        max-width: calc(3 * 300px + 2 * 15px + 30px);
+    }
+    
+    .carousel-track {
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .carousel-card {
+        width: 300px;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    .carousel-btn-prev {
+        left: 5px;
+    }
+    
+    .carousel-btn-next {
+        right: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-wrapper {
+        width: calc(100vw - 20px);
+        max-width: calc(3 * 280px + 2 * 10px + 20px);
+    }
+    
+    .carousel-card {
+        width: 280px;
+    }
+    
+    .carousel-track {
+        gap: 10px;
+        padding: 10px;
+    }
 }
 
 /* FAQ Section Styles */
