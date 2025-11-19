@@ -37,15 +37,18 @@
         
         <h1 class="salient-features" data-i18n="featured.title">Nổi bật</h1>
 
-        <div class="card-container"></div>
-        
-        <div class="backandnext">
-            <button class="btn-back" aria-label="Previous"> 
-                <i class="fa-solid fa-chevron-left"></i>
-            </button>
-            <button class="btn-next" aria-label="Next"> 
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
+        <div class="carousel-container">
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carousel-track"></div>
+                
+                <!-- Navigation buttons -->
+                <button class="carousel-btn carousel-btn-prev" id="prevBtn" aria-label="Previous">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn carousel-btn-next" id="nextBtn" aria-label="Next">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
         </div>
 
         <h2 class="find-iden" id="search-section" data-i18n="search.title">Tìm kiếm theo cách của riêng bạn</h2>
@@ -133,6 +136,7 @@
         <div id="footer" class="footer"></div>
     </div>
     <script src="/assets/locale/lang-switcher.js"></script>
+    <script src="data.js"></script>
     <script src="main.js"></script>
     <script src="filter.js"></script>
     <script src="/assets/component/header-footer/header-loader.js"></script>

@@ -76,9 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="icon-top-right"><i class="far fa-heart"></i></div>
                   </div>
                   <div class="card-content">
-                    <div class="rating"><i class="fas fa-star"></i> ${shop.rating}</div>
-                    <h3 class="title">${shop.name}</h3>
-                    <div class="location"><i class="fas fa-map-marker-alt"></i> ${shop.location_area}</div>
+                    <div class="card-info">
+                      <div class="rating"><i class="fas fa-star"></i> ${shop.rating}</div>
+                      <h3 class="title">${shop.name}</h3>
+                      <div class="location"><i class="fas fa-map-marker-alt"></i> ${shop.location_area}</div>
+                    </div>
                     <div class="tag">${tagsHTML}</div>
                   </div>
                 </div>
