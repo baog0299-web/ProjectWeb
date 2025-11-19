@@ -53,5 +53,9 @@
       "favorites": "Yêu thích",
       "feedback": "Phản hồi"
     }
+  },
+  "validation": {
+    "required": "Vui lòng điền thông tin vào trường này.",
+    "email": "Vui lòng nhập đúng định dạng email (ví dụ: name@example.com)."
   }
 }
