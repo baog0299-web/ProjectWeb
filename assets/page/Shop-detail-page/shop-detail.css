@@ -247,18 +247,18 @@ body {
   flex-direction: row;
   color: #6B4423;
   padding: 0px;
-  gap: 20px;
+  gap: 50px;
 }
 .shopdetail_address{
   display: flex;
-  flex:0.3;
+  flex:0.4;
   flex-direction: column;
   padding-left: 15px;
+  padding-top: 7px;
 }
 .button-container{
   display: flex;
   justify-content: center;
-  padding-top: 25px;
 }
 .address-button{
   width: 100%;
@@ -349,8 +349,8 @@ body {
 }
 .shopdetail_text {
     color: #6B4423;
-    padding: 5px 15px;
-}
+    padding: 0px 15px;
+}p
 .shopdetail_tab-content.active{
   display: block;
 }
