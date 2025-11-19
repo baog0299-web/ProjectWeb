@@ -253,6 +253,7 @@ body {
   display: flex;
   flex:0.3;
   flex-direction: column;
+  padding-left: 15px;
 }
 .button-container{
   display: flex;
