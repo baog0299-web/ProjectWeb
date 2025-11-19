@@ -14,7 +14,10 @@
     "locationPlaceholder": "Select your area",
     "needPlaceholder": "Enter your needs",
     "criteriaPlaceholder": "Enter your criteria",
-    "searchButton": "Search"
+    "searchButton": "Search",
+    "initialPrompt": "Please use the filters to find cafes.",
+    "noResults": "No matching cafes found.",
+    "errorLoading": "Error loading cafe data."
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -67,5 +70,11 @@
       "favorites": "Favorites",
       "feedback": "Feedback"
     }
-  }
+  },
+  "title": "Search Your Way",
+  "locationPlaceholder": "Select your area",
+  "needPlaceholder": "Enter your needs",
+  "criteriaPlaceholder": "Enter your criteria",
+  "searchButton": "Search"
+  
 }
