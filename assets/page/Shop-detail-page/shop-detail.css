@@ -6,17 +6,51 @@
 }
 body {
     background-color:#FFFBF5 ;
-    /* display: flex;*/
-    justify-content: center;
-    align-items: center;
-    gap: 64px;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Loading State Styles */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    padding: 40px;
+    color: #6B4423;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #FF7043;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+    font-size: 16px;
+    font-weight: 500;
 }
 .shopdetail_main-container {
     width: 100%;
     gap: 29px;
     opacity: 1;
     padding: 32px 12px 33px 12px;
+    display: none; /* Initially hidden */
+}
+
+.shopdetail_main-container.show {
+    display: block;
 }
 .shopdetail_sub-container {
     width: 100%;
@@ -24,27 +58,77 @@ body {
     background: #FFFFFF;
     border-radius: 10.96px;
 }
-.shopdetail_favourite{
-  background-color:#FFFBF5 ;
-}
-.heart{
-  width: 100%;
-  flex: 0.1;
-  cursor: pointer;
+/* Favorite Button Styles */
+.favorite-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 2px solid #6B4423;
+  border-radius: 25px;
   color: #6B4423;
-  text-shadow: 0px 4.16px 4.16px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
 }
-.heart:hover{
-  color: #D97706;
+
+.favorite-button:hover {
+  background-color: #6B4423;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(107, 68, 35, 0.3);
+}
+
+.favorite-button.active {
+  background-color: #D97706;
+  border-color: #D97706;
+  color: white;
+}
+
+.favorite-button.active:hover {
+  background-color: #B45309;
+  border-color: #B45309;
+}
+
+.favorite-icon {
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.favorite-text {
+  white-space: nowrap;
+}
+
+/* Similar Cards Styles */
+.similar-cards-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.similar-cards-container .card {
+  width: 388px;
+  height: 392px;
+  transition: all 0.3s ease;
+}
+
+.similar-cards-container .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 .shopdetail_title-container {
     display: flex;
-    width: 100%;
+    width: 80%;
     opacity: 1;
     color: #6B4423;
     border-radius: 10.96px;
     gap: 8px;
     align-items: center;
+    margin: 0 auto;
+    margin-bottom: 15px;
 }
 .shopdetail_title {
   flex: 1;
@@ -54,7 +138,7 @@ body {
   font-family: "Pacifico", cursive;
   font-weight: 400;
   font-style: normal;
-  font-size: 50.42px;
+  font-size: 60px;
 }
 .shopdetail_title h1 {
   font-size:40px;
@@ -268,4 +352,11 @@ body {
 }
 .shopdetail_tab-content.active{
   display: block;
+}
+
+/* Footer styling to ensure it appears outside main content */
+#footer {
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
