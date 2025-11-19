@@ -8,7 +8,7 @@
     "addressLabel": "Địa chỉ:",
     "addressText": "123 Đường Pasteur, Quận 1, TP. Hồ Chí Minh",
     "directionButton": "Chỉ đường",
-    "rateLabel": "Rate:"
+    "rateLabel": "Đánh giá:"
   },
   "tags": {
     "0": "Wifi",
@@ -20,7 +20,7 @@
   "detailsTitle": "Thông tin chi tiết",
   "tabs": {
     "description": "Mô tả",
-    "menu": "Menu",
+    "menu": "Thực đơn",
     "amenities": "Tiện ích",
     "priceRange": "Khoảng giá"
   },
