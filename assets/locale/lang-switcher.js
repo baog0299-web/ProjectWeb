@@ -9,7 +9,7 @@
   function detectPageName() {
     const path = window.location.pathname;
     const fileName = path.split('/').pop().replace('.html', '');
-    
+  // Map file names to locale file names  
     const pageMap = {
       'index': 'home',
       'cafe-list': 'cafe-list',
@@ -23,6 +23,7 @@
 
   function getJsonUrlForLang(lang) {
     currentPageName = detectPageName();
+  // Try multiple possible paths
     const possiblePaths = [
       `/assets/locale/${currentPageName}-${lang}.json`,
       `/assets/page/${currentPageName}/${lang}.json`,
@@ -95,52 +96,52 @@
   function applyTranslations(locale) {
     if (!locale) return;
     lastLocale = locale;
-
+  // Update page title
     const title = getByPath(locale, 'pageTitle');
     if (title) document.title = title;
-
+  // Translate text content
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       const val = getByPath(locale, key);
       if (val !== undefined) el.textContent = val;
     });
-
+  // Translate HTML content
     document.querySelectorAll('[data-i18n-html]').forEach(el => {
       const key = el.getAttribute('data-i18n-html');
       const val = getByPath(locale, key);
       if (val !== undefined) el.innerHTML = val;
     });
-
+  // Translate placeholders
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
       const key = el.getAttribute('data-i18n-placeholder');
       const val = getByPath(locale, key);
       if (val !== undefined) el.setAttribute('placeholder', val);
     });
-
+  // Translate alt attributes
     document.querySelectorAll('[data-i18n-alt]').forEach(el => {
       const key = el.getAttribute('data-i18n-alt');
       const val = getByPath(locale, key);
       if (val !== undefined) el.setAttribute('alt', val);
     });
-
+  // Translate values
     document.querySelectorAll('[data-i18n-value]').forEach(el => {
       const key = el.getAttribute('data-i18n-value');
       const val = getByPath(locale, key);
       if (val !== undefined) el.value = val;
     });
-
+  // Translate aria-label
     document.querySelectorAll('[data-i18n-aria]').forEach(el => {
       const key = el.getAttribute('data-i18n-aria');
       const val = getByPath(locale, key);
       if (val !== undefined) el.setAttribute('aria-label', val);
     });
-
+  // Translate title attributes
     document.querySelectorAll('[data-i18n-title]').forEach(el => {
       const key = el.getAttribute('data-i18n-title');
       const val = getByPath(locale, key);
       if (val !== undefined) el.setAttribute('title', val);
     });
-
+  // Update language buttons state
     document.querySelectorAll('[data-lang]').forEach(btn => {
       const isActive = btn.getAttribute('data-lang') === currentLang();
       btn.classList.toggle('active', isActive);
@@ -169,6 +170,7 @@
       })
       .catch(err => {
         console.warn('Locale load failed:', err);
+  // If not default language, try falling back to default
         if (lang !== DEFAULT_LANG) {
           fetchLocale(DEFAULT_LANG)
             .then(locale => {
@@ -179,14 +181,14 @@
         }
       });
   }
-
+  // Click handler for language buttons
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-lang]');
     if (!btn) return;
     const lang = btn.getAttribute('data-lang');
     setLang(lang);
   });
-
+  // Observe DOM changes to re-apply translations
   function startDomObserver() {
     if (typeof MutationObserver === 'undefined') return;
     
@@ -204,12 +206,12 @@
       attributes: false
     });
   }
-
+  // Initialize on DOM ready
   document.addEventListener('DOMContentLoaded', () => {
     setLang(currentLang());
     startDomObserver();
   });
-
+  // Expose API
   window.langSwitcher = { 
     setLang, 
     currentLang,
