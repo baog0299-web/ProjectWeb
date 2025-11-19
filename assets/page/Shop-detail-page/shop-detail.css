@@ -251,7 +251,7 @@ body {
 }
 .shopdetail_address{
   display: flex;
-  flex:0.4;
+  flex:0.5;
   flex-direction: column;
   padding-left: 15px;
   padding-top: 7px;
