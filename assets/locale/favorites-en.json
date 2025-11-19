@@ -21,8 +21,12 @@
     "label": "Search by needs"
   },
   "empty": {
-    "title": "No favorite cafes yet",
-    "description": "Explore and save your favorite cafes!"
+    "title": "No cafes in your collection yet",
+    "description": "Explore and save your favorite cafes!",
+    "exploreButton": "Explore Now"
+  },
+  "error": {
+    "loadingData": "An error occurred while loading data."
   },
   "footer": {
     "discoverText": "Discover the perfect coffee experience",
@@ -37,7 +41,7 @@
     "btnText": "Send",
     "copyright": "© 2025 CoffeeFinder. All rights reserved."
   },
-   "head": {
+  "head": {
     "search": {
       "placeholder": "Quick search..."
     },
@@ -48,5 +52,4 @@
       "feedback": "Feedback"
     }
   }
-
 }
