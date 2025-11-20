@@ -96,8 +96,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Tên quán
     const titleH1 = document.querySelector('.shopdetail_title h1');
     const titleP = document.querySelector('.shopdetail_name');
+    const shopName = document.querySelector('.shop-name');
     if (titleH1) titleH1.textContent = cafe.name;
     if (titleP) titleP.textContent = cafe.name;
+    if (shopName) shopName.textContent = cafe.name;
 
     // Địa chỉ
     const addressText = document.querySelector('.address-text');
@@ -106,17 +108,46 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Rating
     const ratingValue = document.querySelector('.rating-value');
     if (ratingValue) ratingValue.textContent = cafe.rating || '5';
+    
+    // Update rating stars
+    const ratingStars = document.querySelectorAll('.rating-stars i');
+    if (ratingStars.length > 0) {
+      const rating = parseFloat(cafe.rating || 5);
+      ratingStars.forEach((star, index) => {
+        if (index < Math.floor(rating)) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
 
     // Tags
     const tagsContainer = document.querySelector('.shopdetail_tag');
-    if (tagsContainer && cafe.criteria) {
-      tagsContainer.innerHTML = '';
-      cafe.criteria.slice(0, 5).forEach(tag => {
-        const tagElement = document.createElement('p');
-        tagElement.className = 'tag';
-        tagElement.textContent = tag;
-        tagsContainer.appendChild(tagElement);
-      });
+    const shopTags = document.querySelector('.shop-tags');
+    
+    if (cafe.criteria) {
+      // Update old tags container if exists
+      if (tagsContainer) {
+        tagsContainer.innerHTML = '';
+        cafe.criteria.slice(0, 5).forEach(tag => {
+          const tagElement = document.createElement('p');
+          tagElement.className = 'tag';
+          tagElement.textContent = tag;
+          tagsContainer.appendChild(tagElement);
+        });
+      }
+      
+      // Update new tags container if exists
+      if (shopTags) {
+        shopTags.innerHTML = '';
+        cafe.criteria.slice(0, 5).forEach(tag => {
+          const tagElement = document.createElement('span');
+          tagElement.className = 'tag';
+          tagElement.textContent = tag;
+          shopTags.appendChild(tagElement);
+        });
+      }
     }
 
     // Hình ảnh
