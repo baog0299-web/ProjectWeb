@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Hàm setup image slider với hiệu ứng crossfade mượt mà
+  // Hàm setup image slider với hiệu ứng crossfade đơn giản và ổn định
   function setupImageSlider(cafe) {
     if (!cafe.images_slider || cafe.images_slider.length <= 1) return;
 
@@ -232,70 +232,83 @@ document.addEventListener('DOMContentLoaded', async () => {
     const imageContainer = document.createElement('div');
     imageContainer.className = 'image-crossfade-container';
     
-    // Di chuyển hình ảnh hiện tại vào container mới
+    // Tạo 2 ảnh cho crossfade effect
     const currentImg = sliderContainer.querySelector('img');
-    const img1 = currentImg.cloneNode(true);
-    const img2 = currentImg.cloneNode(true);
+    const img1 = document.createElement('img');
+    const img2 = document.createElement('img');
     
-    img1.className = 'slider-img active';
+    // Setup initial images
+    img1.src = images[0];
+    img1.className = 'slider-img';
+    img1.style.opacity = '1';
+    img1.style.zIndex = '2';
+    
+    img2.src = images[0];
     img2.className = 'slider-img';
+    img2.style.opacity = '0';
+    img2.style.zIndex = '1';
     
     imageContainer.appendChild(img1);
     imageContainer.appendChild(img2);
     
-    // Thay thế hình ảnh cũ bằng container mới
+    // Thay thế hình ảnh cũ
     currentImg.replaceWith(imageContainer);
 
     let isTransitioning = false;
+    let activeImg = img1;
+    let inactiveImg = img2;
 
-    // Hàm chuyển ảnh với crossfade effect
+    // Hàm chuyển ảnh đơn giản
     function changeImage(newIndex) {
       if (isTransitioning) return;
       isTransitioning = true;
 
-      const activeImg = imageContainer.querySelector('.slider-img.active');
-      const inactiveImg = imageContainer.querySelector('.slider-img:not(.active)');
-      
       // Preload new image
       const tempImg = new Image();
       tempImg.onload = () => {
-        // Set new image to inactive img
+        // Set new image to inactive layer
         inactiveImg.src = images[newIndex];
         
-        // Start crossfade transition
+        // Start crossfade
         activeImg.style.opacity = '0';
         inactiveImg.style.opacity = '1';
         
-        // Switch active states after transition
+        // Swap z-index
+        const activeZ = activeImg.style.zIndex;
+        activeImg.style.zIndex = inactiveImg.style.zIndex;
+        inactiveImg.style.zIndex = activeZ;
+        
+        // Swap references
+        const temp = activeImg;
+        activeImg = inactiveImg;
+        inactiveImg = temp;
+        
+        // Reset transition flag
         setTimeout(() => {
-          activeImg.classList.remove('active');
-          inactiveImg.classList.add('active');
-          activeImg.style.opacity = '1'; // Reset for next transition
           isTransitioning = false;
         }, 400);
       };
+      
+      tempImg.onerror = () => {
+        isTransitioning = false;
+      };
+      
       tempImg.src = images[newIndex];
     }
 
     // Previous image
     prevBtn.addEventListener('click', () => {
+      if (isTransitioning) return;
       currentImageIndex = currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1;
       changeImage(currentImageIndex);
     });
 
     // Next image  
     nextBtn.addEventListener('click', () => {
+      if (isTransitioning) return;
       currentImageIndex = currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1;
       changeImage(currentImageIndex);
     });
-
-    // Auto-slide (optional - có thể bỏ comment nếu muốn)
-    // setInterval(() => {
-    //   if (!isTransitioning) {
-    //     currentImageIndex = currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1;
-    //     changeImage(currentImageIndex);
-    //   }
-    // }, 5000);
   }
 
   // Hàm setup favorite button
