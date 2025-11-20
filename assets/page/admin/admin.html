@@ -56,85 +56,76 @@
             </div>
             <div class="stats-card">
                 <div class="stats-label">Tổng số quán cafe</div>
-                <div class="stats-number">0000</div>
-                <div class="stats-update">Cập nhật lần cuối: Hôm nay</div>
+                <div class="stats-number" id="total-cafes">0</div>
+                <div class="stats-update" id="last-update">Đang tải...</div>
             </div>
         </div>
     </div>
     <section class="cafe-list-section">
         <div class="header-row">
             <h3>Quản lý quán cafe</h3>
-            <a href="#" class="view-all">Xem tất cả →</a>
+            <div class="admin-controls">
+                <input type="text" id="search-input" placeholder="Tìm kiếm quán cafe..." class="search-input">
+                <button id="refresh-btn" class="btn-refresh"><i class="fas fa-sync-alt"></i> Refresh</button>
+                <a href="#" class="view-all">Xem tất cả →</a>
+            </div>
         </div>
 
-        <div class="card-container">
-            <div class="card">
-                <div class="card-image">
-                    <img src="card.jpg" alt="Urban Roast">
-                    <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
-                    <div class="icon-top-right"><i class="far fa-heart"></i></div>
-                </div>
+        <div class="loading-container" id="loading" style="display: none;">
+            <div class="loading-spinner"></div>
+            <p>Đang tải dữ liệu...</p>
+        </div>
 
-                <div class="card-content">
-                    <div class="rating"><i class="fas fa-star"></i> 4.8</div>
-                    <h3 class="title">Urban Roast</h3>
-                    <div class="location"><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</div>
+        <div class="card-container" id="card-container">
+            <!-- Cards will be loaded dynamically via JavaScript -->
+        </div>
 
-                    <div class="tag">
-                        <button class="btn-tag">Wifi miễn phí</button>
-                        <button class="btn-tag">View đẹp</button>
-                        <button class="btn-tag" id="small">+1</button>
-                    </div>
-                    <a href="../coffe-shop-exchange/general-inform.html" >
-                    <button class="btn-edit"><i class="fas fa-edit"></i> Chỉnh sửa</button></a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="card.jpg" alt="Urban Roast">
-                    <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
-                    <div class="icon-top-right"><i class="far fa-heart"></i></div>
-                </div>
-
-                <div class="card-content">
-                    <div class="rating"><i class="fas fa-star"></i> 4.8</div>
-                    <h3 class="title">Urban Roast</h3>
-                    <div class="location"><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</div>
-
-                    <div class="tag">
-                        <button class="btn-tag">Wifi miễn phí</button>
-                        <button class="btn-tag">Yên tĩnh</button>
-                        <button class="btn-tag" id="small">+1</button>
-                    </div>
-                    
-                    <a href="../coffe-shop-exchange/general-inform.html" >
-                    <button class="btn-edit"><i class="fas fa-edit"></i> Chỉnh sửa</button></a>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-image">
-                    <img src="card.jpg" alt="The Dreamy Bean">
-                    <div class="icon-top-left"><i class="fas fa-mug-hot"></i></div>
-                    <div class="icon-top-right"><i class="far fa-heart"></i></div>
-                </div>
-
-                <div class="card-content">
-                    <div class="rating"><i class="fas fa-star"></i> 4.9</div>
-                    <h3 class="title">The Dreamy Bean</h3>
-                    <div class="location"><i class="fas fa-map-marker-alt"></i> Quận 1, TP.HCM</div>
-
-                    <div class="tag">
-                        <button class="btn-tag">Pet friendly</button>
-                        <button class="btn-tag">Mở 24/7</button>
-                    </div>
-
-                   <a href="../coffe-shop-exchange/general-inform.html" >
-                    <button class="btn-edit"><i class="fas fa-edit"></i> Chỉnh sửa</button></a>
-                </div>
-                
-            </div>
+        <div class="no-data" id="no-data" style="display: none;">
+            <i class="fas fa-coffee"></i>
+            <h3>Chưa có quán cafe nào</h3>
+            <p>Bấm nút "THÊM" để thêm quán cafe đầu tiên</p>
         </div>
     </section>
 
+    <!-- Modal for Delete Confirmation -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> Xác nhận xóa</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa quán cafe này không?</p>
+                <p class="warning-text">Hành động này không thể hoàn tác!</p>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-delete" class="btn-secondary">
+                    <i class="fas fa-times"></i> Hủy
+                </button>
+                <button id="confirm-delete" class="btn-danger">
+                    <i class="fas fa-trash"></i> Xóa
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Đang tải dữ liệu...</p>
+        </div>
+    </div>
+
+    <!-- No Data Message -->
+    <div id="no-data" class="no-data" style="display: none;">
+        <div class="no-data-content">
+            <i class="fas fa-search"></i>
+            <h3>Không tìm thấy kết quả</h3>
+            <p>Thử tìm kiếm với từ khóa khác hoặc kiểm tra lại bộ lọc.</p>
+        </div>
+    </div>
+
+    <script src="admin-new.js"></script>
 </body>
 </html>
