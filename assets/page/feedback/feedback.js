@@ -151,5 +151,5 @@ document.addEventListener('DOMContentLoaded', () => {
         fileInput.addEventListener('change', updateFileUploadStatus);
     }
 });
-})();
+});
 
