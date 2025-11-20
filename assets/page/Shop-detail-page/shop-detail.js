@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     displayCafeData(cafe);
     setupTabs();
     setupFavoriteButton(cafe);
+    setupImageSlider(cafe);
     loadSimilarCafes(data, cafe);
 
     // Hiển thị nội dung
@@ -213,6 +214,42 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       });
     });
+  }
+
+  // Hàm setup image slider
+  function setupImageSlider(cafe) {
+    if (!cafe.images_slider || cafe.images_slider.length <= 1) return;
+
+    let currentImageIndex = 0;
+    const images = cafe.images_slider;
+    const mainImg = document.querySelector('.slider-column img');
+    const prevBtn = document.querySelector('.arrow-left');
+    const nextBtn = document.querySelector('.arrow-right');
+
+    if (!mainImg || !prevBtn || !nextBtn) return;
+
+    // Previous image
+    prevBtn.addEventListener('click', () => {
+      currentImageIndex = currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1;
+      mainImg.src = images[currentImageIndex];
+      mainImg.style.opacity = '0';
+      setTimeout(() => {
+        mainImg.style.opacity = '1';
+      }, 150);
+    });
+
+    // Next image  
+    nextBtn.addEventListener('click', () => {
+      currentImageIndex = currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1;
+      mainImg.src = images[currentImageIndex];
+      mainImg.style.opacity = '0';
+      setTimeout(() => {
+        mainImg.style.opacity = '1';
+      }, 150);
+    });
+
+    // Add transition effect
+    mainImg.style.transition = 'opacity 0.3s ease';
   }
 
   // Hàm setup favorite button

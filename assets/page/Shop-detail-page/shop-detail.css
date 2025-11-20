@@ -410,34 +410,50 @@ body {
   border: 1px solid #E8E2D9;
   border-radius: 8px;
 }
-.shopdetail_info-tabs{
+/* Modern Tabs Container */
+.shopdetail_info-tabs {
   display: flex;
+  background: #F9F7F4;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(107, 68, 35, 0.1);
 }
-.detail_tab-link{
+/* Modern Tab Links */
+.detail_tab-link {
   border: none;
-  font-size: 16px;
-  font-weight: 60;
+  font-size: 15px;
+  font-weight: 500;
   color: #6B4423;
-  background-color: transparent;
-  padding: 14px 16px;
+  background-color: #F9F7F4;
+  padding: 16px 20px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: all 0.3s ease;
   flex: 1;
   text-align: center;
+  border-bottom: 3px solid transparent;
+  position: relative;
 }
-.detail_tab-link:last-child{
+
+.detail_tab-link:last-child {
   border-top-right-radius: 8px;
 }
-.detail_tab-link:first-child{
+
+.detail_tab-link:first-child {
   border-top-left-radius: 8px;
 }
-.detail_tab-link:hover{
+
+.detail_tab-link:hover {
   color: #FFFFFF;
-  background-color: #6B4423;
+  background: linear-gradient(135deg, #6B4423 0%, #8B4513 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(107, 68, 35, 0.2);
 }
-.detail_tab-link.active{
+
+.detail_tab-link.active {
   color: #FFFFFF;
-  background-color: #6B4423;
+  background: linear-gradient(135deg, #6B4423 0%, #8B4513 100%);
+  border-bottom-color: #D97706;
+  box-shadow: 0 4px 12px rgba(107, 68, 35, 0.3);
 }
 .shopdetail_tab-content-wrapper {
     border-top: none;
@@ -447,8 +463,44 @@ body {
     color: #6B4423;
     padding: 0px 15px;
 }p
-.shopdetail_tab-content.active{
+/* Tab Content Styling */
+.shopdetail_tab-content {
+  display: none;
+  padding: 20px 15px;
+  background: #FFFFFF;
+  border-radius: 0 0 8px 8px;
+}
+
+.shopdetail_tab-content.active {
   display: block;
+}
+
+.shopdetail_tab-content p {
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.shopdetail_tab-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Detail Section Styling */
+.shopdetail_sub-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #6B4423;
+  margin: 30px 0 20px 0;
+  text-align: left;
+}
+
+.shopdetail_sub-container {
+    width: 100%;
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(107, 68, 35, 0.08);
+    border: 1px solid rgba(107, 68, 35, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
 }
 
 /* Footer styling to ensure it appears outside main content */
