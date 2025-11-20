@@ -2,6 +2,7 @@
   "pageTitle": "Chi tiết quán - CoffeeFinder",
   "shopName": "Café Artisan Saigon",
   "addToFavorites": "Thêm vào yêu thích",
+  "removedFromFavorites": "Đã yêu thích",
   "labels": {
     "nameLabel": "Tên quán:",
     "typeLabel": "Loại:",

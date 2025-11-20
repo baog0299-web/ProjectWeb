@@ -228,11 +228,41 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (active) {
       btn.classList.add('active');
       icon.className = 'fa-solid fa-heart favorite-icon';
-      text.textContent = 'Đã yêu thích';
+      text.setAttribute('data-i18n', 'removedFromFavorites');
     } else {
       btn.classList.remove('active');
       icon.className = 'fa-regular fa-heart favorite-icon';
-      text.textContent = 'Thêm trang yêu thích';
+      text.setAttribute('data-i18n', 'addToFavorites');
+    }
+    
+    // Trigger immediate i18n update for this element
+    triggerTranslationUpdate();
+  }
+  
+  // Helper function to trigger translation update
+  function triggerTranslationUpdate() {
+    // Manually trigger translation for the favorite button
+    const text = document.querySelector('.favorite-text');
+    if (text) {
+      const key = text.getAttribute('data-i18n');
+      // Try to get current locale data and update immediately
+      const currentLang = localStorage.getItem('site_lang') || 'vi';
+      
+      // Fallback text based on key and language
+      const fallbackTexts = {
+        'vi': {
+          'addToFavorites': 'Thêm vào yêu thích',
+          'removedFromFavorites': 'Đã yêu thích'
+        },
+        'en': {
+          'addToFavorites': 'Add to Favorites',
+          'removedFromFavorites': 'Added to Favorites'
+        }
+      };
+      
+      if (fallbackTexts[currentLang] && fallbackTexts[currentLang][key]) {
+        text.textContent = fallbackTexts[currentLang][key];
+      }
     }
   }
 
