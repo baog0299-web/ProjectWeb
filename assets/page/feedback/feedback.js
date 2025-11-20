@@ -1,72 +1,115 @@
 // Header and footer are loaded by header-loader.js
-// Add any page-specific JavaScript here
 
-// Smooth expand/collapse for <details class="faq-item">
-(function faqExpand(){
-  function setClosedHeight(bodyEl){
-    bodyEl.style.maxHeight = '0px';
-  }
-  function setOpenHeight(bodyEl){
-    // set to scrollHeight to animate then clear to 'none' after transition so content can grow
-    bodyEl.style.maxHeight = bodyEl.scrollHeight + 'px';
-  }
+// --- 1. XỬ LÝ HIỆU ỨNG FAQ (ACCORDION) MƯỢT MÀ ---
+document.addEventListener('DOMContentLoaded', () => {
+    const details = document.querySelectorAll('.faq-item');
 
-  function initDetail(d){
-    const summary = d.querySelector('summary');
-    const body = d.querySelector('.faq-body');
-    if (!summary || !body) return;
+    details.forEach((targetDetail) => {
+        const summary = targetDetail.querySelector('summary');
+        const content = targetDetail.querySelector('.faq-body');
+        
+        summary.addEventListener('click', (e) => {
+            e.preventDefault();
 
-    // initial state
-    if (d.hasAttribute('open')) {
-      // allow initial open to size correctly
-      body.style.maxHeight = body.scrollHeight + 'px';
-    } else {
-      setClosedHeight(body);
+            if (targetDetail.hasAttribute('open')) {
+                // --- ĐÓNG ---
+                content.style.maxHeight = content.scrollHeight + 'px';
+                requestAnimationFrame(() => {
+                    content.style.maxHeight = '0px';
+                });
+                content.addEventListener('transitionend', function() {
+                    targetDetail.removeAttribute('open');
+                }, { once: true });
+
+            } else {
+                // --- MỞ ---
+                targetDetail.setAttribute('open', '');
+                content.style.maxHeight = '0px';
+                requestAnimationFrame(() => {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                });
+                
+                // Đóng các tab khác
+                details.forEach(otherDetail => {
+                    if (otherDetail !== targetDetail && otherDetail.hasAttribute('open')) {
+                        const otherContent = otherDetail.querySelector('.faq-body');
+                        otherContent.style.maxHeight = otherContent.scrollHeight + 'px';
+                        requestAnimationFrame(() => {
+                            otherContent.style.maxHeight = '0px';
+                        });
+                        otherContent.addEventListener('transitionend', () => {
+                            otherDetail.removeAttribute('open');
+                        }, { once: true });
+                    }
+                });
+            }
+        });
+    });
+});
+
+// --- 2. QUẢN LÝ NGÔN NGỮ & FILE UPLOAD ---
+(function() {
+    let currentLocaleData = null;
+
+    function getTrans(path, localeObj) {
+        if (!localeObj) return null;
+        return path.split('.').reduce((o, k) => (o && o[k] ? o[k] : undefined), localeObj);
     }
 
-    // click on summary — control toggle to animate
-    summary.addEventListener('click', (ev) => {
-      ev.preventDefault(); // prevent default instant toggle
-      const isOpen = d.hasAttribute('open');
-      if (isOpen) {
-        // close
-        // set fixed height first to enable transition
-        body.style.maxHeight = body.scrollHeight + 'px';
-        // next frame set to 0 => animate
-        requestAnimationFrame(() => {
-          body.style.maxHeight = '0px';
-        });
-        d.removeAttribute('open');
-      } else {
-        // open: set open attribute immediately so CSS [open] rules apply (padding, chevron)
-        d.setAttribute('open', '');
-        // start from 0 then to scrollHeight to animate
-        body.style.maxHeight = '0px';
-        requestAnimationFrame(() => {
-          setOpenHeight(body);
-        });
-      }
+    // Hàm cập nhật trạng thái file (SỬA: Icon xanh, Chữ thường)
+    function updateFileUploadStatus() {
+        const fileInput = document.getElementById('bonus');
+        const fileNameDisplay = document.getElementById('file-name-display');
+        const uploadIcon = document.querySelector('.feedback_button i'); 
+
+        if (!fileInput || !fileNameDisplay) return;
+
+        if (fileInput.files && fileInput.files.length > 0) {
+            // --- CÓ FILE ---
+            
+            // 1. Text: "Đã chọn ảnh"
+            let statusText = getTrans('upload.selected', currentLocaleData) || "Đã chọn ảnh";
+            statusText = statusText.replace('{n}', '1'); 
+            fileNameDisplay.textContent = statusText;
+
+            // 2. Style Chữ: Đậm, Nghiêng, MÀU MẶC ĐỊNH (không xanh)
+            fileNameDisplay.style.fontStyle = 'italic';
+            fileNameDisplay.style.fontWeight = 'bold';
+            fileNameDisplay.style.color = ''; 
+
+            // 3. Icon: Dấu tích VÀ MÀU XANH LÁ
+            if (uploadIcon) {
+                uploadIcon.className = 'fa-solid fa-check';
+                uploadIcon.style.color = '#28a745'; // Xanh lá
+            }
+
+        } else {
+            // --- KHÔNG CÓ FILE ---
+            let defaultText = getTrans('upload.button', currentLocaleData) || "Upload File";
+            fileNameDisplay.textContent = defaultText;
+
+            // Reset style chữ
+            fileNameDisplay.style.fontStyle = 'normal';
+            fileNameDisplay.style.fontWeight = 'normal';
+            fileNameDisplay.style.color = '';
+
+            // Reset Icon
+            if (uploadIcon) {
+                uploadIcon.className = 'fa-solid fa-arrow-up-from-bracket'; 
+                uploadIcon.style.color = ''; // Reset màu icon
+            }
+        }
+    }
+
+    document.addEventListener('languageChanged', (e) => {
+        currentLocaleData = e.detail.locale;
+        updateFileUploadStatus();
     });
 
-    // ensure after transition, if open, allow auto height (clear maxHeight)
-    body.addEventListener('transitionend', (e) => {
-      if (e.propertyName !== 'max-height') return;
-      if (d.hasAttribute('open')) {
-        body.style.maxHeight = 'none';
-      }
+    document.addEventListener('DOMContentLoaded', () => {
+        const fileInput = document.getElementById('bonus');
+        if (fileInput) {
+            fileInput.addEventListener('change', updateFileUploadStatus);
+        }
     });
-
-    // keyboard accessibility: open/close on Enter/Space
-    summary.addEventListener('keydown', (ev) => {
-      if (ev.key === 'Enter' || ev.key === ' ') {
-        ev.preventDefault();
-        summary.click();
-      }
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.faq-item').forEach(initDetail);
-  });
 })();
-

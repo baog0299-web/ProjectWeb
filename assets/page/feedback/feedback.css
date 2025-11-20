@@ -239,80 +239,73 @@ body {
     }
 /* FAQ expand/collapse animation */
 .faq-item {
-  border-bottom: 1px solid #E8E3D8;
-  overflow: visible;
-}
-.faq-item summary.faq-question {
-  list-style: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 0;
-  font-weight: 600;
-}
-.faq-item summary::-webkit-details-marker { display: none; } /* hide default marker */
-
-.faq-item .faq-question i {
-  transition: transform .22s ease;
-  color: #4A2C1A;
-  font-size: 14px;
+    border-bottom: 1px solid #E8E3D8;
+    margin-bottom: 0; 
+    overflow: hidden; 
 }
 
-/* body that animates height */
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+/* Phần tiêu đề (Summary) */
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 16px 0;
+    cursor: pointer;
+    list-style: none; 
+    font-weight: 600;
+    color: #4A2C1A;
+    transition: color 0.3s ease;
+}
+
+/* Ẩn dấu tam giác mặc định trên Chrome/Safari */
+.faq-question::-webkit-details-marker {
+    display: none;
+}
+
+.faq-question:hover {
+    color: #D97706;
+}
+
+.faq-question:hover i {
+    color: #D97706;
+}
+
+/* Phần chữ câu hỏi */
+.faq-text {
+    flex: 1; 
+    line-height: 1.5;
+    margin-right: 10px;
+}
+
+/* Icon mũi tên */
+.faq-question i {
+    color: #888; 
+    font-size: 14px;
+    transition: transform 0.3s ease, color 0.3s ease; 
+    flex-shrink: 0; 
+}
+
+details[open] .faq-question i {
+    transform: rotate(180deg);
+    color: #D97706; 
+}
+
+/* Phần nội dung trả lời (Body) */
 .faq-body {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height .28s ease, padding .22s ease;
-  padding: 0 0;
-  color: #4A2C1A;
-  line-height: 1.6;
+    color: #555;
+    line-height: 1.6;
+    font-size: 15px;
+    
+    overflow: hidden; 
+    transition: max-height 0.3s ease-out; 
+    max-height: 0; 
+    padding-bottom: 0;
 }
 
-/* rotate chevron when open (visual) */
-.faq-item[open] .faq-question i {
-  transform: rotate(180deg);
-}
-
-/* open state spacing — JS will set max-height; this ensures padding visible when open */
-.faq-item[open] .faq-body {
-  padding: 10px 0 50px 0;
-}
-
-/* FAQ: allow question text to use full available width and wrap nicely */
-.faq-item summary.faq-question {
-  align-items: flex-start; /* allow multiline text */
-  gap: 12px;
-  padding: 12px 0;
-}
-
-/* ensure the text can shrink/grow inside flex and wrap */
-.faq-item .faq-text {
-  flex: 1 1 auto;
-  min-width: 0;            
-  white-space: normal;     
-  word-break: break-word;  
-  line-height: 1.45;
-  font-weight: 600;
-}
-
-/* keep chevron/icon compact and right-aligned */
-.faq-item summary .faq-question i,
-.faq-item summary > i {
-  flex: 0 0 24px;
-  width: 24px;
-  height: 24px;
-  margin-left: 8px;
-  font-size: 14px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #4A2C1A;
-}
-
-/* small visual tweak: reduce summary font-size on very small screens */
-@media (max-width: 420px) {
-  .faq-item summary.faq-question { font-size: 15px; }
-  .faq-item .faq-text { line-height: 1.35; }
+details[open] .faq-body {
+    padding-bottom: 15px;
 }

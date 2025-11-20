@@ -2,11 +2,24 @@
   "pageTitle": "Phản hồi",
   "heading": "Gửi cho chúng tôi phản hồi của bạn",
   "subtitle": "Những đóng góp của bạn là nguồn động lực quý giá giúp cải thiện trang web mỗi ngày",
-  "name": { "label": "Nhập tên của bạn", "placeholder": "Ngxx" },
-  "email": { "label": "Địa chỉ Email của bạn", "placeholder": "xxx@example.com" },
-  "subject": { "label": "Vấn đề", "placeholder": "Vấn đề bạn gặp phải là:" },
-  "description": { "label": "Nhập mô tả cụ thể", "placeholder": "Hãy nhập mô tả về tình trạng bạn gặp phải" },
-  "upload": { "label": "Thêm ảnh về vấn đề (Nếu có)", "button": "Tải tệp" },
+  "name": { 
+    "label": "Nhập tên của bạn", 
+    "placeholder": "Ngxx" },
+  "email": { 
+    "label": "Địa chỉ Email của bạn", 
+    "placeholder": "xxx@example.com" },
+  "subject": { 
+    "label": "Vấn đề", 
+    "placeholder": "Vấn đề bạn gặp phải là:" },
+  "description": { 
+    "label": "Nhập mô tả cụ thể", 
+    "placeholder": "Hãy nhập mô tả về tình trạng bạn gặp phải" 
+  },
+  "upload": { 
+    "label": "Thêm ảnh về vấn đề (Nếu có)", 
+    "button": "Tải tệp",
+    "selected": "Đã chọn ảnh" 
+  },
   "submit": "Gửi phản hồi",
   "rightColumn": {
     "helpText": "Chúng tôi ở đây để hỗ trợ",
@@ -27,8 +40,10 @@
     "Có — bạn có thể gửi phản hồi bổ sung qua email hoặc gọi hotline của chúng tôi.",
     "Mọi phản hồi được xử lý theo chính sách quyền riêng tư của chúng tôi và không chia sẻ công khai."
   ],
-  "floatingSearch": { "label": "Tìm kiếm theo nhu cầu" },
-  "imageAlt": { "cafeLogo": "logo quán cà phê" },
+  "floatingSearch": { 
+    "label": "Tìm kiếm theo nhu cầu" },
+  "imageAlt": { 
+    "cafeLogo": "logo quán cà phê" },
 
   "footer": {
     "discoverText": "Khám phá trải nghiệm cà phê hoàn hảo",
