@@ -302,8 +302,11 @@ body {
 /* Tags Section */
 .shop-tags {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 8px;
+    overflow: hidden;
+    height: 32px;
+    align-items: center;
 }
 
 .shop-tags .tag {
@@ -315,6 +318,11 @@ body {
     font-weight: 500;
     border: 1px solid rgba(217, 119, 6, 0.2);
     transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+    max-width: 120px;
 }
 
 .shop-tags .tag:hover {

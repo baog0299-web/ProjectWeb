@@ -80,25 +80,51 @@
 .tag,
 .tags {
     margin-top: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    align-items: center;
+    height: 32px; /* Fixed height for consistent layout */
+    overflow: hidden;
 }
-.btn-tag{
-    width: 98px;
+
+.btn-tag {
+    min-width: 60px;
+    max-width: 120px;
     height: 24px;
     background-color: rgba(254, 243, 199, 1);
     color: rgba(217, 119, 6, 1);
     border: none;
     border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 0 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
-#small{
-    width: 42px;
+#small {
+    min-width: 35px;
+    max-width: 50px;
+    width: auto;
     height: 24px;
-
+    padding: 0 8px;
+    font-size: 11px;
+    flex-shrink: 0;
 }
-.btn-tag:hover{
+.btn-tag:hover {
     background-color: rgba(255, 226, 187, 1);
     color: rgba(255, 95, 87, 1);
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
 }
-#small:hover{
+
+#small:hover {
     background-color: rgba(221, 219, 160, 1);
-    color: rgba(217, 119, 6, 1) ;
+    color: rgba(217, 119, 6, 1);
+    transform: translateY(-1px);
 }
