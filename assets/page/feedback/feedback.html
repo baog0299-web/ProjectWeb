@@ -27,27 +27,27 @@
                     </div>
                 </div>
                 <div class="feedback_form">
-                    <form  action="https://formsubmit.co/tanhung2007cg@gmail.com" method="post">
+                    <form  action="https://formsubmit.co/tanhung2007cg@gmail.com" method="post" enctype="multipart/form-data" >
                         <label class="feedback_label" for="name" data-i18n="name.label">Nhập tên của bạn</label>
-                        <input class="feedback_input" type="text" id="name" name="Ten" data-i18n-placeholder="name.placeholder" placeholder="Ngxx" required><br><br>
+                        <input class="feedback_input" type="text" id="name" name="Ten" data-i18n-placeholder="name.placeholder" placeholder="Ngxx" title="" required><br><br>
 
                         <label class="feedback_label" for="email" data-i18n="email.label">Your Email Address</label>
-                        <input class="feedback_input" type="email" id="email" name="email" data-i18n-placeholder="email.placeholder" placeholder="xxx@example.com" required><br><br>
+                        <input class="feedback_input" type="email" id="email" name="Email" data-i18n-placeholder="email.placeholder" placeholder="xxx@example.com" title="" required><br><br>
 
                         <label class="feedback_label" for="feedback" data-i18n="subject.label">What is this about?</label>
-                        <input class="feedback_input" type="text" id="feedback" name="VanDe" data-i18n-placeholder="subject.placeholder" placeholder="Vấn đề bạn gặp phải là:" required><br><br>
+                        <input class="feedback_input" type="text" id="feedback" name="VanDe" data-i18n-placeholder="subject.placeholder" placeholder="Vấn đề bạn gặp phải là:" title="" required><br><br>
 
                         <div class="feedback_area-container">
                            <label class="feedback_label" for="comments" data-i18n="description.label">Nhập mô tả cụ thể</label>
-                           <textarea class="feedback_area" id="comments" name="MoTa" data-i18n-placeholder="description.placeholder" placeholder="Hãy nhập mô tả về tình trạng bạn gặp phải" required></textarea><br><br>
+                           <textarea class="feedback_area" id="comments" name="MoTa" data-i18n-placeholder="description.placeholder" placeholder="Hãy nhập mô tả về tình trạng bạn gặp phải" title="" required></textarea><br><br>
                         </div>
 
                         <div>
                          <label for="bonus" data-i18n="upload.label">Thêm ảnh về vấn đề (Nếu có)</label>
-                            <input type="file" id="bonus" name="bonus" accept="image/*" class="real-upload"><br>
+                            <input type="file" id="bonus" name="attachment" accept="image/*" class="real-upload" multiple><br>
                          <label for="bonus" class="feedback_button">
                              <i class="fa-solid fa-arrow-up-from-bracket"></i>
-                             <span data-i18n="upload.button">Upload File</span>
+                             <span id="file-name-display" data-i18n="upload.button">Upload File</span>
                          </label>
                         </div>
 
@@ -148,8 +148,8 @@
 
     <script src="/assets/locale/lang-switcher.js"></script>
     <script src="/assets/component/header-footer/header-loader.js"></script>
-    <script src="/assets/component/header-footer/header-loader.js"></script>
     <script src="/main.js"></script>
+    <script src="feedback.js"></script>
    </body>
 </html>
 
