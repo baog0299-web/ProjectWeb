@@ -139,7 +139,9 @@ function toggleFavorite(shopId) {
     // TODO: Implement favorite functionality
 }
 
-async function initializeCarousel() {
+async function initializeCarousel(retryCount = 0) {
+    const maxRetries = 10; // Giới hạn số lần retry để tránh vòng lặp vô tận
+    
     let coffeeShopsData = [];
     
     // Kiểm tra dữ liệu từ data.js trước
@@ -152,13 +154,21 @@ async function initializeCarousel() {
             if (response.ok) {
                 coffeeShopsData = await response.json();
             } else {
-                console.warn('Could not load data.json, retrying...');
-                setTimeout(initializeCarousel, 100);
+                if (retryCount < maxRetries) {
+                    console.warn('Could not load data.json, retrying...', retryCount + 1);
+                    setTimeout(() => initializeCarousel(retryCount + 1), 100);
+                } else {
+                    console.error('Failed to load data.json after maximum retries');
+                }
                 return;
             }
         } catch (error) {
-            console.warn('Error loading data, retrying...', error);
-            setTimeout(initializeCarousel, 100);
+            if (retryCount < maxRetries) {
+                console.warn('Error loading data, retrying...', retryCount + 1, error);
+                setTimeout(() => initializeCarousel(retryCount + 1), 100);
+            } else {
+                console.error('Failed to load data after maximum retries:', error);
+            }
             return;
         }
     }
@@ -168,8 +178,12 @@ async function initializeCarousel() {
     const prevBtn = document.getElementById('prevBtn');
     
     if (!track || !nextBtn || !prevBtn) {
-        console.warn('Carousel elements not found, retrying...');
-        setTimeout(initializeCarousel, 100);
+        if (retryCount < maxRetries) {
+            console.warn('Carousel elements not found, retrying...', retryCount + 1);
+            setTimeout(() => initializeCarousel(retryCount + 1), 100);
+        } else {
+            console.error('Carousel elements not found after maximum retries');
+        }
         return;
     }
     
@@ -299,10 +313,14 @@ async function initializeCarousel() {
 
 // FAQ accordion functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize carousel after a small delay to ensure all data is loaded
-    setTimeout(() => {
-        initializeCarousel();
-    }, 100);
+    // Chỉ khởi tạo carousel nếu đang ở trang chủ (có carousel elements)
+    const carouselTrack = document.getElementById('carousel-track');
+    if (carouselTrack) {
+        // Initialize carousel after a small delay to ensure all data is loaded
+        setTimeout(() => {
+            initializeCarousel();
+        }, 100);
+    }
     
     // FAQ functionality
     const faqItems = document.querySelectorAll('.faq-item');
