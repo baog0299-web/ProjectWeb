@@ -20,7 +20,8 @@
   },
   "upload": {
     "label": "Add images of the issue (optional)",
-    "button": "Upload File"
+    "button": "Upload File",
+    "selected": "Images selected"
   },
   "submit": "Send feedback",
   "rightColumn": {
