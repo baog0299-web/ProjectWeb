@@ -18,6 +18,7 @@
       "Ấm cúng"
     ],
     "address": "61 Quang Trung, Phường 10, Quận Gò Vấp, TP.HCM.",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=LAVA+Coffee+61+Quang+Trung+Gò+Vấp",
     "hours": "07:30 – 22:30",
     "price_range": "Từ 40k đến 60k",
     "description_short": "LAVA Coffee là một địa điểm cà phê sân thượng nổi tiếng, lý tưởng cho những buổi hẹn hò đơn giản hoặc những cuộc trò chuyện sôi nổi của giới trẻ Sài Gòn.",
@@ -53,6 +54,7 @@
       "Đặt bàn trước"
     ],
     "address": "7 Phan Văn Trị, Phường 10, Quận Gò Vấp, Thành phố Hồ Chí Minh.",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Du+Miên+Garden+7+Phan+Văn+Trị+Gò+Vấp",
     "hours": "07:00 – 22:30",
     "price_range": "45k đến 80k",
     "description_short": "Quán có một không gian rộng rãi, tràn ngập cây xanh như một công viên thu nhỏ mang lại cảm giác thư giãn cho mọi khách hàng.",
@@ -90,6 +92,7 @@
       "Phù hợp gia đình"
     ],
     "address": "82 Đường Số 27, Phường 6, Quận Gò Vấp, TP.HCM.",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Saigon+Chic+82+Đường+Số+27+Gò+Vấp",
     "hours": "08:00 – 22:30",
     "price_range": "30k đến 80k",
     "description_short": "Nếu bạn đang tìm một địa điểm vừa thoáng mát, vừa “sống ảo” đẹp, có thể vừa uống cà phê vừa làm việc và hẹn hò – Saigon Chic là lựa chọn rất ổn ở Gò Vấp.",
@@ -124,6 +127,7 @@
       "Cây xanh"
     ],
     "address": "45 Nguyễn Oanh, Phường 10, Quận Gò Vấp.",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Thức+Coffee+45+Nguyễn+Oanh+Gò+Vấp",
     "hours": "Mở cửa 24/7",
     "price_range": "40k đến 80k",
     "description_short": "Thức Coffee Gò Vấp là điểm hẹn lý tưởng cho “cú đêm” và dân sáng tạo - quán mở 24/7, không gian hai lầu nhẹ nhàng, yên tĩnh, decor gỗ -đèn vàng tạo cảm giác ấm cúng.",
@@ -161,6 +165,7 @@
       "Cây xanh"
     ],
     "address": "26/14 Phạm Văn Đồng, Phường 3, Quận Gò Vấp, TP.HCM.",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Oasis+Cafe+26/14+Phạm+Văn+Đồng+Gò+Vấp",
     "hours": "07:00 – 23:00",
     "price_range": "40k đến 80k",
     "description_short": "Oasis Café như một “lâu đài xanh mát” giữa phố: nội thất mô phỏng các công trình châu Âu tráng lệ, hòa quyện cây xanh và hồ cá Koi, tạo cảm giác lãng mạn, huyền ảo.",
@@ -191,6 +196,7 @@
       "Cơm trưa"
     ],
     "address": "525/5 Quang Trung, Phường 10, Quận Gò Vấp, TP.HCM.",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Cà+phê+Ngày+xưa+ấy+525/5+Quang+Trung+Gò+Vấp",
     "hours": "08:00 – 22:30",
     "price_range": "30k đến 100k",
     "description_short": "Quán mang đến cảm giác hoài niệm sâu lắng: không gian cổ xưa với tủ kệ gỗ, đồng hồ quả lắc, máy radio và nhiều kỷ vật thời bao cấp, như một chuyến ngược dòng thời gian",
@@ -229,6 +235,7 @@
       "Giao hàng"
     ],
     "address": "18 Phan Văn Trị, Phường 10, Quận Gò Vấp, TP.HCM.",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Country+House+Coffee+18+Phan+Văn+Trị+Gò+Vấp",
     "hours": "07:00 – 22:30",
     "price_range": "30k đến 100k",
     "description_short": "Country House Coffee giống như một “lâu đài thu nhỏ” giữa Sài Gòn với sân vườn rộng rãi, cây xanh mướt, thác nước nhẹ nhàng và nhà gỗ cổ điển",
@@ -267,6 +274,7 @@
       "Hẹn hò"
     ],
     "address": "965/128/83 Quang Trung, Phường 14, Gò Vấp, Thành phố Hồ Chí Minh",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Tiệm+cà+phê+Chốn+Bình+Yên+965/128/83+Quang+Trung+Gò+Vấp",
     "hours": "08:00 – 23:00",
     "price_range": "60k đến 80k",
     "description_short": "Chốn Bình Yên Coffee mang vibe nhẹ nhàng, xanh mát và yên tĩnh đúng như tên gọi,một góc trú ẩn giữa Gò Vấp để bạn tạm trốn nhịp sống ồn ào.",
@@ -303,6 +311,7 @@
       "WC sạch"
     ],
     "address": "438 Phan Văn Trị, Phường 7, Quận Gò Vấp, TP.HCM.",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Family+Garden+Café+438+Phan+Văn+Trị+Gò+Vấp",
     "hours": "07:00 – 22:00",
     "price_range": "50k đến 100k",
     "description_short": "Family Garden Café ở Gò Vấp gây ấn tượng bởi không gian sân vườn rộng lớn, tràn ngập cây xanh và lối đi uốn quanh như bước vào một khu vườn nhiệt đới thu nhỏ.",
@@ -338,6 +347,7 @@
       "Thân thiện"
     ],
     "address": "463/69 Lê Đức Thọ, Phường 16, Gò Vấp, Thành phố Hồ Chí Minh",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=DEERA+GARDEN+463/69+Lê+Đức+Thọ+Gò+Vấp",
     "hours": "07:00 – 22:00",
     "price_range": "40k đến 55k",
     "description_short": "Deera Garden gây ấn tượng với không gian sân vườn lung linh, xanh mát và cực chill cả ngày lẫn tối.",
@@ -370,10 +380,11 @@
       "Đỗ xe miễn phí"
     ],
     "address": "389/24 Đ. Quang Trung, Phường 10, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Cafe+Ngắm+Máy+Bay+389/24+Quang+Trung+Gò+Vấp",
     "hours": "07:30 - 22:30",
     "price_range": "30k-100k",
     "description_short": "Đất Sài Gòn - Cafe Ngắm Máy Bay là điểm đến lý tưởng cho những người yêu thích hàng không và không gian thoáng đãng.",
-    "description_detail": "Đất Sài Gòn - Cafe Ngắm Máy Bay, là một điểm đến độc đáo không thể bỏ qua tại Sài Gòn, nổi bật nhờ vị trí đắc địa trên tầng thượng của một tòa nhà cao tầng, mang lại tầm nhìn trực diện và bao quát toàn cảnh sân bay Tân Sơn Nhất. [cite: 7]",
+    "description_detail": "Đất Sài Gòn - Cafe Ngắm Máy Bay, là một điểm đến độc đáo không thể bỏ qua tại Sài Gòn, nổi bật nhờ vị trí đắc địa trên tầng thượng của một tòa nhà cao tầng, mang lại tầm nhìn trực diện và bao quát toàn cảnh sân bay Tân Sơn Nhất.",
     "images_slider": [
       "/assets/image/cfimg/maybay1.png",
       "/assets/image/cfimg/maybay2.png",
@@ -403,10 +414,11 @@
       "Ổ cắm điện"
     ],
     "address": "688/24 Đ. Lê Đức Thọ, P, Gò Vấp, Thành phố Hồ Chí Minh 71414, Việt Nam",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Roll+D'+Die+688/24+Lê+Đức+Thọ+Gò+Vấp",
     "hours": "14:00 - 22:30",
     "price_range": "20k-40k",
     "description_short": "Roll D' Die là một quán cà phê kết hợp mô hình Boardgame (trò chơi bàn cờ) lý tưởng, nơi bạn có thể vừa thưởng thức đồ uống vừa tham gia vào các cuộc đấu trí vui nhộn với bạn bè.",
-    "description_detail": "Roll D' Die mang đến một trải nghiệm cà phê độc đáo, vượt ra ngoài khái niệm thưởng thức đồ uống đơn thuần. [cite_start]Quán được thiết kế nhằm phục vụ tối đa nhu cầu chơi Boardgame, với không gian thường được bố trí ấm cúng, có thể chia thành nhiều khu vực riêng biệt. [cite: 27, 28]",
+    "description_detail": "Roll D' Die mang đến một trải nghiệm cà phê độc đáo, vượt ra ngoài khái niệm thưởng thức đồ uống đơn thuần. Quán được thiết kế nhằm phục vụ tối đa nhu cầu chơi Boardgame, với không gian thường được bố trí ấm cúng, có thể chia thành nhiều khu vực riêng biệt.",
     "images_slider": [
       "/assets/image/cfimg/rolldie1.png",
       "/assets/image/cfimg/rolldie2.png",
@@ -438,10 +450,11 @@
       "WC riêng"
     ],
     "address": "14 Đ.Nguyễn Văn Nghi, Phường 5, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Chiin+Coffee+Cinema+14+Nguyễn+Văn+Nghi+Gò+Vấp",
     "hours": "24/7",
     "price_range": "Từ 44k/h",
     "description_short": "Chiin Coffee & Cinema là một tổ hợp giải trí 'All-in-One' độc đáo, vượt xa mô hình quán cà phê truyền thống.",
-    "description_detail": "Chiin Coffee & Cinema hoạt động theo mô hình tổ hợp dịch vụ đa dạng, biến nơi đây thành một trung tâm giải trí thu nhỏ ngay tại Gò Vấp. [cite_start]Quán không chỉ dừng lại ở việc cung cấp đồ uống và một chiếc ghế, mà đã mở rộng sang lĩnh vực giải trí cao cấp và lưu trú. [cite: 50, 51]",
+    "description_detail": "Chiin Coffee & Cinema hoạt động theo mô hình tổ hợp dịch vụ đa dạng, biến nơi đây thành một trung tâm giải trí thu nhỏ ngay tại Gò Vấp. Quán không chỉ dừng lại ở việc cung cấp đồ uống và một chiếc ghế, mà đã mở rộng sang lĩnh vực giải trí cao cấp và lưu trú.",
     "images_slider": [
       "/assets/image/cfimg/chiin1.png",
       "/assets/image/cfimg/chiin2.png",
@@ -472,10 +485,11 @@
       "Ổ cắm điện"
     ],
     "address": "352/8 Nguyễn Oanh, Phường 17, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Emotions+Coffee+Art+352/8+Nguyễn+Oanh+Gò+Vấp",
     "hours": "08:30 - 22:30",
     "price_range": "29k-45k",
     "description_short": "Emotions Coffee & Art tại hẻm 352 Nguyễn Oanh là một ốc đảo bình yên giữa lòng Gò Vấp, nổi bật với sự kết hợp hài hòa giữa không gian cà phê và nghệ thuật.",
-    "description_detail": "Emotions Coffee & Art thành công trong việc tạo ra một 'Không gian yên tĩnh' bằng cách tận dụng lợi thế vị trí nằm sâu trong con hẻm 352 Nguyễn Oanh, giúp loại bỏ hầu hết tiếng ồn của phố thị. [cite_start]Phong cách thiết kế của quán thường mang hơi hướng tối giản, mộc mạc với gam màu trầm ấm, hoặc sử dụng nhiều cây xanh để tạo cảm giác gần gũi với thiên nhiên. [cite: 79, 80]",
+    "description_detail": "Emotions Coffee & Art thành công trong việc tạo ra một 'Không gian yên tĩnh' bằng cách tận dụng lợi thế vị trí nằm sâu trong con hẻm 352 Nguyễn Oanh, giúp loại bỏ hầu hết tiếng ồn của phố thị. Phong cách thiết kế của quán thường mang hơi hướng tối giản, mộc mạc với gam màu trầm ấm, hoặc sử dụng nhiều cây xanh để tạo cảm giác gần gũi với thiên nhiên.",
     "images_slider": [
       "/assets/image/cfimg/emotions1.png",
       "/assets/image/cfimg/emotions2.png",
@@ -504,6 +518,7 @@
       "Ổ cắm điện"
     ],
     "address": "304 Đ. Nguyễn Thái Sơn, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Symbol+Coffee+Tea+304+Nguyễn+Thái+Sơn+Gò+Vấp",
     "hours": "24/7",
     "price_range": "30k-55k",
     "description_short": "Symbol Coffee & Tea là quán cà phê hiện đại, nổi bật với thiết kế không gian ấn tượng, đồng bộ và giàu tính nhận diện thương hiệu (lấy cảm hứng từ các ký hiệu toán học). Nằm trên trục đường lớn Nguyễn Thái Sơn, quán cung cấp một không gian rộng rãi, nhiều tầng, rất thích hợp cho cả làm việc, họp mặt hay thư giãn. Thực đơn phong phú với sự kết hợp hài hòa giữa Cà phê truyền thống và các loại Trà (Tea) sáng tạo, đáp ứng đa dạng sở thích của giới trẻ và dân văn phòng.",
@@ -536,6 +551,7 @@
       "Ghế ngồi thoải mái"
     ],
     "address": "29/61 Đ. Lê Đức Thọ, Phường 1, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=VIP+COFFEE+29/61+Lê+Đức+Thọ+Gò+Vấp",
     "hours": "06:00 - 22:30",
     "price_range": "20k-40k",
     "description_short": "VIP COFFEE tại địa chỉ 29/61 Lê Đức Thọ mang đến một không gian ấm cúng, nội thất tối giản nhưng tinh tế, rất phù hợp cho những ai tìm kiếm nơi yên tĩnh để học tập hoặc làm việc. Quán thường nằm trong hẻm hoặc khu vực yên tĩnh hơn, tạo điều kiện lý tưởng cho sự tập trung. Thực đơn chú trọng vào chất lượng hạt cà phê cao cấp (VIP) cùng các món đồ uống sáng tạo, biến nơi đây thành một góc nhỏ châu Âu thân mật, tiện nghi ngay giữa Gò Vấp.",
@@ -567,6 +583,7 @@
       "Hoài cổ"
     ],
     "address": "543/1 Đ. Phan Văn Trị, Phường 7, Gò Vấp, Thành phố Hồ Chí Minh, Việt Nam",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Tiệm+Cà+Phê+Của+Ngoại+543/1+Phan+Văn+Trị+Gò+Vấp",
     "hours": "06:00 - 22:30",
     "price_range": "36k-59k",
     "description_short": "Tiệm Cà Phê Của Ngoại là nơi tái hiện lại không gian Sài Gòn xưa với phong cách trang trí vintage, giản dị và ấm áp. Quán mang lại cảm giác hoài niệm, thân thuộc như đang về thăm nhà ông bà. Với vị trí nằm trong hẻm 543 Phan Văn Trị, quán tạo ra một góc bình yên lý tưởng để thưởng thức cà phê truyền thống, đọc sách, hoặc tìm kiếm một khoảnh khắc tĩnh lặng giữa nhịp sống hối hả. Đặc biệt, quán còn nổi tiếng với việc thay đổi trang trí theo chủ đề các dịp lễ, mang lại không khí tươi mới và vô số góc 'check-in' theo từng mùa trong năm.",
@@ -599,6 +616,7 @@
       "Menu chất lượng"
     ],
     "address": "672A50 Đ. Phan Văn Trị, Phường 10, Gò Vấp, Thành phố Hồ Chí Minh 700000, Việt Nam",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Tiệm+Cà+Phê+Mê+Gò+Vấp+672A50+Phan+Văn+Trị+Gò+Vấp",
     "hours": "24/7",
     "price_range": "Từ 42k",
     "description_short": "Tiệm Cà Phê Mê Gò Vấp (Mê Coffee & Tea) hiện là một trong những điểm 'gây sốt' nhất Sài Gòn nhờ vào phong cách trang trí chủ đề độc đáo kết hợp giữa cổ điển và hiện đại. Nổi bật nhất là 'Vương quốc Gấu Bông' với hàng trăm con gấu đủ kích cỡ được sắp đặt nghệ thuật khắp ba tầng không gian và hai mặt tiền quán. Quán tọa lạc tại vị trí đắc địa, rộng rãi, biến mỗi góc trở thành một background chụp ảnh lung linh, lý tưởng cho cả gia đình, nhóm bạn và các tín đồ 'sống ảo'.",

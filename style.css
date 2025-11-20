@@ -230,6 +230,16 @@
     z-index: 2;
 }
 
+/* Tags container styling for carousel cards */
+.carousel-card .card .tag {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    align-items: center;
+    height: 32px;
+    overflow: hidden;
+}
+
 .carousel-btn {
     position: absolute;
     top: 50%;
