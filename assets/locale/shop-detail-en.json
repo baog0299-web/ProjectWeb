@@ -2,6 +2,7 @@
   "pageTitle": "Cafe Details - CoffeeFinder",
   "shopName": "Café Artisan Saigon",
   "addToFavorites": "Add to Favorites",
+  "removedFromFavorites": "Added to Favorites",
   "labels": {
     "nameLabel": "Cafe Name:",
     "typeLabel": "Type:",
