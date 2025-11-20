@@ -52,11 +52,20 @@ body {
 .shopdetail_main-container.show {
     display: block;
 }
-.shopdetail_sub-container {
+/* Modern Shop Info Card */
+.shop-info-card {
     width: 100%;
-    opacity: 1;
     background: #FFFFFF;
-    border-radius: 10.96px;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(107, 68, 35, 0.08);
+    border: 1px solid rgba(107, 68, 35, 0.1);
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.shop-info-card:hover {
+    box-shadow: 0 8px 32px rgba(107, 68, 35, 0.12);
 }
 /* Favorite Button Styles */
 .favorite-button {
@@ -237,52 +246,140 @@ body {
 }
 
 
-.nameshop {
-  display: flex;
-  flex-direction: column;
+/* Info Sections */
+.info-section {
+    margin-bottom: 20px;
 }
-.shopdetail_address-container{
-  display: flex;
-  flex-direction: row;
-  color: #6B4423;
-  padding: 0px;
-  gap: 50px;
+
+.info-section:last-child {
+    margin-bottom: 0;
 }
-.shopdetail_address{
-  display: flex;
-  flex:0.5;
-  flex-direction: column;
-  padding-left: 15px;
-  padding-top: 7px;
+
+.info-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #6B4423;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
 }
-.button-container{
-  display: flex;
-  justify-content: center;
+
+.info-label i {
+    font-size: 16px;
+    color: #D97706;
 }
-.address-button{
-  width: 100%;
-  padding: 10px 20px;
-  background: #6B4423;
-  border-radius: 8px;
-  color: #FFFFFF;
-  cursor: pointer;
+
+/* Shop Name */
+.shop-name {
+    font-size: 28px;
+    font-weight: 700;
+    color: #6B4423;
+    margin: 0;
+    line-height: 1.2;
 }
-.address-button:hover{
-  background: #8B4513;
+
+/* Tags Section */
+.shop-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
-.shopdetail_rate-container{
-  display: flex;
-  flex-direction: row;
-  color: #6B4423;
-  padding: 5px 0px 0px 15px;
+
+.shop-tags .tag {
+    background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+    color: #92400E;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid rgba(217, 119, 6, 0.2);
+    transition: all 0.3s ease;
 }
-.shopdetail_rate{
-  flex-direction: row;
-  padding-bottom: 15px;
+
+.shop-tags .tag:hover {
+    background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 100%);
+    color: #FFFFFF;
+    transform: translateY(-1px);
 }
-.rate{
-  padding-left: 15px;
-  font-size: large;
+
+/* Info Row for Address and Rating */
+.info-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+    .info-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+/* Address Section */
+.address-section .address-text {
+    color: #4B5563;
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0 0 12px 0;
+}
+
+.direction-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #6B4423 0%, #8B4513 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.direction-btn:hover {
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(107, 68, 35, 0.3);
+}
+
+.direction-btn i {
+    font-size: 16px;
+}
+
+/* Rating Section */
+.rating-display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.rating-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #D97706;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 2px;
+}
+
+.rating-stars i {
+    font-size: 16px;
+    color: #D1D5DB;
+    transition: color 0.3s ease;
+}
+
+.rating-stars i.active {
+    color: #F59E0B;
 }
 .shopdetail_name {
   width: 100%;
