@@ -1,14 +1,13 @@
 document.addEventListener('DOMContentLoaded', async () => {
   console.log('Shop detail page loaded');
 
-  // Đảm bảo footer luôn ở cuối body
+  // --- 1. XỬ LÝ FOOTER ---
   const footer = document.getElementById('footer');
   if (footer && footer.parentElement !== document.body) {
     console.log('Moving footer back to body');
     document.body.appendChild(footer);
   }
 
-  // Observer để theo dõi DOM changes
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList') {
@@ -21,13 +20,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // Theo dõi toàn bộ document
   observer.observe(document.body, {
     childList: true,
     subtree: true
   });
 
-  // Lấy ID từ URL
+  // --- 2. KHỞI TẠO TRANG ---
   const urlParams = new URLSearchParams(window.location.search);
   const cafeId = urlParams.get('id');
   
@@ -42,7 +40,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   try {
-    // Hiển thị loading
     showLoading();
 
     // Load dữ liệu
@@ -61,7 +58,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupImageSlider(cafe);
     loadSimilarCafes(data, cafe);
 
-    // Hiển thị nội dung
     hideLoading();
     showContent();
 
@@ -72,25 +68,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     showError('Lỗi tải dữ liệu: ' + error.message);
   }
 
-  // Hàm load dữ liệu
+  // --- 3. CÁC HÀM XỬ LÝ DỮ LIỆU ---
+
   async function loadCafeData() {
     try {
       const response = await fetch('/assets/data/data.json');
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (error) {
       console.log('Trying alternative path...');
       const response = await fetch('../../data/data.json');
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     }
   }
 
-  // Hàm hiển thị dữ liệu
   function displayCafeData(cafe) {
     console.log('Displaying cafe:', cafe.name);
 
@@ -110,7 +102,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const ratingValue = document.querySelector('.rating-value');
     if (ratingValue) ratingValue.textContent = cafe.rating || '5';
     
-    // Update rating stars
+    // Rating stars
     const ratingStars = document.querySelectorAll('.rating-stars i');
     if (ratingStars.length > 0) {
       const rating = parseFloat(cafe.rating || 5);
@@ -128,7 +120,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const shopTags = document.querySelector('.shop-tags');
     
     if (cafe.criteria) {
-      // Update old tags container if exists
       if (tagsContainer) {
         tagsContainer.innerHTML = '';
         cafe.criteria.slice(0, 5).forEach(tag => {
@@ -139,7 +130,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
       }
       
-      // Update new tags container if exists
       if (shopTags) {
         shopTags.innerHTML = '';
         cafe.criteria.slice(0, 5).forEach(tag => {
@@ -151,7 +141,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
 
-    // Hình ảnh
+    // Images
     if (cafe.images_slider && cafe.images_slider.length > 0) {
       const mainImg = document.querySelector('.slider-column img');
       if (mainImg) {
@@ -168,13 +158,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     }
 
-    // Mô tả
+    // Description
     const descContainer = document.querySelector('#mo-ta .shopdetail_text');
     if (descContainer) {
       descContainer.innerHTML = `<p>${cafe.description_detail || 'Chưa có mô tả chi tiết'}</p>`;
     }
 
-    // Tiện ích
+    // Facilities Tab
     const facilitiesTab = document.getElementById('tien-ich');
     if (facilitiesTab && cafe.criteria) {
       let html = '<div class="shopdetail_text">';
@@ -185,27 +175,51 @@ document.addEventListener('DOMContentLoaded', async () => {
       facilitiesTab.innerHTML = html;
     }
 
-    // Khoảng giá
+    // Price Tab
     const priceTab = document.getElementById('khoang-gia');
     if (priceTab) {
       priceTab.innerHTML = `<div class="shopdetail_text"><p>${cafe.price_range || 'Chưa cập nhật'}</p></div>`;
     }
 
+    // --- SỬA LỖI NÚT CHỈ ĐƯỜNG (Theo ảnh bạn gửi) ---
+    // Tìm nút có class "direction-btn" (thay vì btn-direction như cũ)
+    const directionBtn = document.querySelector('.direction-btn');
+    
+    if (directionBtn) {
+      // Gán sự kiện onclick vì thẻ <button> không có href
+      directionBtn.onclick = function() {
+          let mapLink = '';
+          
+          // 1. Ưu tiên dùng link cứng trong data.json
+          if (cafe.mapLink) {
+             mapLink = cafe.mapLink;
+          } 
+          // 2. Nếu không có, tự động tạo link tìm kiếm
+          else {
+             const query = encodeURIComponent((cafe.name || '') + ' ' + (cafe.address || ''));
+             mapLink = `https://www.google.com/maps/search/?api=1&query=${query}`;
+          }
+
+          // Mở link trong tab mới
+          window.open(mapLink, '_blank');
+      };
+    }
+    // ------------------------------------------------
+
     console.log('Data displayed successfully');
   }
 
-  // Hàm setup tabs
+  // --- 4. CÁC HÀM UI/UX KHÁC ---
+
   function setupTabs() {
     const tabLinks = document.querySelectorAll('.detail_tab-link');
     const tabContents = document.querySelectorAll('.shopdetail_tab-content');
 
     tabLinks.forEach(link => {
       link.addEventListener('click', () => {
-        // Remove active class from all
         tabLinks.forEach(l => l.classList.remove('active'));
         tabContents.forEach(content => content.classList.remove('active'));
 
-        // Add active class to clicked tab
         link.classList.add('active');
         const targetId = link.getAttribute('data-tab');
         const targetContent = document.getElementById(targetId);
@@ -216,7 +230,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Hàm setup image slider với hiệu ứng crossfade đơn giản và ổn định
   function setupImageSlider(cafe) {
     if (!cafe.images_slider || cafe.images_slider.length <= 1) return;
 
@@ -228,16 +241,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!sliderContainer || !prevBtn || !nextBtn) return;
 
-    // Tạo container cho crossfade effect
     const imageContainer = document.createElement('div');
     imageContainer.className = 'image-crossfade-container';
     
-    // Tạo 2 ảnh cho crossfade effect
     const currentImg = sliderContainer.querySelector('img');
     const img1 = document.createElement('img');
     const img2 = document.createElement('img');
     
-    // Setup initial images
     img1.src = images[0];
     img1.className = 'slider-img';
     img1.style.opacity = '1';
@@ -250,40 +260,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     imageContainer.appendChild(img1);
     imageContainer.appendChild(img2);
-    
-    // Thay thế hình ảnh cũ
     currentImg.replaceWith(imageContainer);
 
     let isTransitioning = false;
     let activeImg = img1;
     let inactiveImg = img2;
 
-    // Hàm chuyển ảnh đơn giản
     function changeImage(newIndex) {
       if (isTransitioning) return;
       isTransitioning = true;
 
-      // Preload new image
       const tempImg = new Image();
       tempImg.onload = () => {
-        // Set new image to inactive layer
         inactiveImg.src = images[newIndex];
         
-        // Start crossfade
         activeImg.style.opacity = '0';
         inactiveImg.style.opacity = '1';
         
-        // Swap z-index
         const activeZ = activeImg.style.zIndex;
         activeImg.style.zIndex = inactiveImg.style.zIndex;
         inactiveImg.style.zIndex = activeZ;
         
-        // Swap references
         const temp = activeImg;
         activeImg = inactiveImg;
         inactiveImg = temp;
         
-        // Reset transition flag
         setTimeout(() => {
           isTransitioning = false;
         }, 400);
@@ -296,14 +297,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       tempImg.src = images[newIndex];
     }
 
-    // Previous image
     prevBtn.addEventListener('click', () => {
       if (isTransitioning) return;
       currentImageIndex = currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1;
       changeImage(currentImageIndex);
     });
 
-    // Next image  
     nextBtn.addEventListener('click', () => {
       if (isTransitioning) return;
       currentImageIndex = currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1;
@@ -311,7 +310,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Hàm setup favorite button
   function setupFavoriteButton(cafe) {
     const favoriteBtn = document.querySelector('.favorite-button');
     if (!favoriteBtn) return;
@@ -319,7 +317,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const FAVORITES_KEY = 'favoriteCafes';
     const cafeId = Number(cafe.id);
 
-    // Get current favorites
     let favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
     favorites = favorites.map(id => Number(id));
 
@@ -329,7 +326,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     favoriteBtn.addEventListener('click', (e) => {
       e.preventDefault();
 
-      // Update favorites
       let currentFavorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
       currentFavorites = currentFavorites.map(id => Number(id));
 
@@ -354,28 +350,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     if (active) {
       btn.classList.add('active');
-      icon.className = 'fa-solid fa-heart favorite-icon';
-      text.setAttribute('data-i18n', 'removedFromFavorites');
+      if(icon) icon.className = 'fa-solid fa-heart favorite-icon';
+      if(text) text.setAttribute('data-i18n', 'removedFromFavorites');
     } else {
       btn.classList.remove('active');
-      icon.className = 'fa-regular fa-heart favorite-icon';
-      text.setAttribute('data-i18n', 'addToFavorites');
+      if(icon) icon.className = 'fa-regular fa-heart favorite-icon';
+      if(text) text.setAttribute('data-i18n', 'addToFavorites');
     }
     
-    // Trigger immediate i18n update for this element
     triggerTranslationUpdate();
   }
   
-  // Helper function to trigger translation update
   function triggerTranslationUpdate() {
-    // Manually trigger translation for the favorite button
     const text = document.querySelector('.favorite-text');
     if (text) {
       const key = text.getAttribute('data-i18n');
-      // Try to get current locale data and update immediately
       const currentLang = localStorage.getItem('site_lang') || 'vi';
       
-      // Fallback text based on key and language
       const fallbackTexts = {
         'vi': {
           'addToFavorites': 'Thêm vào yêu thích',
@@ -393,7 +384,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // Utility functions
   function showLoading() {
     if (loadingContainer) loadingContainer.style.display = 'flex';
     if (mainContent) mainContent.classList.remove('show');
@@ -417,14 +407,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // Hàm load similar cafes
   function loadSimilarCafes(allCafes, currentCafe) {
     const container = document.querySelector('.similar-cards-container');
     if (!container) return;
 
-    // Lấy 2 quán khác (không phải quán hiện tại)
     const similarCafes = allCafes
-      .filter(cafe => cafe.id !== currentCafe.id)
+      .filter(cafe => cafe.id != currentCafe.id)
       .slice(0, 2);
 
     container.innerHTML = '';
@@ -435,13 +423,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Hàm tạo card component
   function createCafeCard(cafe) {
     const cardDiv = document.createElement('div');
     cardDiv.className = 'card';
     cardDiv.style.cursor = 'pointer';
 
-    // Lấy 2 tags đầu tiên
     const displayTags = cafe.criteria ? cafe.criteria.slice(0, 2) : [];
     const remainingCount = cafe.criteria ? Math.max(0, cafe.criteria.length - 2) : 0;
 
@@ -470,7 +456,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       </div>
     `;
 
-    // Thêm click handler để navigate to detail
     cardDiv.addEventListener('click', () => {
       window.location.href = `shop-detail.html?id=${cafe.id}`;
     });
@@ -478,7 +463,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     return cardDiv;
   }
 
-  // Global function cho favorite toggle trong similar cards
   window.toggleCardFavorite = function(cafeId, element) {
     const FAVORITES_KEY = 'favoriteCafes';
     let favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
