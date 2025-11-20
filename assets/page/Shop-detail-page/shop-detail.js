@@ -216,40 +216,86 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Hàm setup image slider
+  // Hàm setup image slider với hiệu ứng crossfade mượt mà
   function setupImageSlider(cafe) {
     if (!cafe.images_slider || cafe.images_slider.length <= 1) return;
 
     let currentImageIndex = 0;
     const images = cafe.images_slider;
-    const mainImg = document.querySelector('.slider-column img');
+    const sliderContainer = document.querySelector('.slider-column');
     const prevBtn = document.querySelector('.arrow-left');
     const nextBtn = document.querySelector('.arrow-right');
 
-    if (!mainImg || !prevBtn || !nextBtn) return;
+    if (!sliderContainer || !prevBtn || !nextBtn) return;
+
+    // Tạo container cho crossfade effect
+    const imageContainer = document.createElement('div');
+    imageContainer.className = 'image-crossfade-container';
+    
+    // Di chuyển hình ảnh hiện tại vào container mới
+    const currentImg = sliderContainer.querySelector('img');
+    const img1 = currentImg.cloneNode(true);
+    const img2 = currentImg.cloneNode(true);
+    
+    img1.className = 'slider-img active';
+    img2.className = 'slider-img';
+    
+    imageContainer.appendChild(img1);
+    imageContainer.appendChild(img2);
+    
+    // Thay thế hình ảnh cũ bằng container mới
+    currentImg.replaceWith(imageContainer);
+
+    let isTransitioning = false;
+
+    // Hàm chuyển ảnh với crossfade effect
+    function changeImage(newIndex) {
+      if (isTransitioning) return;
+      isTransitioning = true;
+
+      const activeImg = imageContainer.querySelector('.slider-img.active');
+      const inactiveImg = imageContainer.querySelector('.slider-img:not(.active)');
+      
+      // Preload new image
+      const tempImg = new Image();
+      tempImg.onload = () => {
+        // Set new image to inactive img
+        inactiveImg.src = images[newIndex];
+        
+        // Start crossfade transition
+        activeImg.style.opacity = '0';
+        inactiveImg.style.opacity = '1';
+        
+        // Switch active states after transition
+        setTimeout(() => {
+          activeImg.classList.remove('active');
+          inactiveImg.classList.add('active');
+          activeImg.style.opacity = '1'; // Reset for next transition
+          isTransitioning = false;
+        }, 400);
+      };
+      tempImg.src = images[newIndex];
+    }
 
     // Previous image
     prevBtn.addEventListener('click', () => {
       currentImageIndex = currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1;
-      mainImg.src = images[currentImageIndex];
-      mainImg.style.opacity = '0';
-      setTimeout(() => {
-        mainImg.style.opacity = '1';
-      }, 150);
+      changeImage(currentImageIndex);
     });
 
     // Next image  
     nextBtn.addEventListener('click', () => {
       currentImageIndex = currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1;
-      mainImg.src = images[currentImageIndex];
-      mainImg.style.opacity = '0';
-      setTimeout(() => {
-        mainImg.style.opacity = '1';
-      }, 150);
+      changeImage(currentImageIndex);
     });
 
-    // Add transition effect
-    mainImg.style.transition = 'opacity 0.3s ease';
+    // Auto-slide (optional - có thể bỏ comment nếu muốn)
+    // setInterval(() => {
+    //   if (!isTransitioning) {
+    //     currentImageIndex = currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1;
+    //     changeImage(currentImageIndex);
+    //   }
+    // }, 5000);
   }
 
   // Hàm setup favorite button
