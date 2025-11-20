@@ -18,7 +18,7 @@
   "upload": { 
     "label": "Thêm ảnh về vấn đề (Nếu có)", 
     "button": "Tải tệp",
-    "selected": "Đã chọn {n} ảnh" 
+    "selected": "Đã chọn ảnh" 
   },
   "submit": "Gửi phản hồi",
   "rightColumn": {

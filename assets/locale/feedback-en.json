@@ -21,7 +21,7 @@
   "upload": {
     "label": "Add images of the issue (optional)",
     "button": "Upload File",
-    "selected": "{n} images selected"
+    "selected": "Images selected"
   },
   "submit": "Send feedback",
   "rightColumn": {
