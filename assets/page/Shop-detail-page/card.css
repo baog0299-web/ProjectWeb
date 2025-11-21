@@ -80,14 +80,32 @@
 .tag,
 .tags {
     margin-top: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 4px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.tag::-webkit-scrollbar,
+.tags::-webkit-scrollbar {
+    display: none;
 }
 .btn-tag{
-    width: 98px;
+    min-width: 98px;
     height: 24px;
     background-color: rgba(254, 243, 199, 1);
     color: rgba(217, 119, 6, 1);
     border: none;
     border-radius: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+    padding: 0 8px;
+    font-size: 12px;
 }
 #small{
     width: 42px;
