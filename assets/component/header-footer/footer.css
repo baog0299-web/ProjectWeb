@@ -17,6 +17,10 @@ body {
     padding: 30px 0;
 }
 .footer-container{
+<<<<<<< HEAD
+    /* width: 1440px; */
+=======
+>>>>>>> d1cfd77953a282b978dbd48ab03a3b6258b59e36
     display: flex;
     justify-content: space-around;
     align-items: flex-start;

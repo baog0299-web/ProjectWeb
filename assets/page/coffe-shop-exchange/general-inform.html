@@ -13,16 +13,25 @@
         <div class = "wrapper">
             <div class = "header">
                 <div class = "header-content-bar">
+                    <div class = "lang-switcher">
+                        <button onclick="changeLang('vi')">Vie</button>
+                        <button onclick="changeLang('en')">En</button>
+                    </div>
                     <img src="../../image/add-details-page/Component1.svg" alt="Logo" style = "width: 32px; height: 32px;">
-                    <div class = "header-content">Chỉnh sửa quán: Urban Brew Coffee</div>
+                    <div class = "header-content" lang-key="edit_shop">Chỉnh sửa quán: Urban Brew Coffee</div>
                 </div>
                 <div class = "header-btn">
+<<<<<<< HEAD
                     <button class = "btn1">
                         <i class="fas fa-times"></i> Hủy
                     </button>
                     <button class = "btn2">
                         <i class="fas fa-save"></i> Lưu thay đổi
                     </button>
+=======
+                    <div class = "btn1" lang-key="cancel">Hủy</div>
+                    <div class = "btn2" lang-key="save_changes">Lưu thay đổi</div>
+>>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
                 </div>
             </div>
             <div class = "wrapper-section">
@@ -30,25 +39,25 @@
                     <div class = "list">
                         <a href="general-inform.html" style="text-decoration: none;">
                             <div class = "list-card" style = "background-color: #FEF3C7">
-                                <div class = "list-content">Thông tin chung</div>
+                                <div class = "list-content" lang-key="general_info">Thông tin chung</div>
                             </div>
                         </a>
 
                         <a href="image-management.html" style="text-decoration: none;">
                             <div class = "list-card">
-                                <div class = "list-content">Quản lí hình ảnh</div>
+                                <div class = "list-content" lang-key="manage_images">Quản lí hình ảnh</div>
                             </div>
                         </a>
 
                         <a href="menu-edit.html" style="text-decoration: none;">
                             <div class = "list-card">
-                                <div class = "list-content">Chỉnh sửa thực đơn</div>
+                                <div class = "list-content" lang-key="edit_menu">Chỉnh sửa thực đơn</div>
                             </div>
                         </a>
 
                         <a href="facility&opening-hour.html" style="text-decoration: none;">
                             <div class = "list-card">
-                                <div class = "list-content">Tiện ích & Giờ hoạt động</div>
+                                <div class = "list-content" lang-key="amenities_hours">Tiện ích & Giờ hoạt động</div>
                             </div>
                         </a>
                     </div>
@@ -56,36 +65,59 @@
                 <div class = "wrapper-section2">
                         <div class="edit-form">
                             <div class="form-group">
-                                <label>Tên quán</label>
+                                <label lang-key="shop_name_label">Tên quán</label>
                                 <input type="text" placeholder="Urban Brew Coffee">
                             </div>
 
                             <div class="form-group">
-                                <label>Địa chỉ</label>
-                                <input type="text" placeholder="123 Nguyễn Huệ, Quận 1, TP.HCM">
-                                <small>Địa chỉ này sẽ dùng để tạo chỉ đường Google Maps</small>
+                                <label lang-key="address_label">Địa chỉ</label>
+                                <input type="text" lang-key="address_example" placeholder="123 Nguyễn Huệ, Quận 1, TP.HCM">
+                                <small lang-key="address_map_note">Địa chỉ này sẽ dùng để tạo chỉ đường Google Maps</small>
                             </div>
 
                             <div class="form-group">
-                                <label>Mô tả</label>
-                                <textarea rows="2.5" placeholder = "Quán cà phê hiện đại với không gian thoáng mát, view đẹp nhìn ra sông Sài Gòn. Phù hợp cho cả làm việc và gặp gỡ bạn bè.""></textarea>
-                                <textarea class="texsie" rows="5" placeholder="Mô tả chi tiết..."></textarea>
+                                <label lang-key="description_label">Mô tả</label>
+                                <textarea rows="2.5" lang-key="description_content" placeholder = "Quán cà phê hiện đại với không gian thoáng mát, view đẹp nhìn ra sông Sài Gòn. Phù hợp cho cả làm việc và gặp gỡ bạn bè."></textarea>
+                                <textarea class="texsie" rows="5" lang-key="detailed_description_label" placeholder="Mô tả chi tiết..."></textarea>
                             </div>
 
                             <div class="form-group">
-                                <label>Tags/Từ khoá</label>
+                                <label lang-key="tags_keywords_label">Tags/Từ khoá</label>
                                 <div class="tags-container">
+<<<<<<< HEAD
                                     <!-- Tags will be dynamically populated by JavaScript -->
+=======
+                                    <span class="tag">
+                                        <span lang-key="tag_view_beautiful">View đẹp</span>
+                                        <button class="x-btn"><i class="fa-solid fa-xmark"><img src = "../../image/add-details-page/times-sign.svg"></i></button>
+                                    </span>
+                                    
+                                    <span class="tag">
+                                        <span lang-key="tag_quiet">Yên tĩnh</span>
+                                        <button class="x-btn"><i class="fa-solid fa-xmark"><img src = "../../image/add-details-page/times-sign.svg"></i></button>
+                                    </span>
+
+                                    <span class="tag">
+                                        <span lang-key="tag_fast_wifi">Wifi nhanh</span>
+                                        <button class="x-btn"><i class="fa-solid fa-xmark"><img src = "../../image/add-details-page/times-sign.svg"></i></button>
+                                    </span>
+                                    
+                                    <span class="tag">
+                                        <span lang-key="tag_work">Làm việc</span>
+                                        <button class="x-btn"><i class="fa-solid fa-xmark"><img src = "../../image/add-details-page/times-sign.svg"></i></button>
+                                    </span>
+>>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
                                 </div>
                                 <div class="add-tag">
-                                    <input type="text" placeholder="Thêm tag mới...">
-                                    <button class="add-btn">Thêm</button>
+                                    <input type="text" lang-key="add_new_tag" placeholder="Thêm tag mới...">
+                                    <button class="add-btn" lang-key="add_button">Thêm</button>
                                 </div>
                             </div>
                         </div>
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </div>
     
     <!-- Font Awesome for icons -->
@@ -93,6 +125,12 @@
     
     <!-- JavaScript -->
     <script src="general-inform.js"></script>
+=======
+    </div> 
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+
+    <script src="lang1.js"></script>
+>>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
 </body>
 </html>
 

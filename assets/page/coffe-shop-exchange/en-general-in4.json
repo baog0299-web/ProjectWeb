@@ -1,0 +1,26 @@
+{
+  "edit_shop": "Edit Shop: Urban Brew Coffee",
+  "cancel": "Cancel",
+  "save_changes": "Save Changes",
+  "general_info": "General Information",
+  "manage_images": "Manage Images",
+  "edit_menu": "Edit Menu",
+  "amenities_hours": "Amenities & Opening Hours",
+  
+  "shop_name_label": "Shop Name",
+  "address_label": "Address",
+  "address_example": "123 Nguyen Hue, District 1, HCMC",
+  "address_map_note": "This address will be used to generate Google Maps directions",
+  
+  "description_label": "Description",
+  "description_content": "Modern coffee shop with cool space and a beautiful view overlooking the Saigon River. Suitable for both working and meeting friends.",
+  "detailed_description_label": "Detailed Description...",
+  
+  "tags_keywords_label": "Tags/Keywords",
+  "tag_view_beautiful": "Beautiful View",
+  "tag_quiet": "Quiet",
+  "tag_fast_wifi": "Fast Wifi",
+  "tag_work": "Working",
+  "add_new_tag": "Add new tag...",
+  "add_button": "Add"
+}

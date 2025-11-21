@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -141,4 +143,95 @@
     <script src="filter.js"></script>
     <script src="/assets/component/header-footer/header-loader.js"></script>
 </body>
+<<<<<<< HEAD
 </html>
+<script src="main.js"></script>
+<script src="filter.js"></script>
+<<<<<<< HEAD
+
+<<<<<<< HEAD
+document.addEventListener("DOMContentLoaded", () => {
+  const searchBtn = document.querySelector(".search-button");
+  const resultsContainer = document.getElementById("search-results");
+  let coffeeShops = [];
+
+  // 1. Tải dữ liệu từ file JSON
+  fetch("assets/component/data/data.json")
+    .then(res => res.json())
+    .then(data => {
+      coffeeShops = data;
+    })
+    .catch(err => {
+      console.error("Lỗi khi tải data:", err);
+      resultsContainer.innerHTML = "<p>Lỗi khi tải dữ liệu quán cafe.</p>";
+    });
+
+  // 2. Khi bấm nút "Tìm kiếm"
+  searchBtn.addEventListener("click", () => {
+    const location = document.getElementById("filter-location").value;
+    const need = document.getElementById("filter-need").value;
+    const criteria = document.getElementById("filter-criteria").value;
+
+    const filtered = coffeeShops.filter(shop =>
+      (location === "" || shop.location === location) &&
+      (need === "" || shop.need === need) &&
+      (criteria === "" || shop.criteria === criteria)
+    );
+
+    renderResults(filtered);
+  });
+
+  // 3. Hàm render kết quả ra dưới bộ lọc
+  async function renderResults(list) {
+    resultsContainer.innerHTML = ""; // xóa cũ
+
+    if (list.length === 0) {
+      resultsContainer.innerHTML = "<p class='no-result'>Không tìm thấy quán phù hợp.</p>";
+      return;
+    }
+
+    const cardTemplateRes = await fetch("assets/component/card-test/card.html");
+    const cardTemplateText = await cardTemplateRes.text();
+
+    const container = document.createElement("div");
+    container.classList.add("card-container");
+
+    list.forEach(shop => {
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = cardTemplateText;
+
+      // Điền dữ liệu từ JSON
+      const imgEl = tempDiv.querySelector(".card-image img");
+      if (imgEl) imgEl.src = shop.image;
+      if (imgEl) imgEl.alt = shop.name;
+
+      const titleEl = tempDiv.querySelector(".title");
+      if (titleEl) titleEl.textContent = shop.name;
+
+      const ratingEl = tempDiv.querySelector(".rating");
+      if (ratingEl) ratingEl.innerHTML = `<i class="fas fa-star"></i> ${shop.rating}`;
+
+      const locationEl = tempDiv.querySelector(".location");
+      if (locationEl) locationEl.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${shop.location}`;
+
+      const tagEls = tempDiv.querySelectorAll(".tag .btn-tag");
+      if (tagEls[0]) tagEls[0].textContent = shop.need;
+      if (tagEls[1]) tagEls[1].textContent = shop.criteria;
+
+      container.appendChild(tempDiv.firstElementChild); // append card
+    });
+
+    resultsContainer.appendChild(container);
+  }
+});
+
+</script>
+>>>>>>> d1cfd77953a282b978dbd48ab03a3b6258b59e36
+=======
+>>>>>>> b1b95151684c57e6a38210c8bab6ed7be6ce5874
+=======
+<script src="/assets/component/header-footer/header-loader.js"></script>
+>>>>>>> da503a4398abc298fead29770f2ef1f40a29d60f
+=======
+</html>
+>>>>>>> 6f52602006ea23ac235165a41c1f0d053d4939e6

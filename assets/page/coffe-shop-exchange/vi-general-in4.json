@@ -1,0 +1,26 @@
+{
+  "edit_shop": "Chỉnh sửa quán: Urban Brew Coffee",
+  "cancel": "Hủy",
+  "save_changes": "Lưu thay đổi",
+  "general_info": "Thông tin chung",
+  "manage_images": "Quản lí hình ảnh",
+  "edit_menu": "Chỉnh sửa thực đơn",
+  "amenities_hours": "Tiện ích & giờ hoạt động",
+  
+  "shop_name_label": "Tên quán",
+  "address_label": "Địa chỉ",
+  "address_example": "123 Nguyễn Huệ, Quận 1, TP.HCM",
+  "address_map_note": "Địa chỉ này sẽ dùng để tạo chỉ đường Google Maps",
+  
+  "description_label": "Mô tả",
+  "description_content": "Quán cà phê hiện đại với không gian thoáng mát, view đẹp nhìn ra sông Sài Gòn. Phù hợp cho cả làm việc và gặp gỡ bạn bè.",
+  "detailed_description_label": "Mô tả chi tiết...",
+  
+  "tags_keywords_label": "Tags/Từ khoá",
+  "tag_view_beautiful": "View đẹp",
+  "tag_quiet": "Yên tĩnh",
+  "tag_fast_wifi": "Wifi nhanh",
+  "tag_work": "Làm việc",
+  "add_new_tag": "Thêm tag mới...",
+  "add_button": "Thêm"
+}

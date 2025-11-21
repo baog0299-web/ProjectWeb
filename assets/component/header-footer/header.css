@@ -40,6 +40,14 @@ body {
 .header-logo img {
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
+<<<<<<< HEAD
+
+<<<<<<< HEAD
+.header-search-bar input{
+    width: 574px;
+=======
+=======
+>>>>>>> da503a4398abc298fead29770f2ef1f40a29d60f
 .header-search-bar {
     position: relative;
     display: flex;
@@ -53,6 +61,7 @@ body {
 }
 .header-search-bar input{
     width: 450px;
+>>>>>>> d1cfd77953a282b978dbd48ab03a3b6258b59e36
     height: 42px;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);

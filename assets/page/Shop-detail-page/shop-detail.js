@@ -1,5 +1,44 @@
+<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', async () => {
   console.log('Shop detail page loaded');
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+fetch("../../component/header-footer/header.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("header").innerHTML = data;
+
+    // Load CSS header vào <head>
+    const headerLinks = document.getElementById("header").querySelectorAll("link[rel='stylesheet']");
+    headerLinks.forEach(link => {
+      const newLink = document.createElement("link");
+      newLink.rel = "stylesheet";
+      newLink.href = "../../component/header-footer/header.css"; // đường dẫn từ homepage.html
+      document.head.appendChild(newLink);
+    });
+  });
+fetch("../../component/header-footer/footer.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+
+    // Load CSS header vào <footer>
+    const headerLinks = document.getElementById("footer").querySelectorAll("link[rel='stylesheet']");
+    headerLinks.forEach(link => {
+      const newLink = document.createElement("link");
+      newLink.rel = "stylesheet";
+      newLink.href = "../../component/header-footer/footer.css"; // đường dẫn từ homepage.html
+      document.head.appendChild(newLink);
+    });
+  });
+=======
+// Header and footer are loaded by header-loader.js
+// Add any page-specific JavaScript here
+>>>>>>> d1cfd77953a282b978dbd48ab03a3b6258b59e36
+=======
+document.addEventListener('DOMContentLoaded', () => {
+>>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
 
   // --- 1. XỬ LÝ FOOTER ---
   const footer = document.getElementById('footer');
@@ -233,6 +272,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   function setupImageSlider(cafe) {
     if (!cafe.images_slider || cafe.images_slider.length <= 1) return;
 
+<<<<<<< HEAD
     let currentImageIndex = 0;
     const images = cafe.images_slider;
     const sliderContainer = document.querySelector('.slider-column');
@@ -482,3 +522,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
   };
 });
+=======
+});
+>>>>>>> da503a4398abc298fead29770f2ef1f40a29d60f
+>>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290

@@ -13,12 +13,16 @@
         <div class = "wrapper">
             <div class = "header">
                 <div class = "header-content-bar">
+                    <div class = "lang-switcher">
+                        <button onclick="changeLang('vi')">Vie</button>
+                        <button onclick="changeLang('en')">En</button>
+                    </div>
                     <img src="../../image/add-details-page/Component1.svg" alt="Logo" style = "width: 32px; height: 32px;">
-                    <div class = "header-content">Chỉnh sửa quán: Urban Brew Coffee</div>
+                    <div class = "header-content" lang-key="edit_shop">Chỉnh sửa quán: Urban Brew Coffee</div>
                 </div>
                 <div class = "header-btn">
-                    <div class = "btn1">Hủy</div>
-                    <div class = "btn2">Lưu thay đổi</div>
+                    <div class = "btn1" lang-key="cancel">Hủy</div>
+                    <div class = "btn2" lang-key="save_changes">Lưu thay đổi</div>
                 </div>
             </div>
             <div class = "wrapper-section">
@@ -26,44 +30,44 @@
                     <div class = "list">
                         <a href="general-inform.html" style="text-decoration: none;">
                             <div class = "list-card">
-                                <div class = "list-content">Thông tin chung</div>
+                                <div class = "list-content" lang-key="general_info">Thông tin chung</div>
                             </div>
                         </a>
 
                         <a href="image-management.html" style="text-decoration: none;">
                             <div class = "list-card" style = "background-color: #FEF3C7">
-                                <div class = "list-content">Quản lí hình ảnh</div>
+                                <div class = "list-content" lang-key="manage_images">Quản lí hình ảnh</div>
                             </div>
                         </a>
 
                         <a href="menu-edit.html" style="text-decoration: none;">
                             <div class = "list-card">
-                                <div class = "list-content">Chỉnh sửa thực đơn</div>
+                                <div class = "list-content" lang-key="edit_menu">Chỉnh sửa thực đơn</div>
                             </div>
                         </a>
 
                         <a href="facility&opening-hour.html" style="text-decoration: none;">
                             <div class = "list-card">
-                                <div class = "list-content">Tiện ích & Giờ hoạt động</div>
+                                <div class = "list-content" lang-key="amenities_hours">Tiện ích & Giờ hoạt động</div>
                             </div>
                         </a>
                     </div>
                 </div>
                 <div class = "wrapper-section2">
                     <main class="main-content">     
-                    <h2>Hình ảnh hiện tại</h2>
+                    <h2 lang-key="current_images">Hình ảnh hiện tại</h2>
                     <div class="current-images-display">
                     </div>
                     <div class="upload-section">
                         <div class="upload-box">         
                     <button class="button-icon"><img src="../../image/add-details-page/arrow.svg" alt=""><img src="../../image/add-details-page/arrow.svg" alt=""></button>
-                    <p class="p1">Tải nhiều ảnh lên</p>
-                    <p>Tối thiểu 5 ảnh
+                    <p class="p1" lang-key="upload_multiple_photos">Tải nhiều ảnh lên</p>
+                    <p lang-key="minimum_5_photos">Tối thiểu 5 ảnh
                     </p>
                         </div>
                         <div class="upload-box">
                         <button class="button-icon"><img src="../../image/add-details-page/arrow.svg" alt=""></a></button>
-                        <p class="p1">Tải ảnh bìa lên</p>
+                        <p class="p1" lang-key="upload_cover_photo">Tải ảnh bìa lên</p>
                         <p>PNG, JPG(Max 5MB)</p>
                         </div>
                     </div>
@@ -71,5 +75,8 @@
             </div>
         </div>
     </div> 
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+
+    <script src="lang2.js"></script>
 </body>
 </html>

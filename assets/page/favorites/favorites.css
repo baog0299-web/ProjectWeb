@@ -1,7 +1,9 @@
 .all {
     font-family: roboto, sans-serif;
+    overflow: hidden;
     background-color: #fffbeb;
 }
+<<<<<<< HEAD
 
 * {
     margin: 0;
@@ -14,11 +16,13 @@ body {
     margin: 0;
 }
 
+=======
+>>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
 .security-favorite{
-    display: flex;
-    width: 100%;
+    width: 100%;;
     position: relative;
     font-family: roboto, sans-serif;
+<<<<<<< HEAD
     justify-content: center;
 }
 .picture1{
@@ -26,22 +30,31 @@ body {
     height: 300px;
     object-fit: cover; /* Đảm bảo hình ảnh phủ hết khu vực */
 }
+=======
+
+}
+>>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
 
 .security-favorite .picture2{
     position: absolute;
-    top: 30%;
+    top: 35%;
     left: 50%;
+<<<<<<< HEAD
     /* right: 50%;  -- Không cần thiết, transform đã xử lý */
+=======
+>>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
     transform: translate(-50%, -50%);
-    width: 100px;
-    height: 100px;
+    width: 113px;
+    height: 112px;
 }
 .security-favorite .saved {
     position: absolute;
-    top: 50%;
-    color: white;
+    top: 40%;
+    left:28%;
+   color: white;
     font-size: 60px;
     font-family: pacifico, cursive;
+<<<<<<< HEAD
     justify-content: center;
     text-align: center; /* Đã có trong .saved riêng, nhưng giữ lại cho rõ ràng */
 }
@@ -58,22 +71,41 @@ body {
     font-family: 'Roboto', sans-serif;
     color: #ddd;
     text-align: center;
+=======
+
+    
+}
+.desinations {
+    position: absolute;
+    top: 80%;
+    left: 36%;
+   color: white;
+    font-size: 20px;
+
+    
+>>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
 }
 .collection {
     display: flex;
     align-items: center; 
     gap: 16px; 
     padding: 16px 0;
-    justify-content: center;
 }
 .collect-mini{
+<<<<<<< HEAD
     color:  #4A2C1A;
     font-size: 30px;
     text-align: center;
+=======
+    color:  #4A2C1A;
+    font-size: 30px
+;
+>>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
 }
 .review{
     font-size: 16px;
     color: #575757;
+<<<<<<< HEAD
     /* Loại bỏ margin-left cố định */
     margin: 0 auto 16px auto; /* Căn giữa và thêm khoảng cách dưới */
     width: fit-content; /* Giữ kích thước bằng nội dung */
@@ -197,3 +229,14 @@ body {
     }
 
 }
+=======
+;
+
+}
+
+.collect-mini, .review {
+    margin: 0;
+    margin-left: 100px;
+}
+
+>>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290

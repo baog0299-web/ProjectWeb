@@ -1,0 +1,19 @@
+{
+  "edit_shop": "Chỉnh sửa quán: Urban Brew Coffee",
+  "cancel": "Hủy",
+  "save_changes": "Lưu thay đổi",
+  "general_info": "Thông tin chung",
+  "manage_images": "Quản lí hình ảnh",
+  "edit_menu": "Chỉnh sửa thực đơn",
+  "amenities_hours": "Tiện ích & giờ hoạt động",
+  
+  "menu_items_title": "Các món trong thực đơn",
+  "menu_item_espresso": "Cà phê Espresso",
+  "menu_item_espresso_desc": "(Đậm đà, hương thơm)",
+  "menu_item_milk_foam": "Bọt sữa mịn",
+  "menu_item_light": "Nhẹ nhàng",
+  
+  "add_new_item": "Thêm món mới",
+  "item_name_label": "Tên món",
+  "item_price_label": "Giá"
+}

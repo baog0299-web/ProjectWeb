@@ -1,0 +1,19 @@
+{
+  "edit_shop": "Edit Shop: Urban Brew Coffee",
+  "cancel": "Cancel",
+  "save_changes": "Save Changes",
+  "general_info": "General Information",
+  "manage_images": "Manage Images",
+  "edit_menu": "Edit Menu",
+  "amenities_hours": "Amenities & Opening Hours",
+  
+  "menu_items_title": "Menu Items",
+  "menu_item_espresso": "Espresso Coffee",
+  "menu_item_espresso_desc": "(Rich, aromatic)",
+  "menu_item_milk_foam": "Fine Milk Foam",
+  "menu_item_light": "Gentle",
+  
+  "add_new_item": "Add New Item",
+  "item_name_label": "Item Name",
+  "item_price_label": "Price"
+}
