@@ -1,20 +1,17 @@
-
-
 .all {
     font-family: roboto, sans-serif;
     background-color: #fffbeb;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-font-family: "Roboto", sans-serif;
-
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }
 
 body {
-  margin: 0;
+    margin: 0;
 }
 
 .security-favorite{
@@ -23,18 +20,18 @@ body {
     position: relative;
     font-family: roboto, sans-serif;
     justify-content: center;
-
 }
 .picture1{
     width: 100%;
     height: 300px;
+    object-fit: cover; /* Đảm bảo hình ảnh phủ hết khu vực */
 }
 
 .security-favorite .picture2{
     position: absolute;
     top: 30%;
     left: 50%;
-    right: 50%;
+    /* right: 50%;  -- Không cần thiết, transform đã xử lý */
     transform: translate(-50%, -50%);
     width: 100px;
     height: 100px;
@@ -46,6 +43,7 @@ body {
     font-size: 60px;
     font-family: pacifico, cursive;
     justify-content: center;
+    text-align: center; /* Đã có trong .saved riêng, nhưng giữ lại cho rõ ràng */
 }
 .saved{
     text-align: center;
@@ -56,12 +54,10 @@ body {
     left: 0;
     width: 100%;
     color: white;
-    font-size: 20px;
+    font-size: 18px; /* Đã có ở trên, giữ lại font-size 18px */
     font-family: 'Roboto', sans-serif;
-    font-size: 18px;
     color: #ddd;
     text-align: center;
-
 }
 .collection {
     display: flex;
@@ -71,28 +67,27 @@ body {
     justify-content: center;
 }
 .collect-mini{
-    color:  #4A2C1A;
+    color:  #4A2C1A;
     font-size: 30px;
     text-align: center;
 }
 .review{
-
     font-size: 16px;
     color: #575757;
-
+    /* Loại bỏ margin-left cố định */
+    margin: 0 auto 16px auto; /* Căn giữa và thêm khoảng cách dưới */
+    width: fit-content; /* Giữ kích thước bằng nội dung */
 }
 
- .review {
-    margin: 0;
-    margin-left: 158px;
-}
+/* .review đã được hợp nhất, loại bỏ khối dư thừa */
 .card-container{
     display: flex;
     flex-direction: row;
     gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 0px 80px 0px 80px;
+    /* Điều chỉnh margin để dễ responsive hơn */
+    margin: 0px 80px 0px 80px; 
 }
 .pagination{
     display: flex;
@@ -113,19 +108,92 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    /* Dùng flex để căn icon/số ra giữa */
+    display: flex; 
 }
 .btn-page:hover{
     background-color: rgba(255, 232, 140, 1);
     color: #D97706;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-   font-family: "Roboto", sans-serif;
+/* Các khối CSS trùng lặp đã được loại bỏ ở đầu */
+
+
+/* --- MEDIA QUERIES --- */
+
+/* 1. Thiết bị Tablet (Màn hình tối đa 768px) */
+@media (max-width: 768px) {
+    .picture1 {
+        height: 250px; /* Giảm chiều cao banner */
+    }
+
+    .security-favorite .saved {
+        font-size: 40px; /* Giảm kích thước chữ tiêu đề */
+    }
+    
+    .desinations {
+        font-size: 16px; /* Giảm kích thước chữ phụ đề */
+        top: 85%;
+    }
+
+    .card-container {
+        /* Tăng margin ngang để card không bị sát cạnh */
+        margin: 0px 40px 0px 40px; 
+    }
+    
+    /* Chỉnh sửa căn chỉnh của phần mô tả */
+    .review {
+        margin: 0 auto 12px auto;
+    }
+    
 }
 
-body {
-  margin: 0;
+/* 2. Thiết bị Mobile (Màn hình tối đa 576px) */
+@media (max-width: 576px) {
+    .picture1 {
+        height: 200px; /* Giảm chiều cao banner nhỏ hơn */
+    }
+
+    .security-favorite .picture2 {
+        width: 70px; /* Giảm kích thước hình trang trí */
+        height: 70px;
+        top: 35%;
+    }
+
+    .security-favorite .saved {
+        font-size: 32px; /* Giảm kích thước chữ tiêu đề */
+        top: 55%; /* Di chuyển xuống một chút */
+    }
+    
+    .desinations {
+        font-size: 14px; /* Giảm kích thước chữ phụ đề */
+        top: 80%;
+    }
+
+    .collect-mini {
+        font-size: 24px; /* Giảm kích thước chữ bộ sưu tập */
+    }
+
+    .review {
+        font-size: 14px;
+        /* Vẫn căn giữa */
+    }
+
+    .card-container {
+        /* Giảm margin ngang tối đa */
+        margin: 0px 10px 0px 10px; 
+        /* Đảm bảo mỗi card chiếm toàn bộ chiều rộng (cần chỉnh trong card.css) */
+        /* Nếu card được thiết lập width: calc(50% - 10px) thì sẽ tự xuống dòng */
+    }
+
+    .pagination {
+        margin: 30px 0;
+        gap: 8px; /* Giảm khoảng cách giữa các nút */
+    }
+    
+    .btn-page {
+        width: 32px; /* Giảm kích thước nút phân trang */
+        height: 32px;
+    }
+
 }
