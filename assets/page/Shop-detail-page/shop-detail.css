@@ -11,7 +11,7 @@ body {
     padding: 0;
 }
 
-/* Loading State Styles */
+
 .loading-container {
     display: flex;
     flex-direction: column;
@@ -46,13 +46,13 @@ body {
     gap: 29px;
     opacity: 1;
     padding: 32px 12px 33px 12px;
-    display: none; /* Initially hidden */
+    display: none; 
 }
 
 .shopdetail_main-container.show {
     display: block;
 }
-/* Modern Shop Info Card */
+
 .shop-info-card {
     width: 100%;
     background: #FFFFFF;
@@ -67,7 +67,7 @@ body {
 .shop-info-card:hover {
     box-shadow: 0 8px 32px rgba(107, 68, 35, 0.12);
 }
-/* Favorite Button Styles */
+
 .favorite-button {
   display: flex;
   align-items: center;
@@ -110,7 +110,6 @@ body {
   white-space: nowrap;
 }
 
-/* Similar Cards Styles */
 .similar-cards-container {
   display: flex;
   gap: 20px;
@@ -162,14 +161,14 @@ body {
   border-radius: 8px;
   background-color: FFFBF5;
   border-radius: 8px;
-  gap: 20px; /* SỬA LẠI: Bật gap 20px cho đẹp */
+  gap: 20px; 
   margin-bottom: 15px;
 }
 .slider-column{
   flex: 1.5;
   position: relative;
 }
-/* Image Crossfade Container */
+
 .image-crossfade-container {
   position: relative;
   width: 100%;
@@ -194,7 +193,6 @@ body {
   opacity: 1;
 }
 
-/* Fallback for single image */
 .slider-column img {
   width: 100%;
   border-radius: 8px;
@@ -202,7 +200,7 @@ body {
   aspect-ratio: 5 / 3;
   object-fit: cover;
 }
-/* Modern Arrow Buttons */
+
 .arrow-left, .arrow-right {
   position: absolute;
   top: 50%;
@@ -249,7 +247,6 @@ body {
   flex: 0.9; 
   display:grid;
   grid-template-columns: 1fr 1fr;
-  /* Dòng grid-template-rows đã bị XÓA */
   gap: 10px; 
   border-radius: 8px;
 }
@@ -257,14 +254,12 @@ body {
 
 .grid-column img {
   width: 100%;
-  /* Dòng height: 100%; đã bị XÓA */
   aspect-ratio: 1 / 1; 
   object-fit: cover;
   border-radius: 8px;
 }
 
 
-/* Info Sections */
 .info-section {
     margin-bottom: 20px;
 }
@@ -290,7 +285,7 @@ body {
     color: #D97706;
 }
 
-/* Shop Name */
+
 .shop-name {
     font-size: 28px;
     font-weight: 700;
@@ -299,7 +294,7 @@ body {
     line-height: 1.2;
 }
 
-/* Tags Section */
+
 .shop-tags {
     display: flex;
     flex-wrap: nowrap;
@@ -339,7 +334,6 @@ body {
     transform: translateY(-1px);
 }
 
-/* Info Row for Address and Rating */
 .info-row {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -353,7 +347,7 @@ body {
         gap: 16px;
     }
 }
-/* Address Section */
+
 .address-section .address-text {
     color: #4B5563;
     font-size: 15px;
@@ -387,7 +381,6 @@ body {
     font-size: 16px;
 }
 
-/* Rating Section */
 .rating-display {
     display: flex;
     flex-direction: column;
@@ -460,7 +453,7 @@ body {
   border: 1px solid #E8E2D9;
   border-radius: 8px;
 }
-/* Modern Tabs Container */
+
 .shopdetail_info-tabs {
   display: flex;
   background: #F9F7F4;
@@ -468,7 +461,7 @@ body {
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(107, 68, 35, 0.1);
 }
-/* Modern Tab Links */
+
 .detail_tab-link {
   border: none;
   font-size: 15px;
@@ -512,8 +505,7 @@ body {
 .shopdetail_text {
     color: #6B4423;
     padding: 0px 15px;
-}p
-/* Tab Content Styling */
+}
 .shopdetail_tab-content {
   display: none;
   padding: 20px 15px;
@@ -534,7 +526,7 @@ body {
   margin-bottom: 0;
 }
 
-/* Detail Section Styling */
+
 .shopdetail_sub-title {
   font-size: 24px;
   font-weight: 700;
@@ -553,7 +545,6 @@ body {
     margin-bottom: 20px;
 }
 
-/* Footer styling to ensure it appears outside main content */
 #footer {
     margin: 0;
     padding: 0;
