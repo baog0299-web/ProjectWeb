@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // SỬA LỖI 2: Link chi tiết dùng đường dẫn TUYỆT ĐỐI
             // Đảm bảo thư mục 'shop-detail-page' viết thường trên GitHub/Vercel
-            const detailLink = `/assets/page/shop-detail-page/shop-detail.html?id=${shop.id}`;
+           const detailLink = `/assets/page/Shop-detail-page/shop-detail.html?id=${shop.id}`;
 
             // Tạo phần tử HTML
             const shopLinkWrapper = document.createElement('a');
