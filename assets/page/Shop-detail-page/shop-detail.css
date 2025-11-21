@@ -304,9 +304,16 @@ body {
     display: flex;
     flex-wrap: nowrap;
     gap: 8px;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     height: 32px;
     align-items: center;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.shop-tags::-webkit-scrollbar {
+    display: none;
 }
 
 .shop-tags .tag {
@@ -322,7 +329,8 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     flex-shrink: 0;
-    max-width: 120px;
+    min-width: fit-content;
+    max-width: 150px;
 }
 
 .shop-tags .tag:hover {
@@ -416,12 +424,28 @@ body {
 .shopdetail_tag {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 5px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.shopdetail_tag::-webkit-scrollbar {
+  display: none;
 }
 .tag {
   background: #F5EFE7;
   border-radius: 8px;
   margin-left: 5px;
   padding: 1px 7px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+  min-width: fit-content;
+  max-width: 120px;
 }
 .shopdetail_sub-title{
   width: 100%;
