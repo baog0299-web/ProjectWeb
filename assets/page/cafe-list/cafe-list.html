@@ -4,69 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="pageTitle">Danh sách quán - CoffeeFinder</title>
+    
     <link rel="stylesheet" href="cafe-list.css">
     <link rel="stylesheet" href="/assets/component/header-footer/header.css">
     <link rel="stylesheet" href="/assets/component/header-footer/footer.css">
     <link rel="stylesheet" href="/assets/component/card/card.css">
     <link rel="stylesheet" href="/assets/component/floating-search-btn/floating-search.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
-    <!-- Language Switcher Root -->
-    <div id="lang-switcher-root"></div>
     
     <div id="header" class="header"></div> 
     
     <div class="main-content">
-        <!-- Filter Tabs -->
         <div class="filter-tabs">
-            <button class="filter-tab active">
+            <button class="filter-tab active" data-sort="new">
                 <i class="fa-solid fa-mug-hot"></i> 
                 <span data-i18n="filterTabs.new">Mới</span>
             </button>
-            <button class="filter-tab">
+            
+            <button class="filter-tab" data-sort="recommended">
                 <i class="fa-solid fa-lightbulb"></i> 
                 <span data-i18n="filterTabs.recommended">Gợi ý</span>
             </button>
-            <button class="filter-tab">
+            
+            <button class="filter-tab" data-sort="rating">
                 <i class="fa-solid fa-star"></i> 
                 <span data-i18n="filterTabs.topRated">Đánh giá cao</span>
             </button>
         </div>
 
-        <!-- Cafe Cards Grid -->
         <div class="cafe-grid" id="cafeGrid">
-            <!-- Cards sẽ được load từ component -->
-        </div>
+            </div>
 
-        <!-- Pagination -->
-        <div class="pagination">
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn">3</button>
-            <button class="page-btn">4</button>
-            <button class="page-btn next" data-i18n-aria="pagination.next">
-                <i class="fa-solid fa-chevron-right"></i>
-            </button>
-        </div>
+        <div class="pagination" id="pagination"></div>
     </div>
     
-    <!-- Floating Search Button -->
-    <div class="floating-search-btn" onclick="window.location.href='../../../index.html#search-section'">
+    <div class="floating-search-btn" onclick="window.location.href='/index.html#search-section'">
         <i class="fas fa-search"></i>
         <span data-i18n="floatingSearch.label">Tìm kiếm theo nhu cầu</span>
     </div>
     
     <div id="footer" class="footer"></div>
 
- 
-    <script src="/assets/locale/lang-switcher.js"></script>
-    <script src="cafe-list.js"></script>
-    
+    <script src="/assets/page/shop-detail-page/lang-switcher.js"></script>
+    <script src="/assets/page/shop-detail-page/switch-btn.js"></script>
     <script src="/assets/component/header-footer/header-loader.js"></script>
-    <script src="/main.js"></script>
+    
+    <script src="cafe-list.js"></script> 
 </body>
 </html>

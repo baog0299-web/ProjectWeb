@@ -1,224 +1,158 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const listContainer = document.getElementById('cafeGrid');
-    const paginationContainer = document.querySelector('.pagination');
-    
-    let allCoffeeShops = [];
-    let currentDisplayList = []; // Danh sách quán sẽ được hiển thị (sau khi lọc)
-    let currentPage = 1;
-    const itemsPerPage = 6;
+    // --- CẤU HÌNH ---
+    const ITEMS_PER_PAGE = 6; // Để 6 quán/trang để chắc chắn hiện phân trang (vì bạn có 18 quán)
 
-    // Hàm tải dữ liệu và xử lý tìm kiếm
-    async function loadAllCafes() {
-        if (!listContainer || !paginationContainer) return;
-        
-        listContainer.innerHTML = '<p style="text-align:center; width:100%;">Đang tải dữ liệu...</p>';
-        
+    // --- STATE ---
+    let allShops = [];      
+    let currentShops = [];  
+    let currentPage = 1;    
+
+    // 1. Tải dữ liệu (File data.json duy nhất)
+    async function loadData() {
         try {
-            // Tải dữ liệu từ file JSON
-            // Thử đường dẫn tương đối từ trang cafe-list
-            let response = await fetch('../../../assets/data/data.json');
+            const response = await fetch('/assets/data/data.json');
+            if (!response.ok) throw new Error('Lỗi tải data.json');
             
-            if (!response.ok) {
-                // Thử đường dẫn dự phòng nếu lỗi
-                response = await fetch('../../data/data.json');
-            }
+            allShops = await response.json();
             
-            if (!response.ok) throw new Error('Không thể tải data.json');
+            // Mặc định lọc theo Mới nhất
+            filterShops('new'); 
             
-            allCoffeeShops = await response.json();
-
-            // ===== LOGIC NHẬN TỪ KHÓA TÌM KIẾM =====
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchKeyword = urlParams.get('search');
-
-            if (searchKeyword) {
-                // Giải mã từ khóa (VD: "cafe%20đẹp" -> "cafe đẹp")
-                const decodedKeyword = decodeURIComponent(searchKeyword).toLowerCase();
-                
-                // Điền lại từ khóa vào ô tìm kiếm trên header (để người dùng biết mình đang tìm gì)
-                setTimeout(() => {
-                    const headerInput = document.querySelector('.header-search-bar input');
-                    if (headerInput) headerInput.value = decodedURIComponent(searchKeyword);
-                }, 800); // Đợi header load xong
-
-                // Lọc danh sách quán
-                currentDisplayList = allCoffeeShops.filter(shop => {
-                    const nameMatch = shop.name.toLowerCase().includes(decodedKeyword);
-                    const addressMatch = shop.address.toLowerCase().includes(decodedKeyword);
-                    // Có thể tìm thêm theo tiêu chí nếu muốn
-                    // const criteriaMatch = shop.criteria && shop.criteria.some(c => c.toLowerCase().includes(decodedKeyword));
-                    
-                    return nameMatch || addressMatch;
-                });
-
-                // Thông báo nếu không tìm thấy
-                if (currentDisplayList.length === 0) {
-                    listContainer.innerHTML = `
-                        <div class="no-result" style="width:100%; text-align:center; margin-top:40px;">
-                            <h3>Không tìm thấy quán nào phù hợp 😞</h3>
-                            <p>Bạn thử tìm với từ khóa khác xem sao nhé: "${decodeURIComponent(searchKeyword)}"</p>
-                            <a href="cafe-list.html" style="color: #D97706; text-decoration: underline; margin-top: 10px; display: inline-block;">Xem tất cả quán</a>
-                        </div>`;
-                    paginationContainer.innerHTML = '';
-                    return;
-                }
-            } else {
-                // Nếu không có từ khóa tìm kiếm -> Hiển thị tất cả
-                currentDisplayList = [...allCoffeeShops];
-            }
-
-            // Thiết lập phân trang và hiển thị trang 1
-            setupPagination();
-            renderPage(1);
-
         } catch (error) {
-            console.error(error);
-            listContainer.innerHTML = '<p style="text-align:center; color:red;">Lỗi khi tải dữ liệu quán.</p>';
+            console.error("Lỗi:", error);
+            document.getElementById('cafeGrid').innerHTML = '<p style="text-align:center;">Lỗi tải dữ liệu.</p>';
         }
     }
 
-    // Hàm hiển thị các quán theo trang (đã sửa để dùng currentDisplayList)
-    function renderPage(pageNumber) {
-        currentPage = pageNumber;
-        listContainer.innerHTML = ''; 
-
-        const startIndex = (currentPage - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
+    // 2. Vẽ danh sách quán (Card)
+    function renderPageData() {
+        const grid = document.getElementById('cafeGrid');
         
-        // Lấy danh sách quán cần hiện cho trang này
-        const itemsToShow = currentDisplayList.slice(startIndex, endIndex);
+        // Tính toán cắt mảng dữ liệu cho trang hiện tại
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+        const shopsToRender = currentShops.slice(startIndex, endIndex);
 
-        // Cập nhật nút active ở phân trang
-        document.querySelectorAll('.pagination .page-btn').forEach(btn => {
-            btn.classList.remove('active');
-            if (parseInt(btn.innerText) === currentPage) btn.classList.add('active');
-        });
+        grid.innerHTML = '';
 
-        // Vẽ từng thẻ quán (Card)
-        itemsToShow.forEach(shop => {
-            const shopLinkWrapper = document.createElement('a');
-            shopLinkWrapper.className = 'shop-card-link';
-            shopLinkWrapper.href = `../Shop-detail-page/shop-detail.html?id=${shop.id}`; 
-            shopLinkWrapper.style.textDecoration = 'none';
+        if (shopsToRender.length === 0) {
+            grid.innerHTML = '<p style="text-align:center; width:100%;">Không tìm thấy quán nào.</p>';
+            document.getElementById('pagination').innerHTML = ''; // Xóa phân trang
+            return;
+        }
 
-            // Xử lý Tags
+        shopsToRender.forEach(shop => {
+            // Xử lý Tags (Lấy tối đa 2 tag)
             let tagsHTML = '';
-            if (shop.criteria) {
-                const tagsToShow = shop.criteria.slice(0, 2);
-                tagsHTML = tagsToShow.map(tag => `<button class="btn-tag">${tag}</button>`).join('');
-                if (shop.criteria.length > 2) {
-                    tagsHTML += `<button class="btn-tag" id="small">+${shop.criteria.length - 2}</button>`;
-                }
+            if (shop.criteria && shop.criteria.length > 0) {
+                tagsHTML += `<span class="btn-tag">${shop.criteria[0]}</span>`;
+                if (shop.criteria.length > 1) tagsHTML += `<span class="btn-tag">${shop.criteria[1]}</span>`;
+                if (shop.criteria.length > 2) tagsHTML += `<span class="btn-tag" id="small">+${shop.criteria.length - 2}</span>`;
             }
 
-            // Xử lý ảnh (Fallback nếu lỗi)
-            let imgSrc = shop.image;
-            // Đảm bảo đường dẫn ảnh đúng khi đang ở thư mục con
-            if (imgSrc && !imgSrc.startsWith('http') && !imgSrc.startsWith('/')) {
-                 imgSrc = '../../../' + imgSrc;
-            }
-            
-            const fallbackImg = '../../../assets/image/public/Container.png';
-
-            shopLinkWrapper.innerHTML = `
-                <div class="card">
-                  <div class="card-image">
-                    <img src="${imgSrc}" alt="${shop.name}" onerror="this.onerror=null; this.src='${fallbackImg}'">
-                    <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
-                    <div class="icon-top-right heart-icon">
-                        <i class="far fa-heart"></i>
+            const cardHTML = `
+                <div class="card" onclick="window.location.href='/assets/page/shop-detail-page/shop-detail.html?id=${shop.id}'">
+                    <div class="card-image">
+                        <img src="${shop.image || '/assets/image/default.png'}" alt="${shop.name}" loading="lazy">
+                        <div class="icon-top-right"><i class="far fa-heart"></i></div>
                     </div>
-                  </div>
-                  <div class="card-content">
-                    <div class="card-info">
-                      <div class="rating"><i class="fas fa-star"></i> ${shop.rating}</div>
-                      <h3 class="title">${shop.name}</h3>
-                      <div class="location"><i class="fas fa-map-marker-alt"></i> <span>${shop.location_area}</span></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="title">${shop.name}</h3>
+                            <div class="rating"><i class="fas fa-star"></i> ${shop.rating}</div>
+                        </div>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i> 
+                            <span>${shop.address}</span>
+                        </div>
+                        <div class="tags">${tagsHTML}</div>
                     </div>
-                    <div class="tag">${tagsHTML}</div>
-                  </div>
                 </div>
             `;
-
-            // --- LOGIC YÊU THÍCH (TIM) ---
-            const heartBtn = shopLinkWrapper.querySelector('.heart-icon');
-            const FAVORITES_KEY = 'favoriteCafes';
-            const shopId = Number(shop.id);
-            
-            // Kiểm tra trạng thái đã like chưa
-            let favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
-            let isLiked = favorites.map(id => Number(id)).includes(shopId);
-
-            const updateCardHeart = (active) => {
-                if (active) {
-                    heartBtn.innerHTML = '<i class="fas fa-heart" style="color: #D97706;"></i>'; // Tim đặc màu cam
-                } else {
-                    heartBtn.innerHTML = '<i class="far fa-heart" style="color: #6B4423;"></i>'; // Tim rỗng màu nâu
-                }
-            };
-            updateCardHeart(isLiked);
-
-            // Bắt sự kiện click vào tim
-            heartBtn.addEventListener('click', (e) => {
-                e.preventDefault(); 
-                e.stopPropagation(); // Ngăn không cho click vào thẻ cha (chuyển trang)
-                
-                let currentFavs = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
-                currentFavs = currentFavs.map(id => Number(id));
-                
-                if (isLiked) {
-                     currentFavs = currentFavs.filter(id => id !== shopId);
-                     isLiked = false;
-                } else {
-                     if (!currentFavs.includes(shopId)) currentFavs.push(shopId);
-                     isLiked = true;
-                }
-                
-                localStorage.setItem(FAVORITES_KEY, JSON.stringify(currentFavs));
-                updateCardHeart(isLiked);
-            });
-
-            listContainer.appendChild(shopLinkWrapper);
+            grid.innerHTML += cardHTML;
         });
+
+        // QUAN TRỌNG: Gọi hàm vẽ phân trang sau khi vẽ xong danh sách
+        renderPagination();
     }
 
-    // Hàm tạo nút phân trang (đã sửa để dùng currentDisplayList)
-    function setupPagination() {
-        paginationContainer.innerHTML = ''; 
-        
-        // Tính tổng số trang dựa trên danh sách ĐÃ LỌC
-        const pageCount = Math.ceil(currentDisplayList.length / itemsPerPage);
-        
-        if (pageCount <= 1) return; // Nếu chỉ có 1 trang thì khỏi hiện nút
-        
-        // Nút Trước
-        /* const prevBtn = document.createElement('button');
-        prevBtn.className = 'btn-page';
-        prevBtn.innerHTML = '<i class="fa-solid fa-angle-left"></i>';
-        prevBtn.onclick = () => { if(currentPage > 1) renderPage(currentPage - 1); };
-        paginationContainer.appendChild(prevBtn);
-        */
+    // 3. Vẽ thanh phân trang (Pagination)
+    function renderPagination() {
+        const paginationContainer = document.getElementById('pagination');
+        const totalPages = Math.ceil(currentShops.length / ITEMS_PER_PAGE);
 
-        for (let i = 1; i <= pageCount; i++) {
-            const pageButton = document.createElement('button');
-            pageButton.className = 'btn-page'; // Lưu ý class này phải khớp CSS của bạn (btn-page hoặc page-btn)
-            pageButton.textContent = i;
-            if (i === 1) pageButton.classList.add('active');
-            
-            pageButton.addEventListener('click', () => renderPage(i));
-            paginationContainer.appendChild(pageButton);
+        paginationContainer.innerHTML = '';
+
+        // Nếu chỉ có 1 trang hoặc không có trang nào -> Ẩn phân trang
+        if (totalPages <= 1) {
+            return;
         }
-        
-        // Nút Sau (Next)
-        const nextBtn = document.createElement('button');
-        nextBtn.className = 'btn-page';
-        nextBtn.innerHTML = '<i class="fa-solid fa-angle-right"></i>';
-        nextBtn.addEventListener('click', () => { 
-            if(currentPage < pageCount) renderPage(currentPage + 1); 
-        });
-        paginationContainer.appendChild(nextBtn);
+
+        // Nút Prev (<)
+        if (currentPage > 1) {
+            const prevBtn = createPageBtn('<i class="fa-solid fa-chevron-left"></i>', currentPage - 1);
+            paginationContainer.appendChild(prevBtn);
+        }
+
+        // Các nút số (1, 2, 3...)
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = createPageBtn(i, i);
+            if (i === currentPage) btn.classList.add('active');
+            paginationContainer.appendChild(btn);
+        }
+
+        // Nút Next (>)
+        if (currentPage < totalPages) {
+            const nextBtn = createPageBtn('<i class="fa-solid fa-chevron-right"></i>', currentPage + 1);
+            paginationContainer.appendChild(nextBtn);
+        }
     }
-    
+
+    // Helper tạo nút trang
+    function createPageBtn(content, pageTarget) {
+        const btn = document.createElement('button');
+        btn.className = 'page-btn';
+        btn.innerHTML = content;
+        btn.onclick = () => {
+            currentPage = pageTarget;
+            renderPageData();
+            // Cuộn lên đầu danh sách khi chuyển trang
+            const gridTop = document.querySelector('.filter-tabs');
+            if(gridTop) gridTop.scrollIntoView({ behavior: 'smooth' });
+        };
+        return btn;
+    }
+
+    // 4. Logic Bộ lọc (Sort)
+    function filterShops(sortType) {
+        let sortedList = [...allShops];
+
+        if (sortType === 'new') {
+            // Mới nhất (ID lớn nhất lên đầu)
+            sortedList.sort((a, b) => b.id - a.id);
+        } else if (sortType === 'rating') {
+            // Đánh giá cao nhất
+            sortedList.sort((a, b) => b.rating - a.rating);
+        } else if (sortType === 'recommended') {
+            // Gợi ý (Ngẫu nhiên)
+            sortedList.sort(() => 0.5 - Math.random());
+        }
+
+        currentShops = sortedList;
+        currentPage = 1; // Reset về trang 1 khi lọc lại
+        renderPageData();
+    }
+
+    // 5. Sự kiện Click Bộ lọc
+    const filterButtons = document.querySelectorAll('.filter-tab');
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filterShops(btn.getAttribute('data-sort'));
+        });
+    });
+
     // Khởi chạy
-    loadAllCafes(); 
+    loadData();
 });
