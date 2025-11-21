@@ -1,48 +1,55 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- CẤU HÌNH ---
-    const ITEMS_PER_PAGE = 6; // Để 6 quán/trang để chắc chắn hiện phân trang (vì bạn có 18 quán)
+    const ITEMS_PER_PAGE = 9; // Số quán hiển thị trên 1 trang
 
-    // --- STATE ---
-    let allShops = [];      
-    let currentShops = [];  
-    let currentPage = 1;    
+    // --- BIẾN TRẠNG THÁI ---
+    let allShops = [];      // Chứa toàn bộ dữ liệu gốc
+    let currentShops = [];  // Chứa dữ liệu đang hiển thị (đã lọc)
+    let currentPage = 1;    // Trang hiện tại
 
-    // 1. Tải dữ liệu (File data.json duy nhất)
+    // 1. Hàm hỗ trợ lấy ngôn ngữ (Mặc định là 'vi')
+    function getCurrentLang() {
+        return localStorage.getItem('site_lang') || 'vi';
+    }
+
+    // 2. Hàm tải dữ liệu từ file JSON
     async function loadData() {
         try {
+            // Tải file data chung (dùng 1 file data.json như bạn đã chốt)
             const response = await fetch('/assets/data/data.json');
             if (!response.ok) throw new Error('Lỗi tải data.json');
             
             allShops = await response.json();
             
-            // Mặc định lọc theo Mới nhất
+            // Mặc định khi vào trang sẽ lọc theo "Mới nhất"
             filterShops('new'); 
             
         } catch (error) {
             console.error("Lỗi:", error);
-            document.getElementById('cafeGrid').innerHTML = '<p style="text-align:center;">Lỗi tải dữ liệu.</p>';
+            document.getElementById('cafeGrid').innerHTML = '<p style="text-align:center;">Đang tải dữ liệu...</p>';
         }
     }
 
-    // 2. Vẽ danh sách quán (Card)
+    // 3. Hàm vẽ danh sách quán (Render)
     function renderPageData() {
         const grid = document.getElementById('cafeGrid');
         
-        // Tính toán cắt mảng dữ liệu cho trang hiện tại
+        // Tính toán vị trí cắt mảng cho phân trang
         const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
         const endIndex = startIndex + ITEMS_PER_PAGE;
         const shopsToRender = currentShops.slice(startIndex, endIndex);
 
         grid.innerHTML = '';
 
+        // Nếu không có quán nào
         if (shopsToRender.length === 0) {
             grid.innerHTML = '<p style="text-align:center; width:100%;">Không tìm thấy quán nào.</p>';
-            document.getElementById('pagination').innerHTML = ''; // Xóa phân trang
+            document.getElementById('pagination').innerHTML = ''; // Ẩn phân trang
             return;
         }
 
         shopsToRender.forEach(shop => {
-            // Xử lý Tags (Lấy tối đa 2 tag)
+            // Xử lý hiển thị Tags (chỉ lấy tối đa 2 tag đầu)
             let tagsHTML = '';
             if (shop.criteria && shop.criteria.length > 0) {
                 tagsHTML += `<span class="btn-tag">${shop.criteria[0]}</span>`;
@@ -50,8 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (shop.criteria.length > 2) tagsHTML += `<span class="btn-tag" id="small">+${shop.criteria.length - 2}</span>`;
             }
 
+            // --- PHẦN QUAN TRỌNG NHẤT: SỬA ĐƯỜNG DẪN ---
+            // Sử dụng '../' để lùi ra khỏi thư mục 'cafe-list' và đi vào 'shop-detail-page'
+            const detailLink = `../shop-detail-page/shop-detail.html?id=${shop.id}`;
+
             const cardHTML = `
-                <div class="card" onclick="window.location.href='/assets/page/shop-detail-page/shop-detail.html?id=${shop.id}'">
+                <div class="card" onclick="window.location.href='${detailLink}'">
                     <div class="card-image">
                         <img src="${shop.image || '/assets/image/default.png'}" alt="${shop.name}" loading="lazy">
                         <div class="icon-top-right"><i class="far fa-heart"></i></div>
@@ -72,23 +83,21 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.innerHTML += cardHTML;
         });
 
-        // QUAN TRỌNG: Gọi hàm vẽ phân trang sau khi vẽ xong danh sách
+        // Vẽ xong danh sách thì vẽ nút phân trang
         renderPagination();
     }
 
-    // 3. Vẽ thanh phân trang (Pagination)
+    // 4. Hàm vẽ thanh phân trang (Pagination)
     function renderPagination() {
         const paginationContainer = document.getElementById('pagination');
         const totalPages = Math.ceil(currentShops.length / ITEMS_PER_PAGE);
 
         paginationContainer.innerHTML = '';
 
-        // Nếu chỉ có 1 trang hoặc không có trang nào -> Ẩn phân trang
-        if (totalPages <= 1) {
-            return;
-        }
+        // Nếu chỉ có 1 trang thì không cần hiện nút
+        if (totalPages <= 1) return;
 
-        // Nút Prev (<)
+        // Nút Prev
         if (currentPage > 1) {
             const prevBtn = createPageBtn('<i class="fa-solid fa-chevron-left"></i>', currentPage - 1);
             paginationContainer.appendChild(prevBtn);
@@ -101,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             paginationContainer.appendChild(btn);
         }
 
-        // Nút Next (>)
+        // Nút Next
         if (currentPage < totalPages) {
             const nextBtn = createPageBtn('<i class="fa-solid fa-chevron-right"></i>', currentPage + 1);
             paginationContainer.appendChild(nextBtn);
@@ -116,43 +125,59 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.onclick = () => {
             currentPage = pageTarget;
             renderPageData();
-            // Cuộn lên đầu danh sách khi chuyển trang
+            // Cuộn nhẹ lên đầu danh sách
             const gridTop = document.querySelector('.filter-tabs');
             if(gridTop) gridTop.scrollIntoView({ behavior: 'smooth' });
         };
         return btn;
     }
 
-    // 4. Logic Bộ lọc (Sort)
+    // 5. Logic Bộ lọc (Filter & Sort)
     function filterShops(sortType) {
-        let sortedList = [...allShops];
+        let sortedList = [...allShops]; // Copy mảng gốc
 
-        if (sortType === 'new') {
-            // Mới nhất (ID lớn nhất lên đầu)
-            sortedList.sort((a, b) => b.id - a.id);
-        } else if (sortType === 'rating') {
-            // Đánh giá cao nhất
-            sortedList.sort((a, b) => b.rating - a.rating);
-        } else if (sortType === 'recommended') {
-            // Gợi ý (Ngẫu nhiên)
-            sortedList.sort(() => 0.5 - Math.random());
+        switch (sortType) {
+            case 'new': // Mới nhất (ID giảm dần)
+                sortedList.sort((a, b) => b.id - a.id);
+                break;
+            case 'rating': // Đánh giá cao
+                sortedList.sort((a, b) => b.rating - a.rating);
+                break;
+            case 'recommended': // Gợi ý (Ngẫu nhiên)
+                sortedList.sort(() => 0.5 - Math.random());
+                break;
+            default:
+                sortedList.sort((a, b) => b.id - a.id);
         }
 
         currentShops = sortedList;
-        currentPage = 1; // Reset về trang 1 khi lọc lại
+        currentPage = 1; // Reset về trang 1
         renderPageData();
     }
 
-    // 5. Sự kiện Click Bộ lọc
+    // 6. Sự kiện click nút bộ lọc
     const filterButtons = document.querySelectorAll('.filter-tab');
     filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
+            // Đổi class active
             filterButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+
+            // Lọc dữ liệu
             filterShops(btn.getAttribute('data-sort'));
         });
     });
 
-    // Khởi chạy
+    // 7. Sự kiện click đổi ngôn ngữ (Load lại để cập nhật chữ nếu cần)
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-lang]');
+        if (btn) {
+            setTimeout(() => {
+                loadData();
+            }, 50);
+        }
+    });
+
+    // Khởi chạy lần đầu
     loadData();
 });
