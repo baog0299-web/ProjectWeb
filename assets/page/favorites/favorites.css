@@ -3,46 +3,17 @@
     overflow: hidden;
     background-color: #fffbeb;
 }
-<<<<<<< HEAD
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
-}
-
-body {
-    margin: 0;
-}
-
-=======
->>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
 .security-favorite{
     width: 100%;;
     position: relative;
     font-family: roboto, sans-serif;
-<<<<<<< HEAD
-    justify-content: center;
-}
-.picture1{
-    width: 100%;
-    height: 300px;
-    object-fit: cover; /* Đảm bảo hình ảnh phủ hết khu vực */
-}
-=======
 
 }
->>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
 
 .security-favorite .picture2{
     position: absolute;
     top: 35%;
     left: 50%;
-<<<<<<< HEAD
-    /* right: 50%;  -- Không cần thiết, transform đã xử lý */
-=======
->>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
     transform: translate(-50%, -50%);
     width: 113px;
     height: 112px;
@@ -54,24 +25,6 @@ body {
    color: white;
     font-size: 60px;
     font-family: pacifico, cursive;
-<<<<<<< HEAD
-    justify-content: center;
-    text-align: center; /* Đã có trong .saved riêng, nhưng giữ lại cho rõ ràng */
-}
-.saved{
-    text-align: center;
-}
-.desinations {
-    position: absolute;
-    top: 88%;
-    left: 0;
-    width: 100%;
-    color: white;
-    font-size: 18px; /* Đã có ở trên, giữ lại font-size 18px */
-    font-family: 'Roboto', sans-serif;
-    color: #ddd;
-    text-align: center;
-=======
 
     
 }
@@ -83,7 +36,6 @@ body {
     font-size: 20px;
 
     
->>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
 }
 .collection {
     display: flex;
@@ -92,144 +44,13 @@ body {
     padding: 16px 0;
 }
 .collect-mini{
-<<<<<<< HEAD
-    color:  #4A2C1A;
-    font-size: 30px;
-    text-align: center;
-=======
     color:  #4A2C1A;
     font-size: 30px
 ;
->>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
 }
 .review{
     font-size: 16px;
     color: #575757;
-<<<<<<< HEAD
-    /* Loại bỏ margin-left cố định */
-    margin: 0 auto 16px auto; /* Căn giữa và thêm khoảng cách dưới */
-    width: fit-content; /* Giữ kích thước bằng nội dung */
-}
-
-/* .review đã được hợp nhất, loại bỏ khối dư thừa */
-.card-container{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-    /* Điều chỉnh margin để dễ responsive hơn */
-    margin: 0px 80px 0px 80px; 
-}
-.pagination{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    margin: 40px 0;
-}
-.btn-page{
-    width: 40px;
-    height: 40px;
-    border: solid 1px;
-    border-color: rgba(253, 230, 138, 1);
-    border-radius:50%;
-    background-color: #FFFFFF;
-    color: #D97706;
-    font-weight: 600;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    /* Dùng flex để căn icon/số ra giữa */
-    display: flex; 
-}
-.btn-page:hover{
-    background-color: rgba(255, 232, 140, 1);
-    color: #D97706;
-}
-
-/* Các khối CSS trùng lặp đã được loại bỏ ở đầu */
-
-
-/* --- MEDIA QUERIES --- */
-
-/* 1. Thiết bị Tablet (Màn hình tối đa 768px) */
-@media (max-width: 768px) {
-    .picture1 {
-        height: 250px; /* Giảm chiều cao banner */
-    }
-
-    .security-favorite .saved {
-        font-size: 40px; /* Giảm kích thước chữ tiêu đề */
-    }
-    
-    .desinations {
-        font-size: 16px; /* Giảm kích thước chữ phụ đề */
-        top: 85%;
-    }
-
-    .card-container {
-        /* Tăng margin ngang để card không bị sát cạnh */
-        margin: 0px 40px 0px 40px; 
-    }
-    
-    /* Chỉnh sửa căn chỉnh của phần mô tả */
-    .review {
-        margin: 0 auto 12px auto;
-    }
-    
-}
-
-/* 2. Thiết bị Mobile (Màn hình tối đa 576px) */
-@media (max-width: 576px) {
-    .picture1 {
-        height: 200px; /* Giảm chiều cao banner nhỏ hơn */
-    }
-
-    .security-favorite .picture2 {
-        width: 70px; /* Giảm kích thước hình trang trí */
-        height: 70px;
-        top: 35%;
-    }
-
-    .security-favorite .saved {
-        font-size: 32px; /* Giảm kích thước chữ tiêu đề */
-        top: 55%; /* Di chuyển xuống một chút */
-    }
-    
-    .desinations {
-        font-size: 14px; /* Giảm kích thước chữ phụ đề */
-        top: 80%;
-    }
-
-    .collect-mini {
-        font-size: 24px; /* Giảm kích thước chữ bộ sưu tập */
-    }
-
-    .review {
-        font-size: 14px;
-        /* Vẫn căn giữa */
-    }
-
-    .card-container {
-        /* Giảm margin ngang tối đa */
-        margin: 0px 10px 0px 10px; 
-        /* Đảm bảo mỗi card chiếm toàn bộ chiều rộng (cần chỉnh trong card.css) */
-        /* Nếu card được thiết lập width: calc(50% - 10px) thì sẽ tự xuống dòng */
-    }
-
-    .pagination {
-        margin: 30px 0;
-        gap: 8px; /* Giảm khoảng cách giữa các nút */
-    }
-    
-    .btn-page {
-        width: 32px; /* Giảm kích thước nút phân trang */
-        height: 32px;
-    }
-
-}
-=======
 ;
 
 }
@@ -239,4 +60,3 @@ body {
     margin-left: 100px;
 }
 
->>>>>>> 84d21af4c83add47981bfe89cf7d9c5547394290
