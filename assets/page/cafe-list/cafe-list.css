@@ -7,10 +7,11 @@ body {
 }
 
 .main-content {
-    max-width: 1440px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 30px 20px 60px; 
-    min-height: 80vh; 
+    min-height: 80vh;
+    box-sizing: border-box;
 }
 
 .shop-card-link {
@@ -71,9 +72,11 @@ body {
 /* --- LƯỚI HIỂN THỊ QUÁN (GRID) --- */
 .cafe-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
     gap: 24px;
     margin-bottom: 40px;
+    justify-content: center;
+    align-items: center;
 }
 
 /* --- PHÂN TRANG (PAGINATION) --- */
