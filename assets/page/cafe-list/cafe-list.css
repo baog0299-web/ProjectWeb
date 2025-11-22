@@ -9,20 +9,27 @@ body {
 .main-content {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 30px 20px 60px;
-    min-height: 80vh; /* Đảm bảo trang luôn cao ít nhất 80% màn hình */
+    padding: 30px 20px 60px; 
+    min-height: 80vh; 
 }
 
 .shop-card-link {
     text-decoration: none;
 }
 
-/* --- BỘ LỌC (FILTER TABS) --- */
 .filter-tabs {
     display: flex;
     gap: 15px;
     margin-bottom: 30px;
-    flex-wrap: wrap; /* Để nút xuống dòng nếu màn hình quá nhỏ */
+    flex-wrap: nowrap; 
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; 
+    padding-bottom: 10px; 
+}
+
+.filter-tabs::-webkit-scrollbar {
+    display: none;
 }
 
 .filter-tab {
@@ -30,7 +37,7 @@ body {
     border: none;
     border-radius: 20px;
     background-color: white;
-    color: #5D4037; /* Nâu đậm */
+    color: #5D4037; 
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -39,16 +46,20 @@ body {
     align-items: center;
     gap: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    
+    /* QUAN TRỌNG: Ngăn các nút bị co lại khi không đủ chỗ */
+    flex-shrink: 0; 
+    white-space: nowrap;
 }
 
 .filter-tab:hover {
-    background-color: #FEF3C7; /* Vàng nhạt khi hover */
+    background-color: #FEF3C7; 
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .filter-tab.active {
-    background-color: #FF7043; /* Cam đậm khi active */
+    background-color: #FF7043; 
     color: white;
     box-shadow: 0 4px 10px rgba(255, 112, 67, 0.4);
 }
@@ -60,7 +71,7 @@ body {
 /* --- LƯỚI HIỂN THỊ QUÁN (GRID) --- */
 .cafe-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Mặc định 3 cột */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 24px;
     margin-bottom: 40px;
 }
@@ -78,16 +89,14 @@ body {
     width: 40px;
     height: 40px;
     border: none;
-    border-radius: 50%; /* Hình tròn */
+    border-radius: 50%; 
     background-color: white;
     color: #5D4037;
     font-size: 14px;
-    font-weight: 600; /* Chữ đậm hơn xíu cho dễ đọc */
+    font-weight: 600; 
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    
-    /* QUAN TRỌNG: Căn giữa số trong hình tròn */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,25 +114,40 @@ body {
     box-shadow: 0 4px 10px rgba(255, 112, 67, 0.4);
 }
 
+
 /* RESPONSIVE (Tương thích thiết bị) */
+
+@media (min-width: 641px) {
+    .filter-tabs {
+        flex-wrap: wrap; 
+        overflow-x: unset;
+    }
+}
+
+
 @media (max-width: 1024px) {
     .cafe-grid {
-        grid-template-columns: repeat(2, 1fr); /* Tablet: 2 cột */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 640px) {
+    .main-content {
+        padding: 20px 10px 40px;
+    }
+
     .cafe-grid {
-        grid-template-columns: 1fr; /* Mobile: 1 cột */
+        grid-template-columns: 1fr; 
+        gap: 16px; 
     }
     
     .filter-tabs {
-        overflow-x: auto; /* Cho phép cuộn ngang nếu nút nhiều quá */
-        padding-bottom: 10px; /* Tránh thanh cuộn che mất bóng đổ */
-        flex-wrap: nowrap;
+        flex-wrap: nowrap; 
+        overflow-x: auto; 
     }
     
     .filter-tab {
-        white-space: nowrap; /* Không cho chữ xuống dòng */
+        font-size: 13px;
+        padding: 8px 16px;
     }
 }
