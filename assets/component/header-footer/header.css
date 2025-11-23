@@ -154,6 +154,7 @@ input::placeholder{
   border: none;
   padding: 0;
 }
+<<<<<<< HEAD
 
 /* ===== MOBILE ELEMENTS - HIDDEN BY DEFAULT ===== */
 .hamburger-btn,
@@ -660,3 +661,84 @@ input::placeholder{
     padding: 10px 45px 10px 40px;
   }
 }
+=======
+/* --- SEARCH SUGGESTIONS DROPDOWN --- */
+.header-search-bar {
+    position: relative; /* Để khung gợi ý bám theo ô tìm kiếm */
+}
+
+.search-suggestions {
+    position: absolute;
+    top: 100%; /* Nằm ngay dưới ô input */
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    max-height: 350px;
+    overflow-y: auto; /* Cho phép cuộn nếu danh sách dài */
+    z-index: 9999;
+    display: none; /* Mặc định ẩn */
+    margin-top: 8px;
+    padding: 8px 0;
+    border: 1px solid #eee;
+}
+
+.search-suggestions.show {
+    display: block; /* Hiện khi có kết quả */
+}
+
+/* Từng dòng gợi ý */
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background-color: #FFF8E1; /* Màu nền khi di chuột vào */
+}
+
+/* Ảnh nhỏ trong gợi ý */
+.suggestion-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+/* Thông tin tên quán và địa chỉ */
+.suggestion-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow: hidden;
+}
+
+.suggestion-info h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #4A2C1A;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.suggestion-info p {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+>>>>>>> 8f00618d44f8eeea22543cff8f25a529cff766e8

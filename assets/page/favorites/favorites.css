@@ -1,131 +1,209 @@
-
-
+/* --- CẤU HÌNH CHUNG --- */
 .all {
-    font-family: roboto, sans-serif;
+    font-family: "Roboto", sans-serif;
     background-color: #fffbeb;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-font-family: "Roboto", sans-serif;
-
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }
 
 body {
-  margin: 0;
+    margin: 0;
+    background-color: #FFFBEB;
 }
 
-.security-favorite{
+/* --- BANNER --- */
+.security-favorite {
     display: flex;
     width: 100%;
     position: relative;
-    font-family: roboto, sans-serif;
     justify-content: center;
-
+    background-color: #222;
 }
-.picture1{
+
+.picture1 {
     width: 100%;
-    height: 300px;
+    height: 350px;
+    object-fit: cover;
+    opacity: 0.9;
 }
 
-.security-favorite .picture2{
+.security-favorite .picture2 {
     position: absolute;
     top: 30%;
     left: 50%;
-    right: 50%;
     transform: translate(-50%, -50%);
     width: 100px;
     height: 100px;
+    z-index: 2;
 }
+
 .security-favorite .saved {
     position: absolute;
-    top: 50%;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: white;
     font-size: 60px;
-    font-family: pacifico, cursive;
-    justify-content: center;
-}
-.saved{
+    font-family: "Pacifico", cursive;
     text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    z-index: 2;
+    width: 100%;
 }
+
 .desinations {
     position: absolute;
-    top: 88%;
+    bottom: 20px;
     left: 0;
     width: 100%;
-    color: white;
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 18px;
     color: #ddd;
+    font-size: 18px;
     text-align: center;
-
+    z-index: 2;
 }
+
+/* --- TIÊU ĐỀ PHỤ --- */
 .collection {
     display: flex;
     align-items: center; 
     gap: 16px; 
-    padding: 16px 0;
+    padding: 40px 0 20px;
     justify-content: center;
 }
-.collect-mini{
-    color:  #4A2C1A;
-    font-size: 30px;
+
+.collect-mini {
+    color: #4A2C1A;
+    font-size: 32px;
+    font-weight: 700;
     text-align: center;
 }
-.review{
 
+.review {
     font-size: 16px;
     color: #575757;
-
+    margin: 0 auto 30px auto;
+    text-align: center;
+    max-width: 800px;
+    line-height: 1.5;
 }
 
- .review {
-    margin: 0;
-    margin-left: 158px;
+/* ====================================================== */
+/* PHẦN QUAN TRỌNG: GRID LAYOUT (SỬA THEO CẤU TRÚC MỚI) */
+/* ====================================================== */
+
+/* 1. Thẻ Wrapper (Bao ngoài cùng): Lo căn lề trang */
+.card-container {
+    display: block;     /* Bỏ flex, dùng block chuẩn */
+    max-width: 1200px;  /* Giới hạn chiều rộng */
+    margin: 0 auto;     /* Căn giữa màn hình */
+    padding: 0 20px;    /* Lề trái phải 80px */
 }
-.card-container{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0px 80px 0px 80px;
+
+/* 2. Thẻ Grid (Bên trong): Lo chia cột */
+.favorites-grid {
+    display: flex;              /* Dùng Flexbox thay vì Grid */
+    flex-wrap: wrap;            /* Cho phép xuống dòng khi hết chỗ */
+    justify-content: center;    /* QUAN TRỌNG: Căn giữa toàn bộ card trong container */
+    gap: 24px;                  /* Khoảng cách giữa các card */
+    width: 100%;
 }
-.pagination{
+.favorites-grid > * {
+    /* Tính toán chiều rộng: (100% - 2 khoảng gap) / 3 */
+    width: calc((100% - 48px) / 3); 
+    
+    /* Đặt độ rộng tối thiểu để card không bị bóp quá nhỏ */
+    min-width: 300px;
+    
+    /* (Tuỳ chọn) Giới hạn độ rộng tối đa để card không quá to khi đứng 1 mình */
+    max-width: 380px; 
+    
+    
+}
+/* --- PHÂN TRANG --- */
+.pagination {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 16px;
-    margin: 40px 0;
+    gap: 12px;
+    margin: 40px 0 60px;
 }
-.btn-page{
+
+.btn-page {
     width: 40px;
     height: 40px;
-    border: solid 1px;
-    border-color: rgba(253, 230, 138, 1);
-    border-radius:50%;
+    border: 1px solid rgba(253, 230, 138, 1);
+    border-radius: 50%;
     background-color: #FFFFFF;
     color: #D97706;
     font-weight: 600;
+    font-size: 14px;
+    display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-.btn-page:hover{
-    background-color: rgba(255, 232, 140, 1);
+
+.btn-page:hover {
+    background-color: #FEF3C7;
     color: #D97706;
+    transform: translateY(-2px);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-   font-family: "Roboto", sans-serif;
+.btn-page.active {
+    background-color: #FF7043;
+    color: white;
+    border-color: #FF7043;
 }
 
-body {
-  margin: 0;
+/* --- RESPONSIVE --- */
+
+/* Tablet (Dưới 1024px) -> 2 cột */
+@media (max-width: 1024px) {
+    .favorites-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .card-container {
+        padding: 0 40px; /* Giảm lề Wrapper */
+    }
+    
+    .picture1 { height: 300px; }
+    .security-favorite .saved { font-size: 48px; }
+}
+
+/* Mobile (Dưới 640px) -> 1 cột */
+@media (max-width: 640px) {
+    /* Grid 1 cột, full màn hình */
+    .favorites-grid {
+        grid-template-columns: 1fr; 
+    }
+
+    /* Giảm lề Wrapper tối đa để tận dụng không gian */
+    .card-container {
+        padding: 0 15px; 
+    }
+
+    .picture1 { height: 250px; }
+    
+    .security-favorite .picture2 { 
+        width: 70px; 
+        height: 70px; 
+        top: 35%; 
+    }
+
+    .security-favorite .saved { 
+        font-size: 36px; 
+        top: 60%; 
+    }
+
+    .desinations { font-size: 14px; bottom: 15px; }
+    .collect-mini { font-size: 26px; }
+    .review { font-size: 14px; padding: 0 15px; }
 }

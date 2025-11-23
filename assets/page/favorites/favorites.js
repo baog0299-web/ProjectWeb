@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const listContainer = document.querySelector('.card-container');
+    // 1. SỬA SELECTOR: Trỏ vào thẻ con mới .favorites-grid
+    const listContainer = document.querySelector('.favorites-grid') || document.getElementById('favoritesList');
     const countElement = document.querySelector('.desinations');
     const paginationContainer = document.querySelector('.pagination');
     const FAVORITES_KEY = 'favoriteCafes';
     
-    // Các biến toàn cục để quản lý phân trang
     let currentCount = 0;
     let isUpdating = false;
     let likedShops = [];
@@ -36,7 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('../../../assets/data/data.json');
+            // SỬA: Dùng đường dẫn tuyệt đối
+            const response = await fetch('/assets/data/data.json');
             if (!response.ok) throw new Error('Không thể tải file data.json');
             
             const allShops = await response.json();
@@ -57,8 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } catch (error) {
             console.error("Lỗi:", error);
-            // Thêm data-i18n cho error message
-            listContainer.innerHTML = '<p style="text-align:center" data-i18n="error.loadingData">Có lỗi xảy ra khi tải dữ liệu.</p>';
+            if(listContainer) listContainer.innerHTML = '<p style="text-align:center; grid-column: 1/-1;" data-i18n="error.loadingData">Có lỗi xảy ra khi tải dữ liệu.</p>';
         }
     }
 
@@ -71,18 +71,17 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (pageCount <= 1) return;
 
-        // Tạo nút số trang
         for (let i = 1; i <= pageCount; i++) {
             const btn = document.createElement('button');
             btn.className = 'btn-page';
             btn.innerText = i;
-            // Thêm aria-label cho accessibility
-            btn.setAttribute('aria-label', `Page ${i}`);
-            
             if (i === 1) btn.classList.add('active');
 
             btn.addEventListener('click', () => {
                 renderPage(i);
+                // Cuộn lên đầu lưới
+                const gridTop = document.querySelector('.collection');
+                if(gridTop) gridTop.scrollIntoView({ behavior: 'smooth' });
             });
             
             paginationContainer.appendChild(btn);
@@ -92,9 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. HÀM VẼ CARD THEO TRANG
     function renderPage(page) {
         currentPage = page;
+        if(!listContainer) return;
         listContainer.innerHTML = '';
 
-        const buttons = paginationContainer.querySelectorAll('.btn-page');
+        const buttons = paginationContainer ? paginationContainer.querySelectorAll('.btn-page') : [];
         buttons.forEach(btn => {
             btn.classList.remove('active');
             if (btn.innerText == currentPage) {
@@ -111,47 +111,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. HÀM TẠO HTML CHO 1 CARD (ĐÃ THÊM LOGIC BỎ TIM)
+    // 5. HÀM TẠO HTML CHO 1 CARD
     function createCardHTML(shop) {
+        // SỬA: Link chi tiết tuyệt đối
+        // Kiểm tra tên thư mục shop-detail-page trên GitHub của bạn (viết thường/hoa)
+        const detailLink = `/assets/page/shop-detail-page/shop-detail.html?id=${shop.id}`;
+
         const cardLink = document.createElement('a');
-        cardLink.href = `../Shop-detail-page/shop-detail.html?id=${shop.id}`; 
+        cardLink.href = detailLink; 
         cardLink.className = 'shop-card-link'; 
         cardLink.style.textDecoration = 'none';
+        cardLink.style.color = 'inherit'; // Kế thừa màu chữ để không bị xanh/tím
 
         let tagsHTML = '';
-        const tagsToShow = shop.criteria ? shop.criteria.slice(0, 2) : [];
-        tagsHTML = tagsToShow.map(tag => `<button class="btn-tag">${tag}</button>`).join('');
-        if (shop.criteria && shop.criteria.length > 2) {
-            tagsHTML += `<button class="btn-tag" id="small">+${shop.criteria.length - 2}</button>`;
+        if (shop.criteria && shop.criteria.length > 0) {
+            const tagsToShow = shop.criteria.slice(0, 2);
+            tagsHTML = tagsToShow.map(tag => `<span class="btn-tag">${tag}</span>`).join('');
+            if (shop.criteria.length > 2) {
+                tagsHTML += `<span class="btn-tag" id="small">+${shop.criteria.length - 2}</span>`;
+            }
         }
 
         let imgSrc = shop.image;
-        if (imgSrc.startsWith('/')) { imgSrc = imgSrc.substring(1); }
-        if (imgSrc.startsWith('assets/')) { imgSrc = '../../../' + imgSrc; }
-
-        const fallbackImg = '../../../assets/image/public/Container.png';
+        // Nếu ảnh là đường dẫn tương đối (không bắt đầu bằng http hoặc /) thì thêm / vào
+        if (imgSrc && !imgSrc.startsWith('http') && !imgSrc.startsWith('/')) {
+             imgSrc = '/' + imgSrc;
+        }
+        const fallbackImg = '/assets/image/public/Container.png'; // Đường dẫn tuyệt đối
 
         cardLink.innerHTML = `
             <div class="card">
                 <div class="card-image">
-                    <img src="${imgSrc}" alt="${shop.name}" onerror="this.onerror=null; this.src='${fallbackImg}'">
-                    <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
+                    <img src="${imgSrc || fallbackImg}" alt="${shop.name}" loading="lazy">
                     <div class="icon-top-right heart-icon" style="color: #D97706;">
                         <i class="fas fa-heart"></i>
                     </div>
                 </div>
                 <div class="card-content">
-                    <div class="card-info">
-                        <div class="rating"><i class="fas fa-star"></i> ${shop.rating}</div>
+                    <div class="card-header">
                         <h3 class="title">${shop.name}</h3>
-                        <div class="location"><i class="fas fa-map-marker-alt"></i> <span>${shop.location_area}</span></div>
+                        <div class="rating"><i class="fas fa-star"></i> ${shop.rating}</div>
                     </div>
-                    <div class="tag">${tagsHTML}</div>
+                    <div class="location"><i class="fas fa-map-marker-alt"></i> <span>${shop.address || shop.location_area}</span></div>
+                    <div class="tags">${tagsHTML}</div>
                 </div>
             </div>
         `;
 
-        // --- LOGIC BỎ TIM (QUAN TRỌNG) ---
+        // --- LOGIC BỎ TIM ---
         const heartIcon = cardLink.querySelector('.heart-icon');
         const shopId = Number(shop.id);
 
@@ -159,30 +166,29 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             e.stopPropagation();
 
-            // Lấy danh sách yêu thích hiện tại
             let currentFavs = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
             currentFavs = currentFavs.map(id => Number(id));
 
-            // Xóa ID khỏi localStorage
+            // Xóa ID
             currentFavs = currentFavs.filter(id => id !== shopId);
             localStorage.setItem(FAVORITES_KEY, JSON.stringify(currentFavs));
 
-            // Xóa quán khỏi mảng likedShops
+            // Xóa khỏi mảng hiển thị
             likedShops = likedShops.filter(s => Number(s.id) !== shopId);
             currentCount = likedShops.length;
 
-            // Cập nhật lại số lượng
+            // Cập nhật số lượng
             if (countElement) {
-                const text = countElement.getAttribute('data-i18n');
-                if (text) {
-                    // Nếu có i18n, cần reload để trigger lại translation
-                    isUpdating = true;
-                    countElement.innerHTML = countElement.innerHTML.replace(/<strong>\d+<\/strong>/, `<strong>${currentCount}</strong>`);
-                    isUpdating = false;
-                }
+                 // Cập nhật trực tiếp số lượng
+                 // Hoặc dùng regex thay thế số cũ
+                 const oldHTML = countElement.innerHTML;
+                 // Tìm số nằm trong thẻ strong hoặc số đứng một mình
+                 if(oldHTML.includes('<strong>')) {
+                     countElement.innerHTML = oldHTML.replace(/<strong>\d+<\/strong>/, `<strong>${currentCount}</strong>`);
+                 }
             }
 
-            // Kiểm tra nếu không còn quán nào
+            // Nếu hết quán
             if (likedShops.length === 0) {
                 showEmptyState();
                 return;
@@ -190,41 +196,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Tính toán lại phân trang
             const pageCount = Math.ceil(likedShops.length / itemsPerPage);
-            
-            // Nếu trang hiện tại vượt quá số trang mới, quay về trang cuối
-            if (currentPage > pageCount) {
-                currentPage = pageCount;
-            }
+            if (currentPage > pageCount) currentPage = pageCount;
 
-            // Vẽ lại phân trang và trang hiện tại
             setupPagination();
             renderPage(currentPage);
         });
-        // --- HẾT LOGIC BỎ TIM ---
 
         listContainer.appendChild(cardLink);
     }
 
-    // 6. HÀM HIỂN THỊ TRẠNG THÁI TRỐNG (ĐÃ THÊM I18N KEYS)
+    // 6. HÀM HIỂN THỊ TRẠNG THÁI TRỐNG
     function showEmptyState() {
         currentCount = 0;
-        if (countElement && countElement.innerHTML.includes('{{n}}')) {
-             countElement.innerHTML = countElement.innerHTML.replace('{{n}}', `<strong>0</strong>`);
+        if (countElement && countElement.innerHTML.includes('<strong>')) {
+             countElement.innerHTML = countElement.innerHTML.replace(/<strong>\d+<\/strong>/, `<strong>0</strong>`);
         }
         
         if(paginationContainer) paginationContainer.innerHTML = '';
         
-        listContainer.innerHTML = `
-            <div style="text-align: center; width: 100%; margin-top: 40px; color: #6B4423;">
-                <h3 data-i18n="empty.title">Chưa có quán nào trong bộ sưu tập</h3>
-                <p data-i18n="empty.description">Hãy khám phá và thả tim cho những quán cà phê bạn yêu thích nhé!</p>
-                <a href="../cafe-list/cafe-list.html" 
-                   style="display: inline-block; margin-top: 20px; text-decoration: none; color: #D97706; font-weight: bold; border: 1px solid #D97706; padding: 10px 20px; border-radius: 20px;"
-                   data-i18n="empty.exploreButton">
-                   Khám phá ngay
-                </a>
-            </div>
-        `;
+        if(listContainer) {
+            // grid-column: 1/-1 để thông báo chiếm hết chiều ngang của Grid
+            listContainer.innerHTML = `
+                <div style="text-align: center; width: 100%; margin-top: 40px; color: #6B4423; grid-column: 1 / -1;">
+                    <h3 data-i18n="empty.title">Chưa có quán nào trong bộ sưu tập</h3>
+                    <p data-i18n="empty.description">Hãy khám phá và thả tim cho những quán cà phê bạn yêu thích nhé!</p>
+                    <a href="/assets/page/cafe-list/cafe-list.html" 
+                       style="display: inline-block; margin-top: 20px; text-decoration: none; color: #D97706; font-weight: bold; border: 1px solid #D97706; padding: 10px 20px; border-radius: 20px;"
+                       data-i18n="empty.exploreButton">
+                       Khám phá ngay
+                    </a>
+                </div>
+            `;
+        }
     }
 
     loadFavorites();

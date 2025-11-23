@@ -1,23 +1,36 @@
+/* --- CẤU HÌNH CHUNG --- */
 body {
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
-    background-color: #FFFBEB;
+    background-color: #FFFBEB; /* Màu nền kem */
 }
 
 .main-content {
-    max-width: 1440px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 30px 20px 60px;
+    padding: 30px 20px 60px; 
+    min-height: 80vh;
+    box-sizing: border-box;
 }
-.shop-card-link{
+
+.shop-card-link {
     text-decoration: none;
 }
-/* Filter Tabs */
+
 .filter-tabs {
     display: flex;
     gap: 15px;
     margin-bottom: 30px;
+    flex-wrap: nowrap; 
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; 
+    padding-bottom: 10px; 
+}
+
+.filter-tabs::-webkit-scrollbar {
+    display: none;
 }
 
 .filter-tab {
@@ -25,41 +38,48 @@ body {
     border: none;
     border-radius: 20px;
     background-color: white;
-    color: #5D4037;
+    color: #5D4037; 
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    
+    /* QUAN TRỌNG: Ngăn các nút bị co lại khi không đủ chỗ */
+    flex-shrink: 0; 
+    white-space: nowrap;
 }
 
 .filter-tab:hover {
-    background-color: #FEF3C7;
+    background-color: #FEF3C7; 
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .filter-tab.active {
-    background-color: #FF7043;
+    background-color: #FF7043; 
     color: white;
+    box-shadow: 0 4px 10px rgba(255, 112, 67, 0.4);
 }
 
 .filter-tab i {
     font-size: 16px;
 }
 
-/* Cafe Grid */
+/* --- LƯỚI HIỂN THỊ QUÁN (GRID) --- */
 .cafe-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
     gap: 24px;
     margin-bottom: 40px;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Pagination */
+/* --- PHÂN TRANG (PAGINATION) --- */
 .pagination {
     display: flex;
     justify-content: center;
@@ -72,36 +92,42 @@ body {
     width: 40px;
     height: 40px;
     border: none;
-    border-radius: 50%;
+    border-radius: 50%; 
     background-color: white;
     color: #5D4037;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600; 
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .page-btn:hover {
     background-color: #FEF3C7;
+    color: #D97706;
     transform: translateY(-2px);
 }
 
 .page-btn.active {
     background-color: #FF7043;
     color: white;
+    box-shadow: 0 4px 10px rgba(255, 112, 67, 0.4);
 }
 
-.page-btn.next {
-    background-color: #5D4037;
-    color: white;
+
+/* RESPONSIVE (Tương thích thiết bị) */
+
+@media (min-width: 641px) {
+    .filter-tabs {
+        flex-wrap: wrap; 
+        overflow-x: unset;
+    }
 }
 
-.page-btn.next:hover {
-    background-color: #FF7043;
-}
 
-/* Responsive */
 @media (max-width: 1024px) {
     .cafe-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -109,12 +135,22 @@ body {
 }
 
 @media (max-width: 640px) {
+    .main-content {
+        padding: 20px 10px 40px;
+    }
+
     .cafe-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; 
+        gap: 16px; 
     }
     
     .filter-tabs {
-        overflow-x: auto;
-        padding-bottom: 10px;
+        flex-wrap: nowrap; 
+        overflow-x: auto; 
+    }
+    
+    .filter-tab {
+        font-size: 13px;
+        padding: 8px 16px;
     }
 }

@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 .card{
-    width: 388px;
+    width: 100%;
     height: 392px;
     overflow: hidden;
     border: 1px solid rgba(253, 230, 138, 1);
