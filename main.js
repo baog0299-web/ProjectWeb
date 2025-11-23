@@ -77,269 +77,146 @@ fetch(getRelativePath() + "component/header-footer/footer.html")
         }
     });
 
-// Carousel functionality
-let currentCarouselIndex = 0;
-const cardsPerSlide = 3;
-const totalCards = 9;
+// Old Carousel functionality REPLACED by Modern Carousel System
+// See assets/js/modern-carousel.js for new responsive implementation
 
-function createCarouselCard(shopData) {
-    const cardDiv = document.createElement('div');
-    cardDiv.className = 'carousel-card';
-    
-    // Giới hạn số tags hiển thị
-    const displayTags = shopData.criteria.slice(0, 2);
-    const remainingCount = shopData.criteria.length - 2;
-    
-    cardDiv.innerHTML = `
-        <div class="card" data-shop-id="${shopData.id}">
-            <div class="card-image">
-                <img src="${shopData.image}" alt="${shopData.name}" onerror="this.src='assets/image/cfimg/lava1.png'">
-                <div class="icon-top-left"><i class="fas fa-coffee"></i></div>
-                <div class="icon-top-right" onclick="event.stopPropagation(); toggleFavorite(${shopData.id})"><i class="far fa-heart"></i></div>
-            </div>
-            <div class="card-content">
-                <div class="card-info">
-                    <div class="rating">
-                        <i class="fas fa-star"></i> ${shopData.rating}
-                    </div>
-                    <h3 class="title">${shopData.name}</h3>
-                    <div class="location">
-                        <i class="fas fa-map-marker-alt"></i> ${shopData.location_area}
-                    </div>
-                </div>
-                <div class="tag">
-                    ${displayTags.map(tag => `<button class="btn-tag" onclick="event.stopPropagation()">${tag}</button>`).join('')}
-                    ${remainingCount > 0 ? `<button class="btn-tag" id="small" onclick="event.stopPropagation()">+${remainingCount}</button>` : ''}
-                </div>
-            </div>
-        </div>
-    `;
-    
-    // Thêm event listener cho click vào card
-    const card = cardDiv.querySelector('.card');
-    card.addEventListener('click', () => {
-        navigateToShopDetail(shopData.id);
-    });
-    
-    // Thêm cursor pointer để báo hiệu có thể click
-    card.style.cursor = 'pointer';
-    
-    return cardDiv;
-}
+// Modern Carousel initialization
+window.modernCarousel = null;
 
-// Hàm điều hướng đến trang detail
-function navigateToShopDetail(shopId) {
-    const detailUrl = `assets/page/Shop-detail-page/shop-detail.html?id=${shopId}`;
-    window.location.href = detailUrl;
-}
-
-// Hàm toggle favorite (tạm thời chỉ log, có thể phát triển sau)
-function toggleFavorite(shopId) {
-    console.log('Toggle favorite for shop ID:', shopId);
-    // TODO: Implement favorite functionality
-}
-
-async function initializeCarousel(retryCount = 0) {
-    const maxRetries = 10; // Giới hạn số lần retry để tránh vòng lặp vô tận
+// Initialize modern carousel - simplified
+async function initializeModernCarousel() {
+    console.log('Starting carousel initialization...');
     
-    let coffeeShopsData = [];
-    
-    // Kiểm tra dữ liệu từ data.js trước
-    if (typeof allCoffeeShops !== 'undefined' && allCoffeeShops.length) {
-        coffeeShopsData = allCoffeeShops;
-    } else {
-        // Nếu chưa có, thử load từ JSON
-        try {
-            const response = await fetch('/assets/data/data.json');
-            if (response.ok) {
-                coffeeShopsData = await response.json();
-            } else {
-                if (retryCount < maxRetries) {
-                    console.warn('Could not load data.json, retrying...', retryCount + 1);
-                    setTimeout(() => initializeCarousel(retryCount + 1), 100);
-                } else {
-                    console.error('Failed to load data.json after maximum retries');
-                }
-                return;
-            }
-        } catch (error) {
-            if (retryCount < maxRetries) {
-                console.warn('Error loading data, retrying...', retryCount + 1, error);
-                setTimeout(() => initializeCarousel(retryCount + 1), 100);
-            } else {
-                console.error('Failed to load data after maximum retries:', error);
-            }
-            return;
-        }
-    }
-    
-    const track = document.getElementById('carousel-track');
-    const nextBtn = document.getElementById('nextBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    
-    if (!track || !nextBtn || !prevBtn) {
-        if (retryCount < maxRetries) {
-            console.warn('Carousel elements not found, retrying...', retryCount + 1);
-            setTimeout(() => initializeCarousel(retryCount + 1), 100);
-        } else {
-            console.error('Carousel elements not found after maximum retries');
-        }
+    // Check if ResponsiveCarousel is loaded
+    if (typeof ResponsiveCarousel === 'undefined') {
+        console.error('ResponsiveCarousel class not found!');
         return;
     }
     
-    console.log('Initializing carousel with', coffeeShopsData.length, 'coffee shops');
-    
-    // Tạo 9 cards từ dữ liệu có sẵn (lặp lại nếu cần)
-    const carouselData = [];
-    for (let i = 0; i < totalCards; i++) {
-        const shopIndex = i % coffeeShopsData.length;
-        carouselData.push(coffeeShopsData[shopIndex]);
+    // Clean up existing carousel
+    if (window.modernCarousel) {
+        window.modernCarousel.destroy();
     }
     
-    // Tạo cards cho carousel
-    const cards = carouselData.map(shop => createCarouselCard(shop));
-    
-    // Clone cards để tạo hiệu ứng vô tận
-    const clonesToStart = cards.slice(-cardsPerSlide).map(card => card.cloneNode(true));
-    const clonesToEnd = cards.slice(0, cardsPerSlide).map(card => card.cloneNode(true));
-    
-    // Clear track trước khi thêm cards mới
-    track.innerHTML = '';
-    
-    // Thêm cards vào track
-    clonesToStart.forEach(clone => track.appendChild(clone));
-    cards.forEach(card => track.appendChild(card));
-    clonesToEnd.forEach(clone => track.appendChild(clone));
-    
-    console.log('Added', track.children.length, 'cards to carousel');
-    
-    // Cấu hình carousel - tính toán responsive
-    const getCardWidth = () => {
-        if (window.innerWidth <= 480) return 280;
-        if (window.innerWidth <= 768) return 300;
-        return 388;
-    };
-    
-    const getGap = () => {
-        if (window.innerWidth <= 480) return 10;
-        if (window.innerWidth <= 768) return 15;
-        return 20;
-    };
-    
-    const getPadding = () => {
-        if (window.innerWidth <= 480) return 10;
-        if (window.innerWidth <= 768) return 15;
-        return 20;
-    };
-    
-    let cardWidth = getCardWidth();
-    let gap = getGap();
-    let padding = getPadding();
-    let slideWidth = cardWidth + gap;
-    const speed = 500;
-    
-    // Vị trí ban đầu (bắt đầu từ cards thật)
-    const startSlideIndex = clonesToStart.length;
-    currentCarouselIndex = startSlideIndex;
-    
-    const updateTransform = (index, animate = true) => {
-        track.style.transition = animate ? `transform ${speed}ms ease-in-out` : 'none';
-        // Tính toán vị trí với padding để căn giữa 3 cards
-        const translateX = -index * slideWidth;
-        track.style.transform = `translateX(${translateX}px)`;
-    };
-    
-    // Set vị trí đầu tiên
-    updateTransform(currentCarouselIndex, false);
-    
-    let isTransitioning = false;
-    
-    // Xử lý nút Next
-    const handleNext = () => {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        currentCarouselIndex++;
-        updateTransform(currentCarouselIndex);
-    };
-    
-    // Xử lý nút Previous
-    const handlePrev = () => {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        currentCarouselIndex--;
-        updateTransform(currentCarouselIndex);
-    };
-    
-    // Remove existing listeners để tránh duplicate
-    nextBtn.removeEventListener('click', handleNext);
-    prevBtn.removeEventListener('click', handlePrev);
-    
-    // Add event listeners
-    nextBtn.addEventListener('click', handleNext);
-    prevBtn.addEventListener('click', handlePrev);
-    
-    // Xử lý kết thúc transition
-    track.addEventListener('transitionend', () => {
-        isTransitioning = false;
-        
-        const allCardsInTrack = track.children;
-        
-        // Reset về đầu nếu đang ở cuối
-        if (currentCarouselIndex >= allCardsInTrack.length - clonesToEnd.length) {
-            currentCarouselIndex = startSlideIndex;
-            updateTransform(currentCarouselIndex, false);
-        }
-        
-        // Reset về cuối nếu đang ở đầu
-        if (currentCarouselIndex < startSlideIndex) {
-            currentCarouselIndex = allCardsInTrack.length - clonesToEnd.length - 1;
-            updateTransform(currentCarouselIndex, false);
-        }
+    // Create new carousel instance
+    window.modernCarousel = new ResponsiveCarousel('carousel-track', {
+        loop: true,
+        autoplay: false,
+        dragEnabled: true,
+        indicators: false
     });
     
-    // Xử lý resize window
-    const handleResize = () => {
-        cardWidth = getCardWidth();
-        gap = getGap();
-        padding = getPadding();
-        slideWidth = cardWidth + gap;
-        updateTransform(currentCarouselIndex, false);
-    };
-    
-    window.addEventListener('resize', handleResize);
-    
-    console.log('Carousel initialized successfully');
+    // Initialize carousel
+    await window.modernCarousel.initialize();
+    console.log('Carousel initialization completed');
 }
 
-// FAQ accordion functionality
+// Main initialization
 document.addEventListener('DOMContentLoaded', function() {
-    // Chỉ khởi tạo carousel nếu đang ở trang chủ (có carousel elements)
+    console.log('DOM loaded, initializing components...');
+    
+    // Initialize carousel if on homepage
     const carouselTrack = document.getElementById('carousel-track');
     if (carouselTrack) {
-        // Initialize carousel after a small delay to ensure all data is loaded
+        console.log('Carousel track found, initializing...');
         setTimeout(() => {
-            initializeCarousel();
-        }, 100);
+            initializeModernCarousel().catch(error => {
+                console.error('Modern carousel failed, using fallback:', error);
+                initializeFallbackCarousel();
+            });
+        }, 300);
+    } else {
+        console.log('No carousel track found on this page');
     }
     
-    // FAQ functionality
+    // Initialize FAQ functionality
     const faqItems = document.querySelectorAll('.faq-item');
-    
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        
-        question.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
+    if (faqItems.length > 0) {
+        console.log('FAQ items found, initializing...');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
             
-            // Đóng tất cả các FAQ items khác
-            faqItems.forEach(otherItem => {
-                otherItem.classList.remove('active');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Đóng tất cả các FAQ items khác
+                faqItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+                
+                // Toggle item hiện tại
+                if (!isActive) {
+                    item.classList.add('active');
+                }
             });
-            
-            // Toggle item hiện tại
-            if (!isActive) {
-                item.classList.add('active');
-            }
         });
-    });
+    }
 });
+
+// Fallback carousel if modern carousel fails
+function initializeFallbackCarousel() {
+    console.log('Initializing fallback carousel...');
+    
+    const track = document.getElementById('carousel-track');
+    const coffeeData = window.coffeeShopsData || window.allCoffeeShops;
+    if (!track || !coffeeData) {
+        console.error('Missing track or data for fallback carousel');
+        return;
+    }
+    
+    // Create simple cards
+    track.innerHTML = '';
+    const sampleShops = coffeeData.slice(0, 6);
+    
+    sampleShops.forEach(shop => {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'carousel-card';
+        cardDiv.style.width = '350px';
+        cardDiv.style.flexShrink = '0';
+        
+        cardDiv.innerHTML = `
+            <div class="card" onclick="window.location.href='assets/page/Shop-detail-page/shop-detail.html?id=${shop.id}'">
+                <div class="card-image">
+                    <img src="${shop.image}" alt="${shop.name}" loading="lazy" onerror="this.src='assets/image/cfimg/lava1.png'">
+                    <div class="icon-top-left">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <div class="icon-top-right">
+                        <i class="far fa-heart"></i>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-info">
+                        <div class="rating">
+                            <i class="fas fa-star"></i> ${shop.rating || '4.5'}
+                        </div>
+                        <h3 class="title">${shop.name}</h3>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i> ${shop.location_area || 'Quận Gò Vấp'}
+                        </div>
+                    </div>
+                    <div class="tag">
+                        ${shop.criteria ? shop.criteria.slice(0, 2).map(tag => 
+                            `<button class="btn-tag">${tag}</button>`
+                        ).join('') : '<button class="btn-tag">Wifi miễn phí</button><button class="btn-tag">Không gian yên tĩnh</button>'}
+                        ${shop.criteria && shop.criteria.length > 2 ? 
+                            `<button class="btn-tag" id="small">+${shop.criteria.length - 2}</button>` : ''
+                        }
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        track.appendChild(cardDiv);
+    });
+    
+    // Setup basic styling
+    track.style.display = 'flex';
+    track.style.gap = '20px';
+    track.style.padding = '20px';
+    track.style.justifyContent = 'center';
+    
+    console.log('Fallback carousel initialized with', sampleShops.length, 'cards');
+}
+
+// End of main.js

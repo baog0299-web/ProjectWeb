@@ -1,6 +1,14 @@
 <header class="head">
         <div class="header-container">
-            <div class="header-logo">
+            <!-- Hamburger Menu (Mobile only) -->
+            <button class="hamburger-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <!-- Desktop Logo + Language Switcher -->
+            <div class="header-logo desktop-logo">
                 <!-- SỬA: Đổi thành đường dẫn tuyệt đối -->
                 <img src="/assets/image/public/Container.png" alt="CoffeeFinder Logo">
                 <div class="lang-switcher" role="group" aria-label="Language switcher">
@@ -8,15 +16,57 @@
                     <button class="lang-btn" data-lang="en" aria-pressed="false" title="English">EN</button>
                 </div>
             </div>
-            <div class="header-search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" data-i18n-placeholder="head.search.placeholder" placeholder="Tìm kiếm nhanh...">
+            
+            <!-- Mobile Center Area -->
+            <div class="mobile-center">
+                <div class="header-logo mobile-logo">
+                    <img src="/assets/image/public/Container.png" alt="CoffeeFinder Logo">
+                </div>
+                <button class="mobile-lang-toggle" data-current-lang="vi" title="Chuyển ngôn ngữ">
+                    <span class="lang-text">VI</span>
+                    <i class="fa-solid fa-globe"></i>
+                </button>
             </div>
-            <nav class="header-nav-links">
+            
+            <!-- Desktop Search Bar -->
+            <div class="header-search-bar desktop-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" data-i18n-placeholder="head.search.placeholder" placeholder="Tìm kiếm nhanh...">
+            </div>
+            
+            <!-- Mobile Search Button -->
+            <button class="mobile-search-btn" aria-label="Tìm kiếm">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="header-nav-links desktop-nav">
                 <a href="/index.html" data-i18n="head.nav.home">Trang chủ</a>
                 <a href="/assets/page/cafe-list/cafe-list.html" data-i18n="head.nav.cafe_list">Danh sách quán</a>
                 <a href="/assets/page/favorites/favorites.html" data-i18n="head.nav.favorites">Yêu thích</a>
                 <a href="/assets/page/feedback/feedback.html" data-i18n="head.nav.feedback">Phản hồi</a>
             </nav>
         </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-nav-menu">
+            <a href="/index.html" data-i18n="head.nav.home">Trang chủ</a>
+            <a href="/assets/page/cafe-list/cafe-list.html" data-i18n="head.nav.cafe_list">Danh sách quán</a>
+            <a href="/assets/page/favorites/favorites.html" data-i18n="head.nav.favorites">Yêu thích</a>
+            <a href="/assets/page/feedback/feedback.html" data-i18n="head.nav.feedback">Phản hồi</a>
+        </nav>
+        
+        <!-- Mobile Search Bar -->
+        <div class="mobile-search-bar">
+            <div class="mobile-search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" data-i18n-placeholder="head.search.placeholder" placeholder="Tìm kiếm nhanh...">
+                <button class="mobile-search-close" aria-label="Đóng tìm kiếm">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay"></div>
     </header>

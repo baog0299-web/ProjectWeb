@@ -65,3 +65,7 @@ const allCoffeeShops = [
     criteria: ["Sân vườn", "Check-in sống ảo", "View đẹp", "Lãng mạn", "Wifi miễn phí", "Máy lạnh", "Ngoài trời", "Không gian riêng tư", "Menu đa dạng", "Cơm trưa", "Nhạc live", "Học nhóm"] // Suy ra từ [cite: 155, 157, 158, 159, 171, 172, 173]
   }
 ];
+
+// Set global variable for carousel
+window.coffeeShopsData = allCoffeeShops;
+console.log('Coffee shops data loaded:', allCoffeeShops.length, 'shops');
