@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- KHAI BÁO ---
+
     const listContainer = document.getElementById('cafeGrid');
     const paginationContainer = document.querySelector('.pagination');
     const filterTabs = document.querySelectorAll('.filter-tab');
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPage = 1;
     const itemsPerPage = 6;      // Số quán mỗi trang
 
-    // --- 1. TẢI DỮ LIỆU ---
+
     async function loadAllCafes() {
         if (!listContainer) return;
         
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             allCoffeeShops = await response.json();
 
-            // --- XỬ LÝ TÌM KIẾM (SEARCH PARAM) ---
+
             const urlParams = new URLSearchParams(window.location.search);
             const searchKeyword = urlParams.get('search');
 
@@ -59,12 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
             setupPagination();
 
         } catch (error) {
-            console.error(error);
+
             listContainer.innerHTML = '<p style="text-align:center; color:red;">Không thể tải dữ liệu quán.</p>';
         }
     }
 
-    // --- 2. HIỂN THỊ QUÁN (RENDER) ---
+
     function renderPage(pageNumber) {
         currentPage = pageNumber;
         listContainer.innerHTML = ''; 
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // SỬA LỖI 2: Link chi tiết dùng đường dẫn TUYỆT ĐỐI
-            // Đảm bảo thư mục 'shop-detail-page' viết thường trên GitHub/Vercel
+
            const detailLink = `/assets/page/Shop-detail-page/shop-detail.html?id=${shop.id}`;
 
             // Tạo phần tử HTML
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-            // --- LOGIC TIM (YÊU THÍCH) ---
+
             const heartBtn = shopLinkWrapper.querySelector('.heart-icon');
             heartBtn.addEventListener('click', (e) => {
                 e.preventDefault(); // Chặn chuyển trang
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updatePaginationUI();
     }
 
-    // --- 3. PHÂN TRANG (PAGINATION) ---
+
     function setupPagination() {
         if (!paginationContainer) return;
         paginationContainer.innerHTML = '';
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. BỘ LỌC (FILTER TABS) ---
+
     function applyFilter(type) {
         let sortedList = [...allCoffeeShops]; // Reset về danh sách gốc để lọc
 
@@ -238,6 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- KHỞI CHẠY ---
+
     loadAllCafes();
 });

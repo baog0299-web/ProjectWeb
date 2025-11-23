@@ -7,9 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let allCoffeeShops = [];
 
-  // ----------------------------------------------------------------
-  // HÀM CHÍNH: Tải data và chạy
-  // ----------------------------------------------------------------
+
   async function initializeApp() {
     try {
       const response = await fetch('/assets/data/data.json');
@@ -32,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
       addFilterListeners();
 
     } catch (error) {
-      console.error("Không thể tải dữ liệu quán cà phê:", error);
+
       if(resultsContainer) {
           // Thêm data-i18n cho error message
           resultsContainer.innerHTML = '<p class="error" data-i18n="search.errorLoading">Lỗi khi tải dữ liệu quán cafe.</p>';
@@ -40,9 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ----------------------------------------------------------------
-  // HÀM TẠO 1 CARD (ĐÃ thêm logic tim và i18n)
-  // ----------------------------------------------------------------
+
   function createShopCardLink(shop) {
       const shopLinkWrapper = document.createElement('a');
       shopLinkWrapper.className = 'shop-card-link';
@@ -73,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
 
-      // --- PHẦN MỚI THÊM: Logic trái tim ---
+
       const heartBtn = shopLinkWrapper.querySelector('.heart-icon');
       const FAVORITES_KEY = 'favoriteCafes';
       const shopId = Number(shop.id);
@@ -112,14 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
           localStorage.setItem(FAVORITES_KEY, JSON.stringify(currentFavs));
           updateCardHeart(isLiked);
       });
-      // --- HẾT PHẦN MỚI THÊM ---
+
 
       return shopLinkWrapper;
   }
 
-  // ----------------------------------------------------------------
-  // HÀM TẢI CARD "NỔI BẬT"
-  // ----------------------------------------------------------------
+
   function loadFeaturedCards(allShops) {
       if (!featuredContainer) return; 
 
@@ -133,9 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-  // ----------------------------------------------------------------
-  // HÀM POPULATE FILTERS (Thêm i18n keys)
-  // ----------------------------------------------------------------
+
   function populateFilters() {
     if (!filterLocation) return;
     
@@ -157,9 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ----------------------------------------------------------------
-  // HÀM RENDER SHOPS (Thêm i18n key cho "không tìm thấy")
-  // ----------------------------------------------------------------
+
   function renderShops(shopsToRender) {
     if (!resultsContainer) return;
     resultsContainer.innerHTML = ''; 
@@ -176,9 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ----------------------------------------------------------------
-  // HÀM FILTER SHOPS
-  // ----------------------------------------------------------------
+
   function filterShops() {
     if (!resultsContainer) return;
     
@@ -201,9 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderShops(filteredShops);
   }
 
-  // ----------------------------------------------------------------
-  // HÀM ADD FILTER LISTENERS
-  // ----------------------------------------------------------------
+
   function addFilterListeners() {
     if (!filterLocation) return;
     filterLocation.addEventListener('change', filterShops);
@@ -211,6 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
     filterCriteria.addEventListener('change', filterShops);
   }
 
-  // --- BẮT ĐẦU CHẠY APP ---
+
   initializeApp();
 });

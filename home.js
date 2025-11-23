@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderHomeGrid(topRated);
 
         } catch (error) {
-            console.error("Lỗi tải data:", error);
+
         }
     }
 

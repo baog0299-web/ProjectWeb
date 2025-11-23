@@ -25,13 +25,13 @@ class ResponsiveCarousel {
         this.currentX = 0;
         this.threshold = 50;
         
-        // Responsive breakpoints với container width cố định
+
         this.breakpoints = {
-            400: { itemsPerView: 1, gap: 0, cardWidth: 320 },     // Container: 350px
-            600: { itemsPerView: 1, gap: 20, cardWidth: 360 },       // Container: 380px
-            800: { itemsPerView: 2, gap: 20, cardWidth: 355 },    // Container: 800px 
-            1080: { itemsPerView: 2, gap: 20, cardWidth: 400 },   // Container: 900px (1080px-1279px)
-            1280: { itemsPerView: 3, gap: 20, cardWidth: 388 }    // Container: 1280px trở lên
+            400: { itemsPerView: 1, gap: 0, cardWidth: 320 },
+            600: { itemsPerView: 1, gap: 20, cardWidth: 360 },
+            800: { itemsPerView: 2, gap: 20, cardWidth: 355 }, 
+            1080: { itemsPerView: 2, gap: 20, cardWidth: 400 },
+            1280: { itemsPerView: 3, gap: 20, cardWidth: 388 }
         };
         
         this.currentBreakpoint = this.getCurrentBreakpoint();
@@ -44,11 +44,11 @@ class ResponsiveCarousel {
         for (let i = breakpoints.length - 1; i >= 0; i--) {
             if (width >= breakpoints[i]) {
                 const selectedBreakpoint = this.breakpoints[breakpoints[i]];
-                console.log(`Breakpoint selected: ${breakpoints[i]}px, cardWidth: ${selectedBreakpoint.cardWidth}px, itemsPerView: ${selectedBreakpoint.itemsPerView}, window width: ${width}px`);
+
                 return selectedBreakpoint;
             }
         }
-        console.log(`Fallback breakpoint used, window width: ${width}px`);
+
         return this.breakpoints[400]; // fallback
     }
     
@@ -97,17 +97,17 @@ class ResponsiveCarousel {
     async initialize(retryCount = 0) {
         const maxRetries = 10;
         
-        console.log(`Modern carousel initialize attempt ${retryCount + 1}/${maxRetries}`);
+
         
         // Check data - try both global variables
         const coffeeData = window.coffeeShopsData || window.allCoffeeShops;
         if (!coffeeData || coffeeData.length === 0) {
-            console.log('Waiting for coffee shops data...');
+
             if (retryCount < maxRetries) {
                 setTimeout(() => this.initialize(retryCount + 1), 100);
                 return;
             }
-            console.error('Coffee shops data not loaded after maximum retries');
+
             throw new Error('Coffee shops data not available');
         }
         
@@ -116,26 +116,21 @@ class ResponsiveCarousel {
             window.coffeeShopsData = window.allCoffeeShops;
         }
         
-        console.log('Coffee shops data loaded:', window.coffeeShopsData.length, 'items');
+
         
         // Find DOM elements
         this.track = document.getElementById('carousel-track');
         this.nextBtn = document.querySelector('.carousel-btn-next');
         this.prevBtn = document.querySelector('.carousel-btn-prev');
         
-        console.log('Found elements:', {
-            track: !!this.track,
-            nextBtn: !!this.nextBtn,
-            prevBtn: !!this.prevBtn,
-            dataLength: window.coffeeShopsData ? window.coffeeShopsData.length : 0
-        });
+
         
         if (!this.track || !this.nextBtn || !this.prevBtn) {
             if (retryCount < maxRetries) {
                 setTimeout(() => this.initialize(retryCount + 1), 100);
                 return;
             }
-            console.error('Carousel elements not found');
+
             return;
         }
         
@@ -145,7 +140,7 @@ class ResponsiveCarousel {
         this.bindEvents();
         this.updatePosition(false);
         
-        console.log('Modern Carousel initialized successfully');
+
     }
     
     setupData() {

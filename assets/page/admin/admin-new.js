@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             renderCafes(allCafes);
             updateLastUpdate();
         } catch (error) {
-            console.error('Error initializing admin:', error);
+
             showError('Lỗi tải dữ liệu. Vui lòng thử lại.');
         } finally {
             hideLoading();
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             filteredCafes = [...allCafes];
             return allCafes;
         } catch (error) {
-            console.error('Error loading data:', error);
+
             throw error;
         }
     }
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show success message
         showToast('Đã xóa quán cafe thành công!', 'success');
         
-        console.log(`Deleted cafe with ID: ${cafeId}`);
+
     };
 
     // Toast notification

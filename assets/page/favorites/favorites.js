@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderPage(1);
 
         } catch (error) {
-            console.error("Lỗi:", error);
+
             if(listContainer) listContainer.innerHTML = '<p style="text-align:center; grid-column: 1/-1;" data-i18n="error.loadingData">Có lỗi xảy ra khi tải dữ liệu.</p>';
         }
     }
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. HÀM TẠO HTML CHO 1 CARD
     function createCardHTML(shop) {
         // SỬA: Link chi tiết tuyệt đối
-        // Kiểm tra tên thư mục shop-detail-page trên GitHub của bạn (viết thường/hoa)
+
         const detailLink = `/assets/page/shop-detail-page/shop-detail.html?id=${shop.id}`;
 
         const cardLink = document.createElement('a');
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
 
-        // --- LOGIC BỎ TIM ---
+
         const heartIcon = cardLink.querySelector('.heart-icon');
         const shopId = Number(shop.id);
 

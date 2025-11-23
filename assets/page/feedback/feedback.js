@@ -1,6 +1,6 @@
 // Header and footer are loaded by header-loader.js
 
-// --- 1. XỬ LÝ HIỆU ỨNG FAQ (ACCORDION) MƯỢT MÀ ---
+
 document.addEventListener('DOMContentLoaded', () => {
     const details = document.querySelectorAll('.faq-item');
 
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
             if (targetDetail.hasAttribute('open')) {
-                // --- ĐÓNG ---
+
                 content.style.maxHeight = content.scrollHeight + 'px';
                 requestAnimationFrame(() => {
                     content.style.maxHeight = '0px';
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, { once: true });
 
             } else {
-                // --- MỞ ---
+
                 targetDetail.setAttribute('open', '');
                 content.style.maxHeight = '0px';
                 requestAnimationFrame(() => {
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// --- 2. QUẢN LÝ NGÔN NGỮ & FILE UPLOAD ---
+
 (function() {
     let currentLocaleData = null;
 
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!fileInput || !fileNameDisplay) return;
 
         if (fileInput.files && fileInput.files.length > 0) {
-            // --- CÓ FILE ---
+
             
             // 1. Text: "Đã chọn ảnh"
             let statusText = getTrans('upload.selected', currentLocaleData) || "Đã chọn ảnh";
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         } else {
-            // --- KHÔNG CÓ FILE ---
+
             let defaultText = getTrans('upload.button', currentLocaleData) || "Upload File";
             fileNameDisplay.textContent = defaultText;
 

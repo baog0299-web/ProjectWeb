@@ -68,7 +68,7 @@ const allCoffeeShops = [
 
 // Set global variable for carousel
 window.coffeeShopsData = allCoffeeShops;
-console.log('Coffee shops data loaded:', allCoffeeShops.length, 'shops');
+
 // // Đây là mảng chứa tất cả dữ liệu quán cà phê của bạn
 // // Dữ liệu được trích xuất và chuẩn hóa từ file Word
 // const allCoffeeShops = [
@@ -92,9 +92,9 @@ console.log('Coffee shops data loaded:', allCoffeeShops.length, 'shops');
 //   },
 //   {
 //     id: 3,
-//     name: "Saigon Chic", // [cite: 51]
+
 //     rating: 4.4, // [cite: 64]
-//     image: "assets/image/cfimg/saigonchic1.png",
+
 //     location_area: "Quận Gò Vấp", // [cite: 59]
 //     need: "Hẹn hò", // Suy ra từ [cite: 52, 200]
 //     criteria: ["Ngoài trời", "View đẹp", "Cây xanh", "Đặt bàn trước", "Máy lạnh", "Wifi miễn phí", "Lý tưởng làm việc", "Lãng mạn", "Check-in sống ảo", "Gửi xe miễn phí", "WC sạch"] // Suy ra từ [cite: 54, 56, 57, 58, 71, 72, 73, 75]

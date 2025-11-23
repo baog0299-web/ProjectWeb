@@ -56,7 +56,7 @@
     return path.split('.').reduce((o, k) => (o && Object.prototype.hasOwnProperty.call(o, k)) ? o[k] : undefined, obj);
   }
 
-  // --- NEW FUNCTION: Handle Form Validation Messages ---
+
   function updateValidationMessages(locale) {
     // Lấy thông báo từ JSON, nếu không có thì dùng fallback cứng
     const requiredMsg = getByPath(locale, 'validation.required') || 
@@ -78,7 +78,7 @@
           if (e.target.validity.valueMissing) {
             e.target.setCustomValidity(requiredMsg);
           } 
-          // Lỗi định dạng (ví dụ sai email)
+
           else if (e.target.validity.typeMismatch) {
             e.target.setCustomValidity(emailMsg);
           }
@@ -91,7 +91,7 @@
       };
     });
   }
-  // -------------------------------------------------------
+
 
   function applyTranslations(locale) {
     if (!locale) return;
@@ -148,7 +148,7 @@
       btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
 
-    // --- GỌI HÀM VALIDATION Ở ĐÂY ---
+
     updateValidationMessages(locale);
 
     document.dispatchEvent(new CustomEvent('languageChanged', { 
@@ -169,7 +169,7 @@
         applyTranslations(locale);
       })
       .catch(err => {
-        console.warn('Locale load failed:', err);
+
   // If not default language, try falling back to default
         if (lang !== DEFAULT_LANG) {
           fetchLocale(DEFAULT_LANG)
@@ -177,7 +177,7 @@
               localStorage.setItem(STORAGE_KEY, DEFAULT_LANG);
               applyTranslations(locale);
             })
-            .catch(e => console.error('Failed to load default locale:', e));
+            .catch(e => {});
         }
       });
   }

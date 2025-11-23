@@ -408,7 +408,7 @@
     z-index: 2;
 }
 
-/* Tags container styling for carousel cards */
+
 .carousel-card .card .tag {
     display: flex;
     flex-wrap: nowrap;
@@ -462,7 +462,7 @@
     background-color: rgba(93, 64, 55, 0.9);
     transform: translateY(-50%) scale(1);
 }
-/* ===== MODERN RESPONSIVE CAROUSEL ===== */
+
 /* Styles optimized for modern carousel system */
 
 .carousel-wrapper {
@@ -610,7 +610,7 @@
     }
 }
 
-/* ===== RESPONSIVE SEARCH SECTION ===== */
+
 
 /* Tablet Large - 1280px */
 @media (max-width: 1280px) {
@@ -740,7 +740,7 @@
     }
 }
 
-/* ===== RESPONSIVE FAQ SECTION ===== */
+
 
 /* Tablet Large - 1280px */
 @media (max-width: 1280px) {
@@ -1011,13 +1011,12 @@
     text-decoration: none;
 }
 
-/* ===== RESPONSIVE DESIGN (từ 1280px trở xuống) ===== */
 
-/* ===== GLOBAL RESPONSIVE ADJUSTMENTS ===== */
-/* all-file container phải full width, không có padding để header/footer/hero full width */
+
+
 /* Padding sẽ được thêm vào các section nội dung riêng lẻ */
 
-/* ===== HERO SECTION RESPONSIVE ===== */
+
 
 /* Tablet Large - 1280px */
 @media (max-width: 1280px) {

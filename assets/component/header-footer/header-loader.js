@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-// Ensure DOM is ready before loading header
 function loadHeader() {
-    // Load header
     fetch("/assets/component/header-footer/header.html")
     .then(res => {
         if (!res.ok) throw new Error(`Không tìm thấy header.html: ${res.status} ${res.statusText}`);
@@ -11,24 +8,17 @@ function loadHeader() {
         const headerDiv = document.getElementById("header");
         if (headerDiv) {
             headerDiv.innerHTML = data;
-            
-            // ===== SỬA LỖI LOGO =====
-            // Cập nhật đường dẫn logo - BẮT BUỘC phải sửa vì header.html dùng đường dẫn tương đối
             const logo = headerDiv.querySelector('.header-logo img');
             if (logo) {
-                // Đổi đường dẫn thành tuyệt đối
                 logo.src = "/assets/image/public/Container.png";
                 logo.alt = "CoffeeFinder Logo";
                 
-                // Xử lý lỗi nếu logo không tải được
                 logo.onerror = function() {
-                    console.error('Không thể tải logo từ:', this.src);
-                    // Thử đường dẫn dự phòng
+
                     this.src = "/assets/image/public/logo.png";
                 };
             }
             
-            // Set active state cho navigation
             const navLinks = headerDiv.querySelectorAll('.header-nav-links a, .mobile-nav-menu a');
             const currentPath = window.location.pathname;
             navLinks.forEach(link => {
@@ -42,12 +32,10 @@ function loadHeader() {
                 }
             });
             
-            // ===== RESPONSIVE FUNCTIONALITY =====
-
             setupResponsiveHeader(headerDiv);
         }
     })
-    .catch(err => console.error("Lỗi tải header:", err));
+    .catch(err => {});
 }
 
 // Load header when DOM is ready
@@ -58,8 +46,7 @@ if (document.readyState === 'loading') {
     loadHeader();
 }
 
-// ===== GLOBAL STATE =====
-// Use window object to persist across page reloads in SPA-like behavior
+
 if (!window.headerGlobalState) {
     window.headerGlobalState = {
         eventListenersSetup: false,
@@ -67,7 +54,7 @@ if (!window.headerGlobalState) {
     };
 }
 
-// ===== RESPONSIVE HEADER FUNCTIONALITY =====
+
 function setupResponsiveHeader(headerDiv) {
     // Find all required elements
     const hamburgerBtn = headerDiv.querySelector('.hamburger-btn');
@@ -83,7 +70,7 @@ function setupResponsiveHeader(headerDiv) {
     window.headerGlobalState.currentLang = localStorage.getItem('site_lang') || 'vi';
     let currentLang = window.headerGlobalState.currentLang;
     
-    // ===== HAMBURGER MENU TOGGLE =====
+
     if (hamburgerBtn && mobileNavMenu) {
         hamburgerBtn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -104,442 +91,430 @@ function setupResponsiveHeader(headerDiv) {
                 // Close search if open
                 if (mobileSearchBar && mobileSearchBar.classList.contains('active')) {
                     mobileSearchBar.classList.remove('active');
+                    if (mobileSearchBtn) mobileSearchBtn.classList.remove('active');
                 }
             }
         });
-        
-        // Mark that event listener is attached
-        hamburgerBtn._hasEventListeners = true;
     }
     
-    // ===== MOBILE SEARCH TOGGLE =====
+
     if (mobileSearchBtn && mobileSearchBar) {
-        console.log('Setting up mobile search button event listener');
         mobileSearchBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            console.log('Mobile search button clicked');
             
-            mobileSearchBar.classList.add('active');
-            if (mobileOverlay) mobileOverlay.classList.add('active');
+            const isActive = mobileSearchBar.classList.contains('active');
             
-            // Close hamburger menu if open
-            if (hamburgerBtn && hamburgerBtn.classList.contains('active')) {
-                hamburgerBtn.classList.remove('active');
-                mobileNavMenu.classList.remove('active');
-            }
-            
-            // Focus on search input
-            const searchInput = mobileSearchBar.querySelector('input');
-            if (searchInput) {
-                setTimeout(() => searchInput.focus(), 100);
+            if (isActive) {
+                // Close search
+                mobileSearchBar.classList.remove('active');
+                this.classList.remove('active');
+                if (mobileOverlay) mobileOverlay.classList.remove('active');
+            } else {
+                // Open search
+                mobileSearchBar.classList.add('active');
+                this.classList.add('active');
+                if (mobileOverlay) mobileOverlay.classList.add('active');
+                
+                // Close hamburger menu if open
+                if (hamburgerBtn && hamburgerBtn.classList.contains('active')) {
+                    hamburgerBtn.classList.remove('active');
+                    mobileNavMenu.classList.remove('active');
+                }
+                
+                // Focus on search input
+                const searchInput = mobileSearchBar.querySelector('input');
+                if (searchInput) {
+                    setTimeout(() => searchInput.focus(), 100);
+                }
             }
         });
-        
-        // Mark that event listener is attached
-        mobileSearchBtn._hasEventListeners = true;
     }
     
+
     if (mobileSearchClose && mobileSearchBar) {
-        mobileSearchClose.addEventListener('click', function() {
+        mobileSearchClose.addEventListener('click', function(e) {
+            e.preventDefault();
             mobileSearchBar.classList.remove('active');
+            if (mobileSearchBtn) mobileSearchBtn.classList.remove('active');
             if (mobileOverlay) mobileOverlay.classList.remove('active');
         });
     }
     
-    // ===== OVERLAY CLICK TO CLOSE =====
+
     if (mobileOverlay) {
         mobileOverlay.addEventListener('click', function() {
             // Close all mobile menus
             if (hamburgerBtn) hamburgerBtn.classList.remove('active');
             if (mobileNavMenu) mobileNavMenu.classList.remove('active');
+            if (mobileSearchBtn) mobileSearchBtn.classList.remove('active');
             if (mobileSearchBar) mobileSearchBar.classList.remove('active');
             this.classList.remove('active');
         });
     }
     
-    // ===== INITIALIZE CURRENT LANGUAGE =====
-    // Get current language from existing system
-    if (window.langSwitcher && typeof window.langSwitcher.currentLang === 'function') {
-        currentLang = window.langSwitcher.currentLang();
-    }
+
     
-    // Update mobile toggle to match current language
-    if (mobileLangToggle) {
-        const langText = mobileLangToggle.querySelector('.lang-text');
-        if (langText) {
-            langText.textContent = currentLang.toUpperCase();
+    // Update language display
+    function updateLanguageDisplay(lang) {
+        // Update mobile language toggle
+        if (mobileLangToggle) {
+            mobileLangToggle.textContent = lang.toUpperCase();
+            mobileLangToggle.setAttribute('data-current-lang', lang);
         }
-        mobileLangToggle.setAttribute('data-current-lang', currentLang);
+        
+        // Update desktop language buttons
+        desktopLangBtns.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.textContent.toLowerCase() === lang) {
+                btn.classList.add('active');
+            }
+        });
     }
     
-    // ===== MOBILE LANGUAGE TOGGLE =====
+    // Initialize language display
+    updateLanguageDisplay(currentLang);
+    
+    // Mobile language toggle
     if (mobileLangToggle) {
         mobileLangToggle.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Get current language from the button's data attribute
-            const currentDisplayLang = this.getAttribute('data-current-lang') || currentLang;
-            const newLang = currentDisplayLang === 'vi' ? 'en' : 'vi';
+            const currentLang = this.getAttribute('data-current-lang') || 'vi';
+            const newLang = currentLang === 'vi' ? 'en' : 'vi';
             
-            // Update current language variables
-            currentLang = newLang;
+            // Update localStorage
+            localStorage.setItem('site_lang', newLang);
             window.headerGlobalState.currentLang = newLang;
             
-            // Use existing language system if available
-            if (window.langSwitcher && typeof window.langSwitcher.setLang === 'function') {
-                window.langSwitcher.setLang(newLang);
-            } else {
-                // Fallback: manual update
-                updateLanguageDisplay(newLang);
-                
-                // Update localStorage manually if langSwitcher is not available
-                localStorage.setItem('site_lang', newLang);
-                
-                // Trigger custom event for other parts of the app
-                const langChangeEvent = new CustomEvent('languageChange', {
-                    detail: { language: newLang }
-                });
-                document.dispatchEvent(langChangeEvent);
-            }
+            // Update display
+            updateLanguageDisplay(newLang);
+            
+            // Trigger language change event
+            window.dispatchEvent(new CustomEvent('languageChanged', { 
+                detail: { language: newLang } 
+            }));
         });
     }
     
-    // ===== DESKTOP LANGUAGE BUTTONS =====
-    // Remove existing click handlers and let lang-switcher.js handle them
-    // Just sync the mobile toggle when language changes
+    // Desktop language buttons
+    desktopLangBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const newLang = this.textContent.toLowerCase();
+            
+            // Update localStorage
+            localStorage.setItem('site_lang', newLang);
+            window.headerGlobalState.currentLang = newLang;
+            
+            // Update display
+            updateLanguageDisplay(newLang);
+            
+            // Trigger language change event
+            window.dispatchEvent(new CustomEvent('languageChanged', { 
+                detail: { language: newLang } 
+            }));
+        });
+    });
     
-    // ===== SETUP GLOBAL EVENT LISTENERS =====
-    // Always setup global listeners as they work with current DOM elements
-        
-        // ===== CLOSE MOBILE MENUS ON OUTSIDE CLICK =====
-        document.addEventListener('click', function(e) {
-            const currentHeader = document.querySelector('#header');
-            const currentMobileNavMenu = currentHeader?.querySelector('.mobile-nav-menu');
-            const currentMobileSearchBar = currentHeader?.querySelector('.mobile-search-bar');
-            const currentHamburgerBtn = currentHeader?.querySelector('.hamburger-btn');
-            const currentMobileOverlay = currentHeader?.querySelector('.mobile-overlay');
-            
-            // Close mobile nav if clicking outside (but not on overlay, as overlay has its own handler)
-            if (currentMobileNavMenu && currentMobileNavMenu.classList.contains('active')) {
-                if (!currentHeader.contains(e.target) && !e.target.classList.contains('mobile-overlay')) {
-                    currentHamburgerBtn.classList.remove('active');
-                    currentMobileNavMenu.classList.remove('active');
-                    if (currentMobileOverlay) currentMobileOverlay.classList.remove('active');
+
+    
+    let searchData = []; // Cache search data
+    let searchSuggestions = null; // Search suggestions dropdown
+    
+    // Load search data for suggestions
+    async function loadSearchData() {
+        try {
+            if (searchData.length === 0) {
+                const response = await fetch('/assets/data/data.json');
+                if (response.ok) {
+                    searchData = await response.json();
                 }
             }
-            
-            // Close mobile search if clicking outside (but not on overlay)
-            if (currentMobileSearchBar && currentMobileSearchBar.classList.contains('active')) {
-                if (!currentHeader.contains(e.target) && !e.target.classList.contains('mobile-overlay')) {
-                    currentMobileSearchBar.classList.remove('active');
-                    if (currentMobileOverlay) currentMobileOverlay.classList.remove('active');
-                }
-            }
-        });
+        } catch (error) {
+
+        }
+    }
+    
+    // Create search suggestions dropdown
+    function createSearchSuggestions(inputElement) {
+        if (searchSuggestions) return searchSuggestions;
         
-        // ===== HANDLE WINDOW RESIZE =====
-        window.addEventListener('resize', function() {
-            // Close mobile menus when resizing to desktop
-            if (window.innerWidth >= 1080) {
-                const currentHeader = document.querySelector('#header');
-                if (currentHeader) {
-                    const currentHamburgerBtn = currentHeader.querySelector('.hamburger-btn');
-                    const currentMobileNavMenu = currentHeader.querySelector('.mobile-nav-menu');
-                    const currentMobileSearchBar = currentHeader.querySelector('.mobile-search-bar');
-                    const currentMobileOverlay = currentHeader.querySelector('.mobile-overlay');
+        searchSuggestions = document.createElement('div');
+        searchSuggestions.className = 'search-suggestions';
+        searchSuggestions.style.cssText = `
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1001;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        `;
+        
+        let searchContainer = inputElement.closest('.header-search-bar');
+        
+        // For mobile, attach to header instead of mobile-search-bar to prevent layout shift
+        if (!searchContainer) {
+            const mobileContainer = inputElement.closest('.mobile-search-container');
+            if (mobileContainer) {
+                searchContainer = mobileContainer.closest('.header, .head');
+                
+                // Custom positioning for mobile suggestions with breakpoint detection
+                if (searchContainer) {
+                    // Check if screen width is 1080px or above
+                    const isDesktop = window.innerWidth >= 1080;
+                    const marginTop = isDesktop ? '20px' : '75px';
                     
-                    if (currentHamburgerBtn) currentHamburgerBtn.classList.remove('active');
-                    if (currentMobileNavMenu) currentMobileNavMenu.classList.remove('active');
-                    if (currentMobileSearchBar) currentMobileSearchBar.classList.remove('active');
-                    if (currentMobileOverlay) currentMobileOverlay.classList.remove('active');
+                    searchSuggestions.style.cssText = `
+                        position: absolute;
+                        top: 100%;
+                        background: white;
+                        border: 1px solid #ddd;
+                        border-radius: 8px;
+                        max-height: 300px;
+                        overflow-y: auto;
+                        z-index: 1001;
+                        display: none;
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                        margin-top: ${marginTop};
+                    `;
                 }
+            }
+        }
+        
+        if (searchContainer) {
+            searchContainer.style.position = 'relative';
+            searchContainer.appendChild(searchSuggestions);
+        }
+        
+        return searchSuggestions;
+    }
+    
+    // Show search suggestions
+    function showSearchSuggestions(inputElement, query) {
+        if (!searchData.length || !query || query.length < 2) {
+            hideSearchSuggestions();
+            return;
+        }
+        
+        const suggestions = createSearchSuggestions(inputElement);
+        const normalizedQuery = query.toLowerCase();
+        
+        // Filter matching cafes
+        const matches = searchData.filter(cafe => 
+            cafe.name.toLowerCase().includes(normalizedQuery) ||
+            cafe.address.toLowerCase().includes(normalizedQuery) ||
+            (cafe.description && cafe.description.toLowerCase().includes(normalizedQuery))
+        ).slice(0, 8); // Limit to 8 suggestions
+        
+        if (matches.length === 0) {
+            suggestions.innerHTML = `
+                <div class="no-results" style="
+                    padding: 20px; 
+                    color: #999; 
+                    text-align: center;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 8px;
+                ">
+                    <i class="fas fa-search" style="font-size: 24px; color: #ddd;"></i>
+                    <span>Không tìm thấy quán cafe nào</span>
+                </div>
+            `;
+        } else {
+            suggestions.innerHTML = matches.map(cafe => `
+                <div class="search-suggestion-item" data-cafe-name="${cafe.name}" data-cafe-address="${cafe.address}">
+                    <div class="suggestion-image">
+                        <img src="${cafe.image || '/assets/image/cfimg/default-cafe.jpg'}" 
+                             alt="${cafe.name}"
+                             onerror="this.src='/assets/image/public/Container.png'">
+                    </div>
+                    <div class="suggestion-content">
+                        <div class="suggestion-name">${highlightMatch(cafe.name, query)}</div>
+                        <div class="suggestion-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            ${highlightMatch(cafe.address, query)}
+                        </div>
+                        <div class="suggestion-meta">
+                            ${cafe.rating ? `<span class="rating"><i class="fas fa-star"></i> ${cafe.rating}</span>` : ''}
+                            ${cafe.priceRange ? `<span class="price">${cafe.priceRange}</span>` : ''}
+                        </div>
+                    </div>
+                    <div class="suggestion-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Add click handlers for suggestions
+            suggestions.querySelectorAll('.search-suggestion-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const cafeName = this.dataset.cafeName;
+                    inputElement.value = cafeName;
+                    hideSearchSuggestions();
+                    performSearch(cafeName);
+                });
+            });
+        }
+        
+        suggestions.style.display = 'block';
+    }
+    
+    // Hide search suggestions
+    function hideSearchSuggestions() {
+        if (searchSuggestions) {
+            searchSuggestions.style.display = 'none';
+        }
+    }
+    
+    // Highlight matching text
+    function highlightMatch(text, query) {
+        if (!query) return text;
+        const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        return text.replace(regex, '<strong style="color: #b87444;">$1</strong>');
+    }
+    
+    // Perform search
+    function performSearch(searchTerm) {
+        if (!searchTerm.trim()) return;
+        
+        // Save search to history
+        saveSearchHistory(searchTerm);
+        
+        // Navigate to search results
+        const searchUrl = `/assets/page/cafe-list/cafe-list.html?search=${encodeURIComponent(searchTerm.trim())}`;
+        window.location.href = searchUrl;
+    }
+    
+    // Save search history
+    function saveSearchHistory(searchTerm) {
+        try {
+            let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+            searchHistory = searchHistory.filter(term => term !== searchTerm); // Remove if exists
+            searchHistory.unshift(searchTerm); // Add to beginning
+            searchHistory = searchHistory.slice(0, 10); // Keep only 10 recent searches
+            localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+        } catch (error) {
+
+        }
+    }
+    
+    // Handle search forms and inputs
+    const searchInputs = headerDiv.querySelectorAll('.header-search-bar input, .mobile-search-container input');
+    const searchForms = headerDiv.querySelectorAll('.header-search-bar form, .mobile-search-container form');
+    
+    // Load search data
+    loadSearchData();
+    
+    // Setup search inputs
+    searchInputs.forEach(input => {
+        let searchTimeout;
+        
+        // Real-time search suggestions
+        input.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            const query = this.value.trim();
+            
+            if (query.length >= 2) {
+                searchTimeout = setTimeout(() => {
+                    showSearchSuggestions(this, query);
+                }, 300);
+            } else {
+                hideSearchSuggestions();
             }
         });
         
-        // ===== KEYBOARD NAVIGATION =====
-        document.addEventListener('keydown', function(e) {
-            // ESC key closes mobile menus
+        // Focus events
+        input.addEventListener('focus', function() {
+            if (this.value.trim().length >= 2) {
+                showSearchSuggestions(this, this.value.trim());
+            }
+        });
+        
+        // Keyboard navigation
+        input.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                const currentHeader = document.querySelector('#header');
-                if (currentHeader) {
-                    const currentHamburgerBtn = currentHeader.querySelector('.hamburger-btn'); 
-                    const currentMobileNavMenu = currentHeader.querySelector('.mobile-nav-menu');
-                    const currentMobileSearchBar = currentHeader.querySelector('.mobile-search-bar');
-                    const currentMobileOverlay = currentHeader.querySelector('.mobile-overlay');
-                    
-                    if (currentHamburgerBtn && currentHamburgerBtn.classList.contains('active')) {
-                        currentHamburgerBtn.classList.remove('active');
-                        currentMobileNavMenu.classList.remove('active');
-                    }
-                    if (currentMobileSearchBar && currentMobileSearchBar.classList.contains('active')) {
-                        currentMobileSearchBar.classList.remove('active');
-                    }
-                    if (currentMobileOverlay) currentMobileOverlay.classList.remove('active');
-                }
+                hideSearchSuggestions();
+                this.blur();
             }
         });
-    // End of global event listeners setup
+    });
+    
+    // Handle form submissions
+    searchForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const searchInput = this.querySelector('input[type="search"], input[type="text"]');
+            if (searchInput && searchInput.value.trim()) {
+                hideSearchSuggestions();
+                performSearch(searchInput.value.trim());
+            }
+        });
+    });
+    
+    // Handle search icon clicks
+    const searchIcons = headerDiv.querySelectorAll('.header-search-bar i.fa-magnifying-glass, .mobile-search-container i.fa-magnifying-glass');
+    searchIcons.forEach(icon => {
+        icon.addEventListener('click', function() {
+            const form = this.closest('form');
+            const input = form ? form.querySelector('input') : null;
+            if (input && input.value.trim()) {
+                hideSearchSuggestions();
+                performSearch(input.value.trim());
+            } else if (input) {
+                input.focus();
+            }
+        });
+    });
+    
+    // Click outside to hide suggestions
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.header-search-bar') && !e.target.closest('.mobile-search-container')) {
+            hideSearchSuggestions();
+        }
+    });
+    
+    // Update suggestions positioning on window resize
+    window.addEventListener('resize', function() {
+        if (searchSuggestions) {
+            const isDesktop = window.innerWidth >= 1080;
+            const marginTop = isDesktop ? '20px' : '75px';
+            searchSuggestions.style.marginTop = marginTop;
+        }
+    });
+    
+    // End of setup
 }
-
-
 
 // Load footer function
 function loadFooter() {
     fetch("/assets/component/header-footer/footer.html")
         .then(res => {
             if (!res.ok) throw new Error('Không tìm thấy footer.html');
-=======
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Hàm tính toán đường dẫn gốc (Root Path)
-    function getRootPath() {
-        const path = window.location.pathname;
-        if (path.endsWith("index.html") || path.endsWith("/")) {
-            if (path.includes("/assets/page/")) return "../../../";
-            return "";
-        }
-        if (path.includes("/assets/page/")) return "../../../";
-        return "";
-    }
-
-    const rootPath = getRootPath();
-
-    // 2. Hàm nạp dữ liệu an toàn (Tránh lỗi tải 2 lần)
-    function loadSearchData(callback) {
-        // Nếu biến allCoffeeShops đã tồn tại (do trang chủ đã load data.js), dùng luôn
-        if (typeof allCoffeeShops !== 'undefined') {
-            callback(allCoffeeShops);
-            return;
-        }
-
-        // Nếu chưa có, tự động tải file data.js
-        const script = document.createElement('script');
-        script.src = `${rootPath}data.js`;
-        script.onload = () => {
-            if (typeof allCoffeeShops !== 'undefined') {
-                callback(allCoffeeShops);
-            } else {
-                callback([]);
-            }
-        };
-        script.onerror = () => {
-            console.warn("Không tải được data.js, tính năng gợi ý sẽ tắt.");
-            callback([]);
-        };
-        document.head.appendChild(script);
-    }
-
-    // 3. Tải Header
-    fetch(`${rootPath}assets/component/header-footer/header.html`)
-        .then(res => {
-            if (!res.ok) throw new Error('Không tải được header');
-            return res.text();
-        })
-        .then(data => {
-            const headerDiv = document.getElementById("header");
-            if (headerDiv) {
-                headerDiv.innerHTML = data;
-
-                // --- A. Sửa lại Logo & Link ---
-                const logo = headerDiv.querySelector('.header-logo img');
-                if (logo) {
-                    logo.src = `${rootPath}assets/image/public/Container.png`;
-                    const logoLink = logo.closest('a');
-                    if (logoLink) logoLink.href = `${rootPath}index.html`;
-                }
-
-                // --- B. Sửa Menu Active ---
-                const navLinks = headerDiv.querySelectorAll('.header-nav-links a');
-                const currentHref = window.location.href;
-
-                navLinks.forEach(link => {
-                    const originalHref = link.getAttribute('href');
-                    const cleanHref = originalHref.startsWith('/') ? originalHref.substring(1) : originalHref;
-                    link.href = rootPath + cleanHref;
-
-                    link.classList.remove('active');
-                    if (currentHref.includes("index.html") && originalHref.includes("index.html")) {
-                        link.classList.add('active');
-                    } else if (currentHref.includes("cafe-list") && originalHref.includes("cafe_list")) {
-                        link.classList.add('active');
-                    } else if (currentHref.includes("favorites") && originalHref.includes("favorites")) {
-                        link.classList.add('active');
-                    } else if (currentHref.includes("feedback") && originalHref.includes("feedback")) {
-                        link.classList.add('active');
-                    }
-                });
-
-                // --- C. LOGIC TÌM KIẾM & GỢI Ý ---
-                const searchInput = headerDiv.querySelector('.header-search-bar input');
-                const searchIcon = headerDiv.querySelector('.header-search-bar i');
-                const searchContainer = headerDiv.querySelector('.header-search-bar');
-
-                // Tạo hộp chứa gợi ý
-                const suggestionBox = document.createElement('div');
-                suggestionBox.className = 'search-suggestions';
-                searchContainer.appendChild(suggestionBox);
-
-                // Gọi hàm lấy dữ liệu để kích hoạt tìm kiếm
-                loadSearchData((data) => {
-                    // Xử lý khi gõ phím
-                    searchInput.addEventListener('input', (e) => {
-                        const keyword = e.target.value.toLowerCase().trim();
-                        suggestionBox.innerHTML = ''; // Xóa cũ
-
-                        if (keyword.length < 1) {
-                            suggestionBox.classList.remove('show');
-                            return;
-                        }
-
-                        // Lọc quán
-                        const matches = data.filter(shop => 
-                            shop.name.toLowerCase().includes(keyword) ||
-                            (shop.location_area && shop.location_area.toLowerCase().includes(keyword))
-                        );
-
-                        // Hiển thị gợi ý
-                        if (matches.length > 0) {
-                            matches.slice(0, 5).forEach(shop => {
-                                // Xử lý ảnh
-                                let imgUrl = shop.image;
-                                if (imgUrl && imgUrl.startsWith('/')) imgUrl = imgUrl.substring(1);
-                                imgUrl = rootPath + imgUrl;
-
-                                const item = document.createElement('a');
-                                item.className = 'suggestion-item';
-                                item.href = `${rootPath}assets/page/Shop-detail-page/shop-detail.html?id=${shop.id}`;
-                                item.innerHTML = `
-                                    <img src="${imgUrl}" onerror="this.src='${rootPath}assets/image/public/Container.png'">
-                                    <div class="suggestion-info">
-                                        <h4>${shop.name}</h4>
-                                        <p>${shop.location_area || 'TP.HCM'}</p>
-                                    </div>
-                                `;
-                                suggestionBox.appendChild(item);
-                            });
-                            suggestionBox.classList.add('show');
-                        } else {
-                            suggestionBox.classList.remove('show');
-                        }
-                    });
-                });
-
-                // Ẩn khi click ra ngoài
-                document.addEventListener('click', (e) => {
-                    if (!searchContainer.contains(e.target)) {
-                        suggestionBox.classList.remove('show');
-                    }
-                });
-
-                // Xử lý Enter / Click Icon để tìm kiếm
-                function handleSearch() {
-                    const keyword = searchInput.value.trim();
-                    if (keyword) {
-                        window.location.href = `${rootPath}assets/page/cafe-list/cafe-list.html?search=${encodeURIComponent(keyword)}`;
-                    }
-                }
-
-                if (searchInput) {
-                    searchInput.addEventListener('keypress', (e) => {
-                        if (e.key === 'Enter') handleSearch();
-                    });
-                }
-                if (searchIcon) {
-                    searchIcon.style.cursor = 'pointer';
-                    searchIcon.addEventListener('click', handleSearch);
-                }
-            }
-        })
-        .catch(err => console.error("Lỗi tải header:", err));
-
-    // 4. Tải Footer
-    fetch(`${rootPath}assets/component/header-footer/footer.html`)
-        .then(res => {
-            if (!res.ok) throw new Error('Không tải được footer');
->>>>>>> 8f00618d44f8eeea22543cff8f25a529cff766e8
             return res.text();
         })
         .then(data => {
             const footerDiv = document.getElementById("footer");
             if (footerDiv) {
                 footerDiv.innerHTML = data;
-<<<<<<< HEAD
-                
-                // Cập nhật đường dẫn logo trong footer
-                const logo = footerDiv.querySelector('.logo img');
-                if (logo) {
-                    logo.src = "/assets/image/public/Container.png";
-                    logo.alt = "CoffeeFinder Logo";
-                    
-                    logo.onerror = function() {
-                        console.error('Không thể tải logo footer từ:', this.src);
-                        this.src = "/assets/image/public/logo.png";
-                    };
-                }
             }
         })
-        .catch(err => console.error("Lỗi tải footer:", err));
+        .catch(err => {});
 }
 
 // Load footer when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadFooter);
 } else {
+    // DOM is already ready
     loadFooter();
 }
-
-// ===== HELPER FUNCTION =====
-function updateLanguageDisplay(newLang) {
-    // Update mobile language toggle (use current header)
-    const currentHeader = document.querySelector('#header');
-    const mobileLangToggle = currentHeader?.querySelector('.mobile-lang-toggle');
-    if (mobileLangToggle) {
-        const langText = mobileLangToggle.querySelector('.lang-text');
-        if (langText) {
-            langText.textContent = newLang.toUpperCase();
-        }
-        mobileLangToggle.setAttribute('data-current-lang', newLang);
-        
-        // Update the title attribute for better UX
-        const titleText = newLang === 'vi' ? 'Chuyển sang English' : 'Chuyển sang Tiếng Việt';
-        mobileLangToggle.setAttribute('title', titleText);
-    }
-}
-
-// ===== INTEGRATION WITH EXISTING LANGUAGE SYSTEM =====
-// Listen for language changes from lang-switcher.js
-document.addEventListener('languageChanged', function(e) {
-    const newLang = e.detail.lang;
-    if (window.headerGlobalState) {
-        window.headerGlobalState.currentLang = newLang;
-    }
-    updateLanguageDisplay(newLang);
-});
-
-// Fallback listener for custom languageChange event
-document.addEventListener('languageChange', function(e) {
-    const newLang = e.detail.language;
-    if (window.headerGlobalState) {
-        window.headerGlobalState.currentLang = newLang;
-    }
-    updateLanguageDisplay(newLang);
-=======
-                const logo = footerDiv.querySelector('.logo img');
-                if (logo) {
-                    logo.src = `${rootPath}assets/image/public/Container.png`;
-                    const logoLink = logo.closest('a');
-                    if(logoLink) logoLink.href = `${rootPath}index.html`;
-                }
-                // Sửa link footer
-                const links = footerDiv.querySelectorAll('a');
-                links.forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href && !href.startsWith('http') && !href.startsWith('#')) {
-                        const cleanHref = href.startsWith('/') ? href.substring(1) : href;
-                        link.href = rootPath + cleanHref;
-                    }
-                });
-            }
-        })
-        .catch(err => console.error("Lỗi tải footer:", err));
->>>>>>> 8f00618d44f8eeea22543cff8f25a529cff766e8
-});

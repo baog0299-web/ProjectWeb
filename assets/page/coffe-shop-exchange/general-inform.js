@@ -10,17 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const addTagBtn = document.querySelector('.add-btn');
     const tagContainer = document.querySelector('.tags-container');
     
-    console.log('Form elements found:', {
-        nameInput: !!nameInput,
-        addressInput: !!addressInput,
-        descriptionTextarea: !!descriptionTextarea,
-        tagInput: !!tagInput,
-        addTagBtn: !!addTagBtn,
-        tagContainer: !!tagContainer
-    });
+
     
-    console.log('Total inputs found:', allInputs.length);
-    console.log('Total textareas found:', allTextareas.length);
+
+
     
     // Get buttons
     const cancelBtn = document.querySelector('.btn1');
@@ -50,15 +43,15 @@ document.addEventListener('DOMContentLoaded', function() {
             
             for (const path of paths) {
                 try {
-                    console.log(`Trying path: ${path}`);
+
                     response = await fetch(path);
                     if (response.ok) {
                         cafes = await response.json();
-                        console.log(`Successfully loaded data from: ${path}`);
+
                         break;
                     }
                 } catch (e) {
-                    console.log(`Failed to load from: ${path}`, e);
+
                     continue;
                 }
             }
@@ -78,42 +71,42 @@ document.addEventListener('DOMContentLoaded', function() {
                 showError(`Không tìm thấy quán cafe với ID: ${cafeId}`);
             }
         } catch (error) {
-            console.error('Error loading cafe data:', error);
+
             showError('Lỗi tải dữ liệu. Vui lòng thử lại.');
         }
     }
     
     // Populate form with cafe data
     function populateForm(cafe) {
-        console.log('Populating form with:', cafe);
+
         
         if (nameInput) {
             nameInput.value = cafe.name || '';
-            console.log('Set name input:', nameInput.value);
+
         } else {
-            console.warn('Name input not found');
+
         }
         
         if (addressInput) {
             addressInput.value = cafe.address || '';
-            console.log('Set address input:', addressInput.value);
+
         } else {
-            console.warn('Address input not found');
+
         }
         
         if (descriptionTextarea) {
             descriptionTextarea.value = cafe.description || '';
-            console.log('Set description textarea:', descriptionTextarea.value);
+
         } else {
-            console.warn('Description textarea not found');
+
         }
         
         // Populate tags
         if (cafe.criteria && tagContainer) {
             renderTags(cafe.criteria);
-            console.log('Rendered tags:', cafe.criteria);
+
         } else if (cafe.criteria) {
-            console.warn('Tag container not found, but criteria exists:', cafe.criteria);
+
         }
     }
     
@@ -128,11 +121,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Render tags
     function renderTags(tags) {
         if (!tagContainer) {
-            console.warn('Tag container not found');
+
             return;
         }
         
-        console.log('Rendering tags:', tags);
+
         
         tagContainer.innerHTML = tags.map(tag => `
             <span class="tag">
@@ -145,13 +138,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add event listeners for remove buttons
         const removeButtons = tagContainer.querySelectorAll('.x-btn');
-        console.log('Remove buttons found:', removeButtons.length);
+
         
         removeButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const tagToRemove = btn.getAttribute('data-tag');
-                console.log('Removing tag:', tagToRemove);
+
                 removeTag(tagToRemove);
             });
         });
@@ -235,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
             resetSaveButton();
             
         } catch (error) {
-            console.error('Error saving:', error);
+
             showToast('Lỗi khi lưu. Vui lòng thử lại!', 'error');
             resetSaveButton();
         }
@@ -349,13 +342,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Initialize
-    console.log('Current URL:', window.location.href);
-    console.log('Cafe ID from URL:', cafeId);
+
+
     
     if (cafeId) {
         loadCafeData();
     } else {
-        console.warn('No cafe ID provided, using demo data');
+
         // Use demo data if no ID provided
         const demoData = {
             id: 2,

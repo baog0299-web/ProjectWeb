@@ -42,12 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
-    console.log('Form elements found:', {
-        nameInput: !!nameInput,
-        tagInput: !!tagInput,
-        tagContainer: !!tagContainer,
-        submitBtn: !!submitBtn
-    });
+
     
     // Initialize page
     function initializePage() {
@@ -331,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             };
             
-            console.log('New cafe created:', newCafe);
+
             
             // Show success
             showToast('Đã thêm quán cafe thành công!', 'success');
@@ -343,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 2000);
             
         } catch (error) {
-            console.error('Error submitting form:', error);
+
             showToast('Có lỗi xảy ra. Vui lòng thử lại!', 'error');
         } finally {
             // Reset button

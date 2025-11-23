@@ -30,8 +30,10 @@
             
             <!-- Desktop Search Bar -->
             <div class="header-search-bar desktop-search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" data-i18n-placeholder="head.search.placeholder" placeholder="Tìm kiếm nhanh...">
+                <form>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" data-i18n-placeholder="head.search.placeholder" placeholder="Tìm kiếm nhanh...">
+                </form>
             </div>
             
             <!-- Mobile Search Button -->
@@ -59,11 +61,13 @@
         <!-- Mobile Search Bar -->
         <div class="mobile-search-bar">
             <div class="mobile-search-container">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" data-i18n-placeholder="head.search.placeholder" placeholder="Tìm kiếm nhanh...">
-                <button class="mobile-search-close" aria-label="Đóng tìm kiếm">
-                    <i class="fa-solid fa-times"></i>
-                </button>
+                <form>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" data-i18n-placeholder="head.search.placeholder" placeholder="Tìm kiếm nhanh...">
+                    <button type="button" class="mobile-search-close" aria-label="Đóng tìm kiếm">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </form>
             </div>
         </div>
         

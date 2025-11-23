@@ -85,11 +85,11 @@ window.modernCarousel = null;
 
 // Initialize modern carousel - simplified
 async function initializeModernCarousel() {
-    console.log('Starting carousel initialization...');
+
     
     // Check if ResponsiveCarousel is loaded
     if (typeof ResponsiveCarousel === 'undefined') {
-        console.error('ResponsiveCarousel class not found!');
+
         return;
     }
     
@@ -108,31 +108,31 @@ async function initializeModernCarousel() {
     
     // Initialize carousel
     await window.modernCarousel.initialize();
-    console.log('Carousel initialization completed');
+
 }
 
-// Main initialization
+
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, initializing components...');
+
     
     // Initialize carousel if on homepage
     const carouselTrack = document.getElementById('carousel-track');
     if (carouselTrack) {
-        console.log('Carousel track found, initializing...');
+
         setTimeout(() => {
             initializeModernCarousel().catch(error => {
-                console.error('Modern carousel failed, using fallback:', error);
+
                 initializeFallbackCarousel();
             });
         }, 300);
     } else {
-        console.log('No carousel track found on this page');
+
     }
     
     // Initialize FAQ functionality
     const faqItems = document.querySelectorAll('.faq-item');
     if (faqItems.length > 0) {
-        console.log('FAQ items found, initializing...');
+
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
             
@@ -153,14 +153,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Fallback carousel if modern carousel fails
+
 function initializeFallbackCarousel() {
-    console.log('Initializing fallback carousel...');
+
     
     const track = document.getElementById('carousel-track');
     const coffeeData = window.coffeeShopsData || window.allCoffeeShops;
     if (!track || !coffeeData) {
-        console.error('Missing track or data for fallback carousel');
+
         return;
     }
     
@@ -216,7 +216,7 @@ function initializeFallbackCarousel() {
     track.style.padding = '20px';
     track.style.justifyContent = 'center';
     
-    console.log('Fallback carousel initialized with', sampleShops.length, 'cards');
+
 }
 
-// End of main.js
+

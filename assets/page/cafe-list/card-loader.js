@@ -4,12 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Lấy "thùng chứa" card từ file HTML của bạn
     const listContainer = document.getElementById('cafeGrid');
 
-    // ----------------------------------------------------------------
-    // HÀM CHÍNH: Tải data và hiển thị
-    // ----------------------------------------------------------------
+
     async function loadAllCafes() {
         if (!listContainer) {
-            console.error("Lỗi: Không tìm thấy #cafeGrid.");
+
             return;
         }
         
@@ -31,14 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
             renderAllShops(allCoffeeShops);
             
         } catch (error) {
-            console.error('Lỗi khi tải danh sách quán:', error);
+
             listContainer.innerHTML = '<p style="color: red;">Lỗi khi tải dữ liệu. Vui lòng thử lại.</p>';
         }
     }
 
-    // ----------------------------------------------------------------
-    // HÀM 2: "Vẽ" các card lên màn hình
-    // ----------------------------------------------------------------
+
     function renderAllShops(shops) {
         listContainer.innerHTML = ''; // Xóa chữ "Đang tải..."
 
@@ -91,6 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // --- BẮT ĐẦU CHẠY ---
+
     loadAllCafes(); 
 });

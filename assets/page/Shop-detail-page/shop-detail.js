@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  console.log('Shop detail page loaded');
 
-  // --- 1. XỬ LÝ FOOTER ---
+
+
   const footer = document.getElementById('footer');
   if (footer && footer.parentElement !== document.body) {
-    console.log('Moving footer back to body');
+
     document.body.appendChild(footer);
   }
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (mutation.type === 'childList') {
         const footer = document.getElementById('footer');
         if (footer && footer.parentElement !== document.body) {
-          console.log('Footer moved, fixing position');
+
           document.body.appendChild(footer);
         }
       }
@@ -25,14 +25,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     subtree: true
   });
 
-  // --- 2. KHỞI TẠO TRANG ---
+
   const urlParams = new URLSearchParams(window.location.search);
   const cafeId = urlParams.get('id');
   
   const loadingContainer = document.getElementById('loading-container');
   const mainContent = document.getElementById('main-content');
 
-  console.log('Cafe ID:', cafeId);
+
 
   if (!cafeId) {
     showError('Không có ID quán cà phê trong URL');
@@ -61,14 +61,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     hideLoading();
     showContent();
 
-    console.log('Shop detail loaded successfully');
+
 
   } catch (error) {
-    console.error('Error loading shop detail:', error);
+
     showError('Lỗi tải dữ liệu: ' + error.message);
   }
 
-  // --- 3. CÁC HÀM XỬ LÝ DỮ LIỆU ---
+
 
   async function loadCafeData() {
     try {
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (error) {
-      console.log('Trying alternative path...');
+
       const response = await fetch('../../data/data.json');
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function displayCafeData(cafe) {
-    console.log('Displaying cafe:', cafe.name);
+
 
     // Tên quán
     const titleH1 = document.querySelector('.shopdetail_title h1');
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       priceTab.innerHTML = `<div class="shopdetail_text"><p>${cafe.price_range || 'Chưa cập nhật'}</p></div>`;
     }
 
-    // --- SỬA LỖI NÚT CHỈ ĐƯỜNG (Theo ảnh bạn gửi) ---
+
     // Tìm nút có class "direction-btn" (thay vì btn-direction như cũ)
     const directionBtn = document.querySelector('.direction-btn');
     
@@ -204,12 +204,12 @@ document.addEventListener('DOMContentLoaded', async () => {
           window.open(mapLink, '_blank');
       };
     }
-    // ------------------------------------------------
 
-    console.log('Data displayed successfully');
+
+
   }
 
-  // --- 4. CÁC HÀM UI/UX KHÁC ---
+
 
   function setupTabs() {
     const tabLinks = document.querySelectorAll('.detail_tab-link');

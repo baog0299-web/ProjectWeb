@@ -92,9 +92,7 @@ body {
     line-height: 1.5;
 }
 
-/* ====================================================== */
-/* PHẦN QUAN TRỌNG: GRID LAYOUT (SỬA THEO CẤU TRÚC MỚI) */
-/* ====================================================== */
+
 
 /* 1. Thẻ Wrapper (Bao ngoài cùng): Lo căn lề trang */
 .card-container {
@@ -108,7 +106,7 @@ body {
 .favorites-grid {
     display: flex;              /* Dùng Flexbox thay vì Grid */
     flex-wrap: wrap;            /* Cho phép xuống dòng khi hết chỗ */
-    justify-content: center;    /* QUAN TRỌNG: Căn giữa toàn bộ card trong container */
+    justify-content: center;
     gap: 24px;                  /* Khoảng cách giữa các card */
     width: 100%;
 }
