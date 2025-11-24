@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         listContainer.innerHTML = '<p style="text-align:center; width:100%;">Đang tải dữ liệu...</p>';
         
         try {
-            // SỬA LỖI 1: Dùng đường dẫn tuyệt đối từ gốc (root)
-            // Không dùng ../../../ nữa để tránh lỗi trên Vercel
+            // Dùng đường dẫn tuyệt đối từ gốc
             const response = await fetch('/assets/data/data.json');
             
             if (!response.ok) throw new Error(`Lỗi tải data: ${response.status}`);
@@ -32,13 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (searchKeyword) {
                 const decodedKeyword = decodeURIComponent(searchKeyword).toLowerCase();
                 
-                // Điền lại từ khóa vào ô tìm kiếm (nếu có header)
+                // Điền lại từ khóa vào ô tìm kiếm
                 setTimeout(() => {
                     const headerInput = document.querySelector('.header-search-bar input');
                     if (headerInput) headerInput.value = decodedURIComponent(searchKeyword);
                 }, 500);
 
-                // Lọc danh sách
+                // Lọc danh sách theo từ khóa
                 currentDisplayList = allCoffeeShops.filter(shop => {
                     const nameMatch = shop.name.toLowerCase().includes(decodedKeyword);
                     const addressMatch = shop.address.toLowerCase().includes(decodedKeyword);
@@ -49,9 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 filterTabs.forEach(t => t.classList.remove('active'));
 
             } else {
-                // Mặc định: Hiển thị tất cả (và lọc theo Mới nhất)
+                // Mặc định: Hiển thị tất cả (lọc theo Mới nhất)
                 currentDisplayList = [...allCoffeeShops];
-                applyFilter('new'); // Mặc định sort theo ID giảm dần
+                applyFilter('new'); 
             }
 
             // Hiển thị trang đầu tiên
@@ -59,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setupPagination();
 
         } catch (error) {
-
+            console.error(error);
             listContainer.innerHTML = '<p style="text-align:center; color:red;">Không thể tải dữ liệu quán.</p>';
         }
     }
@@ -79,14 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Tính toán cắt mảng
+        // Tính toán cắt mảng phân trang
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
         const itemsToShow = currentDisplayList.slice(startIndex, endIndex);
 
-        // Lấy danh sách yêu thích từ LocalStorage
+        // Lấy danh sách yêu thích
         let favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
-        // Chuyển về dạng số để so sánh an toàn
         favorites = favorites.map(id => Number(id));
 
         itemsToShow.forEach(shop => {
@@ -103,17 +101,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // Xử lý Ảnh (Dùng đường dẫn tuyệt đối nếu chưa có)
+            // Xử lý Ảnh
             let imgSrc = shop.image || '/assets/image/public/Container.png';
             if (!imgSrc.startsWith('http') && !imgSrc.startsWith('/')) {
-                 imgSrc = '/' + imgSrc; // Thêm / để thành đường dẫn tuyệt đối
+                 imgSrc = '/' + imgSrc;
             }
 
-            // SỬA LỖI 2: Link chi tiết dùng đường dẫn TUYỆT ĐỐI
-
+            // Link chi tiết
            const detailLink = `/assets/page/Shop-detail-page/shop-detail.html?id=${shop.id}`;
 
-            // Tạo phần tử HTML
+            // Tạo phần tử HTML card
             const shopLinkWrapper = document.createElement('a');
             shopLinkWrapper.className = 'shop-card-link';
             shopLinkWrapper.href = detailLink; 
@@ -139,22 +136,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-
+            // Xử lý nút tim (yêu thích)
             const heartBtn = shopLinkWrapper.querySelector('.heart-icon');
             heartBtn.addEventListener('click', (e) => {
-                e.preventDefault(); // Chặn chuyển trang
+                e.preventDefault();
                 e.stopPropagation();
                 
-                // Cập nhật lại danh sách favorites mới nhất
                 let currentFavs = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
                 currentFavs = currentFavs.map(id => Number(id));
 
                 if (currentFavs.includes(shopId)) {
-                    // Bỏ like
                     currentFavs = currentFavs.filter(id => id !== shopId);
                     heartBtn.innerHTML = '<i class="far fa-heart"></i>';
                 } else {
-                    // Thêm like
                     currentFavs.push(shopId);
                     heartBtn.innerHTML = '<i class="fas fa-heart" style="color: #D97706;"></i>';
                 }
@@ -164,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
             listContainer.appendChild(shopLinkWrapper);
         });
 
-        // Cập nhật nút phân trang active
         updatePaginationUI();
     }
 
@@ -176,14 +169,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalPages = Math.ceil(currentDisplayList.length / itemsPerPage);
         if (totalPages <= 1) return;
 
-        // Nút số 1, 2, 3...
         for (let i = 1; i <= totalPages; i++) {
             const btn = document.createElement('button');
             btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
             btn.textContent = i;
             btn.addEventListener('click', () => {
                 renderPage(i);
-                // Cuộn lên đầu lưới
                 const gridTop = document.querySelector('.filter-tabs');
                 if(gridTop) gridTop.scrollIntoView({ behavior: 'smooth' });
             });
@@ -201,17 +192,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function applyFilter(type) {
-        let sortedList = [...allCoffeeShops]; // Reset về danh sách gốc để lọc
+        let sortedList = [...allCoffeeShops];
 
+        // --- ĐÃ XOÁ LOGIC 'recommended' Ở ĐÂY ---
         if (type === 'new') {
             // Mới nhất (ID giảm dần)
             sortedList.sort((a, b) => b.id - a.id);
         } else if (type === 'rating' || type === 'topRated') {
             // Đánh giá cao
             sortedList.sort((a, b) => b.rating - a.rating);
-        } else if (type === 'recommended') {
-            // Gợi ý (Ngẫu nhiên)
-            sortedList.sort(() => 0.5 - Math.random());
         }
         
         currentDisplayList = sortedList;
@@ -226,18 +215,18 @@ document.addEventListener('DOMContentLoaded', () => {
             filterTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
 
-            // Ưu tiên dùng data-sort trong HTML, nếu không có thì dùng index
             let sortType = tab.getAttribute('data-sort');
+            
+            // Fallback logic nếu HTML không có data-sort
             if (!sortType) {
                 if (index === 0) sortType = 'new';
-                else if (index === 1) sortType = 'recommended';
-                else if (index === 2) sortType = 'rating';
+                // --- ĐÃ XOÁ NÚT SỐ 1 (RECOMMENDED) Ở ĐÂY ---
+                else sortType = 'rating'; // Mặc định các nút còn lại là rating
             }
             
             applyFilter(sortType);
         });
     });
-
 
     loadAllCafes();
 });
